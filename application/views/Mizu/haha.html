@@ -1,0 +1,3371 @@
+<html lang="en">
+<!-- START: Head-->
+
+<head>
+    <!-- <meta http-equiv="refresh" content="300"> -->
+
+    <meta charset="UTF-8">
+    <title>OBC</title>
+    <link rel="icon" type="image/png" href="http://localhost.infomedia.co.id/infomedia_syanida/assets/images/logo.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- START: Template CSS-->
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/jquery-ui/jquery-ui.theme.min.css">
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/flags-icon/css/flag-icon.min.css">
+    <!-- END Template CSS-->
+
+    <!-- START: Page CSS-->
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/chartjs/Chart.min.css">
+    <link
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/lineprogressbar/jquery.lineProgressbar.min.css"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/buttons/css/buttons.bootstrap4.min.css">
+
+    <!-- END: Page CSS-->
+
+    <!-- START: Page CSS-->
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/morris/morris.css">
+    <!-- END: Page CSS-->
+    <!-- START: Page CSS-->
+    <link rel="stylesheet"
+        href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/sweetalert/sweetalert.css">
+    <!-- END: Page CSS-->
+
+
+    <!-- START: Custom CSS-->
+    <link rel="stylesheet" href="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/css/main.css">
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
+    <!-- <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/js/plugins/jquery-knob/jquery.knob.min.js" type="text/javascript"></script> -->
+    <!-- END: Page CSS-->
+
+    <style type="text/css">
+        .apexcharts-canvas {
+            position: relative;
+            user-select: none;
+            /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+        }
+
+        /* scrollbar is not visible by default for legend, hence forcing the visibility */
+        .apexcharts-canvas ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 6px;
+        }
+
+        .apexcharts-canvas ::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, .5);
+            box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+            -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        }
+
+        .apexcharts-canvas.dark {
+            background: #343F57;
+        }
+
+        .apexcharts-inner {
+            position: relative;
+        }
+
+        .legend-mouseover-inactive {
+            transition: 0.15s ease all;
+            opacity: 0.20;
+        }
+
+        .apexcharts-series-collapsed {
+            opacity: 0;
+        }
+
+        .apexcharts-gridline,
+        .apexcharts-text {
+            pointer-events: none;
+        }
+
+        .apexcharts-tooltip {
+            border-radius: 5px;
+            box-shadow: 2px 2px 6px -4px #999;
+            cursor: default;
+            font-size: 14px;
+            left: 62px;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            top: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 12;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-tooltip.light {
+            border: 1px solid #e3e3e3;
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .apexcharts-tooltip.dark {
+            color: #fff;
+            background: rgba(30, 30, 30, 0.8);
+        }
+
+        .apexcharts-tooltip * {
+            font-family: inherit;
+        }
+
+        .apexcharts-tooltip .apexcharts-marker,
+        .apexcharts-area-series .apexcharts-area,
+        .apexcharts-line {
+            pointer-events: none;
+        }
+
+        .apexcharts-tooltip.active {
+            opacity: 1;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-tooltip-title {
+            padding: 6px;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .apexcharts-tooltip.light .apexcharts-tooltip-title {
+            background: #ECEFF1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .apexcharts-tooltip.dark .apexcharts-tooltip-title {
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid #333;
+        }
+
+        .apexcharts-tooltip-text-value,
+        .apexcharts-tooltip-text-z-value {
+            display: inline-block;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .apexcharts-tooltip-text-z-label:empty,
+        .apexcharts-tooltip-text-z-value:empty {
+            display: none;
+        }
+
+        .apexcharts-tooltip-text-value,
+        .apexcharts-tooltip-text-z-value {
+            font-weight: 600;
+        }
+
+        .apexcharts-tooltip-marker {
+            width: 12px;
+            height: 12px;
+            position: relative;
+            top: 0px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .apexcharts-tooltip-series-group {
+            padding: 0 10px;
+            display: none;
+            text-align: left;
+            justify-content: left;
+            align-items: center;
+        }
+
+        .apexcharts-tooltip-series-group.active .apexcharts-tooltip-marker {
+            opacity: 1;
+        }
+
+        .apexcharts-tooltip-series-group.active,
+        .apexcharts-tooltip-series-group:last-child {
+            padding-bottom: 4px;
+        }
+
+        .apexcharts-tooltip-series-group-hidden {
+            opacity: 0;
+            height: 0;
+            line-height: 0;
+            padding: 0 !important;
+        }
+
+        .apexcharts-tooltip-y-group {
+            padding: 6px 0 5px;
+        }
+
+        .apexcharts-tooltip-candlestick {
+            padding: 4px 8px;
+        }
+
+        .apexcharts-tooltip-candlestick>div {
+            margin: 4px 0;
+        }
+
+        .apexcharts-tooltip-candlestick span.value {
+            font-weight: bold;
+        }
+
+        .apexcharts-tooltip-rangebar {
+            padding: 5px 8px;
+        }
+
+        .apexcharts-tooltip-rangebar .category {
+            font-weight: 600;
+            color: #777;
+        }
+
+        .apexcharts-tooltip-rangebar .series-name {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .apexcharts-xaxistooltip {
+            opacity: 0;
+            padding: 9px 10px;
+            pointer-events: none;
+            color: #373d3f;
+            font-size: 13px;
+            text-align: center;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+            background: #ECEFF1;
+            border: 1px solid #90A4AE;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-xaxistooltip.dark {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .apexcharts-xaxistooltip:after,
+        .apexcharts-xaxistooltip:before {
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .apexcharts-xaxistooltip:after {
+            border-color: rgba(236, 239, 241, 0);
+            border-width: 6px;
+            margin-left: -6px;
+        }
+
+        .apexcharts-xaxistooltip:before {
+            border-color: rgba(144, 164, 174, 0);
+            border-width: 7px;
+            margin-left: -7px;
+        }
+
+        .apexcharts-xaxistooltip-bottom:after,
+        .apexcharts-xaxistooltip-bottom:before {
+            bottom: 100%;
+        }
+
+        .apexcharts-xaxistooltip-top:after,
+        .apexcharts-xaxistooltip-top:before {
+            top: 100%;
+        }
+
+        .apexcharts-xaxistooltip-bottom:after {
+            border-bottom-color: #ECEFF1;
+        }
+
+        .apexcharts-xaxistooltip-bottom:before {
+            border-bottom-color: #90A4AE;
+        }
+
+        .apexcharts-xaxistooltip-bottom.dark:after {
+            border-bottom-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-bottom.dark:before {
+            border-bottom-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-top:after {
+            border-top-color: #ECEFF1
+        }
+
+        .apexcharts-xaxistooltip-top:before {
+            border-top-color: #90A4AE;
+        }
+
+        .apexcharts-xaxistooltip-top.dark:after {
+            border-top-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-top.dark:before {
+            border-top-color: rgba(0, 0, 0, 0.5);
+        }
+
+
+        .apexcharts-xaxistooltip.active {
+            opacity: 1;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-yaxistooltip {
+            opacity: 0;
+            padding: 4px 10px;
+            pointer-events: none;
+            color: #373d3f;
+            font-size: 13px;
+            text-align: center;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+            background: #ECEFF1;
+            border: 1px solid #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip.dark {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .apexcharts-yaxistooltip:after,
+        .apexcharts-yaxistooltip:before {
+            top: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .apexcharts-yaxistooltip:after {
+            border-color: rgba(236, 239, 241, 0);
+            border-width: 6px;
+            margin-top: -6px;
+        }
+
+        .apexcharts-yaxistooltip:before {
+            border-color: rgba(144, 164, 174, 0);
+            border-width: 7px;
+            margin-top: -7px;
+        }
+
+        .apexcharts-yaxistooltip-left:after,
+        .apexcharts-yaxistooltip-left:before {
+            left: 100%;
+        }
+
+        .apexcharts-yaxistooltip-right:after,
+        .apexcharts-yaxistooltip-right:before {
+            right: 100%;
+        }
+
+        .apexcharts-yaxistooltip-left:after {
+            border-left-color: #ECEFF1;
+        }
+
+        .apexcharts-yaxistooltip-left:before {
+            border-left-color: #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip-left.dark:after {
+            border-left-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-left.dark:before {
+            border-left-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-right:after {
+            border-right-color: #ECEFF1;
+        }
+
+        .apexcharts-yaxistooltip-right:before {
+            border-right-color: #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip-right.dark:after {
+            border-right-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-right.dark:before {
+            border-right-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip.active {
+            opacity: 1;
+        }
+
+        .apexcharts-yaxistooltip-hidden {
+            display: none;
+        }
+
+        .apexcharts-xcrosshairs,
+        .apexcharts-ycrosshairs {
+            pointer-events: none;
+            opacity: 0;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-xcrosshairs.active,
+        .apexcharts-ycrosshairs.active {
+            opacity: 1;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-ycrosshairs-hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-zoom-rect {
+            pointer-events: none;
+        }
+
+        .apexcharts-selection-rect {
+            cursor: move;
+        }
+
+        .svg_select_points,
+        .svg_select_points_rot {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .svg_select_points_l,
+        .svg_select_points_r {
+            cursor: ew-resize;
+            opacity: 1;
+            visibility: visible;
+            fill: #888;
+        }
+
+        .apexcharts-canvas.zoomable .hovering-zoom {
+            cursor: crosshair
+        }
+
+        .apexcharts-canvas.zoomable .hovering-pan {
+            cursor: move
+        }
+
+        .apexcharts-xaxis,
+        .apexcharts-yaxis {
+            pointer-events: none;
+        }
+
+        .apexcharts-zoom-icon,
+        .apexcharts-zoom-in-icon,
+        .apexcharts-zoom-out-icon,
+        .apexcharts-reset-zoom-icon,
+        .apexcharts-pan-icon,
+        .apexcharts-selection-icon,
+        .apexcharts-menu-icon,
+        .apexcharts-toolbar-custom-icon {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            line-height: 24px;
+            color: #6E8192;
+            text-align: center;
+        }
+
+
+        .apexcharts-zoom-icon svg,
+        .apexcharts-zoom-in-icon svg,
+        .apexcharts-zoom-out-icon svg,
+        .apexcharts-reset-zoom-icon svg,
+        .apexcharts-menu-icon svg {
+            fill: #6E8192;
+        }
+
+        .apexcharts-selection-icon svg {
+            fill: #444;
+            transform: scale(0.76)
+        }
+
+        .dark .apexcharts-zoom-icon svg,
+        .dark .apexcharts-zoom-in-icon svg,
+        .dark .apexcharts-zoom-out-icon svg,
+        .dark .apexcharts-reset-zoom-icon svg,
+        .dark .apexcharts-pan-icon svg,
+        .dark .apexcharts-selection-icon svg,
+        .dark .apexcharts-menu-icon svg,
+        .dark .apexcharts-toolbar-custom-icon svg {
+            fill: #f3f4f5;
+        }
+
+        .apexcharts-canvas .apexcharts-zoom-icon.selected svg,
+        .apexcharts-canvas .apexcharts-selection-icon.selected svg,
+        .apexcharts-canvas .apexcharts-reset-zoom-icon.selected svg {
+            fill: #008FFB;
+        }
+
+        .light .apexcharts-selection-icon:not(.selected):hover svg,
+        .light .apexcharts-zoom-icon:not(.selected):hover svg,
+        .light .apexcharts-zoom-in-icon:hover svg,
+        .light .apexcharts-zoom-out-icon:hover svg,
+        .light .apexcharts-reset-zoom-icon:hover svg,
+        .light .apexcharts-menu-icon:hover svg {
+            fill: #333;
+        }
+
+        .apexcharts-selection-icon,
+        .apexcharts-menu-icon {
+            position: relative;
+        }
+
+        .apexcharts-reset-zoom-icon {
+            margin-left: 5px;
+        }
+
+        .apexcharts-zoom-icon,
+        .apexcharts-reset-zoom-icon,
+        .apexcharts-menu-icon {
+            transform: scale(0.85);
+        }
+
+        .apexcharts-zoom-in-icon,
+        .apexcharts-zoom-out-icon {
+            transform: scale(0.7)
+        }
+
+        .apexcharts-zoom-out-icon {
+            margin-right: 3px;
+        }
+
+        .apexcharts-pan-icon {
+            transform: scale(0.62);
+            position: relative;
+            left: 1px;
+            top: 0px;
+        }
+
+        .apexcharts-pan-icon svg {
+            fill: #fff;
+            stroke: #6E8192;
+            stroke-width: 2;
+        }
+
+        .apexcharts-pan-icon.selected svg {
+            stroke: #008FFB;
+        }
+
+        .apexcharts-pan-icon:not(.selected):hover svg {
+            stroke: #333;
+        }
+
+        .apexcharts-toolbar {
+            position: absolute;
+            z-index: 11;
+            top: 0px;
+            right: 3px;
+            max-width: 176px;
+            text-align: right;
+            border-radius: 3px;
+            padding: 0px 6px 2px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .apexcharts-toolbar svg {
+            pointer-events: none;
+        }
+
+        .apexcharts-menu {
+            background: #fff;
+            position: absolute;
+            top: 100%;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 3px;
+            right: 10px;
+            opacity: 0;
+            min-width: 110px;
+            transition: 0.15s ease all;
+            pointer-events: none;
+        }
+
+        .apexcharts-menu.open {
+            opacity: 1;
+            pointer-events: all;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-menu-item {
+            padding: 6px 7px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .light .apexcharts-menu-item:hover {
+            background: #eee;
+        }
+
+        .dark .apexcharts-menu {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+        }
+
+        @media screen and (min-width: 768px) {
+            .apexcharts-toolbar {
+                /*opacity: 0;*/
+            }
+
+            .apexcharts-canvas:hover .apexcharts-toolbar {
+                opacity: 1;
+            }
+        }
+
+        .apexcharts-datalabel.hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-pie-label,
+        .apexcharts-datalabel,
+        .apexcharts-datalabel-label,
+        .apexcharts-datalabel-value {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .apexcharts-pie-label-delay {
+            opacity: 0;
+            animation-name: opaque;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease;
+        }
+
+        .apexcharts-canvas .hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-hide .apexcharts-series-points {
+            opacity: 0;
+        }
+
+        .apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+        .apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+        .apexcharts-radar-series path,
+        .apexcharts-radar-series polygon {
+            pointer-events: none;
+        }
+
+        /* markers */
+
+        .apexcharts-marker {
+            transition: 0.15s ease all;
+        }
+
+        @keyframes opaque {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Resize generated styles */
+        @keyframes resizeanim {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .resize-triggers {
+            animation: 1ms resizeanim;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .resize-triggers,
+        .resize-triggers>div,
+        .contract-trigger:before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .resize-triggers>div {
+            background: #eee;
+            overflow: auto;
+        }
+
+        .contract-trigger:before {
+            width: 200%;
+            height: 200%;
+        }
+    </style>
+    <style type="text/css">
+        .apexcharts-canvas {
+            position: relative;
+            user-select: none;
+            /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+        }
+
+        /* scrollbar is not visible by default for legend, hence forcing the visibility */
+        .apexcharts-canvas ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 6px;
+        }
+
+        .apexcharts-canvas ::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, .5);
+            box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+            -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+        }
+
+        .apexcharts-canvas.dark {
+            background: #343F57;
+        }
+
+        .apexcharts-inner {
+            position: relative;
+        }
+
+        .legend-mouseover-inactive {
+            transition: 0.15s ease all;
+            opacity: 0.20;
+        }
+
+        .apexcharts-series-collapsed {
+            opacity: 0;
+        }
+
+        .apexcharts-gridline,
+        .apexcharts-text {
+            pointer-events: none;
+        }
+
+        .apexcharts-tooltip {
+            border-radius: 5px;
+            box-shadow: 2px 2px 6px -4px #999;
+            cursor: default;
+            font-size: 14px;
+            left: 62px;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            top: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 12;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-tooltip.light {
+            border: 1px solid #e3e3e3;
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .apexcharts-tooltip.dark {
+            color: #fff;
+            background: rgba(30, 30, 30, 0.8);
+        }
+
+        .apexcharts-tooltip * {
+            font-family: inherit;
+        }
+
+        .apexcharts-tooltip .apexcharts-marker,
+        .apexcharts-area-series .apexcharts-area,
+        .apexcharts-line {
+            pointer-events: none;
+        }
+
+        .apexcharts-tooltip.active {
+            opacity: 1;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-tooltip-title {
+            padding: 6px;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .apexcharts-tooltip.light .apexcharts-tooltip-title {
+            background: #ECEFF1;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .apexcharts-tooltip.dark .apexcharts-tooltip-title {
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 1px solid #333;
+        }
+
+        .apexcharts-tooltip-text-value,
+        .apexcharts-tooltip-text-z-value {
+            display: inline-block;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .apexcharts-tooltip-text-z-label:empty,
+        .apexcharts-tooltip-text-z-value:empty {
+            display: none;
+        }
+
+        .apexcharts-tooltip-text-value,
+        .apexcharts-tooltip-text-z-value {
+            font-weight: 600;
+        }
+
+        .apexcharts-tooltip-marker {
+            width: 12px;
+            height: 12px;
+            position: relative;
+            top: 0px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        .apexcharts-tooltip-series-group {
+            padding: 0 10px;
+            display: none;
+            text-align: left;
+            justify-content: left;
+            align-items: center;
+        }
+
+        .apexcharts-tooltip-series-group.active .apexcharts-tooltip-marker {
+            opacity: 1;
+        }
+
+        .apexcharts-tooltip-series-group.active,
+        .apexcharts-tooltip-series-group:last-child {
+            padding-bottom: 4px;
+        }
+
+        .apexcharts-tooltip-series-group-hidden {
+            opacity: 0;
+            height: 0;
+            line-height: 0;
+            padding: 0 !important;
+        }
+
+        .apexcharts-tooltip-y-group {
+            padding: 6px 0 5px;
+        }
+
+        .apexcharts-tooltip-candlestick {
+            padding: 4px 8px;
+        }
+
+        .apexcharts-tooltip-candlestick>div {
+            margin: 4px 0;
+        }
+
+        .apexcharts-tooltip-candlestick span.value {
+            font-weight: bold;
+        }
+
+        .apexcharts-tooltip-rangebar {
+            padding: 5px 8px;
+        }
+
+        .apexcharts-tooltip-rangebar .category {
+            font-weight: 600;
+            color: #777;
+        }
+
+        .apexcharts-tooltip-rangebar .series-name {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .apexcharts-xaxistooltip {
+            opacity: 0;
+            padding: 9px 10px;
+            pointer-events: none;
+            color: #373d3f;
+            font-size: 13px;
+            text-align: center;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+            background: #ECEFF1;
+            border: 1px solid #90A4AE;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-xaxistooltip.dark {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .apexcharts-xaxistooltip:after,
+        .apexcharts-xaxistooltip:before {
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .apexcharts-xaxistooltip:after {
+            border-color: rgba(236, 239, 241, 0);
+            border-width: 6px;
+            margin-left: -6px;
+        }
+
+        .apexcharts-xaxistooltip:before {
+            border-color: rgba(144, 164, 174, 0);
+            border-width: 7px;
+            margin-left: -7px;
+        }
+
+        .apexcharts-xaxistooltip-bottom:after,
+        .apexcharts-xaxistooltip-bottom:before {
+            bottom: 100%;
+        }
+
+        .apexcharts-xaxistooltip-top:after,
+        .apexcharts-xaxistooltip-top:before {
+            top: 100%;
+        }
+
+        .apexcharts-xaxistooltip-bottom:after {
+            border-bottom-color: #ECEFF1;
+        }
+
+        .apexcharts-xaxistooltip-bottom:before {
+            border-bottom-color: #90A4AE;
+        }
+
+        .apexcharts-xaxistooltip-bottom.dark:after {
+            border-bottom-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-bottom.dark:before {
+            border-bottom-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-top:after {
+            border-top-color: #ECEFF1
+        }
+
+        .apexcharts-xaxistooltip-top:before {
+            border-top-color: #90A4AE;
+        }
+
+        .apexcharts-xaxistooltip-top.dark:after {
+            border-top-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-xaxistooltip-top.dark:before {
+            border-top-color: rgba(0, 0, 0, 0.5);
+        }
+
+
+        .apexcharts-xaxistooltip.active {
+            opacity: 1;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-yaxistooltip {
+            opacity: 0;
+            padding: 4px 10px;
+            pointer-events: none;
+            color: #373d3f;
+            font-size: 13px;
+            text-align: center;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+            background: #ECEFF1;
+            border: 1px solid #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip.dark {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .apexcharts-yaxistooltip:after,
+        .apexcharts-yaxistooltip:before {
+            top: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .apexcharts-yaxistooltip:after {
+            border-color: rgba(236, 239, 241, 0);
+            border-width: 6px;
+            margin-top: -6px;
+        }
+
+        .apexcharts-yaxistooltip:before {
+            border-color: rgba(144, 164, 174, 0);
+            border-width: 7px;
+            margin-top: -7px;
+        }
+
+        .apexcharts-yaxistooltip-left:after,
+        .apexcharts-yaxistooltip-left:before {
+            left: 100%;
+        }
+
+        .apexcharts-yaxistooltip-right:after,
+        .apexcharts-yaxistooltip-right:before {
+            right: 100%;
+        }
+
+        .apexcharts-yaxistooltip-left:after {
+            border-left-color: #ECEFF1;
+        }
+
+        .apexcharts-yaxistooltip-left:before {
+            border-left-color: #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip-left.dark:after {
+            border-left-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-left.dark:before {
+            border-left-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-right:after {
+            border-right-color: #ECEFF1;
+        }
+
+        .apexcharts-yaxistooltip-right:before {
+            border-right-color: #90A4AE;
+        }
+
+        .apexcharts-yaxistooltip-right.dark:after {
+            border-right-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip-right.dark:before {
+            border-right-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .apexcharts-yaxistooltip.active {
+            opacity: 1;
+        }
+
+        .apexcharts-yaxistooltip-hidden {
+            display: none;
+        }
+
+        .apexcharts-xcrosshairs,
+        .apexcharts-ycrosshairs {
+            pointer-events: none;
+            opacity: 0;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-xcrosshairs.active,
+        .apexcharts-ycrosshairs.active {
+            opacity: 1;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-ycrosshairs-hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-zoom-rect {
+            pointer-events: none;
+        }
+
+        .apexcharts-selection-rect {
+            cursor: move;
+        }
+
+        .svg_select_points,
+        .svg_select_points_rot {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .svg_select_points_l,
+        .svg_select_points_r {
+            cursor: ew-resize;
+            opacity: 1;
+            visibility: visible;
+            fill: #888;
+        }
+
+        .apexcharts-canvas.zoomable .hovering-zoom {
+            cursor: crosshair
+        }
+
+        .apexcharts-canvas.zoomable .hovering-pan {
+            cursor: move
+        }
+
+        .apexcharts-xaxis,
+        .apexcharts-yaxis {
+            pointer-events: none;
+        }
+
+        .apexcharts-zoom-icon,
+        .apexcharts-zoom-in-icon,
+        .apexcharts-zoom-out-icon,
+        .apexcharts-reset-zoom-icon,
+        .apexcharts-pan-icon,
+        .apexcharts-selection-icon,
+        .apexcharts-menu-icon,
+        .apexcharts-toolbar-custom-icon {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            line-height: 24px;
+            color: #6E8192;
+            text-align: center;
+        }
+
+
+        .apexcharts-zoom-icon svg,
+        .apexcharts-zoom-in-icon svg,
+        .apexcharts-zoom-out-icon svg,
+        .apexcharts-reset-zoom-icon svg,
+        .apexcharts-menu-icon svg {
+            fill: #6E8192;
+        }
+
+        .apexcharts-selection-icon svg {
+            fill: #444;
+            transform: scale(0.76)
+        }
+
+        .dark .apexcharts-zoom-icon svg,
+        .dark .apexcharts-zoom-in-icon svg,
+        .dark .apexcharts-zoom-out-icon svg,
+        .dark .apexcharts-reset-zoom-icon svg,
+        .dark .apexcharts-pan-icon svg,
+        .dark .apexcharts-selection-icon svg,
+        .dark .apexcharts-menu-icon svg,
+        .dark .apexcharts-toolbar-custom-icon svg {
+            fill: #f3f4f5;
+        }
+
+        .apexcharts-canvas .apexcharts-zoom-icon.selected svg,
+        .apexcharts-canvas .apexcharts-selection-icon.selected svg,
+        .apexcharts-canvas .apexcharts-reset-zoom-icon.selected svg {
+            fill: #008FFB;
+        }
+
+        .light .apexcharts-selection-icon:not(.selected):hover svg,
+        .light .apexcharts-zoom-icon:not(.selected):hover svg,
+        .light .apexcharts-zoom-in-icon:hover svg,
+        .light .apexcharts-zoom-out-icon:hover svg,
+        .light .apexcharts-reset-zoom-icon:hover svg,
+        .light .apexcharts-menu-icon:hover svg {
+            fill: #333;
+        }
+
+        .apexcharts-selection-icon,
+        .apexcharts-menu-icon {
+            position: relative;
+        }
+
+        .apexcharts-reset-zoom-icon {
+            margin-left: 5px;
+        }
+
+        .apexcharts-zoom-icon,
+        .apexcharts-reset-zoom-icon,
+        .apexcharts-menu-icon {
+            transform: scale(0.85);
+        }
+
+        .apexcharts-zoom-in-icon,
+        .apexcharts-zoom-out-icon {
+            transform: scale(0.7)
+        }
+
+        .apexcharts-zoom-out-icon {
+            margin-right: 3px;
+        }
+
+        .apexcharts-pan-icon {
+            transform: scale(0.62);
+            position: relative;
+            left: 1px;
+            top: 0px;
+        }
+
+        .apexcharts-pan-icon svg {
+            fill: #fff;
+            stroke: #6E8192;
+            stroke-width: 2;
+        }
+
+        .apexcharts-pan-icon.selected svg {
+            stroke: #008FFB;
+        }
+
+        .apexcharts-pan-icon:not(.selected):hover svg {
+            stroke: #333;
+        }
+
+        .apexcharts-toolbar {
+            position: absolute;
+            z-index: 11;
+            top: 0px;
+            right: 3px;
+            max-width: 176px;
+            text-align: right;
+            border-radius: 3px;
+            padding: 0px 6px 2px 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .apexcharts-toolbar svg {
+            pointer-events: none;
+        }
+
+        .apexcharts-menu {
+            background: #fff;
+            position: absolute;
+            top: 100%;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 3px;
+            right: 10px;
+            opacity: 0;
+            min-width: 110px;
+            transition: 0.15s ease all;
+            pointer-events: none;
+        }
+
+        .apexcharts-menu.open {
+            opacity: 1;
+            pointer-events: all;
+            transition: 0.15s ease all;
+        }
+
+        .apexcharts-menu-item {
+            padding: 6px 7px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .light .apexcharts-menu-item:hover {
+            background: #eee;
+        }
+
+        .dark .apexcharts-menu {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+        }
+
+        @media screen and (min-width: 768px) {
+            .apexcharts-toolbar {
+                /*opacity: 0;*/
+            }
+
+            .apexcharts-canvas:hover .apexcharts-toolbar {
+                opacity: 1;
+            }
+        }
+
+        .apexcharts-datalabel.hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-pie-label,
+        .apexcharts-datalabel,
+        .apexcharts-datalabel-label,
+        .apexcharts-datalabel-value {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .apexcharts-pie-label-delay {
+            opacity: 0;
+            animation-name: opaque;
+            animation-duration: 0.3s;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease;
+        }
+
+        .apexcharts-canvas .hidden {
+            opacity: 0;
+        }
+
+        .apexcharts-hide .apexcharts-series-points {
+            opacity: 0;
+        }
+
+        .apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+        .apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+        .apexcharts-radar-series path,
+        .apexcharts-radar-series polygon {
+            pointer-events: none;
+        }
+
+        /* markers */
+
+        .apexcharts-marker {
+            transition: 0.15s ease all;
+        }
+
+        @keyframes opaque {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Resize generated styles */
+        @keyframes resizeanim {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .resize-triggers {
+            animation: 1ms resizeanim;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .resize-triggers,
+        .resize-triggers>div,
+        .contract-trigger:before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .resize-triggers>div {
+            background: #eee;
+            overflow: auto;
+        }
+
+        .contract-trigger:before {
+            width: 200%;
+            height: 200%;
+        }
+    </style>
+    <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/mizu/js/webphone_config.js?jscodeversion=510"
+        type="text/javascript"></script>
+    <script src="../js/lib/api_helper.js?jscodeversion=510" type="text/javascript"></script>
+    <script src="../js/lib/translations.js?jscodeversion=510" type="text/javascript"></script>
+    <link href="../css/softphone/pmodal.css" rel="stylesheet">
+    <link href="../css/video.css" rel="stylesheet">
+    <script src="../js/lib/stringres.js?jscodeversion=510" type="text/javascript"></script>
+    <script src="../js/lib/lib_webphone.js?jscodeversion=510" type="text/javascript"></script>
+    <script src="../js/lib/adapter.js?jscodeversion=510" type="text/javascript"></script>
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+
+<body id="main-container" class="default horizontal-menu">
+
+    <!-- START: Pre Loader-->
+    <div class="se-pre-con" style="display: none;">
+        <div class="loader"></div>
+    </div>
+    <!-- END: Pre Loader-->
+
+    <!-- START: Header-->
+    <div id="header-fix" class="header fixed-top">
+        <div class="site-width">
+            <nav class="navbar navbar-expand-lg  p-0">
+                <img src="http://localhost.infomedia.co.id/infomedia_syanida/api/Public_Access/get_logo_template"
+                    class="header-brand-img h-7" alt="ybs logo">
+
+            </nav>
+        </div>
+    </div>
+    <!-- END: Header-->
+    <!-- START: Main Menu-->
+    <div class="sidebar">
+        <div class="site-width">
+
+            <!-- START: Menu-->
+            <ul id="side-menu" class="sidebar-menu">
+                <li>
+                    <a href="http://localhost.infomedia.co.id/infomedia_syanida/"><i class="icon-home mr-1"></i> Home</a>
+                </li>
+                <li class="active">
+                    <a href="http://localhost.infomedia.co.id/infomedia_syanida/Mizu/Mizu"><i class="icon-phone mr-1"></i>
+                        Outbound Call</a>
+                </li>
+                <li>
+                    <a href="http://localhost.infomedia.co.id/infomedia_syanida/Ebs/Ebs"><i class="icon-envelope mr-1"></i>
+                        History Call</a>
+                </li>
+
+
+            </ul>
+            <!-- END: Menu-->
+
+        </div>
+    </div>
+    <!-- END: Main Menu-->
+
+
+
+    <!-- START: Main Content-->
+    <main>
+        <div class="container-fluid ">
+            <!-- START: Breadcrumbs-->
+            <div class="row">
+
+
+                <div class="col-12  align-self-center">
+                    <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
+                        <div class="w-sm-100 mr-auto">
+                            <h4 class="mb-0"></h4>
+                            <!-- <i>*Last Update at 01 January 1970 07:00 AM</i> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Breadcrumbs-->
+            <div class="row">
+                <div class="col-9" id="on_call_block">
+                    <div class="card ">
+                        <div class="card-status bg-green"></div>
+                        <div class="card-header">
+                            <h3 class="card-title">Form Call Work Code</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="form_untuk_submit_" method="post">
+                                <input hidden="" id="idx" name="idx" value="">
+                                <input hidden="" id="regional" name="regional" value="">
+                                <input hidden="" id="sumber" name="sumber" value="ProfillingMyCX">
+                                <input hidden="" id="click_session" name="click_session" value="0830151VF0843TA">
+                                <div class="panel panel-lte">
+                                    <div class="panel-heading lte-heading-primary">Salam Pembuka</div>
+                                    <div class="panel-body row">
+                                        <div class="col-md-6">
+                                            Halo, Selamat Pagi/Siang/Sore.<br> <small>
+                                                <p xss="removed">Perkenalkan, saya <b>[nama_agent]</b> dari team
+                                                    Profiling Customer Indihome PT Telkom Indonesia (Indihome PT Telkom
+                                                    Indonesia). <br> Maaf Bapak/Ibu, kami mengganggu waktunya sebentar..
+                                                    <br> <u><i>Terhubung ke no pstn/internet:</i></u> <br> Benar saya
+                                                    terhubung di nomor pstn/internet <b>[no_pstn]/[internet]</b>, atas
+                                                    nama <b>[nama_pelanggan]</b>?<br> Maaf, dengan bapak/ibu siapa saya
+                                                    berbicara? </p>
+                                                <ul>
+                                                    <li>Jika terhubung dengan Pemiliknya langsung : Ibu/Bapak
+                                                        <b>[nama_pelanggan]</b> sebagai Pemilik dan Penanggung jawab
+                                                        Pembayaran Indihome nya?</li>
+                                                    <li>Jika terhubung dengan Suami/Istri/Keluarga : Ibu/Bapak relasi
+                                                        dengan atas nama <b>[nama_pelanggan]</b> sebagai apa?</li>
+                                                    <li>Jika terhubung dengan Karyawan : Ibu/Bapak Jabatan di
+                                                        perusahaannya sebagai apa?</li>
+                                                </ul>
+                                            </small>
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                        <div class="col-md border-left">
+                                            <option required="" value=""></option>
+                                            <table width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Nomor Telepon</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="no_pstn" name="no_pstn" value="04423113912"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nomor Internet</td>
+                                                        <td>
+                                                            <table widht="100%">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="70%"><input type="text"
+                                                                                class="form-control data-sending"
+                                                                                id="no_speedy" name="no_speedy"
+                                                                                value="172321804189">
+                                                                        </td>
+                                                                        <td width="30%"><a class="btn btn-primary"
+                                                                                href="javascript:void(0)"
+                                                                                onclick="copypaste2()">Copy</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>NCLI</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="ncli" name="ncli" value="51467645">
+                                                            <!-- 51467645<input hidden type="text" class="form-control data-sending" id="ncli" name="ncli" value="51467645"> -->
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Nama Pelanggan</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="nama_pelanggan" name="nama_pelanggan"
+                                                                value="Ahmad Sadikin"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Relasi Kepemilikan</td>
+                                                        <td><select name="relasi" id="relasi"
+                                                                class="form-control data-sending">
+                                                                <option value="">-- Pilih --</option>
+                                                                <option value="Pemilik">Pemilik</option>
+                                                                <option value="Bapak/Ibu">Bapak / Ibu</option>
+                                                                <option value="Suami/Istri">Suami / Istri</option>
+                                                                <option value="Anak">Anak</option>
+                                                                <option value="Keluarga">Keluarga</option>
+                                                                <option value="Kontrak">Kontrak</option>
+                                                                <option value="Karyawan">Karyawan</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jenis Kelamin</td>
+                                                        <td>
+                                                            <input type="radio" id="jk_l" name="jk" value="L">
+                                                            <label for="male">Male</label> &nbsp; &nbsp;
+                                                            <input type="radio" id="jk_p" name="jk" value="P">
+                                                            <label for="female">Female</label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="panel panel-lte">
+                                    <div class="panel-heading lte-heading-primary">Konfirmasi Email dan No HP</div>
+                                    <div class="panel-body row">
+                                        <div class="col-md-6">
+                                            <ul>
+                                                <li> Ibu/Bapak <b>[nama_pelanggan]</b> Sebagai Penanggung Jawab Indihome
+                                                    nya?</li>
+                                                <li> Yang bertanggung Jawab Pembayaran Indihome nya dengan Ibu/Bapak
+                                                    <b>[nama_pelanggan]</b> sendiri?</li>
+                                                <li> Untuk Penanggung jawabnya Pembayaran Indihome nya dengan Ibu/Bapak
+                                                    <b>[nama_pelanggan]</b> sendiri?</li>
+                                            </ul>
+                                            <div xss="removed"> "Saat ini Telkom sedang melakukan update untuk semua
+                                                data pelanggannya, agar mempermudah kami memberikan informasi mengenai :
+                                                <br>
+                                                <ul>
+                                                    <li>Program Loyalti,</li>
+                                                    <li>Produk-produk terbaru beserta Promonya Telkom,</li>
+                                                    <li>Percepatan perbaikan layanan jika Berkendala.</li>
+                                                </ul> Jadi, mohon dibantu sebentar untuk kelengkapan datanya ya pak/ bu
+                                                <b>[nama_pelanggan]</b>?<br> Untuk nomor handphone yang bisa kami
+                                                hubungi, benar di nomor <b>[no_handphone]</b> ?<br> Bisa dibantu untuk
+                                                alamat email pak/ bu <b>[nama_pelanggan]</b>? ( Pengejaan wajib
+                                                menggunakan Alphabet)
+                                            </div>
+                                        </div>
+                                        <div class="col-md border-left">
+                                            <table width="100%">
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Handphone Utama</td>
+                                                        <td>
+                                                            <input required="" type="tel"
+                                                                class="form-control data-sending" id="no_handpone"
+                                                                name="no_handpone" value="081221609591">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <a id="byphone">
+                                                                <div class="btn btn-success">
+                                                                    <span class="fe fe-phone"> kirim</span>
+                                                                </div>
+                                                                <span class="fe fe-clock" id="lblHandphone"
+                                                                    style="font-family: Courier; color: red; font-size: 12px;">undefined
+                                                                </span>
+
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="text_validation" style="display: none;">
+                                                        <td colspan="2" align="right">
+                                                            <p style="color: red;"><small>This is a text
+                                                                    validation</small></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Handphone Lainnya</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="handphone_lainnya" name="handphone_lainnya"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <fieldset id="buildyourform">
+                                                            </fieldset>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" align="right">
+                                                            <div class="btn btn-warning" id="add"><span
+                                                                    class="icon-plus icons"></span>
+                                                                <div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="text_validation" style="display: none;">
+                                                        <td colspan="2" align="right">
+                                                            <p style="color: red;"><small>This is a text
+                                                                    validation</small></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email Utama</td>
+                                                        <td>
+                                                            <input type="email" name="email"
+                                                                class="form-control data-sending" id="email"
+                                                                value="lajambufadly@gmail.com">
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="suggestion">
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td><a id="byemail">
+                                                                <div class="btn btn-success"><span class="fe fe-mail">
+                                                                        kirim</span></div>
+                                                            </a>
+                                                            <span class="fe fe-clock" id="lblEmail"
+                                                                style="font-family: Courier; color: red; font-size: 12px; display: none;">
+                                                            </span>
+
+                                                        </td>
+                                                    </tr>
+
+
+                                                    <tr class="text_validation" style="display: none;">
+                                                        <td colspan="2" align="right">
+                                                            <p style="color: red;"><small>This is a text
+                                                                    validation</small></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email Lainnya</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="email_lainnya" name="email_lainnya">
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="text_validation" style="display: none;">
+                                                        <td colspan="2" align="right">
+                                                            <p style="color: red;"><small>This is a text
+                                                                    validation</small></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <fieldset id="buildyourformemail">
+                                                            </fieldset>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2" align="right">
+                                                            <div class="btn btn-warning" id="add2"><span
+                                                                    class="icon-plus icons"></span>
+                                                                <div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+                                            <hr>
+                                            <table width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2"><strong>Sosial Media</strong></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="fe fe-facebook"></span>Facebook</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="facebook" name="facebook"></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="fe fe-twitter"></span>Twitter</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="twitter" name="twitter"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><span class="fe fe-instagram"></span>Instagram</td>
+                                                        <td><input type="text" class="form-control data-sending"
+                                                                id="instagram" name="instagram"></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="panel panel-lte">
+                                    <div class="panel-heading lte-heading-primary">Verifikasi</div>
+                                    <div class="panel-body row">
+                                        <div class="col-md-6">
+                                            <ul>
+                                                <li>Menanyakan Alamat<i><br><small>Format alamat (Nama Jalan | Nama Blok
+                                                            | RT/RW | Desa | Kecamatan | Kabupaten/Kota | Kode
+                                                            Pos)</small></i></li>
+                                                <li>Menanyakan Kecepatan Internet</li>
+                                                <li>Konfirmasi Jumlah Pembayaran</li>
+                                                <li>Konfirmasi pembayaran terakhir</li>
+                                                <li>Menanyakan lokasi pembayaran terakhir</li>
+                                                <hr> <u>Script tambahan untuk MOSS</u>
+                                                <li>Konfirmasi Produk MOSS</li>
+                                                <li>Tanyakan pengaktifan Manual atau Langsung</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md border-left">
+                                            <div class="panel panel-lte">
+
+
+                                                <table width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Nama</td>
+                                                            <td width="10px"><input type="checkbox"
+                                                                    class="data-sending validate"></td>
+                                                            <td><input type="text" class="form-control data-sending"
+                                                                    id="nama_pastel" name="nama_pastel" value=""></td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Alamat</td>
+                                                            <td width="10px"><input type="checkbox"
+                                                                    class="data-sending validate"></td>
+                                                            <td><textarea class="form-control data-sending" id="alamat"
+                                                                    name="alamat"></textarea></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">kota</td>
+                                                            <td><input type="Text" class="form-control data-sending"
+                                                                    id="kota" name="kota" value=""></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Kecepatan</td>
+                                                            <td width="10px"><input type="checkbox"
+                                                                    class="data-sending validate"></td>
+                                                            <td>
+
+                                                                <select name="kec_speedy" id="kec_speedy"
+                                                                    class="form-control data-sending">
+                                                                    <option value="">Pilih Kecepatan</option>
+                                                                    <option value="Telpon Rumah Saja">Telpon Rumah Saja
+                                                                    </option>
+                                                                    <option value="384k">384 Kbps</option>
+                                                                    <option value="512k">512 Kbps</option>
+                                                                    <option value="1">1 Mbps</option>
+                                                                    <option value="2">2 Mbps</option>
+                                                                    <option value="3">3 Mbps</option>
+                                                                    <option value="5">5 Mbps</option>
+                                                                    <option value="10">10 Mbps</option>
+                                                                    <option value="20">20 Mbps</option>
+                                                                    <option value="30">30 Mbps</option>
+                                                                    <option value="40">40 Mbps</option>
+                                                                    <option value="50">50 Mbps</option>
+                                                                    <option value="100">100 Mbps</option>
+                                                                    <option value="200">200 Mbps</option>
+                                                                    <option value="300">300 Mbps</option>
+                                                                </select>
+
+                                                            </td>
+                                                            <!-- <input type="Text" class="form-control data-sending" id="kec_speedy"
+                                name="kec_speedy"></td> -->
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tagihan</td>
+                                                            <td width="10px"><input type="checkbox"
+                                                                    class="data-sending validate"></td>
+                                                            <td>
+
+                                                                <input pattern="[0-9]" type="number"
+                                                                    class="form-control data-sending" id="billing"
+                                                                    name="billing" value="">
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tempat Bayar</td>
+                                                            <td width="10px"><input type="checkbox"
+                                                                    class="data-sending validate"></td>
+                                                            <td>
+                                                                <select class="form-control data-sending" id="payment"
+                                                                    name="payment">
+                                                                    <option value="">Pilih payment</option>
+                                                                    <option value="Banking - CR">Bank - Kredit</option>
+                                                                    <option value="Banking - DB">Bank - Debit</option>
+                                                                    <option value="ecommerce">E-commerce</option>
+                                                                    <option value="minimarket">Minimarket</option>
+                                                                    <option value="telkom dan pos">Telkom &amp; POS
+                                                                    </option>
+                                                                    <option value="psb">PSB</option>
+                                                                    <option value="others">Others</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Bulan &amp; Tahun Pasang</td>
+                                                            <td width="10px"><input type="checkbox"
+                                                                    class="data-sending validate"></td>
+                                                            <td>
+                                                                <input type="text" id="waktu_psb" name="waktu_psb"
+                                                                    class="form-control data-sending" value="">
+                                                            </td>
+                                                        </tr>
+
+
+                                                    </tbody>
+                                                </table>
+                                                <!-- <div style="background-color: #ff0100">Not Valid</div> -->
+
+                                                <input type="text" id="labelvalidated" name="labelvalidated"
+                                                    class="form-control panel-footer text-center text-white"
+                                                    style="background-color: #ff0100" readonly="">
+
+                                                <!-- <div id="labelvalidate" class="panel-footer text-center text-white bg-success">Valid -->
+                                                <select id="status_validate" name="status_validate" hidden="">
+                                                    <option value="x">select</option>
+                                                    <option value="valid">valid</option>
+                                                    <option value="notvalid">valid</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="panel panel-lte">
+                                    <div class="panel-heading lte-heading-primary">Closing</div>
+                                    <div class="panel-body row">
+                                        <div class="col-md-6">
+                                            Baik terima kasih bu/pak datanya sudah lengkap, kami sudah mengirimkan kode
+                                            verifikasi ke email dan no hp bapak/ibu, Apakah sudah masuk? <br> <br>
+                                            <i>Jika sudah masuk</i><br> Bisa di informasikan untuk kode verifikasinya
+                                            pak/ bu <b>[nama_pelanggan]</b> Jika Pelanggan keberatan menginfokan kode
+                                            verifikasi/kode verifikasi belum sampai ke pelanggan Baik pak/ bu
+                                            <b>[nama_pelanggan]</b> Tidak apa apa, kami bantu verifikasi by sistem ya,
+                                            sebagai tanda datanya sudah terupdate di database kami ." Kedepannya
+                                            Bapak/Ibu Lebih berkenan kami hubungi kembali melalu email, chat atau
+                                            telepon? "Terimakasih atas waktunya dan telah setia menggunakan produk
+                                            Telkom Bapak/Ibu, kami senantiasa menjamin kerahasiaan data pelanggan
+                                            selamat beraktifitas kembali pak/ bu" </div>
+                                        <div class="col-md border-left">
+                                            <div class="skcall" style=" display: none;">
+
+                                            </div>
+                                            <table width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="35%">Verifikasi Email</td>
+                                                        <!-- <td><a id="byemail">
+                        <div class="btn btn-success"><span class="fe fe-mail"> kirim</span></div>
+                </td> -->
+                                                        <td width="65%">
+                                                            <table width="100%">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="35%">
+                                                                            <input id="otpemail" name="otpemail"
+                                                                                type="Text"
+                                                                                class="form-control data-sending"
+                                                                                placeholder="C Email">
+                                                                            <input type="hidden" class="form-control"
+                                                                                id="code_email" name="code_email"
+                                                                                placeholder="Code Verifikasi Email"
+                                                                                style="width:70px;" value="">
+                                                                        </td>
+                                                                        <td width="65%"><i>
+                                                                                <span id="lblValidEmail"
+                                                                                    class="fe fe-check"
+                                                                                    style="font-family: Courier; color: red; font-size: 12px; display: none;"></span>
+                                                                            </i>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td colspan=2>
+                    <span class="fe fe-clock" id="lblEmail" style="font-family:Courier; color:red; font-size: 12px;"> </span>
+
+
+                </td>
+            </tr> -->
+
+                                                    <tr>
+                                                        <td>Verifikasi HP</td>
+                                                        <td>
+                                                            <table width="100%">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td width="35%">
+                                                                            <input id="otpphone" name="otpphone"
+                                                                                type="Text"
+                                                                                class="form-control data-sending"
+                                                                                placeholder="C HP">
+                                                                            <input type="hidden" class="form-control"
+                                                                                id="code_handphone"
+                                                                                name="code_handphone"
+                                                                                placeholder="Code Verifikasi"
+                                                                                style="width:70px;" value="">
+                                                                        </td>
+                                                                        <td>
+                                                                            <i>
+                                                                                <span id="lblValidHandphone"
+                                                                                    class="fe fe-check"
+                                                                                    style="font-family: Courier; color: red; font-size: 12px; display: none;"></span>
+
+
+                                                                            </i>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td colspan=2>
+                    <span class="fe fe-clock" id="lblHandphone" style="font-family:Courier; color:red; font-size: 12px;"> 2020-07-27 14:50:22 </span>
+                </td>
+            </tr> -->
+                                                    <!-- <tr>
+                <td colspan=3 align="right"></td>
+            </tr> -->
+                                                    <tr style="background-color:#28a745; color: white;">
+                                                        <td colspan="3" align="right"><input type="checkbox"
+                                                                class="bysistem" id="bysistem" value="1"
+                                                                name="bysistem"> &nbsp;Verifikasi by sistem &nbsp;</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="3" align="right">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Opsi Call</td>
+                                                        <td colspan="2"><select name="opsi_call" id="opsi_call"
+                                                                class="form-control">
+                                                                <option value="0">-- Pilih --</option>
+                                                                <option value="1">Telepon Rumah</option>
+                                                                <option value="2">Handphone</option>
+                                                                <option value="3">Email</option>
+                                                                <option value="4">Chat</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Kategori Call</td>
+                                                        <td colspan="2"><select class="form-control data-sending"
+                                                                id="kategori_call" name="kategori_call">
+                                                                <option value="x">Pilih..</option>
+                                                                <option value="1">Contacted</option>
+                                                                <option value="0">Not Contacted</option>
+                                                            </select></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sub Kategori Call</td>
+
+                                                        <td colspan="2">
+                                                            <select class="form-control data-sending" id="veri_call"
+                                                                name="veri_call">
+                                                                <option value="0">-- Pilih --</option>
+                                                                <option class="opsinc" value="2" style="display: none;">
+                                                                    RNA</option>
+                                                                <option class="opsinc" value="4" style="display: none;">
+                                                                    Salah Sambung</option>
+                                                                <option class="opsinc" value="7" style="display: none;">
+                                                                    Isolir</option>
+                                                                <option class="opsinc" value="8" style="display: none;">
+                                                                    Mailbox</option>
+                                                                <option class="opsinc" value="9" style="display: none;">
+                                                                    Telepon Sibuk</option>
+                                                                <option class="opsinc" value="10"
+                                                                    style="display: none;">Rejected</option>
+                                                                <option class="opsicontacted" value="11"
+                                                                    style="display: none;">Decline</option>
+                                                                <option class="opsicontacted" value="12"
+                                                                    style="display: none;">Follow Up</option>
+                                                                <option class="opsicontacted" value="13"
+                                                                    style="display: none;">Verified</option>
+                                                                <option class="opsinc" value="14"
+                                                                    style="display: none;">Reject By System</option>
+                                                                <option class="opsinc" value="15"
+                                                                    style="display: none;">Cabut</option>
+                                                                <option class="opsinc" value="16"
+                                                                    style="display: none;">Invalid Number</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="rdeclinewrap" style="display: none;">
+                                                        <td>Reason Decline</td>
+                                                        <td colspan="2">
+                                                            <select class="form-control data-sending"
+                                                                id="reason_decline" name="reason_decline">
+                                                                <option value="0">-- Pilih --</option>
+                                                                <option class="reg" value="111">Bukan PJ Pembayaran
+                                                                </option>
+                                                                <option class="reg" value="112">PJ menolak verifikasi
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Status Call</td>
+                                                        <td colspan="2"><select name="veri_status" id="veri_status"
+                                                                class="form-control">
+                                                                <option class="veri_statusopt_p" value="0">-- Pilih --
+                                                                </option>
+                                                                <option class="veri_statusopt_v" value="1"
+                                                                    style="display: none;">Verified</option>
+                                                                <option class="veri_statusopt_nv" value="2"
+                                                                    style="display: none;">Not Verified</option>
+                                                                <option class="veri_statusopt_dk" value="3"
+                                                                    style="display: none;">Ditelepon Kembali</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Keterangan</td>
+                                                        <td colspan="2"><input type="text"
+                                                                class="form-control data-sending" id="keterangan"
+                                                                name="keterangan" value="">
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-md">
+                                            <button type="button" id="button_untuk_submit_"
+                                                class="submit btn btn-primary btn-block"><span
+                                                    class="fe fe-save"></span> Submit</button>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="panel panel-lte">
+                                    <div class="panel-heading lte-heading-important">History Call</div>
+                                    <div class="panel-body">
+                                        <small>
+                                            <table cellpadding="0" cellspacing="0" border="0"
+                                                class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            No
+                                                        </th>
+                                                        <th>
+                                                            Nama
+                                                        </th>
+                                                        <th>
+                                                            Email
+                                                        </th>
+                                                        <th>
+                                                            EmailCode
+                                                        </th>
+                                                        <th>
+                                                            Handphon
+                                                        </th>
+                                                        <th>
+                                                            HPCode
+                                                        </th>
+                                                        <th>
+                                                            FB
+                                                        </th>
+                                                        <th>
+                                                            Twitter
+                                                        </th>
+                                                        <th>
+                                                            Agent
+                                                        </th>
+                                                        <th>
+                                                            Tanggal
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Ahmad Sadikin</td>
+                                                        <td>lajambufadly@gmail.com</td>
+                                                        <td></td>
+                                                        <td>081221609591</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>A001</td>
+                                                        <td>2021-08-30 16:44:47</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Ahmad Sadikin</td>
+                                                        <td>lajambufadly@gmail.com</td>
+                                                        <td></td>
+                                                        <td>081221609591</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>A001</td>
+                                                        <td>2021-08-30 16:44:59</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Ahmad Sadikin</td>
+                                                        <td>lajambufadly@gmail.com</td>
+                                                        <td></td>
+                                                        <td>081221609591</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>A001</td>
+                                                        <td>2021-08-30 16:47:02</td>
+                                                    </tr>
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </small>
+
+
+
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/js/mailcheck.js"></script>
+                    <script>
+                        $("#closet").click(function () {
+                            $('[name=kategori_call]').val(0);
+                            $('[name=veri_status]').val(2);
+                            $('.opsinc').show();
+                            $('.opsicontacted').hide();
+                            $('[name=veri_status]').val(2);
+                            $('[name=veri_call]').val(0);
+                            $('.veri_statusopt_p').hide();
+                            $('.veri_statusopt_v').hide();
+                            $('.veri_statusopt_dk').hide();
+                            $([document.documentElement, document.body]).animate({
+                                scrollTop: $("#kategori_call").offset().top
+                            }, 100);
+                        });
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+
+                            $('.text_validation').hide();
+                            // $("input").prop('readonly', true);
+                            $("#nama_pelanggan").prop('readonly', false);
+                            $("#no_speedy").prop('readonly', false);
+                            $("#no_pstn").prop('readonly', false);
+                            $("#ncli").prop('readonly', false);
+                            $("#regional").prop('readonly', false);
+                            $("#sumber").prop('readonly', false);
+                            $("#click_session").prop('readonly', false);
+                            $("#click_time").prop('readonly', false);
+                            $("#keterangan").prop('readonly', false);
+                            $("#idx").prop('readonly', false);
+                            $("#no_handpone").prop('readonly', false);
+                            $("#email").prop('readonly', false);
+                        });
+                    </script>
+
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#banking").hide();
+                            $(".rdeclinewrap").hide();
+                            $("#lblValidHandphone").hide();
+                            $("#lblEmail").hide();
+                            $("#lblHandphone").hide();
+                            $("#lblValidEmail").hide();
+                            $("#phone").keydown(function (e) {
+                                if ($.inArray(e.keyCode, [46, 9, 27, 13, 110, 190]) !== -1 ||
+                                    (e.keyCode == 65 && e.ctrlKey === true) ||
+                                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                                    return;
+                                }
+                                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                    e.preventDefault();
+                                }
+                            });
+                            $("#phone").on("keypress keyup blur", function (event) {
+                                $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+                                if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event
+                                    .which > 57)) {
+                                    event.preventDefault();
+                                }
+                            });
+
+                            $("#no_speedy").keydown(function (e) {
+                                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                                    (e.keyCode == 65 && e.ctrlKey === true) ||
+                                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                                    return;
+                                }
+                                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                    e.preventDefault();
+                                }
+                            });
+
+
+
+                            document.getElementById("button_untuk_submit_").addEventListener("click", function (e) {
+
+                                var relasi = $.trim($('#relasi').val());
+                                var otpphone = $.trim($('#otpphone').val());
+                                var labelvalidated = $.trim($('#labelvalidated').val());
+                                var no_handpone = $.trim($('#no_handpone').val());
+                                var nama_pelanggan = $.trim($('#nama_pelanggan').val());
+                                var ncli = $.trim($('#ncli').val());
+                                var veri_call = $.trim($('#veri_call').val());
+                                var reason_decline = $.trim($('#reason_decline').val());
+                                var veri_status = $.trim($('#veri_status').val());
+                                var jenis_aktivasi = $.trim($('#jenis_aktivasi').val());
+                                var layanan = $.trim($('#layanan').val());
+                                var produk_moss = $.trim($('#produk_moss').val());
+                                var aktivasi_pelangganr = $.trim($('#aktivasi_pelangganr').val());
+                                var agentid = "";
+
+                                if (relasi === '' && veri_status == '1') {
+                                    alert('Relasi kepemilikan tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#relasi").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (veri_call === '11' && reason_decline === '0' && veri_status === '2') {
+                                    alert('reason decline tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#veri_call").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (nama_pelanggan === '' && veri_status === 1) {
+                                    alert('Nama tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#nama_pelanggan").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (ncli === '') {
+                                    alert('NCLI tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#ncli").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (veri_call === '0') {
+                                    alert('Sub Kategori call tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#veri_call").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (veri_call === '' || veri_call === 'undefined') {
+                                    alert('data sudah tersubmit');
+                                    return false;
+                                } else if (no_handpone === '' && veri_status == '1') {
+                                    alert('Nomor Handphone tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#no_handphone").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (veri_status === '0') {
+                                    alert('status call tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#veri_status").offset().top
+                                    }, 100);
+                                    return false;
+
+                                } else if (!$('#jk_l').is(':checked') && !$('#jk_p').is(':checked') && veri_status == '1') {
+                                    alert('Jenis Kelamin tidak boleh kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#jk_l").offset().top
+                                    }, 100);
+                                    return false;
+
+                                } else if (veri_status == '1' && labelvalidated != 'valid') {
+                                    // alert(veri_status);
+
+                                    alert('Anda tidak dapat menyimpan verified, Karena Belum belum memenuhi syarat min 4 Verifikasi');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#nama_pastel").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (layanan == 'minipack' && veri_status == '1' && jenis_aktivasi === '0') {
+                                    alert('Silahkan pilih jenis aktivasi');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#jenis_aktivasi").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (layanan == 'minipack' && veri_status == '1' && jenis_aktivasi === 'agent' && produk_moss == "Pilih Produk Moss") {
+
+
+                                    alert('Silahkan pilih produk mos');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#jenis_aktivasi").offset().top
+                                    }, 100);
+                                    return false;
+                                } else if (layanan == 'minipack' && veri_status == '1' && jenis_aktivasi === 'pelanggan' && aktivasi_pelangganr == "0") {
+                                    alert('Silahkan pilih reason aktivasi pelanggan');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#aktivasi_pelangganr").offset().top
+                                    }, 100);
+                                    return false;
+                                } else {
+                                    $("#button_untuk_submit_").type = 'button';
+                                    $("#button_untuk_submit_").prop('disabled', true);
+                                    //e.preventDefault(); // before the code
+                                    var datana = $('#form_untuk_submit_').serialize();
+                                    // updateStatus(4, assignedData[pointIndex].unique_key, assignedData[pointIndex].categorie_id)
+                                    submitData(datana);
+                                    return false;
+                                }
+
+                            });
+
+
+
+                            $("#no_handpone, #handphone_lainnya, #hptambahan1, #hptambahan2, hptambahan3").keydown(function (e) {
+                                var handphone = $('#no_handpone');
+                                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                                    // Allow: Ctrl+A
+                                    (e.keyCode == 65 && e.ctrlKey === true) ||
+                                    // Allow: home, end, left, right, down, up
+                                    (e.keyCode >= 35 && e.keyCode <= 40)) {
+                                    // let it happen, don't do anything
+                                    return;
+                                }
+                                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                                    e.preventDefault();
+                                } else {
+                                    if (handphone.val().length < 1) {
+                                        if (e.keyCode != "48") {
+                                            alert("Angka Pertama Harus Nol ( 0 ) ");
+                                            $('#handphone').val('0');
+                                        }
+                                    } else if (handphone.val().length < 2) {
+                                        if (e.keyCode != "56") {
+                                            alert("Angka Kedua Harus Delapan ( 8 ) ");
+                                            $('#handphone').val('08');
+                                        }
+                                    }
+                                }
+                            });
+
+                            function isValidEmailAddress(emailAddress) {
+                                var pattern = new RegExp(
+                                    /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+                                );
+                                return pattern.test(emailAddress);
+                            }
+
+                            $('#otpphone').blur(function () {
+                                var code_handphone = $('#code_handphone').val();
+                                var otpphone = $('#otpphone').val();
+                                if (otpphone != "") {
+                                    $("#lblValidHandphone").show();
+                                    if (code_handphone != otpphone) {
+                                        $("#lblValidHandphone").html(" Not Verified");
+                                        $('#otpphone').val("");
+                                    } else {
+                                        $("#lblValidHandphone").html(" Verified");
+                                    }
+                                }
+                            });
+
+                            $('#otpemail').blur(function () {
+                                var code_email = $('#code_email').val();
+                                var otpemail = $('#otpemail').val();
+                                if (otpemail != "") {
+                                    $("#lblValidEmail").show();
+                                    if (code_email != otpemail) {
+                                        $("#lblValidEmail").html(" Not Verified");
+                                        $('#otpemail').val("");
+                                    } else {
+                                        $("#lblValidEmail").html(" Verified");
+                                    }
+                                }
+                            });
+
+                            $('#byemail').click(function () {
+                                $("byemail").prop('disabled', true);
+                                var nama = $('#nama_pelanggan');
+                                var ncli = $('#ncli');
+                                var pstn1 = $('#no_pstn');
+                                var email = $('#email');
+                                if (nama.val() == "") {
+                                    alert('Nama Pelanggan Tidak Boleh Kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#nama_pelanggan").offset().top
+                                    }, 100);
+                                }
+
+                                // else if (pstn1.val() == "") {
+                                //     alert('Nomor Telp Tidak Boleh Kosong');
+                                //     $([document.documentElement, document.body]).animate({
+                                //         scrollTop: $("#no_pstn").offset().top
+                                //     }, 100);
+                                // } 
+                                else {
+                                    if (isValidEmailAddress(email.val())) {
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "../../../../profilling/app/ajax_sendCode.php",
+                                            data: {
+                                                by: 1,
+                                                email: email.val()
+                                            },
+                                            success: function (e) {
+                                                $("byemail").prop('disabled', false);
+                                                var word = e.split(",");
+                                                $('#vemail').val(word[2]);
+                                                if (parseInt(word[4]) > 0) {
+                                                    alert('Email : ' + email.val() +
+                                                        ' sudah ada dalam database sebanyak ' + word[4]);
+                                                } else {
+                                                    $("#lblEmail").show();
+                                                    alert('Kode Verifikasi Email sudah terkirim ');
+                                                    $('#code_email').val(word[2]);
+                                                    $('#lblEmail').html(word[5]);
+                                                    $('#bysistem').click(function () {
+                                                        if ($('input.bysistem').is(':checked')) {
+                                                            //alert('asdfasdf');
+                                                            // $('#otpemail').val(word[2]);
+                                                            $('#code_email').val(word[2]);
+                                                        };
+                                                    });
+
+                                                    // $("#lblHandphone").show();
+                                                    // $('#lblHandphone').html(word[5] + " ");
+                                                    // var msg = "Kode verifikasi data Anda adalah " + word[2] +
+                                                    //     " silakan infokan kepada petugas  kami yang sedang menghubungi Bpk/Ibu. Tks";
+                                                    // alert('Kode Verifikasi SMS sudah terkirim');
+
+                                                    // $('#bysistem').click(function() {
+                                                    //     if ($('input.bysistem').is(':checked')) {
+                                                    //         //alert('asdfasdf');
+                                                    //         $('#otpphone').val(word[2]);
+                                                    //     };
+                                                    // });
+
+
+
+
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        alert('email tidak valid, Harus menggunakan @ dan . dalam penulisan');
+                                    }
+                                }
+
+                            });
+
+                            $('#bytwitter').click(function () {
+                                var sosmed = $('#twitter');
+                                $('#verfi_twitter').val("");
+                                $.ajax({
+                                    type: "POST",
+                                    url: "http://10.194.194.61/profilling/app/ajax_sosmed.php",
+                                    data: "by=1&sosmed=" + sosmed.val(),
+                                    processData: false,
+                                    success: function (e) {
+                                        if (e != 'Invalid Account Name') {
+                                            $('#verfi_twitter').val(e);
+                                        } else {
+                                            alert(e);
+                                        }
+                                    }
+                                });
+                            });
+
+
+
+                            function addNumbers() {
+                                var val1 = val(word[2]);
+                                // var val2 = parseInt(document.getElementById("my_value_2").value);
+                                // var ansD = document.getElementById("total");
+                                // ansD.value = val1 + val2;
+                                $('#total_div').text(otpphone);
+                            }
+
+                            $('#byphone').click(function () {
+
+                                var nama = $('#nama_pelanggan');
+                                var ncli = $('#ncli');
+                                var pstn1 = $('#no_pstn');
+                                var no_speedy = $('#no_speedy');
+                                var handphone = $('#no_handpone');
+                                $("byphone").prop('disabled', true);
+
+
+                                var str = handphone.val();
+                                var patt1 = /\s/g;
+                                var result = str.match(patt1);
+
+                                var msisdn = '62' + handphone.val().slice(1, 30);
+
+                                //alert(msisdn);
+
+                                // var str = "08903014";
+                                var patt = /[^Z0-9@]+/g;
+                                var result1 = str.match(patt);
+
+                                if (nama.val() == "") {
+                                    alert('Nama Pelanggan Tidak Boleh Kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#nama_pelanggan").offset().top
+                                    }, 100);
+                                } else if (handphone.val() == "") {
+                                    alert('Nomor handphone Tidak Boleh Kosong');
+                                    $([document.documentElement, document.body]).animate({
+                                        scrollTop: $("#no_handpone").offset().top
+                                    }, 100);
+                                } else if (result != null) {
+                                    alert('Nomor handphone Tidak Sesuai');
+                                } else if (result1 != null) {
+                                    alert('Nomor handphone Tidak Sesuai');
+                                } else {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "../../../../profilling/app/ajax_sendCode.php",
+                                        data: {
+                                            by: 2,
+                                            nama: nama.val(),
+                                            handphone: msisdn
+                                        },
+
+                                        success: function (e) {
+                                            $("byphone").prop('disabled', false);
+                                            var word = e.split(",");
+                                            $('#vhandphone').val(word[2]);
+                                            if (parseInt(word[4]) > 0) {
+                                                alert('Handphone : ' + handphone.val() +
+                                                    ' sudah ada dalam database sebanyak ' + word[4]);
+                                            } else {
+                                                $('#code_handphone').val(word[2]);
+                                                $("#lblHandphone").show();
+                                                $('#lblHandphone').html(word[5] + " ");
+                                                var msg = "Kode verifikasi data Anda adalah " + word[2] +
+                                                    " silakan infokan kepada petugas  kami yang sedang menghubungi Bpk/Ibu. Tks";
+                                                alert('Kode Verifikasi SMS sudah terkirim');
+
+
+                                                $('#bysistem').click(function () {
+                                                    if ($('input.bysistem').is(':checked')) {
+                                                        //alert('asdfasdf');
+                                                        // $('#otpphone').val(word[2]);
+                                                        $('#code_handphone').val(word[2]);
+                                                    };
+                                                });
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+
+                        });
+                    </script>
+                    <script>
+
+                    </script>
+                    <script>
+
+
+                        // $('form').preventDoubleSubmission();
+                        function copypaste() {
+                            /* Get the text field */
+                            var copyText = document.getElementById("no_handpone");
+
+                            /* Select the text field */
+                            copyText.select();
+                            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+                            /* Copy the text inside the text field */
+                            document.execCommand("copy");
+
+                            /* Alert the copied text */
+                            // alert("Copied the text: " + copyText.value);
+                        }
+
+                        function copypaste2() {
+                            /* Get the text field */
+                            var copyText = document.getElementById("no_speedy");
+
+                            /* Select the text field */
+                            copyText.select();
+                            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+                            /* Copy the text inside the text field */
+                            document.execCommand("copy");
+
+                            /* Alert the copied text */
+                            // alert("Copied the text: " + copyText.value);
+                        }
+                        $(document).ready(function () {
+
+
+                            $('.veri_statusopt_v').hide();
+                            $('.veri_statusopt_dk').hide();
+                            $('.veri_statusopt_nv').hide();
+
+                            $("#add").click(function () {
+                                var lastField = $("#buildyourform div:last");
+                                var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+                                var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"></div>");
+                                fieldWrapper.data("idx", intId);
+                                var fName = $(
+                                    "<td width=\"100%\"><input type=\"text\" id=\"hptambahan" + intId +
+                                    "\" name=\"hptambahan" + intId +
+                                    "\" class=\"fieldname form-control data-sending\" /></td>"
+                                );
+                                var fType = $(
+                                    ""
+                                );
+                                var removeButton = $(
+                                    "<td><input type=\"button\" class=\"remove btn btn-danger\" value=\"-\" /></td>"
+                                );
+                                removeButton.click(function () {
+                                    $(this).parent().remove();
+                                });
+                                fieldWrapper.append(fName);
+                                fieldWrapper.append(fType);
+                                fieldWrapper.append(removeButton);
+                                $("#buildyourform").append(fieldWrapper);
+                            });
+                            $("#add2").click(function () {
+                                var lastField = $("#buildyourformemail div:last");
+                                var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+                                var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"></div>");
+                                fieldWrapper.data("idx", intId);
+                                var fName = $(
+                                    "<td width=\"100%\"><input type=\"email\" id=\"emailtambahan" + intId +
+                                    "\" name=\"emailtambahan" + intId +
+                                    "\" class=\"fieldname form-control data-sending\" /></td>"
+                                );
+                                var fType = $(
+                                    ""
+                                );
+                                var removeButton = $(
+                                    "<td><input type=\"button\" class=\"remove btn btn-danger\" value=\"-\" /></td>"
+                                );
+                                removeButton.click(function () {
+                                    $(this).parent().remove();
+                                });
+                                fieldWrapper.append(fName);
+                                fieldWrapper.append(fType);
+                                fieldWrapper.append(removeButton);
+                                $("#buildyourformemail").append(fieldWrapper);
+                            });
+                            $("#billing").change(function () {
+                                var valna = $(this).val();
+                                var comma = valna.replace(",", "");
+                                var titik = comma.replace(".", "");
+                                var res = titik.replace("e", "");
+                                $(this).val(res);
+                            });
+                        });
+                        $('.opsicontacted').hide();
+                        $('.opsinc').hide();
+                        $("#labelvalidated").show();
+                        $("#labelvalidate").hide();
+                        var Privileges = jQuery('#kategori_call');
+                        var select = this.value;
+                        Privileges.change(function () {
+                            if ($(this).val() == '1') {
+                                $('.opsicontacted').show();
+                                $('.opsinc').hide();
+                                $('.veri_statusopt_p').show();
+                                $('.veri_statusopt_v').show();
+                                $('.veri_statusopt_dk').show();
+                                $('.veri_statusopt_nv').show();
+                            } else if ($(this).val() == '0') {
+                                $('.opsinc').show();
+                                $('.opsicontacted').hide();
+                                $('[name=veri_status]').val(2);
+                                $('[name=veri_call]').val(0);
+                                $('.veri_statusopt_p').hide();
+                                $('.veri_statusopt_v').hide();
+                                $('.veri_statusopt_dk').hide();
+                            } else if ($(this).val() == 'x') {
+                                $('.opsinc').hide();
+                                $('.opsicontacted').hide();
+                                $('.veri_statusopt_p').hide();
+                                $('.veri_statusopt_v').hide();
+                                $('.veri_statusopt_dk').hide();
+                                $('.veri_statusopt_nv').hide();
+                            }
+                            //     $('.opsicontacted').hide(); // hide div if value is not "custom"
+                            //     $('.opsinc').show(); // hide div if value is not "custom"
+                        });
+
+                        var Privileges = jQuery('#veri_call');
+                        var select = this.value;
+                        Privileges.change(function () {
+                            if ($(this).val() == '13') {
+                                $('[name=veri_status]').val(1);
+                                $('.veri_statusopt_p').hide();
+                                $('.veri_statusopt_v').show();
+                                $('.veri_statusopt_dk').hide();
+                                $('.veri_statusopt_nv').hide();
+                            } else if ($(this).val() == '12') {
+                                $('[name=veri_status]').val(3);
+                                $('.veri_statusopt_p').hide();
+                                $('.veri_statusopt_v').hide();
+                                $('.veri_statusopt_dk').show();
+                                $('.veri_statusopt_nv').hide();
+                            } else if ($(this).val() == '11') {
+                                $('[name=veri_status]').val(2);
+                                $('.veri_statusopt_p').hide();
+                                $('.veri_statusopt_v').hide();
+                                $('.veri_statusopt_dk').hide();
+                                $('.veri_statusopt_nv').show();
+                                $('.rdeclinewrap').show();
+                            } else if ($(this).val() != '11' || $(this).val() != '12' || $(this).val() != '13' || $(this).val() != '0') {
+                                $('[name=veri_status]').val(2);
+                                $('[name=kategori_call]').val(0);
+                                $('.veri_statusopt_p').hide();
+                                $('.veri_statusopt_v').hide();
+                                $('.veri_statusopt_dk').hide();
+                                $('.veri_statusopt_nv').show();
+                            }
+                            //     $('.opsicontacted').hide(); // hide div if value is not "custom"
+                            //     $('.opsinc').show(); // hide div if value is not "custom"
+                        });
+
+
+
+
+                        var countChecked = function () {
+                            var n = $("input.validate:checked").length;
+                            var valid =
+                                '<option selected="selected" value=""> --Pilih-- </option><option value="1">Verified</option><option value="3">Ditelepon kembali</option>';
+                            var notvalid =
+                                '<option value="Pilih"> --Pilih-- </option><option value="2" selected="selected">Not Verified</option><option value="3" >Ditelepon kembali</option>';
+
+                            if (n > 3) {
+                                // $("#labelvalidate").show();
+                                //$("#veri_status").children("option[value=1]").show());
+                                $("#labelvalidated").val("valid");
+                                $('#labelvalidated').css({
+                                    'background-color': '#28a745'
+                                });
+                                // $('[name=status_validate]').val("valid");
+                            } else {
+                                // $("#labelvalidate").hide();
+                                //$("#veri_status").children("option[value=1]").show());
+                                $("#labelvalidated").val("not valid");
+                                $('#labelvalidated').css({
+                                    'background-color': '#ff0100'
+                                });
+                            }
+                        };
+                        countChecked();
+                        $("input[type=checkbox]").on("click", countChecked);
+                    </script>
+                    <script>
+                        var domains = ['hotmail.com', 'gmail.com', 'aol.com'];
+                        var topLevelDomains = ["com", "net", "org"];
+
+                        $('#email').on('blur', function (event) {
+                            console.log("event ", event);
+                            console.log("this ", $(this));
+                            $(this).mailcheck({
+                                domains: domains, // optional
+                                topLevelDomains: topLevelDomains, // optional
+                                suggested: function (element, suggestion) {
+                                    // callback code
+                                    console.log("suggestion ", suggestion.full);
+                                    $('#suggestion').html("<td align='right' style='color: red;'>Did you mean: </td><td> <input readonly class='form-control' value='" + suggestion.full + "'></td>");
+                                },
+                                empty: function (element) {
+                                    // callback code
+                                    $('#suggestion').html('');
+
+                                }
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="col-3">
+                    <div class="alert alert-primary" id="box_kosong" style="display:none;" role="alert">
+                        Data Order Kosong, Harap Hubungi Teamleader
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body d-md-flex text-center">
+                                    <ul class="d-md-flex m-0 pl-0 list-unstyled">
+                                        <li class="pill cl-personal py-1 px-2 mr-md-2 text-center my-1"
+                                            id="status_highlight">Call disconnected</li>
+                                    </ul>
+                                    <button
+                                        class="btn btn-outline-success font-w-600 my-auto text-nowrap ml-auto add-event"
+                                        id="text_status" onclick="change_status();"><i class="icon-check"></i>
+                                        ONLINE</button>
+
+                                    <input type="hidden" id="status_ready" value="1">
+                                    <input type="hidden" id="statusmna" value="0">
+                                    <input type="hidden" id="status_register">
+                                    <input type="hidden" id="status_call_agent" value="Ready">
+                                    <input type="hidden" id="dial_num" value="0">
+                                    <input type="hidden" id="number_dial" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="call_control" style="">
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h4 class="card-title">Call Control</h4>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <form>
+                                                    <div class="form-row" id="mizu_control">
+                                                        <div class="col-12 mb-3">
+                                                            <label for="username">Destination number</label>
+
+                                                            <input type="text" readonly="" class="form-control"
+                                                                placeholder="Destination number" id="destnumber"
+                                                                autocapitalize="off">
+
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            <button class="btn btn-block btn-success" type="button"
+                                                                id="btn_call" onclick="Call();">Call</button>
+                                                        </div>
+                                                        <div class="col-12 mb-3">
+                                                            <button type="button" class="btn btn-primary btn-block"
+                                                                id="btn_hold" onclick="Hold(true);">Hold</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row" id="aux_control" style="">
+                                                        <div class="col-12 mb-3">
+                                                            <select class="form-control" id="drp_aux" onchange="Aux()">
+                                                                <option value="0" selected="">Ready</option>
+                                                                <option value="1" id="drp_aux_1">1 Konsultasi</option>
+                                                                <option value="2" id="drp_aux_2">2 Supporting</option>
+                                                                <option value="3" id="drp_aux_3">3 CatHSTR</option>
+                                                                <option value="4" id="drp_aux_4">4 Toilet</option>
+                                                                <option value="5" id="drp_aux_5">5 Air Minum</option>
+                                                                <option value="6" id="drp_aux_6">6 Sholat</option>
+                                                                <option value="7" id="drp_aux_7">7 Lunch</option>
+                                                                <option value="8" id="drp_aux_8">8 Briefing</option>
+                                                                <option value="9" id="drp_aux_9">9 Update System
+                                                                </option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="col-12 mb-3 ">
+                                                            <div
+                                                                class="pill cl-personal py-1 px-2 mr-md-2 text-center my-1 text-bold">
+                                                                <i class="ion ion-clock"></i> <span
+                                                                    id="duration_status">00:12:22</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+    <!-- END: Content-->
+    <!-- START: Footer-->
+    <footer class="site-footer">
+        2020 © Sy-ANIDA
+    </footer>
+    <!-- END: Footer-->
+
+
+
+    <!-- START: Back to top-->
+    <a href="#" class="scrollup text-center" style="display: inline;">
+        <i class="icon-arrow-up"></i>
+    </a>
+
+
+    <!-- START: Template JS-->
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/moment/moment.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- END: Template JS-->
+
+    <!-- START: APP JS-->
+    <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/js/app.js"></script>
+    <div id="settings" class="">
+        <a href="#" id="settingbutton" class="setting">
+            <h5 class="mb-0"><i class="icon-settings"></i></h5>
+        </a>
+        <div class="sidbarchat p-3">
+            <h5 class="mb-0">TEMPLATE CUSTOMIZER</h5>
+            <p>Customize your template</p>
+            <hr>
+            <h6>TEMPLATE COLOR</h6>
+            <ul class="list-inline float-left claerfix">
+                <li class="color-box m-2 list-inline-item float-left color1" data-color="#1e3d73"></li>
+                <li class="color-box m-2 list-inline-item float-left color2" data-color="#0bb2d4"></li>
+                <li class="color-box m-2 list-inline-item float-left color3" data-color="#17b3a3"></li>
+                <li class="color-box m-2 list-inline-item float-left color4" data-color="#eb6709"></li>
+                <li class="color-box m-2 list-inline-item float-left color5" data-color="#76c335"></li>
+                <li class="color-box m-2 list-inline-item float-left color6" data-color="#3e8ef7"></li>
+                <li class="float-left list-inline-item"><input type="color" class="cursor-pointer color m-2"
+                        value="#1e3d73"></li>
+            </ul>
+            <hr class="float-left w-100">
+
+            <h6>TEMPLATE STYLE</h6>
+            <label class="chkbox">Light
+                <input name="style" value="light" class="style" type="radio">
+                <span class="checkmark"></span>
+            </label> <br>
+            <label class="chkbox mt-2">Dark
+                <input name="style" value="dark" class="style" type="radio">
+                <span class="checkmark"></span>
+            </label> <br>
+            <label class="chkbox mt-2">Semi Dark
+                <input name="style" value="semi-dark" class="style" type="radio">
+                <span class="checkmark"></span>
+            </label>
+            <br><br>
+            <hr class="float-left w-100">
+            <label class="chkbox horizontal mb-2">Horizontal Menu
+                <input name="horizontal" value="horizontal-menu" class="horizontallayout" type="checkbox">
+                <span class="checkmark"></span>
+            </label><br>
+            <label class="chkbox compact">Compact Sidebar
+                <input name="compact" value="compact" class="sidebar" type="checkbox">
+                <span class="checkmark"></span>
+            </label>
+
+
+        </div>
+    </div>
+    <!-- END: APP JS-->
+
+
+
+    <!-- START: Page Vendor JS-->
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/apexcharts/apexcharts.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/lineprogressbar/jquery.lineProgressbar.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/lineprogressbar/jquery.barfiller.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- START: Page JS-->
+    <!-- <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/js/home.script.js"></script> -->
+    <!-- END: Page JS-->
+
+    <!---- START page datatable--->
+    <!-- START: Page Vendor JS-->
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/js/jquery.dataTables.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/js/dataTables.bootstrap4.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/jszip/jszip.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/pdfmake/pdfmake.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/pdfmake/vfs_fonts.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/buttons/js/dataTables.buttons.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/buttons/js/buttons.bootstrap4.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/buttons/js/buttons.colVis.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/buttons/js/buttons.flash.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/buttons/js/buttons.html5.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/datatable/buttons/js/buttons.print.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- START: Page Script JS-->
+    <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/js/datatable.script.js"></script>
+    <!-- END: Page Script JS-->
+
+    <!-- START: Page Vendor JS-->
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/raphael/raphael.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/morris/morris.min.js"></script>
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/apexcharts/apexcharts.min.js"></script>
+
+    <!---- END page datatable--->
+
+
+    <!----MIZU MODUL--->
+    <!-- END: Custom CSS-->
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/mizu/js/webphone_api.js?jscodeversion=510"></script>
+    <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/mizu/js/custom_webphone.js"></script>
+    <script src="http://localhost.infomedia.co.id/infomedia_syanida/assets/mizu/js/dynamicticket.js"></script><input
+        readonly="true"
+        style="position: fixed; top: -5px; left: -5px; border: none; opacity: 0; cursor: pointer; width: 1px; height: 1px; line-height: normal; font-weight: normal; font-family: sans-serif; font-size: 16px;">
+    <!-- START: Page Vendor JS-->
+    <script
+        src="http://localhost.infomedia.co.id/infomedia_syanida/assets/new_theme/dist/vendors/sweetalert/sweetalert.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <script type="text/javascript">
+        var loopGetticket = 0;
+        var delayedCallNumber = null;
+        var id_tiket = false;
+        var gtc;
+        var loopFlagDelay = false;
+
+        function catchStateEvent(event) {
+
+            console.log("catchStateEvent " + event)
+            switch (event) {
+                case 'App Started':
+                    // document.getElementById('btn_start').innerText = 'Stop';
+                    // document.getElementById("btn_start").onclick = function () {
+                    //     Stop();
+                    // };
+                    break;
+                case 'App Loaded':
+                case 'App Stopped':
+
+                    break;
+                case 'Ext Registered':
+                    // showElement(campaignType);
+                    // callDelayedNumber();
+                    callDelayedNumber();
+                    break;
+                case 'Ext UnRegistered':
+                    // hideElement();
+                    break;
+                case 'Call disconnected':
+                    // getTicket();
+                    if (loopGetticket == 1) {
+                        getTicket();
+                    } else {
+                        loopGetticket = 1;
+                    }
+                    $("#aux_control").show();
+                    break;
+                case 'Call setup':
+                    displayData(id_tiket);
+                    $("#aux_control").hide();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function cek_delaycall() {
+            console.log('cek delay');
+            $("#on_call_block").empty();
+            if (webphone_api.isincall()) {
+                if (loopFlagDelay) {
+                    tid2 = setTimeout(cek_delaycall, 5000);
+                }
+            } else {
+                loopFlagDelay = false;
+                clearTimeout(tid2);
+                callDelayedNumber();
+            }
+
+        }
+
+        function submitData(formData) {
+
+            $.ajax({
+                url: base_url + '/Mizu/Mizu/submitData',
+                data: formData,
+                type: "POST",
+                // async: false,
+                dataType: 'json',
+                success: function (response) {
+
+                    swal({
+                        title: "Data Berhasil Disimpan",
+                        text: "",
+                        type: "success",
+                        showCancelButton: false,
+                        cancelButtonClass: 'btn-danger',
+                        confirmButtonClass: 'btn-success',
+                        confirmButtonText: 'Close!'
+                    });
+                    if (webphone_api.isincall()) {
+                        loopFlagDelay = true;
+                        cek_delaycall();
+                    } else {
+                        if (aux_flag == false) {
+                            callDelayedNumber();
+
+                            $("#on_call_block").empty();
+                        }
+                    }
+
+                }
+            });
+        }
+
+        function displayData(id) {
+            if (id) {
+
+                let formData = {
+                    id: id,
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: base_url + '/Mizu/Mizu/get_formna',
+                    data: formData,
+                    dataType: 'html',
+                    success: function (response) {
+
+                        $("#on_call_block").html(response);
+
+                    },
+                    error: function (response) {
+                        console.log('ERR Display Data');
+                    }
+                });
+                $("#oncall_tab").click();
+
+            }
+
+
+        }
+
+
+
+        function callDelayedNumber() {
+            if (delayedCallNumber != null) {
+                console.log('CALL' + delayedCallNumber);
+                Call(delayedCallNumber);
+                delayedCallNumber = null;
+                $("#aux_control").hide();
+            }
+        }
+
+        function getTicket() {
+            if (delayedCallNumber === null) {
+
+                // delayedCallNumber = null;
+
+                let formData = {
+                    agent_status: ""
+                };
+                $.ajax({
+                    url: base_url + "/Mizu/Mizu/get_ticket",
+                    data: formData,
+                    type: "POST",
+                    dataType: 'json',
+                    success: function (result) {
+                        //kalau campaign_id sama dengan previous, maka langsung call, kalau tidak sama atau prev nya null, maka harus login
+                        campaignType = 'outbound';
+
+                        if (result.hasOwnProperty('calling_pty')) {
+                            //CALL NUMBER
+                            console.log(checkState());
+                            if (checkState() == 'Ext Registered') {
+                                console.log('CALL' + result.calling_pty);
+                                Call(result.calling_pty);
+                                // Call('61081221609591');
+                                id_tiket = result.id;
+                            } else {
+                                // if (checkState() != 'Call disconnected') {
+                                delayedCallNumber = result.calling_pty;
+                                console.log('SUCCESS delayedCallNumber' + result.calling_pty);
+                                id_tiket = result.id;
+                                // }
+
+                                // delayedCallNumber = '61081221609591';
+                            }
+
+                        } else {
+                            console.log('DATA KOSONG');
+                            $("#box_kosong").show();
+                            // Stop();
+                        }
+
+                    },
+                    error: function (data) {
+                        console.log('ERR get_ticket');
+                        console.log(data);
+                    }
+                });
+                loopGetticket = 0;
+            }
+
+        }
+
+        function init_mizu() {
+            Start();
+            getTicket();
+            console.log("Init Mizu");
+
+        }
+
+        function change_status() {
+            var status_ready = $("#status_ready").val();
+            if (status_ready == 1) {
+                let logoutConfirmBool = confirm("Logout ?");
+                if (logoutConfirmBool) {
+                    Stop();
+                    $("#on_call_block").empty();
+                    $("#call_control").hide();
+                    $("#status_ready").val(0);
+                    $("#text_status").html('<i class="icon-close" ></i> OFFLINE');
+                    $("#text_status").attr('class', 'btn btn-outline-danger font-w-600 my-auto text-nowrap ml-auto add-event');
+                }
+            } else {
+                init_mizu();
+                $("#call_control").show();
+                $("#status_ready").val(1);
+                $("#text_status").html('<i class="icon-check" ></i> ONLINE');
+                $("#text_status").attr('class', 'btn btn-outline-success font-w-600 my-auto text-nowrap ml-auto add-event');
+            }
+        }
+
+        $(document).ready(function () {
+            init_mizu();
+            $("#call_control").show();
+            $("#status_ready").val(1);
+            $("#text_status").html('<i class="icon-check" ></i> ONLINE');
+            $("#text_status").attr('class', 'btn btn-outline-success font-w-600 my-auto text-nowrap ml-auto add-event');
+        });
+    </script>
+
+    <!-- END: Body-->
+
+    <svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1"
+        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+        style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
+        <defs id="SvgjsDefs1002"></defs>
+        <polyline id="SvgjsPolyline1003" points="0,0"></polyline>
+        <path id="SvgjsPath1004" d="M0 0 "></path>
+    </svg><svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1"
+        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs"
+        style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;">
+        <defs id="SvgjsDefs1002"></defs>
+        <polyline id="SvgjsPolyline1003" points="0,0"></polyline>
+        <path id="SvgjsPath1004" d="M0 0 "></path>
+    </svg><audio id="dtmfTone" src="../sound/rtc_dtmf.wav"></audio><audio id="justbeep_1"
+        src="../sound/beep-01.wav"></audio><iframe id="loader" allow="microphone; camera"
+        style="display: none; height: 0px; width: 0px;"></iframe>
+</body>
+
+</html>

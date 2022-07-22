@@ -1,0 +1,5 @@
+WARNING !! 
+- jangan upload file disini..
+  Buat Sub folder baru..
+
+- jangan menghapus file .htaccess & index.html
