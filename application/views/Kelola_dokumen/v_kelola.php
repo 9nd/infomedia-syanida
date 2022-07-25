@@ -13,14 +13,14 @@
         <div class="card">
             <div class="card-header">
                 <a href="<?= base_url('kelola/tambah') ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
-                <a href="<?= base_url('') ?>" class="btn btn-danger btn-sm"><i class="fas fa-print"></i> Print</a>
+                <!-- <a href="<?= base_url('') ?>" class="btn btn-danger btn-sm"><i class="fas fa-print"></i> Print</a> -->
 
             </div>
 
             <div style="margin-top: 50px;">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label>Sort Jenis Dokumen</label>
+                        <label>Sortir Jenis Dokumen</label>
                         <select class="form-control jenis_dokumen" name="">
                             <option>-- Pilih --</option>
                             <option value="Png">Png</option>
@@ -57,7 +57,7 @@
                                 <td>
                                     <a href="<?= base_url('kelola/edit/' . $c->id) ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                     <a href="<?= base_url('kelola/hapus/' . $c->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i class="fas fa-trash"></i></a>
-                                    <a target='_blank' href="<?= base_url('kelola/download/?dokumen=' . $c->dokumen) ?>" class="btn btn-success btn-sm"><i class="fas fa-download"></i></a>
+                                    <a target='_blank' href="<?= base_url('kelola/download/?dokumen=' . $c->dokumen) ?>" class="btn btn-secondary btn-sm"><i class="fas fa-download"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

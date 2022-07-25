@@ -7,7 +7,7 @@ class Kelola extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Coba_model');
+		$this->load->model('M_kelola_dokumen');
 		$this->load->library('form_validation');
 		$this->load->helper(array('url', 'download'));
 	}
@@ -18,11 +18,11 @@ class Kelola extends CI_Controller
 		$obj  = json_decode($json);
 		$data = array(
 			'title' => 'KELOLA DATA',
-			'isi' => 'kelola/v_kelola',
+			'isi' => 'kelola_dokumen/v_kelola',
 			'list_data' => $obj
 		);
 
-		$data['tbl_coba'] = $this->Coba_model->get_data('tbl_coba')->result();
+		$data['tbl_coba'] = $this->M_kelola_dokumen->get_data('tbl_coba')->result();
 		$this->load->view('template/wraper', $data, FALSE);
 	}
 
@@ -40,7 +40,7 @@ class Kelola extends CI_Controller
 			if (!$this->upload->do_upload('dokumen')) {
 				$data = array(
 					'title' => 'TAMBAH DATA',
-					'isi' => 'kelola/v_tambah',
+					'isi' => 'kelola_dokumen/v_tambah',
 				);
 				$this->load->view('template/wraper', $data, FALSE);
 			} else {
@@ -54,14 +54,14 @@ class Kelola extends CI_Controller
 					'nama_dokumen' => $this->input->post('nama_dokumen'),
 					'keterangan' => $this->input->post('keterangan'),
 				);
-				$this->Coba_model->insert_data($data);
+				$this->M_kelola_dokumen->insert_data($data);
 				$this->session->set_flashdata('flash', 'Ditambahkan');
 				redirect('kelola');
 			}
 		}
 		$data = array(
 			'title' => 'TAMBAH DATA',
-			'isi' => 'kelola/v_tambah',
+			'isi' => 'kelola_dokumen/v_tambah',
 		);
 		$this->load->view('template/wraper', $data, FALSE);
 	}
@@ -70,10 +70,10 @@ class Kelola extends CI_Controller
 	{
 		$data = array(
 			'title' => 'EDIT DATA',
-			'isi' => 'kelola/v_edit',
+			'isi' => 'kelola_dokumen/v_edit',
 		);
 
-		$data['tbl_coba'] = $this->Coba_model->get_data_by_id($id);
+		$data['tbl_coba'] = $this->M_kelola_dokumen->get_data_by_id($id);
 		$data['jenis_dokumen'] = ['Png', 'Jpg', 'Docx', 'Pdf', 'Xlsx'];
 
 		$this->form_validation->set_rules('jenis_dokumen', 'Jenis Dokumen', 'required');
@@ -82,7 +82,7 @@ class Kelola extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('template/wraper', $data, FALSE);
 		} else {
-			$this->Coba_model->update_data();
+			$this->M_kelola_dokumen->update_data();
 			$this->session->set_flashdata('flash', 'Diubah');
 			redirect('kelola');
 		}
@@ -92,7 +92,7 @@ class Kelola extends CI_Controller
 	public function hapus($id)
 	{
 
-		$this->Coba_model->delete_data($id);
+		$this->M_kelola_dokumen->delete_data($id);
 		$this->session->set_flashdata('flash', 'Dihapus');
 		redirect('kelola');
 	}
