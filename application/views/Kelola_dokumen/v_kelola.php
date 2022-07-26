@@ -19,7 +19,7 @@
 
             </div>
 
-            <div style="margin-top: 50px;">
+            <!-- <div style="margin-top: 50px;">
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Sortir Jenis Dokumen</label>
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="card-body">
                 <div class="box-body table-responsive" id="box-table"></div>
@@ -69,3 +69,21 @@
             </div>
         </div>
         </div>
+
+        <?php echo _js('datatables,icheck') ?>
+
+        <script>
+            var page_version = "1.0.8"
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+
+            function deleteItem() {
+                if (confirm("anda ingin hapus data ini?")) {
+                    // your deletion code
+                }
+                return false;
+            }
+        </script>

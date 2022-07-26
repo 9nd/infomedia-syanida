@@ -2,12 +2,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">
-                <?php echo form_open_multipart('kelola/tambah'); ?>
+                <?php echo form_open_multipart('kelola_dokumen/kelola/tambah'); ?>
                 <div class="custom-file">
                     <label>Dokumen</label>
                     <input type="file" name="dokumen" class="form-control" id="dokumen" required>
                 </div><br><br>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="jenis_dokumen">Jenis Dokumen</label>
                     <select class="form-control" id="jenis_dokumen" name="jenis_dokumen">
                         <option>-- Pilih --</option>
@@ -17,7 +17,7 @@
                         <option value="Pdf">Pdf</option>
                         <option value="Xlsx">Xlsx</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="nama_dokumen">Nama Dokumen</label>
                     <input type="text" name="nama_dokumen" class="form-control" id="nama_dokumen">

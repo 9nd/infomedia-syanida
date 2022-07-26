@@ -14,12 +14,12 @@ class Kelola extends CI_Controller
 
 	public function index()
 	{
-		$json = file_get_contents("./assets/MOCK_DATA.json");
-		$obj  = json_decode($json);
+		// $json = file_get_contents("./assets/MOCK_DATA.json");
+		// $obj  = json_decode($json);
 		$data = array(
 			'title' => 'KELOLA DATA',
 			'isi' => 'kelola_dokumen/v_kelola',
-			'list_data' => $obj
+			// 'list_data' => $obj
 		);
 
 		$data['tbl_coba'] = $this->M_kelola_dokumen->get_data('tbl_coba')->result();
@@ -56,7 +56,7 @@ class Kelola extends CI_Controller
 				);
 				$this->M_kelola_dokumen->insert_data($data);
 				$this->session->set_flashdata('flash', 'Ditambahkan');
-				redirect('kelola');
+				redirect('kelola_dokumen/kelola');
 			}
 		}
 		$data = array(
@@ -98,7 +98,7 @@ class Kelola extends CI_Controller
 				);
 				$this->M_kelola_dokumen->update_data($data);
 				$this->session->set_flashdata('flash', 'Diubah');
-				redirect('kelola');
+				redirect('kelola_dokumen/kelola');
 			}
 		}
 		$data = array(
@@ -114,7 +114,7 @@ class Kelola extends CI_Controller
 
 		$this->M_kelola_dokumen->delete_data($id);
 		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('kelola');
+		redirect('kelola_dokumen/kelola');
 	}
 
 	public function download()
