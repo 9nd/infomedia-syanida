@@ -1,3 +1,5 @@
+<?php echo _css('datatables,icheck') ?>
+
 <?php if ($this->session->flashdata('flash')) : ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         Data
@@ -12,7 +14,7 @@
 
         <div class="card">
             <div class="card-header">
-                <a href="<?= base_url('kelola/tambah') ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
+                <a href="<?= base_url('kelola_dokumen/kelola/tambah') ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
                 <!-- <a href="<?= base_url('') ?>" class="btn btn-danger btn-sm"><i class="fas fa-print"></i> Print</a> -->
 
             </div>
@@ -34,7 +36,8 @@
             </div>
 
             <div class="card-body">
-                <table id="tabelData" class="table table-bordered table-striped">
+                <div class="box-body table-responsive" id="box-table"></div>
+                <table id="example" class="display responsive nowrap" style="width: 100%">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -55,13 +58,14 @@
                                 <td><?= $c->nama_dokumen ?></td>
                                 <td><?= $c->keterangan ?></td>
                                 <td>
-                                    <a href="<?= base_url('kelola/edit/' . $c->id) ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                    <a href="<?= base_url('kelola/hapus/' . $c->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i class="fas fa-trash"></i></a>
-                                    <a target='_blank' href="<?= base_url('kelola/download/?dokumen=' . $c->dokumen) ?>" class="btn btn-secondary btn-sm"><i class="fas fa-download"></i></a>
+                                    <a href="<?= base_url('kelola_dokumen/kelola/edit/' . $c->id) ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a href="<?= base_url('kelola_dokumen/kelola/hapus/' . $c->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i class="fas fa-trash"></i></a>
+                                    <a target='_blank' href="<?= base_url('kelola_dokumen/kelola/download/?dokumen=' . $c->dokumen) ?>" class="btn btn-secondary btn-sm"><i class="fas fa-download"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>

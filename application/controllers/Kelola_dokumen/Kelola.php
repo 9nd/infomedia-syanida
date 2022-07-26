@@ -14,16 +14,16 @@ class Kelola extends CI_Controller
 
 	public function index()
 	{
-		// $json = file_get_contents("./assets/MOCK_DATA.json");
-		// $obj  = json_decode($json);
+		$json = file_get_contents("./assets/MOCK_DATA.json");
+		$obj  = json_decode($json);
 		$data = array(
 			'title' => 'KELOLA DATA',
 			'isi' => 'kelola_dokumen/v_kelola',
-			// 'list_data' => $obj
+			'list_data' => $obj
 		);
 
 		$data['tbl_coba'] = $this->M_kelola_dokumen->get_data('tbl_coba')->result();
-		$this->template->load('kelola_dokumen/v_kelola', $data);
+		$this->template->load('Kelola_dokumen/v_kelola', $data);
 	}
 
 	public function tambah()
@@ -42,7 +42,7 @@ class Kelola extends CI_Controller
 					'title' => 'TAMBAH DATA',
 					'isi' => 'kelola_dokumen/v_tambah',
 				);
-				$this->template->load('kelola_dokumen/v_tambah', $data, FALSE);
+				$this->template->load('Kelola_dokumen/v_tambah', $data, FALSE);
 			} else {
 				$upload_data = array('uploads' => $this->upload->data());
 				$config['image_library'] = 'gd2';
@@ -63,7 +63,7 @@ class Kelola extends CI_Controller
 			'title' => 'TAMBAH DATA',
 			'isi' => 'kelola_dokumen/v_tambah',
 		);
-		$this->template->load('kelola_dokumen/v_tambah', $data, FALSE);
+		$this->template->load('Kelola_dokumen/v_tambah', $data, FALSE);
 	}
 
 	public function edit($id)
@@ -81,7 +81,7 @@ class Kelola extends CI_Controller
 				$data = array(
 					'title' => 'EDIT DATA',
 					'tbl_coba' => $this->M_kelola_dokumen->get_data_by_id($id),
-					'isi' => 'kelola_dokumen/v_edit',
+					'isi' => 'Kelola_dokumen/v_edit',
 				);
 				$this->template->load('kelola_dokumen/v_edit', $data, FALSE);
 			} else {
