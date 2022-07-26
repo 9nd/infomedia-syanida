@@ -68,24 +68,44 @@ class Kelola extends CI_Controller
 
 	public function edit($id)
 	{
-		$data = array(
-			'title' => 'EDIT DATA',
-			'isi' => 'kelola_dokumen/v_edit',
-		);
-
-		$data['tbl_coba'] = $this->M_kelola_dokumen->get_data_by_id($id);
-		$data['jenis_dokumen'] = ['Png', 'Jpg', 'Docx', 'Pdf', 'Xlsx'];
-
 		$this->form_validation->set_rules('jenis_dokumen', 'Jenis Dokumen', 'required');
 		$this->form_validation->set_rules('nama_dokumen', 'Nama Dokumen', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('template/wraper', $data, FALSE);
-		} else {
-			$this->M_kelola_dokumen->update_data();
-			$this->session->set_flashdata('flash', 'Diubah');
-			redirect('kelola');
+
+		if ($this->form_validation->run() == TRUE) {
+			$config['upload_path']          = './file/';
+			$config['allowed_types']        = 'gif|jpg|png|jpeg|docx|pdf|xlsx';
+			$config['max_size']             = 50000;
+			$this->upload->initialize($config);
+			if (!$this->upload->do_upload('dokumen')) {
+				$data = array(
+					'title' => 'EDIT DATA',
+					'tbl_coba' => $this->M_kelola_dokumen->get_data_by_id($id),
+					'isi' => 'kelola_dokumen/v_edit',
+				);
+				$this->load->view('template/wraper', $data, FALSE);
+			} else {
+				$upload_data = array('uploads' => $this->upload->data());
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = './file/' . $upload_data['uploads']['file_name'];
+				$this->load->library('image_lib', $config);
+				$data = array(
+					'id' => $id,
+					'dokumen' => $upload_data['uploads']['file_name'],
+					'jenis_dokumen' => $this->input->post('jenis_dokumen'),
+					'nama_dokumen' => $this->input->post('nama_dokumen'),
+					'keterangan' => $this->input->post('keterangan'),
+				);
+				$this->M_kelola_dokumen->update_data($data);
+				$this->session->set_flashdata('flash', 'Diubah');
+				redirect('kelola');
+			}
 		}
+		$data = array(
+			'title' => 'EDIT DATA',
+			'tbl_coba' => $this->M_kelola_dokumen->get_data_by_id($id),
+			'isi' => 'kelola_dokumen/v_edit',
+		);
 		$this->load->view('template/wraper', $data, FALSE);
 	}
 

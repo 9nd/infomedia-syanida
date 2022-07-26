@@ -14,18 +14,15 @@ class M_kelola_dokumen extends CI_Model
 
     public function get_data_by_id($id)
     {
-        return $this->db->get_where('tbl_coba', ['id' => $id])->row_array();
+        $this->db->select('*');
+        $this->db->from('tbl_coba');
+        $this->db->where('id', $id);
+        return $this->db->get()->row();
     }
 
-    public function update_data()
+    public function update_data($data)
     {
-        $data = array(
-            'dokumen' => $this->input->post('dokumen', true),
-            'jenis_dokumen' => $this->input->post('jenis_dokumen', true),
-            'nama_dokumen' => $this->input->post('nama_dokumen', true),
-            'keterangan' => $this->input->post('keterangan', true),
-        );
-        $this->db->where('id', $this->input->post('id'));
+        $this->db->where('id', $data['id']);
         $this->db->update('tbl_coba', $data);
     }
 
