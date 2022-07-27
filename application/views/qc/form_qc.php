@@ -5,10 +5,10 @@
 <div class="tab">
     <ul class="nav nav-tabs" id="myTab3" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="interaction-tab" data-toggle="tab" href="#interaction" role="tab" aria-controls="interaction" aria-selected="true">Quality Monitoring </a>
+            <a class="nav-link active" id="interaction-tab" data-toggle="tab" href="#interaction" role="tab" aria-controls="interaction" aria-selected="true"  style="color:black">Quality Monitoring </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="multikontak-tab" data-toggle="tab" href="#multikontak" role="tab" aria-controls="multikontak" aria-selected="false">Quality Score</a>
+            <a class="nav-link" id="multikontak-tab" data-toggle="tab" href="#multikontak" role="tab" aria-controls="multikontak" aria-selected="false" style="color:black">Quality Score</a>
         </li>
 
 
