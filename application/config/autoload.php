@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array("database","template","session","user_agent",'outputview','datatables','outputapi'); 
+$autoload['libraries'] = array("database", "template", "session", "user_agent", 'outputview', 'datatables', 'outputapi');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array("url","form","template_work","array","ybs_generate",'ybs_date',"date","number","security","Ybs_load"); 
+$autoload['helper'] = array("url", "form", "template_work", "array", "ybs_generate", 'ybs_date', "date", "number", "security", "Ybs_load", "file", "download");
 
 /*
 | -------------------------------------------------------------------

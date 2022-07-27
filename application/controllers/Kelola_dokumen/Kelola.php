@@ -7,7 +7,7 @@ class Kelola extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Kelola dokumen/M_kelola_dokumen');
+		$this->load->model('Kelola_dokumen/M_kelola_dokumen');
 		$this->load->library('form_validation');
 		$this->load->helper(array('url', 'download'));
 	}
@@ -22,13 +22,12 @@ class Kelola extends CI_Controller
 			// 'list_data' => $obj
 		);
 
-		$data['tbl_coba'] = $this->M_kelola_dokumen->get_data('tbl_coba')->result();
+		$data['t_dokumen'] = $this->M_kelola_dokumen->get_data('t_dokumen')->result();
 		$this->template->load('Kelola_dokumen/v_kelola', $data);
 	}
 
 	public function tambah()
 	{
-		$this->form_validation->set_rules('jenis_dokumen', 'Jenis Dokumen', 'required');
 		$this->form_validation->set_rules('nama_dokumen', 'Nama Dokumen', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
@@ -36,6 +35,7 @@ class Kelola extends CI_Controller
 			$config['upload_path']          = './file/';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg|docx|pdf|xlsx';
 			$config['max_size']             = 50000;
+			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			if (!$this->upload->do_upload('dokumen')) {
 				$data = array(
@@ -50,7 +50,6 @@ class Kelola extends CI_Controller
 				$this->load->library('image_lib', $config);
 				$data = array(
 					'dokumen' => $upload_data['uploads']['file_name'],
-					'jenis_dokumen' => $this->input->post('jenis_dokumen'),
 					'nama_dokumen' => $this->input->post('nama_dokumen'),
 					'keterangan' => $this->input->post('keterangan'),
 				);
@@ -68,7 +67,6 @@ class Kelola extends CI_Controller
 
 	public function edit($id)
 	{
-		$this->form_validation->set_rules('jenis_dokumen', 'Jenis Dokumen', 'required');
 		$this->form_validation->set_rules('nama_dokumen', 'Nama Dokumen', 'required');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
@@ -76,11 +74,12 @@ class Kelola extends CI_Controller
 			$config['upload_path']          = './file/';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg|docx|pdf|xlsx';
 			$config['max_size']             = 50000;
+			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			if (!$this->upload->do_upload('dokumen')) {
 				$data = array(
 					'title' => 'EDIT DATA',
-					'tbl_coba' => $this->M_kelola_dokumen->get_data_by_id($id),
+					't_dokumen' => $this->M_kelola_dokumen->get_data_by_id($id),
 					'isi' => 'Kelola_dokumen/v_edit',
 				);
 				$this->template->load('kelola_dokumen/v_edit', $data, FALSE);
@@ -92,7 +91,6 @@ class Kelola extends CI_Controller
 				$data = array(
 					'id' => $id,
 					'dokumen' => $upload_data['uploads']['file_name'],
-					'jenis_dokumen' => $this->input->post('jenis_dokumen'),
 					'nama_dokumen' => $this->input->post('nama_dokumen'),
 					'keterangan' => $this->input->post('keterangan'),
 				);
@@ -103,7 +101,7 @@ class Kelola extends CI_Controller
 		}
 		$data = array(
 			'title' => 'EDIT DATA',
-			'tbl_coba' => $this->M_kelola_dokumen->get_data_by_id($id),
+			't_dokumen' => $this->M_kelola_dokumen->get_data_by_id($id),
 			'isi' => 'kelola_dokumen/v_edit',
 		);
 		$this->template->load('kelola_dokumen/v_edit', $data, FALSE);

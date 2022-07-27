@@ -9,13 +9,13 @@ class M_kelola_dokumen extends CI_Model
 
     public function insert_data($data)
     {
-        $this->db->insert('tbl_coba', $data);
+        $this->db->insert('t_dokumen', $data);
     }
 
     public function get_data_by_id($id)
     {
         $this->db->select('*');
-        $this->db->from('tbl_coba');
+        $this->db->from('t_dokumen');
         $this->db->where('id', $id);
         return $this->db->get()->row();
     }
@@ -23,12 +23,12 @@ class M_kelola_dokumen extends CI_Model
     public function update_data($data)
     {
         $this->db->where('id', $data['id']);
-        $this->db->update('tbl_coba', $data);
+        $this->db->update('t_dokumen', $data);
     }
 
     public function delete_data($id)
     {
         $this->db->where('id', $id);
-        $this->db->delete('tbl_coba');
+        $this->db->delete('t_dokumen');
     }
 }
