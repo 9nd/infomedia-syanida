@@ -5,7 +5,7 @@
 <div class="tab">
     <ul class="nav nav-tabs" id="myTab3" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="interaction-tab" data-toggle="tab" href="#interaction" role="tab" aria-controls="interaction" aria-selected="true"  style="color:black">Quality Monitoring </a>
+            <a class="nav-link active" id="interaction-tab" data-toggle="tab" href="#interaction" role="tab" aria-controls="interaction" aria-selected="true" style="color:black">Quality Monitoring </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" id="multikontak-tab" data-toggle="tab" href="#multikontak" role="tab" aria-controls="multikontak" aria-selected="false" style="color:black">Quality Score</a>
@@ -242,7 +242,7 @@
                             <tr>
                                 <td width="1%"></td>
                                 <td>
-                                    <!--<input type='text' class='form-control data-sending focus-color' id='aht_qc' name='aht_qc' placeholder='AHT > 3menit' value=''> -->
+
                                     <select class="form-control data-sending focus-color" id='aht_qc' name='aht_qc'>
                                         <option value="-">Pilih</option>
                                         <option value="Agent Melakukan Carring">Agent Melakukan Carring</option>
@@ -353,7 +353,145 @@
         <div class="tab-pane" id="multikontak" role="tabpanel" aria-labelledby="multikontak-tab">
             <form action="<?= base_url('Qc/Qc/create_score_action'); ?>" method="post" enctype="multipart/form-data">
 
-                <div class="row">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="interaction" role="tabpanel" aria-labelledby="interaction-tab">
+                        <form id='form-a'>
+
+                            <div class="row">
+                                <div class='col-md-6 col-xl-6'>
+                                    <div class='form-group'>
+                                        <input hidden type='text' readonly class='form-control data-sending focus-color' id='id_qc' name='id_qc' value='<?php if (isset($loginid)) echo $loginid->id_user; ?>'>
+                                        <label class='form-label'>Nama Agent </label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='nama_agent' name='nama_agent' placeholder='Nama Agent' value='<?php if (isset($agent)) echo $agent->nama ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Nama Pelanggan</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='nama' name='nama' placeholder='nama' value='<?php if (isset($data)) echo $data->nama ?>'>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label class='form-label'>Alamat Lengkap</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='alamat' name='alamat' placeholder='alamat' value='<?php if (isset($data)) echo $data->alamat ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Kecepatan</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='kec_speedy' name='kec_speedy' placeholder='kec_speedy' value='<?php if (isset($data)) echo $data->kec_speedy ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Tagihan</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='billing' name='billing' placeholder='billing' value='<?php if (isset($data)) echo $data->billing ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Tahun pemasangan Produk Telkom</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='waktu_psb' name='waktu_psb' placeholder='waktu_psb' value='<?php if (isset($data)) echo $data->waktu_psb ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Tempat Pembayaran</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='payment' name='payment' placeholder='payment' value='<?php if (isset($data)) echo $data->payment ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Kode Verifikasi</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='veri_system' name='veri_system' placeholder='veri_system' value='<?php if (isset($data)) echo $data->veri_system ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>NCLI</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='ncli' name='ncli' placeholder='ncli' value='<?php if (isset($data)) echo $data->ncli ?>'>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label class='form-label'>No.PSTN</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='pstn1' name='pstn1' placeholder='pstn1' value='<?php if (isset($data)) echo $data->pstn1 ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>No.Internet</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='no_speedy' name='no_speedy' placeholder='no_speedy' value='<?php if (isset($data)) echo $data->no_speedy ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Dial To</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' value='
+                <?php if (isset($data)) $verket = $data->veri_keterangan;
+                if ($verket === NULL) {
+                    echo $data->handphone;
+                } else {
+                    echo $data->veri_keterangan;
+                }
+                ?>'>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label class='form-label'>No Handphone</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='handphone' name='handphone' placeholder='handphone' value='<?php if (isset($data)) echo $data->handphone ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Handphone Lain</label>
+                                        <input type='text' readonly class='form-control focus-color' placeholder='handphone_lain' value='<?php if (isset($data)) echo $data->handphone_lain ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Email</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='email' name='email' placeholder='email' value='<?php if (isset($data)) echo $data->email ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Email 2</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' id='email' name='email' placeholder='email' value='<?php if (isset($data)) echo $data->email_lain ?>'>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label class='form-label'>Opsi Channel (Hp, Email, dsb)</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' value='
+                <?php if (isset($data))
+                    $opsc = $data->opsi_call;
+                if ($opsc == 1) {
+                    echo "Telepon rumah";
+                } elseif ($opsc == 2) {
+                    echo "Handphone";
+                } elseif ($opsc == 3) {
+                    echo "Email";
+                } elseif ($opsc == 4) {
+                    echo "Chat";
+                } else {
+                    echo "-";
+                } ?>'>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label class='form-label'>Kode Verifikasi Email</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' placeholder='verfi_email' value='<?php if (isset($data)) echo $data->verfi_email ?>'>
+                                    </div>
+                                    <div class='form-group'>
+                                        <label class='form-label'>Kode Verifikasi Password</label>
+                                        <input type='text' readonly class='form-control data-sending focus-color' placeholder='verfi_handphone' value='<?php if (isset($data)) echo $data->verfi_handphone ?>'>
+                                    </div>
+
+                                    <div class='form-group'>
+                                        <label class='form-label'>Recording</label>
+                                        <?php
+                                        if ($recording) {
+                                        ?>
+                                            <audio controls>
+                                                <source src="<?php
+                                                                $dataplode = explode("/mount/recording", $recording);
+
+                                                                echo "https://10.194.176.161:9443/apprecording/recording" . $dataplode[1]; ?>" type="audio/wav">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                            <br>
+                                            <a href="<?php
+                                                        $dataplode = explode("/mount/recording", $recording);
+                                                        echo "https://10.194.176.161:9443/apprecording/recording" . $dataplode[1]; ?>" target="_blank"><button type="button" class="btn btn-success"><i class="fe fe-download"></i> Download</button></a>
+                                        <?php
+                                        } else {
+                                            echo "File Recording Tidak Tersedia";
+                                            // echo $recording;
+
+                                        }
+                                        ?>
+
+                                    </div>
+
+
+                                </div>
+
+                                <!-- <div class="row">
 
                     <div class='col-md-6 col-xl-6'>
                         <table width="100%">
@@ -581,218 +719,346 @@
                         </table>
 
 
-                    </div>
-                    <div class='col-md-6 col-xl-6'>
-                        <table width="100%">
+                    </div> -->
+                                <div class='col-md-6 col-xl-6'>
+                                    <table width="100%">
 
+                                        <tr>
+                                            <td colspan=2>Salam pembuka</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_1' name='skill_communication_1'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                            <tr>
-                                <td colspan=2>Verifikasi Email
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='validation_10' name='validation_10'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Salam Penutup</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_2' name='skill_communication_2'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Kode Verifikasi
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='validation_11' name='validation_11'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Mengucapkan nama pelanggan minimal 3 kali (awal, tengah & akhir) selama percakapan.</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_3' name='skill_communication_3'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>
-                                    <h3>Documentation & Information</h3>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Dapat memberikan informasi tujuan Profiling
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='documentation_1' name='documentation_1'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Melakukan dokumentasi pada aplikasi terkait
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='documentation_2' name='documentation_2'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                        <tr>
+                                            <td colspan=2>Menyampaikan informasi/pertanyaan dengan jelas, lengkap dan sistematis (tidak berbelit-belit)</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_4' name='skill_communication_4'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Menanyakan opsi channel kepada pelanggan
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='documentation_3' name='documentation_3'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Menggunakan bahasa Indonesia/inggris dengan baik & benar, serta sopan</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_5' name='skill_communication_5'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>
-                                    <h3>AHT > 3menit</h3>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Agent melakukan carring
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_1' name='aht_1'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Intonasi & artikulasi</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_6' name='skill_communication_6'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Pelanggan Ragu - Ragu
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_2' name='aht_2'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Memberikan perhatian kepada pelanggan secara aktif dan berempati</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_7' name='skill_communication_7'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Pelanggan meminta menunggu
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_3' name='aht_3'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Agent menanyakan kabar pelanggan/kondisi inet pelanggan</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='skill_communication_8' name='skill_communication_8'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Pertanyaan agent berbelit- belit
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_4' name='aht_4'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Tidak langsung bertemu DM
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_5' name='aht_5'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                        <tr>
+                                            <td colspan=2>
+                                                <h3>Validation</h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Alamat Pelanggan</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_1' name='validation_1'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Spelling
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_6' name='aht_6'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Kecepatan</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_2' name='validation_2'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Keluhan pelanggan
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_7' name='aht_7'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                                </select>
+                                            </td>
+                                        </tr>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Tanya Promo/Produk
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <select class="form-control data-sending focus-color" id='aht_8' name='aht_8'>
-                                        <option value="0">Tidak</option>
-                                        <option value="1" selected>Ya</option>
+                                        <tr>
+                                            <td colspan=2>Tagihan</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_3' name='validation_3'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
 
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan=2>Keterangan</td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <input type='text' class='form-control data-sending2 focus-color' id='keterangan' name='keterangan' placeholder='Keterangan'>
-                                </td>
-                            </tr>
+                                                </select>
+                                            </td>
+                                        </tr>
 
-                            <tr>
-                                <td colspan=2>Note</td>
-                            </tr>
-                            <tr>
-                                <td width="1%"></td>
-                                <td> <input type='text' class='form-control data-sending2 focus-color' id='note' name='note' placeholder='Note'>
-                                </td>
-                            </tr>
-                            <!-- <input type='hidden' id="total_skill_communication" name="total_skill_communication" class='form-control data-sending2 focus-color'>
+                                        <tr>
+                                            <td colspan=2>Tahun Pemasangan</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_4' name='validation_4'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Tempat Bayar</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_5' name='validation_5'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan=2>Salah menyebutkan Nomer INET / PSTN pelanggan atau tidak konfirmasi nomer INET/PSTN pelanggan
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_6' name='validation_6'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Nama Pelanggan Salah
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_7' name='validation_7'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan=2>Decision Maker
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_8' name='validation_8'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Verifikasi HP
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_9' name='validation_9'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Verifikasi Email
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_10' name='validation_10'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Kode Verifikasi
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='validation_11' name='validation_11'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>
+                                                <h3>Documentation & Information</h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Dapat memberikan informasi tujuan Profiling
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='documentation_1' name='documentation_1'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Melakukan dokumentasi pada aplikasi terkait
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='documentation_2' name='documentation_2'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>Menanyakan Opsi Channel Kepada Pelanggan</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='opsi_call' name='opsi_call' placeholder='opsi_call'>
+                                                    <option value="0">Pilih</option>
+                                                    <option value="1">Telepon Rumah</option>
+                                                    <option value="2">Handphone</option>
+                                                    <option value="3">Email</option>
+                                                    <option value="4">Chat</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <!-- <td colspan=2>Menanyakan opsi channel kepada pelanggan
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td> <select class="form-control data-sending focus-color" id='documentation_3' name='documentation_3'>
+                                                    <option value="0">Tidak</option>
+                                                    <option value="1" selected>Ya</option>
+
+                                                </select>
+                                            </td>
+                                        </tr> -->
+                                        <tr>
+                                            <td colspan=2>
+                                                <h3>AHT > 3menit</h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="1%"></td>
+                                            <td>
+                                                <!--<input type='text' class='form-control data-sending focus-color' id='aht_qc' name='aht_qc' placeholder='AHT > 3menit' value=''> -->
+                                                <select class="form-control data-sending focus-color" id='aht_qc' name='aht_qc'>
+                                                    <option value="-">Pilih</option>
+                                                    <option value="Agent Melakukan Carring">Agent Melakukan Carring</option>
+                                                    <option value="Pelanggan Ragu - Ragu">Pelanggan Ragu - Ragu</option>
+                                                    <option value="Pelanggan Meminta Menunggu">Pelanggan Meminta Menunggu</option>
+                                                    <option value="Pertanyaan Agent berbelit - belit">Pertanyaan Agent berbelit - belit</option>
+                                                    <option value="Tidak Langsung bertemu DM">Tidak Langsung bertemu DM</option>
+                                                    <option value='Spelling'>Spelling</option>
+                                                    <option value='Keluhan Pelanggan'>Keluhan Pelanggan</option>
+                                                    <option value='Tanya Promo/Produk'>Tanya Promo/Produk</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <!-- <input type='hidden' id="total_skill_communication" name="total_skill_communication" class='form-control data-sending2 focus-color'>
                             <input type='hidden' id="total_validation" name="total_validation" class='form-control data-sending2 focus-color'>
                             <input type='hidden' id="total_documentation" name="total_documentation" class='form-control data-sending2 focus-color'>
                             <input type='hidden' id="end_score" name="end_score" class='form-control data-sending2 focus-color'> -->
 
-                            <tr>
-                                <td colspan='2'>
-                                    <div class='form-group'>
-                                        <br>
-                                        <input type='hidden' id="agent_id" name="agent_id" class="data-sending2" value="<?php echo $_GET['agentid'] ?>">
-                                        <input type='hidden' id="dial" name="dial" class="data-sending2" value='
+                                        <tr>
+                                            <td colspan='2'>
+                                                <div class='form-group'>
+                                                    <br>
+                                                    <input type='hidden' id="agent_id" name="agent_id" class="data-sending2" value="<?php echo $_GET['agentid'] ?>">
+                                                    <input type='hidden' id="dial" name="dial" class="data-sending2" value='
                                             <?php if (isset($data)) $verket = $data->veri_keterangan;
                                             if ($verket === NULL) {
                                                 echo $data->handphone;
@@ -800,46 +1066,46 @@
                                                 echo $data->veri_keterangan;
                                             }
                                             ?>'>
-                                        <input type='hidden' id="lup" name="lup" class="data-sending2" value="<?php echo $data->lup ?>">
-                                        <input type='hidden' id="tgl_taping" name="tgl_taping" class="data-sending2" value="<?php echo $data->lup ?>">
-                                        <input type='hidden' id="tgl_respon_limit" name="tgl_respon_limit" class="data-sending2" value="<?php echo $data->lup ?>">
-                                        <button type="submit" id="submits" class="submit btn btn-primary btn-block"><span class="fe fe-save"></span> Submit</button>
-                                    </div>
+                                                    <input type='hidden' id="lup" name="lup" class="data-sending2" value="<?php echo $data->lup ?>">
+                                                    <input type='hidden' id="tgl_taping" name="tgl_taping" class="data-sending2" value="<?php echo $data->lup ?>">
+                                                    <input type='hidden' id="tgl_respon_limit" name="tgl_respon_limit" class="data-sending2" value="<?php echo $data->lup ?>">
+                                                    <button type="submit" id="submits" class="submit btn btn-primary btn-block"><span class="fe fe-save"></span> Submit</button>
+                                                </div>
 
-                                </td>
+                                            </td>
 
-                            </tr>
+                                        </tr>
 
-                        </table>
+                                    </table>
 
 
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
+
                 </div>
-
-            </form>
         </div>
+        <?php echo card_close() ?>
 
-    </div>
-</div>
-<?php echo card_close() ?>
+        <?php echo _js('selectize,datepicker') ?>
 
-<?php echo _js('selectize,datepicker') ?>
+        <script>
+            var page_version = "1.0.8"
+        </script>
 
-<script>
-    var page_version = "1.0.8"
-</script>
+        <script>
+            var custom_select = $('.custom-select').selectize({});
+            var custom_select_link = $('.custom-select-link');
 
-<script>
-    var custom_select = $('.custom-select').selectize({});
-    var custom_select_link = $('.custom-select-link');
+            $(document).ready(function() {
+                $("#aht_qc").show();
+                $(".aht_qc").show();
+                $(".elem_not_approve").hide();
 
-    $(document).ready(function() {
-        $("#aht_qc").show();
-        $(".aht_qc").show();
-        $(".elem_not_approve").hide();
-
-        <?php
-        /*
+                <?php
+                /*
 	|--------------------------------------------------------------
 	| CARA MEMBUAT COMBOBOX LINK
 	|--------------------------------------------------------------
@@ -870,170 +1136,170 @@
 	|   - class harus menggunakan "custom-select-link"
 	|
 	*/
-        ?>
-    })
+                ?>
+            })
 
 
-    $('.data-sending').keydown(function(e) {
-        remove_message();
-        switch (e.which) {
-            case 13:
+            $('.data-sending').keydown(function(e) {
+                remove_message();
+                switch (e.which) {
+                    case 13:
+                        apply();
+                        return false;
+                }
+            });
+        </script>
+        <script>
+            $("#durasi_qc").on("keyup", function() {
+                if ($(this).val() >= 3)
+                    $("#aht_qc").show();
+                $(".aht_qc").show();
+            });
+        </script>
+        <script>
+            $('.input-simple-date').datepicker({
+                autoclose: true,
+                format: 'dd.mm.yyyy',
+            })
+            $('#btn-apply').click(function() {
                 apply();
-                return false;
-        }
-    });
-</script>
-<script>
-    $("#durasi_qc").on("keyup", function() {
-        if ($(this).val() >= 3)
-            $("#aht_qc").show();
-        $(".aht_qc").show();
-    });
-</script>
-<script>
-    $('.input-simple-date').datepicker({
-        autoclose: true,
-        format: 'dd.mm.yyyy',
-    })
-    $('#btn-apply').click(function() {
-        apply();
-        play_sound_apply();
-    });
-    $('#btn-approve').click(function() {
-        apply();
-        play_sound_apply();
-        $("#status_approve").val(1);
-        $('#btn-not-approve').attr('disabled', true);
-        $("#reason_qa").val("");
-        $(".elem_not_approve").hide();
-    });
-    $("#reason_qa").change(function() {
-        apply();
-        play_sound_apply();
-    });
-    $('#btn-not-approve').click(function() {
-        // apply();
-        play_sound_apply();
-        $("#status_approve").val(0);
-        $('#btn-approve').attr('disabled', true);
-        $(".elem_not_approve").show();
-    });
-    $("#skill_communication_1").change(function() {
-        if ($('#skill_communication_1').is(":checked")) {
-            $("#skill_communication_1").val(1);
-        } else {
-            $("#skill_communication_1").val(0);
-        }
-    });
-    $("#skill_communication_2").change(function() {
-        if ($('#skill_communication_2').is(":checked")) {
-            $("#skill_communication_2").val(1);
-        } else {
-            $("#skill_communication_2").val(0);
-        }
-    });
-    $("#status_validate_3").change(function() {
-        if ($('#status_validate_3').is(":checked")) {
-            $("#status_validate_3").val(1);
-        } else {
-            $("#status_validate_3").val(0);
-        }
-    });
-    $("#status_validate_4").change(function() {
-        if ($('#status_validate_4').is(":checked")) {
-            $("#status_validate_4").val(1);
-        } else {
-            $("#status_validate_4").val(0);
-        }
-    });
-    $("#status_validate_5").change(function() {
-        if ($('#status_validate_5').is(":checked")) {
-            $("#status_validate_5").val(1);
-        } else {
-            $("#status_validate_5").val(0);
-        }
-    });
-    $("#status_validate_6").change(function() {
-        if ($('#status_validate_6').is(":checked")) {
-            $("#status_validate_6").val(1);
-        } else {
-            $("#status_validate_6").val(0);
-        }
-    });
-    $('#btn-close').click(function() {
-        play_sound_apply();
-    });
+                play_sound_apply();
+            });
+            $('#btn-approve').click(function() {
+                apply();
+                play_sound_apply();
+                $("#status_approve").val(1);
+                $('#btn-not-approve').attr('disabled', true);
+                $("#reason_qa").val("");
+                $(".elem_not_approve").hide();
+            });
+            $("#reason_qa").change(function() {
+                apply();
+                play_sound_apply();
+            });
+            $('#btn-not-approve').click(function() {
+                // apply();
+                play_sound_apply();
+                $("#status_approve").val(0);
+                $('#btn-approve').attr('disabled', true);
+                $(".elem_not_approve").show();
+            });
+            $("#skill_communication_1").change(function() {
+                if ($('#skill_communication_1').is(":checked")) {
+                    $("#skill_communication_1").val(1);
+                } else {
+                    $("#skill_communication_1").val(0);
+                }
+            });
+            $("#skill_communication_2").change(function() {
+                if ($('#skill_communication_2').is(":checked")) {
+                    $("#skill_communication_2").val(1);
+                } else {
+                    $("#skill_communication_2").val(0);
+                }
+            });
+            $("#status_validate_3").change(function() {
+                if ($('#status_validate_3').is(":checked")) {
+                    $("#status_validate_3").val(1);
+                } else {
+                    $("#status_validate_3").val(0);
+                }
+            });
+            $("#status_validate_4").change(function() {
+                if ($('#status_validate_4').is(":checked")) {
+                    $("#status_validate_4").val(1);
+                } else {
+                    $("#status_validate_4").val(0);
+                }
+            });
+            $("#status_validate_5").change(function() {
+                if ($('#status_validate_5').is(":checked")) {
+                    $("#status_validate_5").val(1);
+                } else {
+                    $("#status_validate_5").val(0);
+                }
+            });
+            $("#status_validate_6").change(function() {
+                if ($('#status_validate_6').is(":checked")) {
+                    $("#status_validate_6").val(1);
+                } else {
+                    $("#status_validate_6").val(0);
+                }
+            });
+            $('#btn-close').click(function() {
+                play_sound_apply();
+            });
 
-    $('#btn-cancel').click(function() {
-        cancel();
-        play_sound_apply();
-    });
+            $('#btn-cancel').click(function() {
+                cancel();
+                play_sound_apply();
+            });
 
-    $('#btn-save').click(function() {
-        simpan();
-    })
+            $('#btn-save').click(function() {
+                simpan();
+            })
 
-    function apply() {
-        $.each(custom_select, function(key, val) {
-            val.selectize.disable();
-        });
+            function apply() {
+                $.each(custom_select, function(key, val) {
+                    val.selectize.disable();
+                });
 
-        <?php
-        // NOTE : FOR DISABLE CUSTOM-SELECT-LINK 
-        ?>
-        // $.each(custom_select_link,function(key,val){
-        // 		val.selectize.disable();
-        // });
+                <?php
+                // NOTE : FOR DISABLE CUSTOM-SELECT-LINK 
+                ?>
+                // $.each(custom_select_link,function(key,val){
+                // 		val.selectize.disable();
+                // });
 
-        $('.form-control').attr('disabled', true);
-        $('#btn-apply').attr('disabled', true);
-        $('#btn-cancel').attr('disabled', false);
-        $('#btn-save').attr('disabled', false);
-        $('#btn-save').focus();
-    }
+                $('.form-control').attr('disabled', true);
+                $('#btn-apply').attr('disabled', true);
+                $('#btn-cancel').attr('disabled', false);
+                $('#btn-save').attr('disabled', false);
+                $('#btn-save').focus();
+            }
 
-    function cancel() {
-        $.each(custom_select, function(key, val) {
-            val.selectize.enable();
-        });
-        <?php
-        // NOTE : FOR ENABLE CUSTOM-SELECT-LINK  
-        ?>
-        // $.each(custom_select_link,function(key,val){
-        // 		val.selectize.enable();
-        // });
+            function cancel() {
+                $.each(custom_select, function(key, val) {
+                    val.selectize.enable();
+                });
+                <?php
+                // NOTE : FOR ENABLE CUSTOM-SELECT-LINK  
+                ?>
+                // $.each(custom_select_link,function(key,val){
+                // 		val.selectize.enable();
+                // });
 
-        $('.form-control').attr('disabled', false);
-        $('#btn-cancel').attr('disabled', true);
-        $('#btn-save').attr('disabled', true);
-        $('#btn-apply').attr('disabled', false);
+                $('.form-control').attr('disabled', false);
+                $('#btn-cancel').attr('disabled', true);
+                $('#btn-save').attr('disabled', true);
+                $('#btn-apply').attr('disabled', false);
 
-    }
+            }
 
 
-    function simpan() {
-        <?php
-        /* mengambil data yang akan di kirim dari form-a */
-        /* dalam bentuk array json tanpa penutup.. */
-        /* memungkinkan penambahan data dengan cara push */
-        /* ex. data.push */
-        ?>
-        var data = get_dataSending('form-a');
+            function simpan() {
+                <?php
+                /* mengambil data yang akan di kirim dari form-a */
+                /* dalam bentuk array json tanpa penutup.. */
+                /* memungkinkan penambahan data dengan cara push */
+                /* ex. data.push */
+                ?>
+                var data = get_dataSending('form-a');
 
-        <?php
-        /* complite json format */
-        /* ybs_dataSending(array); */
-        ?>
-        send_data = ybs_dataSending(data);
+                <?php
+                /* complite json format */
+                /* ybs_dataSending(array); */
+                ?>
+                send_data = ybs_dataSending(data);
 
-        var a = new ybsRequest();
-        a.process('<?php echo $link_save ?>', send_data, 'POST');
-        a.onAfterSuccess = function() {
-            // cancel();
-            window.location.href = '<?php echo base_url() . "Qc/Qc" ?>';
-        }
-        a.onBeforeFailed = function() {
-            cancel();
-        }
-    }
-</script>
+                var a = new ybsRequest();
+                a.process('<?php echo $link_save ?>', send_data, 'POST');
+                a.onAfterSuccess = function() {
+                    // cancel();
+                    window.location.href = '<?php echo base_url() . "Qc/Qc" ?>';
+                }
+                a.onBeforeFailed = function() {
+                    cancel();
+                }
+            }
+        </script>

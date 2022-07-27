@@ -3,17 +3,20 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Status_call_model extends CI_Model {
+class Status_call_model extends CI_Model
+{
     protected $tbl;
     protected $limit = 0;
     protected $offset = 10;
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->tbl = "status_call";
     }
 
-    function get_results($where = array(), $fields = array('*'), $limit = array(), $order_by = array()) {
+    function get_results($where = array(), $fields = array('*'), $limit = array(), $order_by = array())
+    {
         $data = array();
         //select field
         if (is_array($fields)) {
@@ -36,7 +39,7 @@ class Status_call_model extends CI_Model {
                         }
                         break;
                     case "or_where_null_multi":
-                        foreach($value as $val_arr){
+                        foreach ($value as $val_arr) {
                             foreach ($val_arr as $val) {
                                 $this->db->where($val, NULL, FALSE);
                             }
@@ -59,7 +62,7 @@ class Status_call_model extends CI_Model {
                         break;
                     case "join_left":
                         foreach ($value as $fi => $val) {
-                            $this->db->join($fi, $val,"INNER");
+                            $this->db->join($fi, $val, "INNER");
                         }
                         break;
                 }
@@ -83,7 +86,8 @@ class Status_call_model extends CI_Model {
         $data['num'] = $query->num_rows();
         return $data;
     }
-    function get_results_array($where = array(), $fields = array('*'), $limit = array(), $order_by = array()) {
+    function get_results_array($where = array(), $fields = array('*'), $limit = array(), $order_by = array())
+    {
         $data = array();
         //select field
         if (is_array($fields)) {
@@ -106,7 +110,7 @@ class Status_call_model extends CI_Model {
                         }
                         break;
                     case "or_where_null_multi":
-                        foreach($value as $val_arr){
+                        foreach ($value as $val_arr) {
                             foreach ($val_arr as $val) {
                                 $this->db->where($val, NULL, FALSE);
                             }
@@ -129,7 +133,7 @@ class Status_call_model extends CI_Model {
                         break;
                     case "join_left":
                         foreach ($value as $fi => $val) {
-                            $this->db->join($fi, $val,"INNER");
+                            $this->db->join($fi, $val, "INNER");
                         }
                         break;
                 }
@@ -154,7 +158,8 @@ class Status_call_model extends CI_Model {
         return $data;
     }
 
-    function get_row($where = array(), $fields = array('*'), $order_by = array()) {
+    function get_row($where = array(), $fields = array('*'), $order_by = array())
+    {
         $data = array();
         //select field
         if (is_array($fields)) {
@@ -193,7 +198,7 @@ class Status_call_model extends CI_Model {
                         break;
                     case "join_left":
                         foreach ($value as $fi => $val) {
-                            $this->db->join($fi, $val,"left");
+                            $this->db->join($fi, $val, "left");
                         }
                         break;
                 }
@@ -212,7 +217,8 @@ class Status_call_model extends CI_Model {
         return $data;
     }
 
-    function get_count($where = array(), $limit = array()) {
+    function get_count($where = array(), $limit = array())
+    {
         $data = array();
         //select field
         if (count($where) > 0) {
@@ -248,7 +254,7 @@ class Status_call_model extends CI_Model {
                         break;
                     case "join_left":
                         foreach ($value as $fi => $val) {
-                            $this->db->join($fi, $val,"left");
+                            $this->db->join($fi, $val, "left");
                         }
                         break;
                 }
@@ -258,17 +264,20 @@ class Status_call_model extends CI_Model {
         return $this->db->count_all_results($this->tbl);
     }
 
-    function add($data = array()) {
+    function add($data = array())
+    {
         $this->db->insert($this->tbl, $data);
         return $this->db->insert_id();
     }
 
-    function get_field($data = array()) {
+    function get_field($data = array())
+    {
         $fields = $this->db->list_fields($this->tbl);
         return $fields;
     }
 
-    function edit($where = array(), $data = array()) {
+    function edit($where = array(), $data = array())
+    {
         if (count($where) > 0) {
             foreach ($where as $field => $value) {
                 $this->db->where($field, $value);
@@ -279,7 +288,8 @@ class Status_call_model extends CI_Model {
         return false;
     }
 
-    function delete($where = array()) {
+    function delete($where = array())
+    {
         if (is_array($where) && count($where) > 0) {
             foreach ($where as $field => $value) {
                 $this->db->where($field, $value);
@@ -288,7 +298,8 @@ class Status_call_model extends CI_Model {
         }
     }
 
-    function get_sum($where = array(), $fields) {
+    function get_sum($where = array(), $fields)
+    {
         if (count($where) > 0) {
             foreach ($where as $field => $value) {
                 switch ($field) {
@@ -317,7 +328,7 @@ class Status_call_model extends CI_Model {
                         break;
                     case "join_left":
                         foreach ($value as $fi => $val) {
-                            $this->db->join($fi, $val,"left");
+                            $this->db->join($fi, $val, "left");
                         }
                         break;
                 }
@@ -328,6 +339,4 @@ class Status_call_model extends CI_Model {
         $result = $query->result();
         return $result[0]->num;
     }
-
-
 };
