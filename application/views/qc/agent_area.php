@@ -19,7 +19,7 @@
                             <th><b>No</b></th>
                             <th nowrap><b>Aksi</b></th>
                             <th><b>Agent Name</b></th>
-                            <th nowrap><b>NCLI</b></th>                           
+                            <th nowrap><b>NCLI</b></th>
                             <th><b>Nama</b></th>
                             <th><b>NO.PSTN</b></th>
                             <th><b>NO.Speedy</b></th>
@@ -32,11 +32,11 @@
                             <th><b>Alamat</b></th>
                             <th><b>Kecepatan Speedy</b></th>
                             <th><b>Veri Status</b></th>
-                            <th><b>Veri Call</b></th>                            
+                            <th><b>Veri Call</b></th>
                             <th nowrap><b>Waktu Dan Tanggal</b></th>
                             <th><b>Tempat Bayar</b></th>
                             <th><b>Opsi Call</b></th>
-<th><b>Keterangan</b></th>                           
+                            <th><b>Keterangan</b></th>
                             <th><b>Status Approve</b></th>
                         </tr>
                     </thead>
@@ -63,7 +63,7 @@
                                     $link_ = "Qc/Qc/edit_form_approve?id=" . $check_approve->id;
                                 } else {
                                     $status_approve = "Belum Dicheck";
-                                    $link_ = "Qc/Qc/form_approve?agentid=" . $ag['veri_upd'] . "&ncli=" . $ag['ncli'] . "&handphone=" . $ag['handphone'] . "&start=" . $_GET['start'] ;
+                                    $link_ = "Qc/Qc/form_approve?agentid=" . $ag['veri_upd'] . "&ncli=" . $ag['ncli'] . "&handphone=" . $ag['handphone'] . "&start=" . $_GET['start'];
                                 }
                         ?>
 
@@ -72,9 +72,10 @@
                                     <td style="text-align:left;">
                                         <a target="_blank" href="<?php echo base_url() . $link_; ?>" class="btn btn-default text-red btn-sm " title="update"><i class="fa fa-edit"></i></a>
                                     </td>
-                                    <td style="text-align:left;"><?php 
-                                    $namaagent = $controller->sys_user->get_row(array("agentid" => $ag['veri_upd']));
-                                    echo $namaagent->nama;  ?></td>
+                                    <td style="text-align:left;">
+                                        <?php
+                                        $namaagent = $controller->sys_user->get_row(array("agentid" => $ag['veri_upd']));
+                                        echo $namaagent->nama;  ?></td>
                                     <td style="text-align:left;"><?php echo $ag['ncli']; ?></td>
                                     <td style="text-align:left;"><?php echo $ag['nama']; ?></td>
                                     <td style="text-align:left;"><?php echo $ag['pstn1']; ?></td>
@@ -88,7 +89,7 @@
                                     <td style="text-align:left;"><?php echo $ag['alamat']; ?></td>
                                     <td style="text-align:left;"><?php echo $ag['kec_speedy']; ?></td>
                                     <td style="text-align:left;"><?php echo $ag['veri_status']; ?></td>
-                                    <td style="text-align:left;"><?php echo $ag['veri_call']; ?></td>                                    
+                                    <td style="text-align:left;"><?php echo $ag['veri_call']; ?></td>
                                     <td style="text-align:left;"><?php echo $ag['lup']; ?></td>
                                     <td style="text-align:left;"><?php echo $ag['payment']; ?></td>
                                     <td style="text-align:left;"><?php echo $ag['opsi_call']; ?></td>

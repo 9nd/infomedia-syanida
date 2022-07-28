@@ -355,11 +355,11 @@ class Qc extends CI_Controller
 			$end_filter = $_GET['end'];
 
 			$this->load->library('pagination');
-			$config['base_url'] = base_url().'index.php/welcome/index/';
+			$config['base_url'] = base_url() . 'index.php/welcome/index/';
 			$config['per_page'] = 10;
 			$from = $this->uri->segment(3);
-			$this->pagination->initialize($config);		
-			$data['data_qc'] = $this->qc->get_results(array('DATE(lup) >=' => $start_filter, 'DATE(lup) <=' => $end_filter))->data($config['per_page'],$from);
+			$this->pagination->initialize($config);
+			$data['data_qc'] = $this->qc->get_results(array('DATE(lup) >=' => $start_filter, 'DATE(lup) <=' => $end_filter))->data($config['per_page'], $from);
 		}
 		$this->load->view('qc/list_area_report', $data);
 	}
