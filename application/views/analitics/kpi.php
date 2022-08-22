@@ -458,9 +458,6 @@
                                     foreach ($uncontacted as $key => $val) {
                                         $uncontacted_tl = $uncontacted_tl + $agent[$kode_tl][$val];
                                     }
-                                    $time1 = strtotime('08:00:00');
-                                    $time2 = strtotime(date("H:i:s", strtotime($last_u[$kode_tl])));
-                                    $duration_2 = round(abs($time2 - $time1) / 3600, 2);
                                     echo "<tr>";
                                     // echo "<td>" . $n . "</td>";
                                     // echo "<td nowrap>" . $controller->Sys_user_table_model->get_row(array("nmuser" =>  $controller->Sys_user_table_model->get_row(array("nmuser" => $kode_tl))->tl))->nama . "</td>";
@@ -471,8 +468,8 @@
                                     echo "<td style='text-align:center;'>" . number_format(($agent[$kode_tl][13] / $agent[$kode_tl]['oc']) * 100, 2) . "%</td>";
                                     echo "<td style='text-align:center;'>" . number_format($agent[$kode_tl][13]) . "</td>";
                                     echo "<td style='text-align:center;'>" . number_format(($agent[$kode_tl][13] / $contacted_tl) * 100, 2) . "%</td>";
-                                    echo "<td style='text-align:center;'>" . number_format(($agent[$kode_tl][13]) / $duration_2) . "</td>";
-                                    echo "<td style='text-align:center;'>" . number_format(($agent[$kode_tl]['oc']) / $duration_2) . "</td>";
+                                    echo "<td style='text-align:center;'>" . number_format(($agent[$kode_tl][13]) / $duration) . "</td>";
+                                    echo "<td style='text-align:center;'>" . number_format(($agent[$kode_tl]['oc']) / $duration) . "</td>";
                                     echo "</tr>";
                                 }
                             }
@@ -510,7 +507,6 @@
                                 foreach ($uncontacted as $key => $val) {
                                     $uncontacted_tl = $uncontacted_tl + $tl[$kode_tl][$val];
                                 }
-                                
                                 echo "<tr>";
                                 echo "<td>" . $controller->Sys_user_table_model->get_row(array("nmuser" => $kode_tl))->nama . "</td>";
                                 echo "<td>" . count($tl[$kode_tl]['underteam']) . "</td>";

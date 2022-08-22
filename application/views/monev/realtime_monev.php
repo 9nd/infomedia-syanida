@@ -505,6 +505,9 @@
 
     $(document).ready(function() {
         get_inbox();
+        setInterval(function() {
+            window.location.reload();
+        }, 30000);
 
 
 

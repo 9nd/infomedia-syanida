@@ -292,9 +292,10 @@ class Public_Access extends CI_Controller
 			);
 			$query = $this->infomedia->insert('trans_profiling_validasi_mos', $data);
 			if ($query) {
-$cek_explode=explode("|",$this->input->post('layanan'));
+
+				$cek_explode = explode("|", $this->input->post('layanan'));
 				if (count($cek_explode) > 1) {
-					$ref_id=str_replace(" ","",$cek_explode[1]);
+					$ref_id = str_replace(" ", "", $cek_explode[1]);
 					$data_insert = array(
 						'ncli' => $this->input->post('ncli'),
 						'no_pstn' => $this->input->post('no_telp'),
@@ -304,7 +305,7 @@ $cek_explode=explode("|",$this->input->post('layanan'));
 					);
 					$query_2 = $this->infomedia->insert('trans_lp', $data_insert);
 				}
-								echo 1;
+				echo 1;
 			} else {
 				echo 0;
 			}

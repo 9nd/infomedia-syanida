@@ -255,11 +255,54 @@ class Telegram extends CI_Controller
     {
         $data = array();
         $query = $this->db->query("SELECT * FROM t_telegram_dictionary");
-  
+
         foreach ($query->result() as $sa) {
             $data[$sa->command]['template'] = $sa->template;
         }
         return $data;
         // var_dump($data);
+    }
+
+    ////////////////cron cek data moss///////////
+    function cek_datamoss()
+    {
+        $curdate = DATE("Y-m-d");
+        $curdate_h = DATE("Y-m-d H:i:s");
+        $cek_datamoss = $this->db->query("
+        SELECT
+	no_speedy,
+	count(*) AS jml,
+    tgl_insert as jam_masuk,
+	ROUND( time_to_sec(( TIMEDIFF( NOW(), '$curdate_h' ))) / 60 ) AS selisih,
+	TIMESTAMPDIFF( SECOND, tgl_insert, lup ) AS slg,
+	TIMESTAMPDIFF( SECOND, tgl_insert, click_time ) AS slfc 
+FROM
+	trans_profiling_validasi_mos 
+WHERE
+	SUMBER <> 'TVV'
+	AND UPDATE_BY <> 'SYS' 
+	AND DATE( tgl_insert ) = '$curdate' 
+	AND `status` IN ( '0', '3', NULL ) 
+AND ( update_by IS NULL OR update_by = '' ) 
+AND layanan <> 'TVV'
+AND update_by <> 'SYS'
+HAVING
+	selisih > 3 
+ORDER BY
+	slg DESC")->result();
+        // echo var_dump($cek_datamoss);
+        if (count($cek_datamoss) > 0) {
+
+            $chatidsys = $this->db->query("SELECT * FROM sys_user WHERE opt_level=9")->result();
+            $listnointernet = "";
+            foreach ($cek_datamoss as $listmoss) {
+                $listnointernet = $listmoss->no_speedy . " | " . $listnointernet;
+            }
+            $pesan = "WARNING !!! CEK DATA MOSS, NO SPEEDY : ".$listnointernet. "telah lebih dari 3 MENIT";
+            foreach($chatidsys as $listsend){
+                $this->send($pesan, $listsend->agentid,  $listsend->opt_level, $listsend->$chatid);
+            }
+           
+        }
     }
 }
