@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Landing Page</title>
+    <title>Digital Channel - Data Lead</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -61,10 +61,6 @@
     <!-- END: Page CSS-->
     <script src="<?php echo base_url() ?>assets/js/highcharts.js"></script>
     <script src="<?php echo base_url() ?>assets/js/bundle.js"></script>
-
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/richtext.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/font-awesome.min.css">
-
     <!-- END: Custom CSS-->
 </head>
 <!-- END Head-->
@@ -101,23 +97,17 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc" ?>"><i class="icon-chart mr-1"></i> Dashboard</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url() . "Dc/Dc/dalalead" ?>"><i class="icon-chart mr-1"></i> Data Lead</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
                 <!-- <li>
                     <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
@@ -142,7 +132,7 @@
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Landing Page</h4>
+                            <h4 class="mb-0">Data Lead</h4>
                             <i>*Last Update at <?php echo  date("d F Y h:i A", strtotime($last_update)); ?></i>
                         </div>
 
@@ -150,53 +140,94 @@
                     </div>
                 </div>
             </div>
-
-            <!-- END: Breadcrumbs-->
             <div class="row">
-                <div class="col-12  align-self-center">
-                    <?php
-                    if ($return) {
-                    ?>
-                        <div class="alert alert-primary" role="alert">
-                            <?php echo $return; ?>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-3  mt-3">
+                            <div class="card">
+                                <div class="card-body text-success border-bottom border-success border-w-5">
+                                    <h2 class="text-center"><?php echo number_format($hp_email); ?></h2>
+                                    <h6 class="text-center">HP + EMAIL</h6>
+                                </div>
+                            </div>
                         </div>
-                    <?php
-                    }
-                    ?>
-
-                    <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
-                        <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Landing Page</h4>
-
+                        <div class="col-3  mt-3">
+                            <div class="card">
+                                <div class="card-body text-info border-bottom border-info border-w-5">
+                                    <h2 class="text-center"><?php echo number_format($hp_only); ?></h2>
+                                    <h6 class="text-center">HP ONLY</h6>
+                                </div>
+                            </div>
                         </div>
-
+                        <div class="col-3  mt-3">
+                            <div class="card">
+                                <div class="card-body text-info border-bottom border-info border-w-5">
+                                    <h2 class="text-center"><?php echo number_format($email_only); ?></h2>
+                                    <h6 class="text-center">EMAIL ONLY</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3  mt-3">
+                            <div class="card">
+                                <div class="card-body text-danger border-bottom border-danger border-w-5">
+                                    <h2 class="text-center"><?php echo number_format($no_hp_no_email); ?></h2>
+                                    <h6 class="text-center">NO HP + NO EMAIL</h6>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
             </div>
             <!-- END: Breadcrumbs-->
-            <form id="form-a" action="#" method="post">
-                <div class="row">
-                    <div class="col-6">
+            <div class="row">
+                <div class="col-12 col-lg-12  mt-3">
+                    <table id="byagent" class="table dataTable table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <td nowrap style='text-align:center;'>TReg</td>
+                                <?php
+                                for ($r = 1; $r <= 7; $r++) {
+                                    echo "<td nowrap style='text-align:center;'>Regional " . $r . "</td>";
+                                }
+                                echo "<td nowrap style='text-align:center;'>Others</td>";
+                                echo "<td nowrap style='text-align:center;'>Sub Total</td>";
+                                ?>
 
-                        <div class="form">
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Link</label>
-                                <input type="text" name="link" class="form-control">
-                            </div>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $n = 0;
+                            $total_sumber = array();
+                            $total_reg_all = 0;
+                            foreach ($data_sumber as $r_s) {
+                                $total_reg = 0;
+                                echo "<tr>";
+                                echo "<td>" . $r_s->sumber_parent . "</td>";
+                                for ($r = 1; $r <= 7; $r++) {
+                                    echo "<td style='text-align:center;'>" . number_format($data_regional[$r_s->sumber_parent][$r]) . "</td>";
+                                }
+                                echo "<td style='text-align:center;'>" . number_format($data_regional[$r_s->sumber_parent]['others']) . "</td>";
+                                echo "<td style='text-align:center;'><b>" . number_format($data_regional[$r_s->sumber_parent]['total']) . "</b></td>";
+                                echo "</tr>";
+                            }
+                            echo "<tr>";
+                            echo "<td style='text-align:right;'><b>Total</b></td>";
+                            for ($r = 1; $r <= 7; $r++) {
+                                echo "<td style='text-align:center;'><b>" . number_format($data_regional[$r]) . "</b></td>";
+                            }
+                            echo "<td style='text-align:center;'><b>" . number_format($data_regional['others']) . "</b></td>";
+                            echo "<td style='text-align:center;'><b>" . number_format($data_regional['total']) . "</b></td>";
 
-                        </div>
-
-                    </div>
-
-
+                            echo "</tr>";
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
 
-                <button class="btn btn-primary" type="submit">Submit</button>
+
+            </div>
 
         </div>
 
@@ -266,16 +297,11 @@
     <!-- END: Page Vendor JS-->
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/chartjs-plugin-datalabels.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/jquery.richtext.js"></script>
 
     <!---- END page datatable--->
 
     <!-- END: Back to top-->
-    <script type="text/javascript">
-        $(document).ready(function() {
 
-        });
-    </script>
 </body>
 <!-- END: Body-->
 

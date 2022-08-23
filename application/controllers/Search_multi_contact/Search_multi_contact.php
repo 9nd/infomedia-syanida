@@ -409,15 +409,6 @@ class Dc extends CI_Controller
     $data['data_sumber'] = $this->sumber->live_query("SELECT sumber_parent FROM sumber GROUP BY sumber_parent")->result();
     $this->load->view($view, $data);
   }
-  public function multi_contact()
-  {
-    $idlogin = $this->session->userdata('idlogin');
-    $logindata = $this->log_login->get_by_id($idlogin);
-    $data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
-    $view = 'Dc/multi_contact';
-
-    $this->load->view($view, $data);
-  }
 
   //userdefined function for checking internet
   function check_internet($domain)

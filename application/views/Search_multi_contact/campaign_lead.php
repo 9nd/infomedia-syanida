@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Landing Page</title>
+    <title>Digital Channel - Campaign Data Lead</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -107,24 +107,18 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
-                </li>
-                <!-- <li>
                     <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
-                </li> -->
+                </li>
 
 
             </ul>
@@ -142,7 +136,7 @@
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Landing Page</h4>
+                            <h4 class="mb-0">Campaign</h4>
                             <i>*Last Update at <?php echo  date("d F Y h:i A", strtotime($last_update)); ?></i>
                         </div>
 
@@ -166,7 +160,7 @@
 
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Landing Page</h4>
+                            <h4 class="mb-0">Form Data Lead</h4>
 
                         </div>
 
@@ -174,6 +168,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- END: Breadcrumbs-->
             <form id="form-a" action="#" method="post">
                 <div class="row">
@@ -181,23 +176,116 @@
 
                         <div class="form">
                             <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control">
+                                <label for="title">Campaign</label>
+                                <input type="text" name="title" value="<?php echo $campaign->title; ?>" class="form-control" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="title">Link</label>
-                                <input type="text" name="link" class="form-control">
+                                <label for="lp">Sumber</label>
+                                <select class="form-control" name="sumber" id="sumber">
+                                    <?php
+                                    echo "<option value='All'>Semua Sumber</option>";
+                                    if (count($data_sumber) > 0) {
+                                        foreach ($data_sumber as $lp) {
+                                            $selected = "";
+                                            if ($_POST['sumber'] == $lp->sumber) {
+                                                $selected = "selected";
+                                            }
+                                            echo "<option value='" . $lp->sumber . "' $selected>" . $lp->sumber . "</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
                             </div>
 
                         </div>
 
                     </div>
+                    <div class="col-6">
 
+                        <div class="form">
+                            <div class="form-group">
+                                <label for="title">Landing Page</label>
+                                <input type="text" name="title" value="<?php echo $campaign->title_landing_page; ?>" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="lp">Regional</label>
+                                <select class="form-control" name="regional" id="regional">
+                                    <?php
+                                    echo "<option value='All'>Semua Regional</option>";
+                                    for ($r = 1; $r <= 7; $r++) {
+                                        $selected = "";
+                                        if ($_POST['regional'] == $r) {
+                                            $selected = "selected";
+                                        }
+                                        echo "<option value='" . $r . "' $selected >Regional " . $r . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
 
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 col-xl-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"><i class="fe fe-save"></i> Check</button>
+                            <?php
+                            if ($create_lead) {
+                            ?>
+                                <a href="<?php echo base_url() . "Dc/Dc/proses_campaign_lead" . $create_lead; ?>"> <button type="button" class="btn btn-success"><i class="fe fe-save"></i> Create Data Lead</button></a>
+                            <?php
+                            }
+                            ?>
+                        </div>
+
+                    </div>
                 </div>
+            </form>
+            <?php
+            if ($create_lead) {
+            ?>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-3  mt-3">
+                                <div class="card">
+                                    <div class="card-body text-success border-bottom border-success border-w-5">
+                                        <h2 class="text-center"><?php echo number_format($hp_email); ?></h2>
+                                        <h6 class="text-center">HP + EMAIL</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3  mt-3">
+                                <div class="card">
+                                    <div class="card-body text-info border-bottom border-info border-w-5">
+                                        <h2 class="text-center"><?php echo number_format($hp_only); ?></h2>
+                                        <h6 class="text-center">HP ONLY</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3  mt-3">
+                                <div class="card">
+                                    <div class="card-body text-info border-bottom border-info border-w-5">
+                                        <h2 class="text-center"><?php echo number_format($email_only); ?></h2>
+                                        <h6 class="text-center">EMAIL ONLY</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3  mt-3">
+                                <div class="card">
+                                    <div class="card-body text-danger border-bottom border-danger border-w-5">
+                                        <h2 class="text-center"><?php echo number_format($no_hp_no_email); ?></h2>
+                                        <h6 class="text-center">NO HP + NO EMAIL</h6>
+                                    </div>
+                                </div>
+                            </div>
 
-                <button class="btn btn-primary" type="submit">Submit</button>
-
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
         </div>
 
     </main>
@@ -273,7 +361,25 @@
     <!-- END: Back to top-->
     <script type="text/javascript">
         $(document).ready(function() {
+            $('.temp_wa').richText({
+                ol: false,
+                ul: false,
+                heading: false,
+                imageUpload: false,
+                fileUpload: false,
+                removeStyles: false,
 
+            });
+            $('.temp_sms').richText();
+            $('.temp_email').richText({
+                ol: false,
+                ul: false,
+                heading: false,
+                imageUpload: false,
+                fileUpload: false,
+                removeStyles: false,
+
+            });
         });
     </script>
 </body>

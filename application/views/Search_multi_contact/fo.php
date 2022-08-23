@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Landing Page</title>
+    <title>Digital Channel - Engine</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -61,10 +61,6 @@
     <!-- END: Page CSS-->
     <script src="<?php echo base_url() ?>assets/js/highcharts.js"></script>
     <script src="<?php echo base_url() ?>assets/js/bundle.js"></script>
-
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/richtext.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/font-awesome.min.css">
-
     <!-- END: Custom CSS-->
 </head>
 <!-- END Head-->
@@ -104,20 +100,14 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/dalalead" ?>"><i class="icon-chart mr-1"></i> Data Lead</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
                 <!-- <li>
                     <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
@@ -140,9 +130,10 @@
             <!-- START: Breadcrumbs-->
             <div class="row">
                 <div class="col-12  align-self-center">
+
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Landing Page</h4>
+                            <h4 class="mb-0">Engine Failover</h4>
                             <i>*Last Update at <?php echo  date("d F Y h:i A", strtotime($last_update)); ?></i>
                         </div>
 
@@ -155,48 +146,58 @@
             <div class="row">
                 <div class="col-12  align-self-center">
                     <?php
-                    if ($return) {
+                    if (isset($_GET['success_create_lead'])) {
                     ?>
                         <div class="alert alert-primary" role="alert">
-                            <?php echo $return; ?>
+                            <?php echo $_GET['info']; ?>
                         </div>
                     <?php
                     }
                     ?>
-
-                    <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
-                        <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Landing Page</h4>
-
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="card-title">Channel List</h6>
                         </div>
+                        <div class="card-body">
+                            <table id="datalist" class="table dataTable table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Channel</td>
+                                        <td nowrap style='text-align:center;'>Order</td>
+                                        <td nowrap style='text-align:center;'>Duration (Hours)</td>
+                                        <td style='text-align:center;'>Opsi</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $n = 0;
+                                    if ($failover['num'] > 0) {
+                                        foreach ($failover['results'] as $cp) {
+                                            $n++;
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $n ?></td>
+                                                <td><?php echo $cp->channel ?></td>
+                                                <td><?php echo $cp->urutan ?></td>
+                                                <td><?php echo $cp->next ?></td>
+                                                <td align="center">
+                                                    <a href="<?php echo base_url('Dc/Dc/fo_update/' . $cp->id); ?>">
+                                                        <div class="btn btn-warning btn-sm ml-2"><i class="icon-note"></i>Update</div>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
 
-
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- END: Breadcrumbs-->
-            <form id="form-a" action="#" method="post">
-                <div class="row">
-                    <div class="col-6">
-
-                        <div class="form">
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Link</label>
-                                <input type="text" name="link" class="form-control">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <button class="btn btn-primary" type="submit">Submit</button>
 
         </div>
 
@@ -266,16 +267,11 @@
     <!-- END: Page Vendor JS-->
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/chartjs-plugin-datalabels.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/jquery.richtext.js"></script>
 
     <!---- END page datatable--->
 
     <!-- END: Back to top-->
-    <script type="text/javascript">
-        $(document).ready(function() {
 
-        });
-    </script>
 </body>
 <!-- END: Body-->
 

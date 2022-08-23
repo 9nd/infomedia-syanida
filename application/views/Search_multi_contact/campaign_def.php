@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Engine</title>
+    <title>Digital Channel - Campaign</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -48,6 +48,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/css/buttons.bootstrap4.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/richtext.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/font-awesome.min.css">
 
     <!-- END: Page CSS-->
 
@@ -61,10 +63,6 @@
     <!-- END: Page CSS-->
     <script src="<?php echo base_url() ?>assets/js/highcharts.js"></script>
     <script src="<?php echo base_url() ?>assets/js/bundle.js"></script>
-
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/richtext.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/font-awesome.min.css">
-
     <!-- END: Custom CSS-->
 </head>
 <!-- END Head-->
@@ -95,39 +93,13 @@
 
             <!-- START: Menu-->
             <ul id="side-menu" class="sidebar-menu">
-                <li>
-                    <a href="<?php echo base_url(); ?>"><i class="icon-home mr-1"></i> Home</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc" ?>"><i class="icon-chart mr-1"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/dalalead" ?>"><i class="icon-chart mr-1"></i> Data Lead</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
-                </li>
-                <li class="active">
-                    <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
-                </li>
-                <!-- <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
-                </li> -->
 
+                <li class="active">
+                    <a href="<?php echo base_url() . "dc_campaign/dc_campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
+                </li>
 
             </ul>
+            <!-- END: Menu-->
 
         </div>
     </div>
@@ -142,31 +114,7 @@
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Campaign</h4>
-                            <i>*Last Update at <?php echo  date("d F Y h:i A", strtotime($last_update)); ?></i>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- END: Breadcrumbs-->
-            <div class="row">
-                <div class="col-12  align-self-center">
-                    <?php
-                    if ($return) {
-                    ?>
-                        <div class="alert alert-primary" role="alert">
-                            <?php echo $return; ?>
-                        </div>
-                    <?php
-                    }
-                    ?>
-
-                    <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
-                        <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Update Campaign</h4>
+                            <h4 class="mb-0">Form Campaign</h4>
 
                         </div>
 
@@ -175,50 +123,27 @@
                 </div>
             </div>
             <!-- END: Breadcrumbs-->
-            <form id="form-a" action="#" method="post">
+            <form method="GET" action="#">
                 <div class="row">
                     <div class="col-6">
 
                         <div class="form">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" value="<?php echo $campaign->title; ?>" class="form-control">
+                                <input type="text" name="title" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="lp">Landing Page</label>
-                                <select class="form-control" name="landing_page" id="landing_page">
-                                    <?php
-                                    if ($landing_page['num'] > 0) {
-                                        foreach ($landing_page['results'] as $lp) {
-                                            $selected = "";
-                                            if ($campaign->landing_page == $lp->id) {
-                                                $selected = "selected";
-                                            }
-                                            echo "<option value='" . $lp->id . "' $selected>" . $lp->title . "</option>";
-                                        }
-                                    }
-                                    ?>
+                                <select class="form-control" name="lp" id="lp">
+                                    <option value='lp1'>Landing Page 1</option>
+                                    <option value='lp1'>Landing Page 1</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="date_online">Date Online</label>
-                                <input type="date" name="date_online" value="<?php echo $campaign->date_online; ?>" id="date_online" class="form-control">
+                                <input type="date" name="date_online" id="date_online" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <label for="lp">Status</label>
-                                <select class="form-control" name="status" id="status">
-                                    <?php
-                                    $status = array("Draf", "Ready", "Online", "Finished", "Paused");
-                                    foreach ($status as $lp) {
-                                        $selected = "";
-                                        if ($campaign->status == $lp) {
-                                            $selected = "selected";
-                                        }
-                                        echo "<option value='" . $lp . "' $selected>" . $lp . "</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
+
                         </div>
 
                     </div>
@@ -226,16 +151,16 @@
                         <div class="form">
                             <div class="form-group">
                                 <label for="temp_sms">Template SMS</label>
-                                <textarea class="form-control row-5" name="template_sms" onkeyup="countChar(this)"><?php echo $campaign->template_sms; ?></textarea>
+                                <textarea class="form-control row-5" name="temp_sms" onkeyup="countChar(this)"></textarea>
                                 <div id="charNum"></div>
                             </div>
                             <div class="form-group">
                                 <label for="temp_wa">Template Whatsapp</label>
-                                <textarea class="temp_wa" name="tempalte_wa"><?php echo $campaign->tempalte_wa; ?></textarea>
+                                <textarea class="temp_wa" name="temp_wa"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="temp_email">Template Email</label>
-                                <textarea class="temp_email" name="template_email"><?php echo $campaign->template_email; ?></textarea>
+                                <textarea class="temp_email" name="temp_email"></textarea>
                             </div>
 
                         </div>
@@ -243,12 +168,173 @@
 
                 </div>
 
-                <button class="btn btn-primary" type="submit">Submit</button>
+                <div class="btn btn-primary">Submit</div>
                 <div class="btn btn-success ml-3">Start</div>
                 <div class="btn btn-danger ml-3">Stop</div>
                 <div class="btn btn-info pull-right">Test Send</div>
+        </div>
+        <div class="container-fluid site-width mt-5">
+            <!-- START: Breadcrumbs-->
+            <div class="row">
+                <div class="col-12  align-self-center">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="card-title">Campaign Data List</h6>
+                        </div>
+                        <div class="card-body">
+                            <table id="datalist" class="table dataTable table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Title</td>
+                                        <td nowrap style='text-align:center;'>Landing Page</td>
+                                        <td style='text-align:center;'>Date Start</td>
+                                        <td nowrap style='text-align:center;'>Date End</td>
+                                        <td style='text-align:center;'>Status</td>
+                                        <td nowrap style='text-align:center;'>Total Data Leads</td>
+                                        <td style='text-align:center;'>Opsi</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td align="center">
+                                            <div class="btn btn-info btn-sm ml-2"><i class="fa fa-pencil"></i></div>
+                                            <div class="btn btn-primary btn-sm ml-2"><i class="fa fa-eye"></i></div>
+                                            <div class="btn btn-success btn-sm ml-2"><i class="fa fa-video-camera"></i></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Breadcrumbs-->
 
         </div>
+        <div class="container-fluid site-width mt-5">
+            <!-- START: Breadcrumbs-->
+            <div class="row">
+                <div class="col-12  align-self-center">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="card-title">Dashboard Monitoring</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="subheader">Waiting Order</div>
+                                            <div class="h1 mb-3 text-center">75000</div>
+
+
+                                        </div>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-blue" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                                <span class="visually-hidden">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="subheader">Whatsapp</div>
+                                            <div class="h1 mb-3 text-center">75000</div>
+
+
+                                        </div>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-blue" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                                <span class="visually-hidden">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="subheader">Email</div>
+                                            <div class="h1 mb-3 text-center">75000</div>
+
+
+                                        </div>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-blue" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                                <span class="visually-hidden">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="subheader">SMS</div>
+                                            <div class="h1 mb-3 text-center">75000</div>
+
+
+                                        </div>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-blue" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                                                <span class="visually-hidden">75% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mt-3">
+                                <b>Latest Send</b>
+                                <table id="datalist" class="table dataTable table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>No</td>
+                                            <td>No Internet</td>
+                                            <td>PSTN</td>
+                                            <td>NO HP</td>
+                                            <td>Email</td>
+                                            <td>Campaign</td>
+                                            <td>Status</td>
+                                            <td>Channel</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Breadcrumbs-->
+
+        </div>
+
+
 
     </main>
     <!-- END: Content-->
@@ -343,7 +429,24 @@
 
             });
         });
+
+        function countChar(val) {
+            var len = val.value.length;
+            if (len >= 160) {
+                val.value = val.value.substring(0, 160);
+            } else {
+                $('#charNum').text(160 - len);
+            }
+        };
+        $('#datalist').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
+            responsive: true
+        });
     </script>
+
 </body>
 <!-- END: Body-->
 

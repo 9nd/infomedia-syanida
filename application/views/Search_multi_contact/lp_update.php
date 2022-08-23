@@ -113,12 +113,6 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
-                </li>
                 <!-- <li>
                     <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
                 </li>
@@ -166,7 +160,7 @@
 
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Landing Page</h4>
+                            <h4 class="mb-0">Form Update Landing Page</h4>
 
                         </div>
 
@@ -182,13 +176,12 @@
                         <div class="form">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control">
+                                <input type="text" name="title" value="<?php echo $landing_page->title; ?>" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="title">Link</label>
-                                <input type="text" name="link" class="form-control">
+                                <input type="text" name="link" value="<?php echo $landing_page->link; ?>" class="form-control">
                             </div>
-
                         </div>
 
                     </div>
@@ -273,7 +266,7 @@
     <!-- END: Back to top-->
     <script type="text/javascript">
         $(document).ready(function() {
-
+            
         });
     </script>
 </body>

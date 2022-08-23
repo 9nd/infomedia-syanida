@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Landing Page</title>
+    <title>Digital Channel - Engine</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -104,20 +104,14 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/dalalead" ?>"><i class="icon-chart mr-1"></i> Data Lead</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
                 <!-- <li>
                     <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
@@ -125,10 +119,7 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
                 </li> -->
-
-
             </ul>
-
         </div>
     </div>
     <!-- END: Main Menu-->
@@ -142,7 +133,7 @@
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Landing Page</h4>
+                            <h4 class="mb-0">Engine Failover</h4>
                             <i>*Last Update at <?php echo  date("d F Y h:i A", strtotime($last_update)); ?></i>
                         </div>
 
@@ -166,7 +157,7 @@
 
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Landing Page</h4>
+                            <h4 class="mb-0">Form Update Failover Engine</h4>
 
                         </div>
 
@@ -181,14 +172,17 @@
 
                         <div class="form">
                             <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control">
+                                <label for="title">Channel</label>
+                                <input type="text" name="channel" readonly value="<?php echo $failover->channel; ?>" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="title">Link</label>
-                                <input type="text" name="link" class="form-control">
+                                <label for="title">Order</label>
+                                <input type="text" name="urutan" value="<?php echo $failover->urutan; ?>" class="form-control">
                             </div>
-
+                            <div class="form-group">
+                                <label for="title">Duration (Hours)</label>
+                                <input type="text" name="next" value="<?php echo $failover->next; ?>" class="form-control">
+                            </div>
                         </div>
 
                     </div>

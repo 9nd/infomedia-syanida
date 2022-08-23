@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Landing Page</title>
+    <title>Digital Channel - Engine</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -107,17 +107,11 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
                 <!-- <li>
                     <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
@@ -142,7 +136,7 @@
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Landing Page</h4>
+                            <h4 class="mb-0">Campaign</h4>
                             <i>*Last Update at <?php echo  date("d F Y h:i A", strtotime($last_update)); ?></i>
                         </div>
 
@@ -166,7 +160,7 @@
 
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Landing Page</h4>
+                            <h4 class="mb-0">Form Update Campaign</h4>
 
                         </div>
 
@@ -182,21 +176,71 @@
                         <div class="form">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control">
+                                <input type="text" name="title" value="<?php echo $campaign->title; ?>" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="title">Link</label>
-                                <input type="text" name="link" class="form-control">
+                                <label for="lp">Landing Page</label>
+                                <select class="form-control" name="landing_page" id="landing_page">
+                                    <?php
+                                    if ($landing_page['num'] > 0) {
+                                        foreach ($landing_page['results'] as $lp) {
+                                            $selected = "";
+                                            if ($campaign->landing_page == $lp->id) {
+                                                $selected = "selected";
+                                            }
+                                            echo "<option value='" . $lp->id . "' $selected>" . $lp->title . "</option>";
+                                        }
+                                    }
+                                    ?>
+                                </select>
                             </div>
-
+                            <div class="form-group">
+                                <label for="date_online">Date Online</label>
+                                <input type="date" name="date_online" value="<?php echo $campaign->date_online; ?>" id="date_online" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="lp">Status</label>
+                                <select class="form-control" name="status" id="status">
+                                    <?php
+                                    $status = array("Draf", "Ready", "Online", "Finished", "Paused");
+                                    foreach ($status as $lp) {
+                                        $selected = "";
+                                        if ($campaign->status == $lp) {
+                                            $selected = "selected";
+                                        }
+                                        echo "<option value='" . $lp . "' $selected>" . $lp . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
 
                     </div>
+                    <div class="col-md">
+                        <div class="form">
+                            <div class="form-group">
+                                <label for="temp_sms">Template SMS</label>
+                                <textarea class="form-control row-5" name="template_sms" onkeyup="countChar(this)"><?php echo $campaign->template_sms; ?></textarea>
+                                <div id="charNum"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="temp_wa">Template Whatsapp</label>
+                                <textarea class="temp_wa" name="tempalte_wa"><?php echo $campaign->tempalte_wa; ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="temp_email">Template Email</label>
+                                <textarea class="temp_email" name="template_email"><?php echo $campaign->template_email; ?></textarea>
+                            </div>
 
+                        </div>
+                    </div>
 
                 </div>
 
                 <button class="btn btn-primary" type="submit">Submit</button>
+                <div class="btn btn-success ml-3">Start</div>
+                <div class="btn btn-danger ml-3">Stop</div>
+                <div class="btn btn-info pull-right">Test Send</div>
 
         </div>
 
@@ -273,7 +317,25 @@
     <!-- END: Back to top-->
     <script type="text/javascript">
         $(document).ready(function() {
+            $('.temp_wa').richText({
+                ol: false,
+                ul: false,
+                heading: false,
+                imageUpload: false,
+                fileUpload: false,
+                removeStyles: false,
 
+            });
+            $('.temp_sms').richText();
+            $('.temp_email').richText({
+                ol: false,
+                ul: false,
+                heading: false,
+                imageUpload: false,
+                fileUpload: false,
+                removeStyles: false,
+
+            });
         });
     </script>
 </body>

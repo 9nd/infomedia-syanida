@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Landing Page</title>
+    <title>Digital Channel - Engine</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -61,10 +61,6 @@
     <!-- END: Page CSS-->
     <script src="<?php echo base_url() ?>assets/js/highcharts.js"></script>
     <script src="<?php echo base_url() ?>assets/js/bundle.js"></script>
-
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/richtext.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/font-awesome.min.css">
-
     <!-- END: Custom CSS-->
 </head>
 <!-- END Head-->
@@ -104,20 +100,14 @@
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/dalalead" ?>"><i class="icon-chart mr-1"></i> Data Lead</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
                 <!-- <li>
                     <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
@@ -142,7 +132,7 @@
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Landing Page</h4>
+                            <h4 class="mb-0">Engine</h4>
                             <i>*Last Update at <?php echo  date("d F Y h:i A", strtotime($last_update)); ?></i>
                         </div>
 
@@ -153,50 +143,68 @@
 
             <!-- END: Breadcrumbs-->
             <div class="row">
-                <div class="col-12  align-self-center">
+                <div class="col-12">
                     <?php
-                    if ($return) {
+                    if ($return_blast) {
                     ?>
                         <div class="alert alert-primary" role="alert">
-                            <?php echo $return; ?>
+                            <?php echo $return_blast; ?>
                         </div>
                     <?php
                     }
                     ?>
 
-                    <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
-                        <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Form Landing Page</h4>
-
-                        </div>
-
-
+                    <div class="font-icon-list p-2 border mx-1 mb-2 btn btn-success ">
+                        <i class="icon-envelope  h5 mr-2"></i> Engine Email
                     </div>
+                    <div class="font-icon-list p-2 border mx-1 mb-2 btn btn-success">
+                        <i class="icon-bubble  h5 mr-2"></i> Engine SMS
+                    </div>
+                    <div class="font-icon-list p-2 border mx-1 mb-2 btn btn-success">
+                        <i class="icon-bubbles  h5 mr-2"></i> Engine WhatsApp
+                    </div>
+                    <a href="<?php echo base_url().'Dc/Dc/fo';?>">
+                        <div class="font-icon-list p-2 border mx-1 mb-2 btn btn-primary">
+                            <i class="icon-shuffle  h5 mr-2"></i> Engine Failover
+                        </div>
+                    </a>
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="card-title">Form Test Engine</h6>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form id="form-a" action="#" method="post">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Engine</label>
+                                                    <select class="form-control" id="engine" name="engine">
+                                                        <option value="email">Email</option>
+                                                        <option value="sms">SMS</option>
+                                                        <option value="wa">WhatsApp</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Receiver</label>
+                                                    <input type="input" class="form-control" name="receiver" id="receiver" placeholder="Receiver">
+                                                </div>
+                                            </div>
+
+
+                                            <button type="submit" class="btn btn-primary">SEND</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+
                 </div>
             </div>
-            <!-- END: Breadcrumbs-->
-            <form id="form-a" action="#" method="post">
-                <div class="row">
-                    <div class="col-6">
-
-                        <div class="form">
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" name="title" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="title">Link</label>
-                                <input type="text" name="link" class="form-control">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <button class="btn btn-primary" type="submit">Submit</button>
 
         </div>
 
@@ -266,16 +274,11 @@
     <!-- END: Page Vendor JS-->
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/chartjs-plugin-datalabels.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_theme/tambahan/editor_text/src/jquery.richtext.js"></script>
 
     <!---- END page datatable--->
 
     <!-- END: Back to top-->
-    <script type="text/javascript">
-        $(document).ready(function() {
 
-        });
-    </script>
 </body>
 <!-- END: Body-->
 
