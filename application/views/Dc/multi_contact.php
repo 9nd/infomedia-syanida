@@ -146,81 +146,57 @@
 
             <!-- END: Breadcrumbs-->
             <div class="row">
-                <div class="form-row">
-                    <div class="form-group col-md-2">
-                        <select class="form-control" id="search_mc" name="search_mc" placeholder="--">
-                            <option value="ncli">NCLI</option>
-                            <option value="no_inet">No. Internet</option>
-                            <option value="pstn">PSTN</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="input" class="form-control" name="input_cwc" id="input_cwc">
-                    </div>
-                </div>
-                <div class="form-group col-md-2">
-                    <select class="form-control" id="search_mc" name="search_mc" placeholder="--">
-                        <option value="ncli">NCLI</option>
-                        <option value="no_inet">No. Internet</option>
-                        <option value="pstn">PSTN</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <input type="input" class="form-control" name="search" id="search">
-                </div>
-                <div class="form-group col-md-3">
-                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
-                </div>
                 <div class="col-12">
-                    <?php
-                    if ($return_blast) {
-                    ?>
-                        <div class="alert alert-primary" role="alert">
-                            <?php echo $return_blast; ?>
+                    <div class="form-row">
+                        <div class="col-2 mb-3">
+                            <select class="form-control" id="search_mc" name="search_mc">
+                                <option value="">-- Sort by --</option>
+                                <option value="ncli">NCLI</option>
+                                <option value="no_inet">No. Internet</option>
+                                <option value="pstn">PSTN</option>
+                            </select>
                         </div>
-                    <?php
-                    }
-                    ?>
-                    <div class="card">
-                        <div class="card-header">
-                            <h6 class="card-title">Form Test Engine</h6>
+                        <div class="col-3 mb-3">
+                            <input type="text" class="form-control">
                         </div>
-                        <div class="card-content">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form id="form-a" action="#" method="post">
-                                            <div class="form-row">
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputEmail4">Engine</label>
-                                                    <select class="form-control" id="engine" name="engine">
-                                                        <option value="email">Email</option>
-                                                        <option value="sms">SMS</option>
-                                                        <option value="wa">WhatsApp</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="inputPassword4">Receiver</label>
-                                                    <input type="input" class="form-control" name="receiver" id="receiver" placeholder="Receiver">
-                                                </div>
-                                            </div>
-
-
-                                            <button type="submit" class="btn btn-primary">SEND</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-3 mb-3">
+                            <button class="btn btn-primary" type="button"><i class="icon icon-magnify"></i> Search</button>
                         </div>
                     </div>
-                </div>
-                <div class="col-6">
-
                 </div>
             </div>
 
-        </div>
+            <div class="col-12 mt-3">
+                <div class="card">
+                    <div class="card-header  justify-content-between align-items-center">                               
+                        <h4 class="card-title">Result</h4> 
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display table dataTable table-striped table-bordered" >
+                                <thead>
+                                    <tr>
+                                        <th>Sumber</th>
+                                        <th>No. Handphone</th>
+                                        <th>Email</th>
+                                        <th>Social Media</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> 
+            </div>              
 
+        </div>
     </main>
     <!-- END: Content-->
     <!-- START: Footer-->

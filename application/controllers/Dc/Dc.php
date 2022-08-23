@@ -418,6 +418,15 @@ class Dc extends CI_Controller
 
     $this->load->view($view, $data);
   }
+  public function input_cwc()
+  {
+    $idlogin = $this->session->userdata('idlogin');
+    $logindata = $this->log_login->get_by_id($idlogin);
+    $data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+    $view = 'Dc/input_cwc';
+
+    $this->load->view($view, $data);
+  }
 
   //userdefined function for checking internet
   function check_internet($domain)
