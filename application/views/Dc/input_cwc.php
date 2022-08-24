@@ -411,7 +411,7 @@
                                                 </div> -->
 
                                                 <!-- ini kalo Sub Kategori Callnya Decline -->
-                                                
+
                                                 <!-- <div class="col-4 mb-3"> 
                                                     <label for="reason_dec">Reason Decline</label>
                                                     <select class="form-control" id="reason_dec" name="reason_dec">
@@ -424,9 +424,9 @@
                                                     <label for="status_call">Status Call</label>
                                                     <select class="form-control" id="status_call" name="status_call">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="telp_kembali">Ditelepon Kembali</option>
-                                                        <option value="verified">Verified</option>
-                                                        <option value="n_verified">Not Verified</option>
+                                                        <option value="telp_kembali">Ditelepon Kembali</option> <!-- ini kalo Sub Kategori Callnya Follow Up -->
+                                                        <option value="verified">Verified</option> <!-- ini kalo Sub Kategori Callnya Verified -->
+                                                        <option value="n_verified">Not Verified</option> <!-- ini kalo Kategori Callnya Not Contacted dan Sub Kategori Callnya Decline -->
                                                     </select>
                                                 </div>
                                                 <div class="col-12 mb-3 text-right"> 
