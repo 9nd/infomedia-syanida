@@ -177,8 +177,13 @@
                                                     <label for="relasi">Relasi Kepemilikan</label> 
                                                     <select class="form-control" id="relasi" name="relasi">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="..">..</option>
-                                                        <option value="..">..</option>
+                                                        <option value="pemilik">Pemilik</option>
+                                                        <option value="bi">Bapak / Ibu</option>
+                                                        <option value="si">Suami / Istri</option>
+                                                        <option value="anak">Anak</option>
+                                                        <option value="kel">Keluarga</option>
+                                                        <option value="kontrak">Kontrak</option>
+                                                        <option value="karyawan">Karyawan</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-4 mb-3"> 
@@ -223,6 +228,10 @@
                                                 <div class="col-3 mb-3"> 
                                                     <label for="no_hp_lain">Handphone Lainnya</label>                                               
                                                     <input type="text" class="form-control" placeholder="Handphone Lainnya">
+                                                </div>
+                                                <div class="col-3 mb-3"> 
+                                                    <label for="wa">Whatsapp</label>                                               
+                                                    <input type="text" class="form-control" placeholder="Whatsapp">
                                                 </div>
                                                 <div class="col-3 mb-3"> 
                                                     <label for="email_utama">Email Utama</label>                                               
@@ -280,8 +289,21 @@
                                                     <label for="kecepatan">Kecepatan</label>
                                                     <select class="form-control" id="kecepatan" name="kecepatan">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="..">..</option>
-                                                        <option value="..">..</option>
+                                                        <option value="telp">Telpon Rumah Saja</option>
+                                                        <option value="384">384 Kbps</option>
+                                                        <option value="512">512 Kbps</option>
+                                                        <option value="1">1 Mbps</option>
+                                                        <option value="2">2 Mbps</option>
+                                                        <option value="3">3 Mbps</option>
+                                                        <option value="5">5 Mbps</option>
+                                                        <option value="10">10 Mbps</option>
+                                                        <option value="20">20 Mbps</option>
+                                                        <option value="30">30 Mbps</option>
+                                                        <option value="40">40 Mbps</option>
+                                                        <option value="50">50 Mbps</option>
+                                                        <option value="100">100 Mbps</option>
+                                                        <option value="200">200 Mbps</option>
+                                                        <option value="300">300 Mbps</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3 mb-3"> 
@@ -292,8 +314,13 @@
                                                     <label for="tp_bayar">Tempat Bayar</label>
                                                     <select class="form-control" id="tp_bayar" name="tp_bayar">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="..">..</option>
-                                                        <option value="..">..</option>
+                                                        <option value="kredit">Bank - Kredit</option>
+                                                        <option value="debit">Bank - Debit</option>
+                                                        <option value="e_com">E-commerce</option>
+                                                        <option value="mm">Minimarket</option>
+                                                        <option value="telkom">Telkom & POS</option>
+                                                        <option value="psb">PSB</option>
+                                                        <option value="others">Others</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3 mb-3"> 
@@ -320,44 +347,86 @@
                                     <div class="col-12">
                                         <form>
                                             <div class="form-row">
-                                                <div class="col-4 mb-3">
+                                                <div class="col-4 mb-3"> 
                                                     <label for="v_email">Verifikasi Email</label>
-                                                    <input type="text" class="form-control" placeholder="Verifikasi Email">
+                                                    <select class="form-control" id="v_email" name="v_email">
+                                                        <option value="">-- Pilih --</option>
+                                                        <option value="email_sdh_dicek">Sudah Dicek</option>
+                                                        <option value="email_blm_dicek">Belum Dicek</option>
+                                                    </select>
                                                 </div>
                                                 <div class="col-4 mb-3"> 
-                                                    <label for="v_hp">Verifikasi HP</label>                                               
-                                                    <input type="text" class="form-control" placeholder="Verifikasi HP">
+                                                    <label for="v_sms">Verifikasi SMS</label>
+                                                    <select class="form-control" id="v_sms" name="v_sms">
+                                                        <option value="">-- Pilih --</option>
+                                                        <option value="sms_sdh_dicek">Sudah Dicek</option>
+                                                        <option value="sms_blm_dicek">Belum Dicek</option>
+                                                    </select>
                                                 </div>
                                                 <div class="col-4 mb-3"> 
                                                     <label for="opsi_call">Opsi Call</label>
                                                     <select class="form-control" id="opsi_call" name="opsi_call">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="..">..</option>
-                                                        <option value="..">..</option>
+                                                        <option value="telp_rumah">Telepon Rumah</option>
+                                                        <option value="hp">Handphone</option>
+                                                        <option value="email">Email</option>
+                                                        <option value="wa">Whatsapp</option>
+                                                        <option value="sms">SMS</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-4 mb-3"> 
                                                     <label for="kat_call">Kategori Call</label>
                                                     <select class="form-control" id="kat_call" name="kat_call">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="..">..</option>
-                                                        <option value="..">..</option>
+                                                        <option value="contacted">Contacted</option>
+                                                        <option value="n_contacted">Not Contacted</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-4 mb-3"> 
+                                                <div class="col-4 mb-3"> <!--ini kalo kategori callnya contacted-->
                                                     <label for="sub_call">Sub Kategori Call</label>
                                                     <select class="form-control" id="sub_call" name="sub_call">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="..">..</option>
-                                                        <option value="..">..</option>
+                                                        <option value="decline">Decline</option>
+                                                        <option value="fu">Follow up</option>
+                                                        <option value="verified">Verified</option>
                                                     </select>
                                                 </div>
+
+                                                <!-- ini kalo kategori callnya Not Contacted -->
+
+                                                <!-- <div class="col-4 mb-3"> 
+                                                    <label for="sub_call">Sub Kategori Call</label>
+                                                    <select class="form-control" id="sub_call" name="sub_call">
+                                                        <option value="">-- Pilih --</option>
+                                                        <option value="rna">RNA</option>
+                                                        <option value="salah_sambung">Salah Sambung</option>
+                                                        <option value="isolir">Isolir</option>
+                                                        <option value="mailbox">Mailbox</option>
+                                                        <option value="telp_sibuk">Telepon Sibuk</option>
+                                                        <option value="rejected">Rejected</option>
+                                                        <option value="reject_system">Reject By System</option>
+                                                        <option value="cabut">Cabut</option>
+                                                        <option value="ivalid">Invalid Number</option>
+                                                    </select>
+                                                </div> -->
+
+                                                <!-- ini kalo Sub Kategori Callnya Decline -->
+                                                
+                                                <!-- <div class="col-4 mb-3"> 
+                                                    <label for="reason_dec">Reason Decline</label>
+                                                    <select class="form-control" id="reason_dec" name="reason_dec">
+                                                        <option value="">-- Pilih --</option>
+                                                        <option value="bukan_pj">Bukan PJ Pembayaran</option>
+                                                        <option value="pj_menolak">PJ menolak verifikasi</option>
+                                                    </select>
+                                                </div> -->
                                                 <div class="col-4 mb-3"> 
                                                     <label for="status_call">Status Call</label>
                                                     <select class="form-control" id="status_call" name="status_call">
                                                         <option value="">-- Pilih --</option>
-                                                        <option value="..">..</option>
-                                                        <option value="..">..</option>
+                                                        <option value="telp_kembali">Ditelepon Kembali</option>
+                                                        <option value="verified">Verified</option>
+                                                        <option value="n_verified">Not Verified</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-12 mb-3 text-right"> 
