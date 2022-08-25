@@ -375,9 +375,9 @@
                                                     <option value="n_verified">Not Verified</option> <!-- ini kalo Kategori Callnya Not Contacted dan Sub Kategori Callnya Decline -->
                                                 </select>
                                             </div>
-                                            <div class="col-3 mb-3">
+                                            <div class="col-4 mb-3">
                                                 <label for="keterangan">Keterangan</label>
-                                                <input type="text" class="form-control" name='keterangan' placeholder="Keterangan">
+                                                <textarea type="text" class="form-control" name='keterangan' placeholder="Keterangan"></textarea>
                                             </div>
                                             <div class="col-12 mb-3 text-right">
                                                 <button type="submit" class="submit-btn btn btn-primary">Submit</button>
