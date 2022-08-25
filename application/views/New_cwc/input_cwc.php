@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Multi Contact</title>
+    <title>Digital Channel - Input CWC</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -142,10 +142,6 @@
                                                 <div class="col-4 mb-3">
                                                     <label for="no_internet">Nomor Internet</label>
                                                     <input type="text" class="form-control" name='no_internet' placeholder="Nomor Internet">
-                                                </div>
-                                                <div class="col-4 mb-3">
-                                                    <label for="ncli">NCLI</label>
-                                                    <input type="text" class="form-control" name='ncli' placeholder="NCLI">
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="nama_pelanggan">Nama Pelanggan</label>
@@ -379,6 +375,10 @@
                                                         <option value="verified">Verified</option> <!-- ini kalo Sub Kategori Callnya Verified -->
                                                         <option value="n_verified">Not Verified</option> <!-- ini kalo Kategori Callnya Not Contacted dan Sub Kategori Callnya Decline -->
                                                     </select>
+                                                </div>
+                                                <div class="col-3 mb-3">
+                                                    <label for="keterangan">Keterangan</label>
+                                                    <input type="text" class="form-control" name='keterangan' placeholder="Keterangan">
                                                 </div>
                                                 <div class="col-12 mb-3 text-right">
                                                     <button type="submit" class="submit-btn btn btn-primary">Submit</button>
