@@ -172,4 +172,66 @@ class New_cwc extends CI_Controller
 
     $this->load->view('New_cwc/report', $data);
   }
+
+  public function report_list()
+  {
+    $data['controller'] = $this;
+		$start_filter = date('Y-m-d');
+		$end_filter = date('Y-m-d');
+		if (isset($_GET['start']) && isset($_GET['end'])) {
+			$start_filter = $_GET['start'];
+			$end_filter = $_GET['end'];
+			$agentid = $_GET['agentid'];
+			$where_agent = array("kategori" == "REG");
+			$filter_agent = "";
+
+			$this->load->model('sys/Sys_user_log_model', 'log_login');
+			$this->load->model('Custom_model/Sys_user_table_model', 'Sys_user_table_model');
+			$idlogin = $this->session->userdata('idlogin');
+			$logindata = $this->log_login->get_by_id($idlogin);
+
+			$userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+
+			if (isset($agentid)) {
+				if ($agentid) {
+					if (count($_GET['agentid']) > 1) {
+						$n_agent_pick = count($_GET['agentid']);
+						foreach ($_GET['agentid'] as $k_agentid => $v_agentid) {
+							if ($k_agentid == 0) {
+								$filter_agent = " AND (agentid = '$v_agentid'";
+								$where_agent_multi = "AND ( agentid = '$v_agentid'";
+							} else {
+								if ($k_agentid == ($n_agent_pick - 1)) {
+									$where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' )";
+									$filter_agent = $filter_agent . " OR agentid = '$v_agentid' )";
+								} else {
+									$where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' ";
+									$filter_agent = $filter_agent . " OR agentid = '$agentid' ";
+								}
+							}
+						}
+						$where_agent['or_where_null'] = array($where_agent_multi);
+					} else {
+						if ($agentid[0] != '0') {
+							$where_agent['agentid'] = $agentid[0];
+							$filter_agent = " AND agentid = '$agentid[0]'";
+							$where_agent_multi = "AND ( agentid = '$agentid[0]')";
+						}
+					}
+				}
+			}
+			if (!isset($where_agent_multi)) {
+				// $where_agent_multi = "agentid = '" . $agentid[0] . "'";
+				$where_agent_multi = "";
+			}
+
+
+				$data['datanya'] = $this->infomedia->query("SELECT * FROM v2_trans_profiling WHERE  DATE( lup ) BETWEEN '$start_filter' AND '$end_filter'  $where_agent_multi  ")->result();
+		}
+
+
+		$data['start'] = $_GET['start'];
+		$data['end'] = $_GET['end'];
+		$this->load->view('New_cwc/report_list', $data);
+  }
 }
