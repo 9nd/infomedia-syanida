@@ -39,14 +39,14 @@ class New_cwc extends CI_Controller
       }
     }
     $this->log_key = 'log_New_cwc';
-		$this->title = new New_cwc_config();
+    $this->title = new New_cwc_config();
   }
   public function index()
   {
     $idlogin = $this->session->userdata('idlogin');
-		$logindata = $this->log_login->get_by_id($idlogin);
-		$userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
-		$data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+    $logindata = $this->log_login->get_by_id($idlogin);
+    $userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+    $data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
     $view = 'New_cwc/input_cwc';
 
     $this->load->view($view, $data);
@@ -106,5 +106,70 @@ class New_cwc extends CI_Controller
 			alert('" . $onload . "');	
 			window.location = '" . base_url() . "New_cwc/New_cwc';
 			</script>";
+  }
+  public function report()
+  {
+    $start_filter = date('Y-m-d');
+    $end_filter = date('Y-m-d');
+
+    $start_filter = $_GET['start'];
+    $end_filter = $_GET['end'];
+    $agentid = $_GET['agentid'];
+
+    $this->load->model('sys/Sys_user_log_model', 'log_login');
+    $idlogin = $this->session->userdata('idlogin');
+    $logindata = $this->log_login->get_by_id($idlogin);
+    $userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+    $filter_agent = array("opt_level" => 8, "tl !=" => "-");
+    $data['user_categori'] = '-';
+    if ($userdata->opt_level == 8) {
+      $filter_agent = array("agentid" => $userdata->agentid);
+      $data['user_categori'] = $userdata->opt_level;
+    }
+    if ($userdata->opt_level == 9) {
+      $filter_agent = array("tl" => $userdata->agentid);
+      $data['user_categori'] = $userdata->opt_level;
+    }
+
+
+    $data['list_agent_d'] = $this->Sys_user_table_model->get_results($filter_agent);
+    //$data['list_agent_d'] = $this->qc->get_results($filter_agent);
+    $this->load->model('Custom_model/Sys_user_log_in_out_table_model', 'Sys_log');
+
+
+    if (isset($agentid)) {
+      if ($agentid) {
+        if (count($_GET['agentid']) > 1) {
+          $n_agent_pick = count($_GET['agentid']);
+          foreach ($_GET['agentid'] as $k_agentid => $v_agentid) {
+            if ($k_agentid == 0) {
+              $filter_agent = " AND (agentid = '$v_agentid'";
+              $where_agent_multi = "AND ( agentid = '$v_agentid'";
+            } else {
+              if ($k_agentid == ($n_agent_pick - 1)) {
+                $where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' )";
+                $filter_agent = $filter_agent . " OR agentid = '$v_agentid' )";
+              } else {
+                $where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' ";
+                $filter_agent = $filter_agent . " OR agentid = '$agentid' ";
+              }
+            }
+          }
+          $where_agent['or_where_null'] = array($where_agent_multi);
+        } else {
+          if ($agentid[0] != '0') {
+            $where_agent['agentid'] = $agentid[0];
+            $filter_agent = " AND agentid = '$agentid[0]' ";
+            $where_agent_multi = "AND ( agentid = '$agentid[0]')";
+          }
+        }
+      }
+    }
+    if (!isset($where_agent_multi)) {
+      $where_agent_multi = "";
+    }
+
+
+    $this->load->view('New_cwc/report', $data);
   }
 }

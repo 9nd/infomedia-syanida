@@ -68,7 +68,7 @@
 <!-- START: Body-->
 
 <body id="main-container" class="default horizontal-menu">
-
+    <?php echo _css("selectize,multiselect") ?>
     <!-- START: Pre Loader-->
     <div class="se-pre-con">
         <div class="loader"></div>
@@ -95,32 +95,11 @@
                     <a href="<?php echo base_url(); ?>"><i class="icon-home mr-1"></i> Home</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url() . "Dc/Dc" ?>"><i class="icon-chart mr-1"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/dalalead" ?>"><i class="icon-chart mr-1"></i> Data Lead</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/engine" ?>"><i class="icon-chart mr-1"></i> Engine</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/lp" ?>"><i class="icon-chart mr-1"></i> landing Page</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/campaign" ?>"><i class="icon-chart mr-1"></i> Campaign</a>
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
                 <li class="active">
-                    <a href="<?php echo base_url() . "Dc/Dc/multi_contact" ?>"><i class="icon-chart mr-1"></i> Multi Contact</a>
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/input_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
-                </li>
-                <!-- <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/qc" ?>"><i class="icon-chart mr-1"></i> Quality Control</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "Dc/Dc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
-                </li> -->
 
 
             </ul>
@@ -148,16 +127,53 @@
             <div class="row">
                 <div class="col-12">
                     <div class="form-row">
-                        <div class="col-2 mb-3">
-                            <select class="form-control" id="search_mc" name="search_mc">
-                                <option value="">-- Sort by --</option>
-                                <option value="ncli">NCLI</option>
-                                <option value="no_inet">No. Internet</option>
-                                <option value="pstn">PSTN</option>
-                            </select>
+                        <div class='col-md-6 col-xl-6'>
+                            <div class='form-group'>
+                                <label class='form-label'>Start</label>
+                                <input type='date' class='form-control data-sending focus-color' id='start' name='start' value='<?php if (isset($_GET['start'])) echo $_GET['start'] ?>'>
+                            </div>
                         </div>
-                        <div class="col-3 mb-3">
-                            <input type="text" class="form-control">
+                        <div class='col-md-6 col-xl-6'>
+                            <div class='form-group'>
+                                <label class='form-label'>End </label>
+                                <input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class='col-md-6 col-xl-6'>
+                            <div class='form-group'>
+                                <label class='form-label'>Agent </label>
+                                <select name='agentid[]' id="agentid" class="form-control custom-select" multiple="multiple">
+
+                                    <?php
+                                    if ($user_categori != 8) {
+                                    ?>
+                                        <option value="0">--Semua Agent--</option>
+                                    <?php
+                                    }
+                                    if ($list_agent_d['num'] > 0) {
+                                        foreach ($list_agent_d['results'] as $list_agent) {
+                                            $selected = "";
+                                            if (isset($_GET['agentid'])) {
+
+                                                if (count($_GET['agentid']) > 1) {
+
+                                                    foreach ($_GET['agentid'] as $k_agentid => $v_agentid) {
+                                                        if ($v_agentid == $list_agent->agentid) {
+                                                            $selected = 'selected';
+                                                        }
+                                                    }
+                                                } else {
+                                                    $selected = ($list_agent->agentid == $_GET['agentid'][0]) ? 'selected' : '';
+                                                }
+                                            }
+                                            echo "<option value='" . $list_agent->agentid . "' " . $selected . ">" . $list_agent->agentid . " | " . $list_agent->nama . "</option>";
+                                        }
+                                    }
+                                    ?>
+
+                                </select>
+                            </div>
                         </div>
                         <div class="col-3 mb-3">
                             <button class="btn btn-primary" type="button"><i class="icon icon-magnify"></i> Search</button>
@@ -168,12 +184,12 @@
 
             <div class="col-12 mt-3">
                 <div class="card">
-                    <div class="card-header  justify-content-between align-items-center">                               
-                        <h4 class="card-title">Result</h4> 
+                    <div class="card-header  justify-content-between align-items-center">
+                        <h4 class="card-title">Result</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example" class="display table dataTable table-striped table-bordered" >
+                            <table id="example" class="display table dataTable table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Sumber</th>
@@ -193,8 +209,8 @@
                             </table>
                         </div>
                     </div>
-                </div> 
-            </div>              
+                </div>
+            </div>
 
         </div>
     </main>
@@ -267,7 +283,12 @@
     <!---- END page datatable--->
 
     <!-- END: Back to top-->
-
+    <?php echo _js("ybs,selectize,multiselect") ?>
+    <script type="text/javascript">
+        $('#agentid').selectize({});
+        // $('#agentid').multiselect();
+        var page_version = "1.0.8"
+    </script>
 </body>
 <!-- END: Body-->
 

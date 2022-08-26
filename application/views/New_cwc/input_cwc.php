@@ -97,6 +97,9 @@
                 <li class="active">
                     <a href="<?php echo base_url() . "New_cwc/New_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
+                <li>
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
+                </li>
                 
 
             </ul>
