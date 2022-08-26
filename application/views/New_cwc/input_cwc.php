@@ -100,7 +100,7 @@
                 <li>
                     <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
                 </li>
-                
+
 
             </ul>
 
@@ -137,6 +137,10 @@
                                         <form action="<?php echo base_url() ?>New_cwc/New_cwc/insertdata" method="post" enctype="multipart/form-data">
 
                                             <div class="form-row">
+                                                <div class="col-4 mb-3">
+                                                    <label for="no_indri">ID INDRI</label>
+                                                    <input type="text" class="form-control" name='no_indri' placeholder="ID INDRI">
+                                                </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="no_telp">Nomor Telepon</label>
                                                     <input type="text" class="form-control" name='no_telp' placeholder="Nomor Telepon">
@@ -353,30 +357,65 @@
                                             <div class="col-4 mb-3">
                                                 <label for="kat_call">Kategori Call</label>
                                                 <select class="form-control" id="kat_call" name="kat_call">
-                                                    <option value="">-- Pilih --</option>
-                                                    <option value="contacted">Contacted</option>
-                                                    <option value="n_contacted">Not Contacted</option>
+                                                    <option value="x">Pilih..</option>
+                                                    <option value="1">Contacted</option>
+                                                    <option value="0">Not Contacted</option>
                                                 </select>
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <!--ini kalo kategori callnya contacted-->
                                                 <label for="sub_call">Sub Kategori Call</label>
-                                                <select class="form-control" id="sub_call" name="sub_call">
-                                                    <option value="">-- Pilih --</option>
-                                                    <option value="decline">Decline</option>
-                                                    <option value="fu">Follow up</option>
-                                                    <option value="verified">Verified</option>
+                                                <select class="form-control data-sending" id="sub_call" name="sub_call">
+                                                    <option value="0">-- Pilih --</option>
+                                                    <option class="opsinc" value="2">RNA</option>
+                                                    <option class="opsinc" value="4">Salah Sambung</option>
+                                                    <option class="opsinc" value="7">Isolir</option>
+                                                    <option class="opsinc" value="8">Mailbox</option>
+                                                    <option class="opsinc" value="9">Telepon Sibuk</option>
+                                                    <option class="opsinc" value="10">Rejected</option>
+                                                    <option class="opsicontacted" value="11">Decline</option>
+                                                    <option class="opsicontacted" value="12">Follow Up</option>
+                                                    <option class="opsicontacted" value="13">Verified</option>
+                                                    <option class="opsinc" value="14">Reject By System</option>
+                                                    <option class="opsinc" value="15">Cabut</option>
+                                                    <option class="opsinc" value="16">Invalid Number</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-4 mb-3" id='reason_decline_holder'>
+                                                <!--ini kalo kategori callnya contacted-->
+                                                <label for="reason_decline">Reason Decline</label>
+                                                <select class="form-control data-sending" id="reason_decline" name="reason_decline">
+                                                    <option value="0">-- Pilih --</option>
+                                                    <option class="reg" value="111">Bukan PJ Pembayaran</option>
+                                                    <option class="reg" value="112">PJ menolak verifikasi</option>
+                                                    <option class="moss" value="113">Pelanggan Cancel Beli Produk</option>
+                                                    <option class="moss" value="114">Dimatikan Pelanggan</option>
+                                                    <option class="moss" value="115">Caring</option>
+                                                    <option class="moss" value="116">Tidak Merasa Menginputkan No Hp</option>
+                                                    <option class="moss" value="117">Didiamkan Pelanggan</option>
+                                                    <option class="moss" value="118">Cuma Coba-Coba</option>
+                                                    <option class="moss" value="119">Channel Sudah Aktif</option>
+                                                    <option class="moss" value="120">Data Beda</option>
+                                                    <option class="moss" value="121">Tidak Mau Ada Biaya Tambahan</option>
+                                                    <option class="moss" value="122">Sdh Di Validasi</option>
+                                                    <option class="moss" value="123">Menggunakan Prepaid</option>
+                                                    <option class="moss" value="124">Masih Pikir - Pikir</option>
+                                                    <option class="moss" value="125">Harga Mahal</option>
+                                                    <option class="moss" value="126">Belum Perlu</option>
+                                                    <option class="moss" value="127">Jarang Digunakan/Tonton</option>
+                                                    <option class="moss" value="128">Sudah Berlangganan/Aktif</option>
                                                 </select>
                                             </div>
 
                                             <div class="col-4 mb-3">
                                                 <label for="status_call">Status Call</label>
-                                                <select class="form-control" id="status_call" name="status_call">
-                                                    <option value="">-- Pilih --</option>
-                                                    <option value="telp_kembali">Ditelepon Kembali</option> <!-- ini kalo Sub Kategori Callnya Follow Up -->
-                                                    <option value="verified">Verified</option> <!-- ini kalo Sub Kategori Callnya Verified -->
-                                                    <option value="n_verified">Not Verified</option> <!-- ini kalo Kategori Callnya Not Contacted dan Sub Kategori Callnya Decline -->
+                                                <select name="status_call" id="status_call" class="form-control">
+                                                    <option class="veri_statusopt_p" value="0">-- Pilih --</option>
+                                                    <option class="veri_statusopt_v" value="1">Verified</option>
+                                                    <option class="veri_statusopt_nv" value="2">Not Verified</option>
+                                                    <option class="veri_statusopt_dk" value="3">Ditelepon Kembali</option>
                                                 </select>
+
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="keterangan">Keterangan</label>
@@ -466,7 +505,167 @@
     <!---- END page datatable--->
 
     <!-- END: Back to top-->
+    <script>
+        // jQuery plugin to prevent double submission of forms
+        jQuery.fn.preventDoubleSubmission = function() {
+            $(this).on('submit', function(e) {
+                var $form = $(this);
 
+                if ($form.data('submitted') === true) {
+                    // Previously submitted - don't submit again
+                    e.preventDefault();
+                } else {
+                    // Mark it so that the next submit can be ignored
+                    $form.data('submitted', true);
+
+                }
+            });
+
+            // Keep chainability
+            return this;
+        };
+
+        
+        $(document).ready(function() {
+
+
+            $('.veri_statusopt_v').hide();
+            $('.veri_statusopt_dk').hide();
+            $('.veri_statusopt_nv').hide();
+
+            $("#add").click(function() {
+                var lastField = $("#buildyourform div:last");
+                var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+                var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
+                fieldWrapper.data("idx", intId);
+                var fName = $(
+                    "<td width=\"100%\"><input type=\"text\" id=\"hptambahan" + intId +
+                    "\" name=\"hptambahan" + intId +
+                    "\" class=\"fieldname form-control data-sending\" /></td>"
+                );
+                var fType = $(
+                    ""
+                );
+                var removeButton = $(
+                    "<td><input type=\"button\" class=\"remove btn btn-danger\" value=\"-\" /></td>"
+                );
+                removeButton.click(function() {
+                    $(this).parent().remove();
+                });
+                fieldWrapper.append(fName);
+                fieldWrapper.append(fType);
+                fieldWrapper.append(removeButton);
+                $("#buildyourform").append(fieldWrapper);
+            });
+            $("#add2").click(function() {
+                var lastField = $("#buildyourformemail div:last");
+                var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+                var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
+                fieldWrapper.data("idx", intId);
+                var fName = $(
+                    "<td width=\"100%\"><input type=\"email\" id=\"emailtambahan" + intId +
+                    "\" name=\"emailtambahan" + intId +
+                    "\" class=\"fieldname form-control data-sending\" /></td>"
+                );
+                var fType = $(
+                    ""
+                );
+                var removeButton = $(
+                    "<td><input type=\"button\" class=\"remove btn btn-danger\" value=\"-\" /></td>"
+                );
+                removeButton.click(function() {
+                    $(this).parent().remove();
+                });
+                fieldWrapper.append(fName);
+                fieldWrapper.append(fType);
+                fieldWrapper.append(removeButton);
+                $("#buildyourformemail").append(fieldWrapper);
+            });
+          
+            $("#billing").change(function() {
+                var valna = $(this).val();
+                var comma = valna.replace(",", "");
+                var titik = comma.replace(".", "");
+                var res = titik.replace("e", "");
+                $(this).val(res);
+            });
+        });
+        $('.opsicontacted').hide();
+        $('#reason_decline_holder').hide();
+        $('.opsinc').hide();
+        $("#labelvalidated").show();
+        $("#labelvalidate").hide();
+        var Privileges = jQuery('#kat_call');
+        var select = this.value;
+        Privileges.change(function() {
+            if ($(this).val() == '1') {
+                $('.opsicontacted').show();
+                $('.opsinc').hide();
+                $('.veri_statusopt_p').show();
+                $('.veri_statusopt_v').show();
+                $('.veri_statusopt_dk').show();
+                $('.veri_statusopt_nv').show();
+            } else if ($(this).val() == '0') {
+                $('.opsinc').show();
+                $('.opsicontacted').hide();
+                $('[name=status_call]').val(2);
+                $('[name=sub_call]').val(0);
+                $('.veri_statusopt_p').hide();
+                $('.veri_statusopt_v').hide();
+                $('.veri_statusopt_dk').hide();
+            } else if ($(this).val() == 'x') {
+                $('.opsinc').hide();
+                $('.opsicontacted').hide();
+                $('.veri_statusopt_p').hide();
+                $('.veri_statusopt_v').hide();
+                $('.veri_statusopt_dk').hide();
+                $('.veri_statusopt_nv').hide();
+            }
+            
+        });
+
+        var Privileges = jQuery('#sub_call');
+        var select = this.value;
+        Privileges.change(function() {
+            if ($(this).val() == '13') {
+                $('[name=status_call]').val(1);
+                $('.veri_statusopt_p').hide();
+                $('.veri_statusopt_v').show();
+                $('.veri_statusopt_dk').hide();
+                $('.veri_statusopt_nv').hide();
+                $('#reason_decline_holder').hide();
+            } else if ($(this).val() == '12') {
+                $('[name=status_call]').val(3);
+                $('.veri_statusopt_p').hide();
+                $('.veri_statusopt_v').hide();
+                $('.veri_statusopt_dk').show();
+                $('.veri_statusopt_nv').hide();
+                $('#reason_decline_holder').hide();
+            } else if ($(this).val() == '11') {
+                $('[name=status_call]').val(2);
+                $('.veri_statusopt_p').hide();
+                $('.veri_statusopt_v').hide();
+                $('.veri_statusopt_dk').hide();
+                $('.veri_statusopt_nv').show();
+                $('.rdeclinewrap').show();
+                $('#reason_decline_holder').show();
+            } else if ($(this).val() != '11' || $(this).val() != '12' || $(this).val() != '13' || $(this).val() != '0') {
+                $('[name=status_call]').val(2);
+                $('[name=kat_call]').val(0);
+                $('.veri_statusopt_p').hide();
+                $('.veri_statusopt_v').hide();
+                $('.veri_statusopt_dk').hide();
+                $('.veri_statusopt_nv').show();
+                $('#reason_decline_holder').hide();
+            }
+            //     $('.opsicontacted').hide(); // hide div if value is not "custom"
+            //     $('.opsinc').show(); // hide div if value is not "custom"
+        });
+
+
+
+
+    </script>
 </body>
 <!-- END: Body-->
 
