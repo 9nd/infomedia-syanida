@@ -66,6 +66,7 @@ class New_cwc extends CI_Controller
         'no_telp' => $_POST['no_telp'],
         'no_internet' => $_POST['no_internet'],
         'ncli' => $_POST['ncli'],
+        'no_indri' => $_POST['no_indri'],
         'nama_pelanggan' => $_POST['nama_pelanggan'],
         'relasi' => $_POST['relasi'],
         'jk' => $_POST['jk'],
