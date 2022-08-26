@@ -90,6 +90,7 @@ class New_cwc extends CI_Controller
         'kat_call' => $_POST['kat_call'],
         'sub_call' => $_POST['sub_call'],
         'status_call' => $_POST['status_call'],
+        'keterangan' => $_POST['keterangan'],
         'veri_upd' => $agentid,
         'veri_lup' => $lup,
         'lup' => $lup
