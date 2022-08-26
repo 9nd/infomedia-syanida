@@ -124,25 +124,23 @@
             </div>
 
             <!-- END: Breadcrumbs-->
-            <div class="row">
-                <div class="col-12">
-                    <form id='form-a' methode="GET">
+            <form id='form-a' methode="GET">
+                <div class="row">
+                    <div class="col-12">
                         <div class="form-row">
-
-                            <div class='col-md-6 col-xl-6'>
+                            <div class='col-md-2 col-xl-2'>
                                 <div class='form-group'>
                                     <label class='form-label'>Start</label>
                                     <input type='date' class='form-control data-sending focus-color' id='start' name='start' value='<?php if (isset($_GET['start'])) echo $_GET['start'] ?>'>
                                 </div>
                             </div>
-                            <div class='col-md-6 col-xl-6'>
-                                <div class='form-group'>
-                                    <label class='form-label'>End </label>
+                            <div class='col-md-2 col-xl-2'>
+                                <div class='form-group'><label class='form-label'>End </label>
                                     <input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <div class='col-md-6 col-xl-6'>
+                            <div class='col-md-4'>
                                 <div class='form-group'>
                                     <label class='form-label'>Agent </label>
                                     <select name='agentid[]' id="agentid" class="form-control custom-select" multiple="multiple">
@@ -177,14 +175,19 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-3 mb-3">
+                            <div class="col-2 mt-4">
                                 <input type='submit' class='btn btn-primary' value='search'></input>
-                                <!-- <button class="btn btn-primary" type="button"><i class="icon icon-magnify"></i> Search</button> -->
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
+
+
+
+
+
+            
             <div id="list_area">
 
             </div>
