@@ -48,7 +48,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/css/buttons.bootstrap4.min.css" />
-
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2-bootstrap.min.css">
     <!-- END: Page CSS-->
 
     <!-- START: Page CSS-->
@@ -139,11 +140,13 @@
                                     <input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
                                 </div>
                             </div>
-                            <div class="clearfix"></div>
-                            <div class='col-md-4'>
+                            
+                            <select multiple  data-allow-clear="1" name='agentid[]' id="agentid"></select>
+
+                            <div class='col-md-4 col-xl-4'>
                                 <div class='form-group'>
                                     <label class='form-label'>Agent </label>
-                                    <select name='agentid[]' id="agentid" class="form-control custom-select" multiple="multiple">
+                                    <select  multiple  data-allow-clear="1" name='agentid[]' id="agentid">
 
                                         <?php
                                         if ($user_categori != 8) {
@@ -209,6 +212,11 @@
         <i class="icon-arrow-up"></i>
     </a>
 
+    <script>
+        $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+    </script>
 
     <!-- START: Template JS-->
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
@@ -247,6 +255,8 @@
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.flash.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.html5.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.print.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2.full.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2.script.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- START: Page Script JS-->

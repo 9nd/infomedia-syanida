@@ -108,15 +108,46 @@
     </div>
     <!-- END: Main Menu-->
 
-
     <!-- START: Main Content-->
+    <!-- <div id="mySidebar" class="sidebar" style="height: 100%;
+    margin-top: 65px;
+        width: 0;
+        position: fixed;
+        z-index: -0;
+        top: 0;
+        left: 0;
+        background-color: #003366;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;">
+        <div class="site-width">
+
+           
+            <ul id="side-menu" class="sidebar-menu">
+                <li>
+                    <a href=""><i class="icon-home mr-1"></i> Home</a>
+                </li>
+                <li class="">
+                    <a href=""><i class="icon-chart mr-1"></i> Input CWC</a>
+                </li>
+                <li>
+                    <a href=""><i class="icon-chart mr-1"></i> Report</a>
+                </li>
+                
+
+            </ul>
+
+        </div>
+    </div> -->
     <main>
+        
         <div class="container-fluid site-width">
             <!-- START: Breadcrumbs-->
             <div class="row">
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
+                        <!-- <button class="openbtn" onclick="openNav()">☰ SCRIPT</button> -->
                             <h4 class="mb-0">Input CWC</h4>
                         </div>
                     </div>
@@ -412,6 +443,17 @@
     </a>
 
 
+    <script>
+    function openNav() {
+    document.getElementById("mySidebar").style.width = "160px";
+    document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    }
+    </script>
     <!-- START: Template JS-->
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.js"></script>
