@@ -289,23 +289,24 @@
                                             <div class="form-row">
                                                 <div class="col-4 mb-3">
                                                     <label for="no_indri">ID INDRI</label>
-                                                    <input type="text" class="form-control" name='no_indri' placeholder="ID INDRI">
+                                                    <input type="text" class="form-control" name='no_indri' placeholder="ID INDRI" value="" required>
+                                                    
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="no_telp">Nomor Telepon</label>
-                                                    <input type="text" class="form-control" name='no_telp' placeholder="Nomor Telepon">
+                                                    <input type="text" class="form-control" name='no_telp' placeholder="Nomor Telepon" value="" required>
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="no_internet">Nomor Internet</label>
-                                                    <input type="text" class="form-control" name='no_internet' placeholder="Nomor Internet">
+                                                    <input type="text" class="form-control" name='no_internet' placeholder="Nomor Internet" value="" required>
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="nama_pelanggan">Nama Pelanggan</label>
-                                                    <input type="text" name='nama_pelanggan' class="form-control" placeholder="Nama Pelanggan">
+                                                    <input type="text" name='nama_pelanggan' class="form-control" placeholder="Nama Pelanggan" value="" required>
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="relasi">Relasi Kepemilikan</label>
-                                                    <select class="form-control" id="relasi" name="relasi">
+                                                    <select class="form-control" id="relasi" name="relasi" value="" required>
                                                         <option value="">-- Pilih --</option>
                                                         <option value="pemilik">Pemilik</option>
                                                         <option value="bi">Bapak / Ibu</option>
@@ -319,13 +320,13 @@
                                                 <div class="col-4 mb-3">
                                                     <label for="jk">Jenis Kelamin</label>
                                                     <div class="col-sm-2 ml-2">
-                                                        <input class="form-check-input" type="radio" name="jk" id="l" value='l'>
+                                                        <input class="form-check-input" type="radio" name="jk" id="l" value='l' value="" required>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Male
                                                         </label>
                                                     </div>
                                                     <div class="col-sm-2 ml-2">
-                                                        <input class="form-check-input" type="radio" name="jk" id="p" value='p'>
+                                                        <input class="form-check-input" type="radio" name="jk" id="p" value='p' value="" required>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Female
                                                         </label>
@@ -353,7 +354,7 @@
                                         <div class="form-row">
                                             <div class="col-3 mb-3">
                                                 <label for="no_hp">Handphone Utama</label>
-                                                <input type="text" class="form-control" name='no_hp' placeholder="Handphone Utama">
+                                                <input type="text" class="form-control" name='no_hp' placeholder="Handphone Utama" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="no_hp_lain">Handphone Lainnya</label>
@@ -361,11 +362,11 @@
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="wa">Whatsapp</label>
-                                                <input type="text" class="form-control" name='wa' placeholder="Whatsapp">
+                                                <input type="text" class="form-control" name='wa' placeholder="Whatsapp" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="email_utama">Email Utama</label>
-                                                <input type="text" class="form-control" name='email_utama' placeholder="Email Utama">
+                                                <input type="text" class="form-control" name='email_utama' placeholder="Email Utama" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="email_lain">Email Lainnya</label>
@@ -405,19 +406,19 @@
                                         <div class="form-row">
                                             <div class="col-3 mb-3">
                                                 <label for="nama">Nama</label>
-                                                <input type="text" class="form-control" name='v_nama' placeholder="Nama">
+                                                <input type="text" class="form-control" name='v_nama' placeholder="Nama" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="alamat">Alamat</label>
-                                                <input type="text" class="form-control" name='v_alamat' placeholder="Alamat">
+                                                <input type="text" class="form-control" name='v_alamat' placeholder="Alamat" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="kota">Kota</label>
-                                                <input type="text" class="form-control" name='v_kota' placeholder="Kota">
+                                                <input type="text" class="form-control" name='v_kota' placeholder="Kota" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="kecepatan">Kecepatan</label>
-                                                <select class="form-control" id="kecepatan" name="v_kecepatan">
+                                                <select class="form-control" id="kecepatan" name="v_kecepatan" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="telp">Telpon Rumah Saja</option>
                                                     <option value="384">384 Kbps</option>
@@ -438,11 +439,11 @@
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="tagihan">Tagihan</label>
-                                                <input type="text" class="form-control" name="v_tagihan" placeholder="Tagihan">
+                                                <input type="text" class="form-control" name="v_tagihan" placeholder="Tagihan" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="tp_bayar">Tempat Bayar</label>
-                                                <select class="form-control" id="tp_bayar" name="tp_bayar">
+                                                <select class="form-control" id="tp_bayar" name="tp_bayar" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="kredit">Bank - Kredit</option>
                                                     <option value="debit">Bank - Debit</option>
@@ -455,7 +456,7 @@
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="th_pasang">Bulan & Tahun Pasang</label>
-                                                <input type="text" class="form-control" name='th_pasang' placeholder="Bulan & Tahun Pasang">
+                                                <input type="text" class="form-control" name='th_pasang' placeholder="Bulan & Tahun Pasang" value="" required>
                                             </div>
                                         </div>
 
@@ -479,7 +480,7 @@
                                         <div class="form-row">
                                             <div class="col-4 mb-3">
                                                 <label for="v_email">Verifikasi Email</label>
-                                                <select class="form-control" id="v_email" name="v_email">
+                                                <select class="form-control" id="v_email" name="v_email" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="email_sdh_dicek">Sudah Dicek</option>
                                                     <option value="email_blm_dicek">Belum Dicek</option>
@@ -487,7 +488,7 @@
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="v_sms">Verifikasi SMS</label>
-                                                <select class="form-control" id="v_sms" name="v_sms">
+                                                <select class="form-control" id="v_sms" name="v_sms" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="sms_sdh_dicek">Sudah Dicek</option>
                                                     <option value="sms_blm_dicek">Belum Dicek</option>
@@ -495,7 +496,7 @@
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="opsi_call">Opsi Call</label>
-                                                <select class="form-control" id="opsi_call" name="opsi_call">
+                                                <select class="form-control" id="opsi_call" name="opsi_call" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="telp_rumah">Telepon Rumah</option>
                                                     <option value="hp">Handphone</option>
@@ -506,7 +507,7 @@
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="kat_call">Kategori Call</label>
-                                                <select class="form-control" id="kat_call" name="kat_call">
+                                                <select class="form-control" id="kat_call" name="kat_call" value="" required>
                                                     <option value="x">Pilih..</option>
                                                     <option value="1">Contacted</option>
                                                     <option value="0">Not Contacted</option>
@@ -515,7 +516,7 @@
                                             <div class="col-4 mb-3">
                                                 <!--ini kalo kategori callnya contacted-->
                                                 <label for="sub_call">Sub Kategori Call</label>
-                                                <select class="form-control data-sending" id="sub_call" name="sub_call">
+                                                <select class="form-control data-sending" id="sub_call" name="sub_call" value="" required>
                                                     <option value="0">-- Pilih --</option>
                                                     <option class="opsinc" value="2">RNA</option>
                                                     <option class="opsinc" value="4">Salah Sambung</option>
@@ -534,7 +535,7 @@
                                             <div class="col-4 mb-3" id='reason_decline_holder'>
                                                 <!--ini kalo kategori callnya contacted-->
                                                 <label for="reason_decline">Reason Decline</label>
-                                                <select class="form-control data-sending" id="reason_decline" name="reason_decline">
+                                                <select class="form-control data-sending" id="reason_decline" name="reason_decline" value="" required>
                                                     <option value="0">-- Pilih --</option>
                                                     <option class="reg" value="111">Bukan PJ Pembayaran</option>
                                                     <option class="reg" value="112">PJ menolak verifikasi</option>
@@ -559,7 +560,7 @@
 
                                             <div class="col-4 mb-3">
                                                 <label for="status_call">Status Call</label>
-                                                <select name="status_call" id="status_call" class="form-control">
+                                                <select name="status_call" id="status_call" class="form-control" value="" required>
                                                     <option class="veri_statusopt_p" value="0">-- Pilih --</option>
                                                     <option class="veri_statusopt_v" value="1">Verified</option>
                                                     <option class="veri_statusopt_nv" value="2">Not Verified</option>
