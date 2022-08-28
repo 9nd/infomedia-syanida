@@ -161,6 +161,7 @@
                 <h5 class="mb-0">TEMPLATE CUSTOMIZER</h5>
                 <p>Customize your template</p>
                 <hr/>
+
                 <h6>TEMPLATE COLOR</h6>
                 <ul class="list-inline float-left claerfix">
                     <li class="color-box m-2 list-inline-item float-left color1" data-color="#1e3d73"></li>
