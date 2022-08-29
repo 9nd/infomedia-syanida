@@ -50,6 +50,7 @@
                         <tbody>
                             <?php
                             $n = 1;
+                            
                             foreach ($datanya  as $datana) {
 
                                 $start = $_GET['start'];
@@ -87,10 +88,24 @@
                                         <td><?php echo $datana->th_pasang; ?></td>
                                         <td><?php echo $datana->v_email; ?></td>
                                         <td><?php echo $datana->v_sms; ?></td>
-                                        <td><?php echo $datana->opsi_call; ?></td>
+                                        <td><?php 
+                                         $cat_call_ar = array(
+                                            "1"=>"Contacted",
+                                            "2"=>"Not Contacted"
+                                        );
+                                        echo $cat_call_ar[$datana->opsi_call]; ?></td>
+                                        
                                         <td><?php echo $datana->kat_call; ?></td>
-                                        <td><?php echo $datana->sub_call; ?></td>
-                                        <td><?php echo $datana->status_call; ?></td>
+                                        <td><?php 
+                                        $nama_reason = $this->db->query("SELECT id_reason, nama_reason FROM status_call WHERE id_reason='$datana->sub_call'")->row()->nama_reason;
+                                        echo $nama_reason; ?></td>
+                                        <td><?php 
+                                        $status_call_ar = array(
+                                            "1"=>"Verified",
+                                            "2"=>"Not Verified",
+                                            "3"=>"Ditelpon Kembali",
+                                        );
+                                        echo $status_call_ar[$datana->status_call]; ?></td>
                                         <td><?php echo $datana->veri_upd; ?></td>
                                         <td><?php echo $datana->veri_lup; ?></td>
                                         <td><?php echo $datana->lup; ?></td>
@@ -109,6 +124,9 @@
 
                         </tbody>
                     </table>
+                    <?php
+                  
+                    ?>
                 </small>
             </div>
         </div>
