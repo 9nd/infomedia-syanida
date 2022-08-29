@@ -108,15 +108,165 @@
     </div>
     <!-- END: Main Menu-->
 
-
     <!-- START: Main Content-->
+    <div id="mySidebar" class="sidebar2">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        
+        <h6>SALAM PEMBUKA</h6>
+            <ul class="list-inline float-left claerfix">
+                <label>
+                Halo, Selamat Pagi/Siang/Sore/ Malam
+                Perkenalkan dengan saya (nama agent) dari Team Profiling Customer Indihome PT. Telkom Indonesia. 
+                <br><br>
+                Maaf mengganggu waktunya sebentar pak/ bu.
+                <br>
+                Apakah betul saya terhubung di nomor telepon/internet xxxx xxxx xxxx, atas nama (title) (nama tertera di aplikasi)?
+                Maaf, dengan bapak/ibu siapa saya berbicara?
+                <br><br>
+                Jika tidak terhubung dengan pemilik
+                Baik, pak/bu, hubungan kekerabatan bapak/ ibu dengan bapak/ ibu (nama tertera di aplikasi), selaku siapanya?
+
+                </label>
+            </ul>
+            <hr class="float-left w-100"/>
+
+            <h6>MEMASTIKAN YANG BERTANGGUNG JAWAB</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    Jika terhubung dengan pemilik telepon:
+                    Yang bertanggung jawab untuk pembayaran tagihan produk telkomnya, dengan bapak/ ibu sendiri?
+                    <br><br>
+                    Jika tidak terhubung dengan pemilik telepon:
+                    Yang bertanggung jawab untuk pembayaran tagihan produk telkom dinomor xxx xxxxx dengan siapa pak/ bu?
+                    <br><br>                    
+                    Bisa saya berbicara dengan bapak/ ibu (sebutkan nama yang diinformasikan pelanggan)
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+
+            <h6>MENANYAKAN KABAR</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    Bagaimana keadaan bapak/ ibu (nama tertera di aplikasi) sehat? (tunggu jawaban pelanggan)
+                    Semoga sehat selalu ya, pak/ bu.
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+
+            <h6>TUJUAN</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    Begini pak/bu. kami ditugaskan pihak Telkom untuk mengupdate data tujuan kedepannya *mempermudah Bapak/Ibu menerima informasi mengenai Program Loyalti, Produk dan Promo Telkom terbaru serta Percepatan Perbaikan jika berkendala pada Telepon rumah atau Internet nya*
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+
+            <h6>VERIFIKASI HP & EMAIL</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    mohon dibantu sebentar untuk kelengkapan datanya
+                    <br><br>
+                    Untuk nomor handphone yang  kami hubungi di nomor ini ya pak/ ibu (nama pelanggan) (sebutkan no nya)? 
+                    No handphone bapak/ ibu (nama pelanggan) apakah terhubung dengan whatsApp?
+                    <br><br>
+                    Untuk alamat email pak/ bu apakah ada?
+                    Apabila sudah tercantum di aplikasi, tanyakan kembali, 
+                    <br><br>
+                    Di sini tertera alamat emailnya xxxxxxxxxx, apakah masih aktif pak/bu? Kami ejakan...
+                    <br><br>
+                    * Apabila ada pergantian PJP/pelanggan meminta menambahkan/mengganti no hp /emainya, agent wajib menanyakan kembali no/email yang aktif
+                    <br><br>
+                    Handphone
+                    Untuk no handphonenya bisa disebutkan ulang pak/bu? (agent mengulang no hp pelanggan yang terbaru)
+                    No handphone bapak/ ibu (nama pelanggan) apakah terhubung dengan whatsApp? (apabila tidak terhubung, agent wajib menanyakan no hp yang terhubung whatsapp pelanggan)
+                    Email
+                    Untuk alamat email aktifnya apa ya pak/bu?(agent menyebutkan ulang email lalu spelling)
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+
+            <h6>VERIFIKASI</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    a. Untuk alamat, apakah ada perubahan pak/ bu (nama pelanggan)? baik pak/ bu, boleh disebutkan di jalan (sebutkan nama jalan besarnya saja) no rumahnya no berapa ya? Rt berapa? Rw berapa?
+                    <br><br>
+                    b. Maaf pak/ bu (nama pelanggan) untuk persamaan data, apakah betul tagihan terakhir yang dibayarkan berjumlah (cek aplikasi) ?
+                    <br><br>
+                    c. Jika pak/ bu (nama pelanggan), tidak keberatan, bisa disebutkan untuk tempat pembayaran terakhir dilakukan dimana?
+                    <br><br>
+                    d. Apakah betul Bapak/ ibu (nama pelanggan) menggunakan produk Telkom mulai tahun xxxx?
+                    <br><br>
+                    e. Selain telepon, apakah bapak/ ibu (nama pelanggan) juga menggunakan internet? Boleh dibantu untuk kecepatan internet yang bapak/ ibu gunakan sekarang?
+                    Bagaimana telepon/internet yang bapak/ ibu (nama tertera di aplikasi) gunakan, lancar? Semoga lancar selalu ya, pak/ bu.
+                    *apabila pl mengeluhkan kondisinya, agent wajib menyampaikan permohonan maaf atas ketidaknyamannya dan berikan solusi.
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+            
+            <h6>OPSI CHANNEL</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    Kedepannya Bapak/Ibu Lebih berkenan kami hubungi kembali melalu Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+
+            <h6>KODE VERIFIKASI</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    "Baik terima kasih Bapak/Ibu datanya sudah lengkap, perihal perubahan/penambahan pada (no hp/whatsapps/email) sudah kami perbarui dan sebagai bentuk verifikasinya,  kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima  pesan dari IndiHome?
+                    <br><br>
+                    Jika pelanggan infokan sudah masuk
+                    Agent menjawab Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email)   yang kami kirimkan. Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai  bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI"
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+            
+            <h6>KONFIRMASI</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    Baik bapak/ibu  verifikasi sudah selesai. <br>
+                    Perihal informasinya sudah cukup jelas ya Bapak/Ibu? <br>
+                    Ada lagi yang bisa kami bantu, pak/bu? <br>
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+
+            <h6>SALAM PENUTUP</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan.
+                    Selamat (Pagi/Siang/Sore/Malam) Selamat beraktifitas kembali/Semoga sehat selalu
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+            
+            <h6>CALL BACK</h6>
+                <ul class="list-inline float-left claerfix">
+                    <label>
+                    Halo, Selamat Pagi/Siang/Sore/ Malam <br>
+                    Perkenalkan dengan saya (nama agent) dari Team Profiling Customer Indihome PT. Telkom Indonesia. 
+                    <br><br>
+                    Dengan ibu (nama pelanggan yang terverifikasi) saya berbicara?
+                    <br><br>
+                    Maaf mengganggu waktunya sebentar pak/ bu.
+                    terkait verifikasi yang kami lakukan (sebutkan waktu; misal kemarin), apakah bapak/ibu sudah menerima pesan dari indihomenya? 
+                    pesan dari indihome berupa link, (apabila sudah) Silakan klik link tersebut sebagai sebagai bentuk approval bahwa data yang ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI.
+                    <br><br>
+                    Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan.
+                    </label>
+                </ul>
+                <hr class="float-left w-100"/>
+    </div>
     <main>
+        
         <div class="container-fluid site-width">
             <!-- START: Breadcrumbs-->
             <div class="row">
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
+                            <button class="openbtn" onclick="openNav()">☰ SCRIPT</button>
                             <h4 class="mb-0">Input CWC</h4>
                         </div>
                     </div>
@@ -139,23 +289,24 @@
                                             <div class="form-row">
                                                 <div class="col-4 mb-3">
                                                     <label for="no_indri">ID INDRI</label>
-                                                    <input type="text" class="form-control" name='no_indri' placeholder="ID INDRI">
+                                                    <input type="text" class="form-control" name='no_indri' placeholder="ID INDRI" value="" required>
+                                                    
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="no_telp">Nomor Telepon</label>
-                                                    <input type="text" class="form-control" name='no_telp' placeholder="Nomor Telepon">
+                                                    <input type="text" class="form-control" name='no_telp' placeholder="Nomor Telepon" value="" required>
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="no_internet">Nomor Internet</label>
-                                                    <input type="text" class="form-control" name='no_internet' placeholder="Nomor Internet">
+                                                    <input type="text" class="form-control" name='no_internet' placeholder="Nomor Internet" value="" required>
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="nama_pelanggan">Nama Pelanggan</label>
-                                                    <input type="text" name='nama_pelanggan' class="form-control" placeholder="Nama Pelanggan">
+                                                    <input type="text" name='nama_pelanggan' class="form-control" placeholder="Nama Pelanggan" value="" required>
                                                 </div>
                                                 <div class="col-4 mb-3">
                                                     <label for="relasi">Relasi Kepemilikan</label>
-                                                    <select class="form-control" id="relasi" name="relasi">
+                                                    <select class="form-control" id="relasi" name="relasi" value="" required>
                                                         <option value="">-- Pilih --</option>
                                                         <option value="pemilik">Pemilik</option>
                                                         <option value="bi">Bapak / Ibu</option>
@@ -169,13 +320,13 @@
                                                 <div class="col-4 mb-3">
                                                     <label for="jk">Jenis Kelamin</label>
                                                     <div class="col-sm-2 ml-2">
-                                                        <input class="form-check-input" type="radio" name="jk" id="l" value='l'>
+                                                        <input class="form-check-input" type="radio" name="jk" id="l" value='l' value="" required>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Male
                                                         </label>
                                                     </div>
                                                     <div class="col-sm-2 ml-2">
-                                                        <input class="form-check-input" type="radio" name="jk" id="p" value='p'>
+                                                        <input class="form-check-input" type="radio" name="jk" id="p" value='p' value="" required>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Female
                                                         </label>
@@ -203,7 +354,7 @@
                                         <div class="form-row">
                                             <div class="col-3 mb-3">
                                                 <label for="no_hp">Handphone Utama</label>
-                                                <input type="text" class="form-control" name='no_hp' placeholder="Handphone Utama">
+                                                <input type="text" class="form-control" name='no_hp' placeholder="Handphone Utama" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="no_hp_lain">Handphone Lainnya</label>
@@ -211,11 +362,11 @@
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="wa">Whatsapp</label>
-                                                <input type="text" class="form-control" name='wa' placeholder="Whatsapp">
+                                                <input type="text" class="form-control" name='wa' placeholder="Whatsapp" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="email_utama">Email Utama</label>
-                                                <input type="text" class="form-control" name='email_utama' placeholder="Email Utama">
+                                                <input type="text" class="form-control" name='email_utama' placeholder="Email Utama" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="email_lain">Email Lainnya</label>
@@ -255,19 +406,19 @@
                                         <div class="form-row">
                                             <div class="col-3 mb-3">
                                                 <label for="nama">Nama</label>
-                                                <input type="text" class="form-control" name='v_nama' placeholder="Nama">
+                                                <input type="text" class="form-control" name='v_nama' placeholder="Nama" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="alamat">Alamat</label>
-                                                <input type="text" class="form-control" name='v_alamat' placeholder="Alamat">
+                                                <input type="text" class="form-control" name='v_alamat' placeholder="Alamat" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="kota">Kota</label>
-                                                <input type="text" class="form-control" name='v_kota' placeholder="Kota">
+                                                <input type="text" class="form-control" name='v_kota' placeholder="Kota" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="kecepatan">Kecepatan</label>
-                                                <select class="form-control" id="kecepatan" name="v_kecepatan">
+                                                <select class="form-control" id="kecepatan" name="v_kecepatan" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="telp">Telpon Rumah Saja</option>
                                                     <option value="384">384 Kbps</option>
@@ -288,11 +439,11 @@
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="tagihan">Tagihan</label>
-                                                <input type="text" class="form-control" name="v_tagihan" placeholder="Tagihan">
+                                                <input type="text" class="form-control" name="v_tagihan" placeholder="Tagihan" value="" required>
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="tp_bayar">Tempat Bayar</label>
-                                                <select class="form-control" id="tp_bayar" name="tp_bayar">
+                                                <select class="form-control" id="tp_bayar" name="tp_bayar" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="kredit">Bank - Kredit</option>
                                                     <option value="debit">Bank - Debit</option>
@@ -305,7 +456,7 @@
                                             </div>
                                             <div class="col-3 mb-3">
                                                 <label for="th_pasang">Bulan & Tahun Pasang</label>
-                                                <input type="text" class="form-control" name='th_pasang' placeholder="Bulan & Tahun Pasang">
+                                                <input type="text" class="form-control" name='th_pasang' placeholder="Bulan & Tahun Pasang" value="" required>
                                             </div>
                                         </div>
 
@@ -329,12 +480,13 @@
                                         <div class="form-row">
                                             <div class="col-4 mb-3">
                                                 <label for="v_email">Verifikasi Email</label>
+
                                                 <select class="form-control" id="v_email" name="v_email">
                                                     <option value="0">Belum Dicek</option>
                                                     <option value="13">verified</option>
                                                     <option value="11">decline</option>
 
-                                                </select>
+
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="v_sms">Verifikasi SMS</label>
@@ -342,11 +494,11 @@
                                                     <option value="0">Belum Dicek</option>
                                                     <option value="13">verified</option>
                                                     <option value="11">decline</option>
-                                                </select>
+
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="opsi_call">Opsi Call</label>
-                                                <select class="form-control" id="opsi_call" name="opsi_call">
+                                                <select class="form-control" id="opsi_call" name="opsi_call" value="" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="telp_rumah">Telepon Rumah</option>
                                                     <option value="hp">Handphone</option>
@@ -357,7 +509,7 @@
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="kat_call">Kategori Call</label>
-                                                <select class="form-control" id="kat_call" name="kat_call">
+                                                <select class="form-control" id="kat_call" name="kat_call" value="" required>
                                                     <option value="x">Pilih..</option>
                                                     <option value="1">Contacted</option>
                                                     <option value="0">Not Contacted</option>
@@ -366,7 +518,7 @@
                                             <div class="col-4 mb-3">
                                                 <!--ini kalo kategori callnya contacted-->
                                                 <label for="sub_call">Sub Kategori Call</label>
-                                                <select class="form-control data-sending" id="sub_call" name="sub_call">
+                                                <select class="form-control data-sending" id="sub_call" name="sub_call" value="" required>
                                                     <option value="0">-- Pilih --</option>
                                                     <option class="opsinc" value="2">RNA</option>
                                                     <option class="opsinc" value="4">Salah Sambung</option>
@@ -385,7 +537,7 @@
                                             <div class="col-4 mb-3" id='reason_decline_holder'>
                                                 <!--ini kalo kategori callnya contacted-->
                                                 <label for="reason_decline">Reason Decline</label>
-                                                <select class="form-control data-sending" id="reason_decline" name="reason_decline">
+                                                <select class="form-control data-sending" id="reason_decline" name="reason_decline" value="" required>
                                                     <option value="0">-- Pilih --</option>
                                                     <option class="reg" value="111">Bukan PJ Pembayaran</option>
                                                     <option class="reg" value="112">PJ menolak verifikasi</option>
@@ -410,7 +562,7 @@
 
                                             <div class="col-4 mb-3">
                                                 <label for="status_call">Status Call</label>
-                                                <select name="status_call" id="status_call" class="form-control">
+                                                <select name="status_call" id="status_call" class="form-control" value="" required>
                                                     <option class="veri_statusopt_p" value="0">-- Pilih --</option>
                                                     <option class="veri_statusopt_v" value="1">Verified</option>
                                                     <option class="veri_statusopt_nv" value="2">Not Verified</option>
@@ -452,6 +604,17 @@
     </a>
 
 
+    <script>
+    function openNav() {
+    document.getElementById("mySidebar").style.width = "300px";
+    document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    }
+    </script>
     <!-- START: Template JS-->
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.js"></script>
