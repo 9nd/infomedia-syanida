@@ -5550,6 +5550,7 @@ path.domain {
     transition: 0.5s;
     padding-top: 100px;
     padding-left: 3px;
+    transition: all 0.5s;
 }
 .horizontal-menu .sidebar2 > ul {
     padding: 8px 8px 8px 14px;
@@ -5573,7 +5574,7 @@ path.domain {
 }
 .horizontal-menu .sidebar2 .closebtn {
     position: absolute;
-    top: 63px;
+    top: 75px;
     right: 25px;
     font-size: 34px;
     margin-left: 50px;

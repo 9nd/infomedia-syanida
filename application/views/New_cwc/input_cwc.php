@@ -114,7 +114,7 @@
     <!-- END: Main Menu-->
 
     <!-- START: Main Content-->
-    <div id="mySidebar" class="sidebar2">
+    <div id="mySidebar" class="sidebar2 w3-animate-left">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 
         <h6>SALAM PEMBUKA</h6>
@@ -263,11 +263,12 @@
         </ul>
         <hr class="float-left w-100" />
     </div>
-    <main>
+    <main id="main">
 
-        <div class="container-fluid site-width">
+        <div class="container-fluid site-width" style="padding-right: 118px;">
             <!-- START: Breadcrumbs-->
             <div class="row">
+                
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
@@ -611,6 +612,19 @@
     </a>
 
 
+    <script>
+    function openbtn() {
+    document.getElementById("main").style.marginLeft = "25%";
+    document.getElementById("mySidebar").style.width = "25%";
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("openbtn").style.display = 'none';
+    }
+    function closebtn() {
+    document.getElementById("main").style.marginLeft = "0%";
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("openbtn").style.display = "inline-block";
+    }
+    </script>
     <script>
         function openNav() {
             document.getElementById("mySidebar").style.width = "300px";
