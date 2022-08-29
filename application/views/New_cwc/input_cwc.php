@@ -330,17 +330,18 @@
                                             <div class="col-4 mb-3">
                                                 <label for="v_email">Verifikasi Email</label>
                                                 <select class="form-control" id="v_email" name="v_email">
-                                                    <option value="">-- Pilih --</option>
-                                                    <option value="email_sdh_dicek">Sudah Dicek</option>
-                                                    <option value="email_blm_dicek">Belum Dicek</option>
+                                                    <option value="0">Belum Dicek</option>
+                                                    <option value="13">verified</option>
+                                                    <option value="11">decline</option>
+
                                                 </select>
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="v_sms">Verifikasi SMS</label>
                                                 <select class="form-control" id="v_sms" name="v_sms">
-                                                    <option value="">-- Pilih --</option>
-                                                    <option value="sms_sdh_dicek">Sudah Dicek</option>
-                                                    <option value="sms_blm_dicek">Belum Dicek</option>
+                                                    <option value="0">Belum Dicek</option>
+                                                    <option value="13">verified</option>
+                                                    <option value="11">decline</option>
                                                 </select>
                                             </div>
                                             <div class="col-4 mb-3">
@@ -525,7 +526,7 @@
             return this;
         };
 
-        
+
         $(document).ready(function() {
 
 
@@ -581,7 +582,7 @@
                 fieldWrapper.append(removeButton);
                 $("#buildyourformemail").append(fieldWrapper);
             });
-          
+
             $("#billing").change(function() {
                 var valna = $(this).val();
                 var comma = valna.replace(",", "");
@@ -621,7 +622,7 @@
                 $('.veri_statusopt_dk').hide();
                 $('.veri_statusopt_nv').hide();
             }
-            
+
         });
 
         var Privileges = jQuery('#sub_call');
@@ -661,10 +662,6 @@
             //     $('.opsicontacted').hide(); // hide div if value is not "custom"
             //     $('.opsinc').show(); // hide div if value is not "custom"
         });
-
-
-
-
     </script>
 </body>
 <!-- END: Body-->
