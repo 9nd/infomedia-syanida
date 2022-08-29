@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Digital Channel - Input CWC</title>
+    <title>Sy-Anida : Input CWC</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -99,6 +99,9 @@
                 </li>
                 <li>
                     <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc/history_call" ?>"><i class="icon-chart mr-1"></i> History Call</a>
                 </li>
 
 
