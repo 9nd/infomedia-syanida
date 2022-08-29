@@ -143,13 +143,13 @@
                                     <input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
                                 </div>
                             </div>
-                            
-             
 
+
+                            <select multiple data-allow-clear="1" name='agentid[]' id="agentid" style='display:none'></select>
                             <div class='col-md-4 col-xl-4'>
                                 <div class='form-group'>
                                     <label class='form-label'>Agent </label>
-                                    <select  multiple  data-allow-clear="1" name='agentid[]' id="agentid">
+                                    <select multiple data-allow-clear="1" name='agentid[]' id="agentid">
 
                                         <?php
                                         if ($user_categori != 8) {
@@ -193,7 +193,7 @@
 
 
 
-            
+
             <div id="list_area">
 
             </div>
@@ -217,8 +217,8 @@
 
     <script>
         $(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
-});
+            $('.js-example-basic-multiple').select2();
+        });
     </script>
 
     <!-- START: Template JS-->
@@ -293,7 +293,7 @@
             var end = $("#end").val();
             var agentid = $("#agentid").val();
             $.ajax({
-                url: "<?php echo base_url() . "New_cwc/New_cwc/report_list" ?>",
+                url: "<?php echo base_url() . "New_cwc/New_cwc/history_call_list" ?>",
                 data: {
                     start: start,
                     end: end,
