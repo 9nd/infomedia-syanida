@@ -144,8 +144,6 @@
                                 </div>
                             </div>
 
-
-                            <select  multiple  data-allow-clear="1" name='agentid[]' id="agentid" style='display:none'></select>
                             <div class='col-md-4 col-xl-4'>
                                 <div class='form-group'>
                                     <label class='form-label'>Agent </label>

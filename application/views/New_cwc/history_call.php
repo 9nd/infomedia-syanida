@@ -143,9 +143,6 @@
                                     <input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
                                 </div>
                             </div>
-
-
-                            <select multiple data-allow-clear="1" name='agentid[]' id="agentid" style='display:none'></select>
                             <div class='col-md-4 col-xl-4'>
                                 <div class='form-group'>
                                     <label class='form-label'>Agent </label>
