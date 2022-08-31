@@ -323,7 +323,7 @@
                                                     </label>
 
                                                 </div>
-                                                <hr style="border-left: 2px black solid; min-height: 100%; max-height: 100vh; margin: 0; "/>
+                                                <hr style="border-left: 3px solid rgba(72, 94, 144, 0.16); min-height: 100%; max-height: 100vh; margin: 0; "/>
                                                 <div class="col-6 mb-2">
                                                     <div class="form-group row">
                                                         <label for="no_indri" class="col-sm-4 col-form-label">Track ID</label>
@@ -334,25 +334,25 @@
                                                     <div class="form-group row">
                                                         <label for="no_telp" class="col-sm-4 col-form-label">Nomor Telepon</label>
                                                         <div class="col-sm-7">
-                                                        <input type="text" class="form-control" name='no_telp' placeholder="Nomor Telepon" value="">    
+                                                        <input type="text" class="form-control" name='no_telp' placeholder="Nomor Telepon" value="" required>    
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="no_internet" class="col-sm-4 col-form-label">Nomor Internet</label>
                                                         <div class="col-sm-7">
-                                                        <input type="text" class="form-control" name='no_internet' placeholder="Nomor Internet" value="">    
+                                                        <input type="text" class="form-control" name='no_internet' placeholder="Nomor Internet" value="" required>    
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama_pelanggan" class="col-sm-4 col-form-label">Nama Pelanggan</label>
                                                         <div class="col-sm-7">
-                                                        <input type="text" name='nama_pelanggan' class="form-control" placeholder="Nama Pelanggan" value="">    
+                                                        <input type="text" name='nama_pelanggan' class="form-control" placeholder="Nama Pelanggan" value="" required>    
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="relasi" class="col-sm-4 col-form-label">Relasi Kepemilikan</label>
                                                         <div class="col-sm-7">
-                                                        <select class="form-control" id="relasi" name="relasi" value="">
+                                                        <select class="form-control" id="relasi" name="relasi" value="" required>
                                                             <option value="">-- Pilih --</option>
                                                             <option value="pemilik">Pemilik</option>
                                                             <option value="bi">Bapak / Ibu</option>
@@ -368,13 +368,13 @@
                                                         <label for="jk" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                                                         <div class="col-sm-3">
                                                         <div class="col-sm-2 ml-2">
-                                                        <input class="form-check-input" type="radio" name="jk" id="l" value='l' value="" >
+                                                        <input class="form-check-input" type="radio" name="jk" id="l" value='l' value="" required>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Male
                                                         </label>
                                                     </div>
                                                     <div class="col-sm-2 ml-2">
-                                                        <input class="form-check-input" type="radio" name="jk" id="p" value='p' value="">
+                                                        <input class="form-check-input" type="radio" name="jk" id="p" value='p' value="" required>
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Female
                                                         </label>
@@ -425,12 +425,12 @@
                                                     Untuk alamat email aktifnya apa ya pak/bu?(agent menyebutkan ulang email lalu spelling)
                                                 </label>
                                             </div>
-                                            <hr style="border-left: 2px black solid; min-height: 100%; max-height: 100vh; margin: 0; "/>
+                                            <hr style="border-left: 3px solid rgba(72, 94, 144, 0.16); min-height: 100%; max-height: 100vh; margin: 0; "/>
                                             <div class="col-6 mb-2">
                                                 <div class="form-group row">
                                                     <label for="no_hp" class="col-sm-4 col-form-label">Handphone Utama</label>
                                                         <div class="col-sm-7">
-                                                        <input type="text" class="form-control" name='no_hp' placeholder="Handphone Utama" value="">
+                                                        <input type="text" class="form-control" name='no_hp' placeholder="Handphone Utama" value="" required>
                                                         </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -448,7 +448,7 @@
                                                 <div class="form-group row">
                                                     <label for="email_utama" class="col-sm-4 col-form-label">Email Utama</label>
                                                         <div class="col-sm-7">
-                                                        <input type="text" class="form-control" name='email_utama' placeholder="Email Utama" value="">
+                                                        <input type="text" class="form-control" name='email_utama' placeholder="Email Utama" value="" required>
                                                         </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -517,24 +517,24 @@
                                                     </label>
 
                                                 </div>
-                                                <hr style="border-left: 2px black solid; min-height: 100%; max-height: 100vh; margin: 0; "/>
+                                                <hr style="border-left: 3px solid rgba(72, 94, 144, 0.16); min-height: 100%; max-height: 100vh; margin: 0; "/>
                                                 <div class="col-6 mb-2">
                                                     <div class="form-group row">
                                                         <label for="nama" class="col-sm-4 col-form-label">Nama</label>
                                                             <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='v_nama' placeholder="Nama" value="">
+                                                            <input type="text" class="form-control" name='v_nama' placeholder="Nama" value="" required>
                                                             </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="v_alamat" class="col-sm-4 col-form-label">Alamat</label>
                                                             <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='v_alamat' placeholder="Alamat" value="">
+                                                            <input type="text" class="form-control" name='v_alamat' placeholder="Alamat" value="" required>
                                                             </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="v_kota" class="col-sm-4 col-form-label">Kota</label>
                                                             <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='v_kota' placeholder="Kota" value="">
+                                                            <input type="text" class="form-control" name='v_kota' placeholder="Kota" value="" required>
                                                             </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -639,12 +639,12 @@
                                                     </label>
 
                                                 </div>
-                                                <hr style="border-left: 2px black solid; min-height: 100%; max-height: 100vh; margin: 0; "/>
+                                                <hr style="border-left: 3px solid rgba(72, 94, 144, 0.16); min-height: 100%; max-height: 100vh; margin: 0; "/>
                                                 <div class="col-6 mb-2">
                                                     <div class="form-group row">
                                                         <label for="v_email" class="col-sm-4 col-form-label">Verifikasi Email</label>
                                                         <div class="col-sm-7">
-                                                        <select class="form-control" id="v_email" name="v_email">
+                                                        <select class="form-control" id="v_email" name="v_email" required>
                                                             <option value="0">Belum Dicek</option>
                                                             <option value="13">verified</option>
                                                             <option value="11">decline</option>
@@ -654,7 +654,7 @@
                                                     <div class="form-group row">
                                                         <label for="v_sms" class="col-sm-4 col-form-label">Verifikasi SMS</label>
                                                         <div class="col-sm-7">
-                                                        <select class="form-control" id="v_sms" name="v_sms">
+                                                        <select class="form-control" id="v_sms" name="v_sms" required>
                                                             <option value="0">Belum Dicek</option>
                                                             <option value="13">verified</option>
                                                             <option value="11">decline</option>
@@ -664,7 +664,7 @@
                                                     <div class="form-group row">
                                                         <label for="opsi_call" class="col-sm-4 col-form-label">Opsi Call</label>
                                                         <div class="col-sm-7">
-                                                        <select class="form-control" id="opsi_call" name="opsi_call" value="">
+                                                        <select class="form-control" id="opsi_call" name="opsi_call" value="" required>
                                                             <option value="">-- Pilih --</option>
                                                             <option value="telp_rumah">Telepon Rumah</option>
                                                             <option value="hp">Handphone</option>
