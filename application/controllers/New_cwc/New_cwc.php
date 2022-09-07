@@ -323,6 +323,115 @@ class New_cwc extends CI_Controller
 
     $this->load->view('New_cwc/report', $data);
   }
+  public function pencarian_kontak()
+  {
+    $data['type'] = $_GET['type'];
+    $data['value'] = $_GET['value'];
+
+
+    $this->load->view('New_cwc/multi_contact', $data);
+  }
+  public function multi_contact_list()
+  {
+    $type = $_GET['type'];
+    $value = $_GET['value'];
+    if ($value != '') {
+      $data['on4'] = $this->on4($type, $value);
+      $data['salper'] = $this->salper($type, $value);
+      $data['reguler'] = $this->reguler($type, $value);
+    }
+
+
+
+    $this->load->view('New_cwc/multi_contact_list', $data);
+  }
+
+  public function on4($type, $value)
+  {
+    $curl = curl_init();
+    if ($type = 'no_inet') {
+      $type = 'indihome_num';
+    } else {
+      $type = 'no_telepon';
+    }
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://apion4nas.infomedia.co.id/api/v2/internal_tcare/report/indihome_check',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => array('field' => $type, 'data' => $value),
+      CURLOPT_HTTPHEADER => array(
+        'authorization: Basic b2N0X3RlbGtvbWNhcmVAaW5mb21lZGlhLmNvLmlkOjFuZm9tZWRpQDIwMTg=',
+        'x-dreamfactory-api-key: f18adc021d480b5c451e22e3e6fbfc8f455a54b1c8b0eb2f8072eb0412487710'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    $data = json_encode($response);
+    return $response;
+  }
+
+  public function salper($type, $value)
+  {
+    $curl = curl_init();
+
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => '10.194.5.20/Risma/api/index.php?function=get_profiling_data',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => array('s' => $value),
+      CURLOPT_HTTPHEADER => array(
+        'track_id: MYID-2122207051451',
+        'Authorization: Basic dVByb2ZpbGxpbmc6NHAxNHBSMGYxTGxpTjY='
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    $data = json_encode($response);
+    return $response;
+  }
+
+  public function reguler($type, $value)
+  {
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'http://10.194.51.88/dashboard/app/api/Public_Access/cari_kontak',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => array('nointernet' => $value),
+      CURLOPT_HTTPHEADER => array(
+        'Cookie: power_system=04cl8pcnhf0lilb13094vfl4r7npn74i'
+      ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+
+    $data = json_encode($response);
+    return $response;
+  }
   public function history_call()
   {
     $start_filter = date('Y-m-d');
