@@ -592,6 +592,34 @@
                                                             <input type="text" class="form-control" name='th_pasang' placeholder="Bulan & Tahun Pasang" value="">
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label for="jenis_aktivasi" class="col-sm-4 col-form-label">Jenis Aktivasi</label>
+                                                        <div class="col-sm-7">
+                                                        <select class="form-control" id="jenis_aktivasi" name="jenis_aktivasi" value="">
+                                                            <option value="">-- Pilih --</option>
+                                                            <option value="agent">Agent</option>
+                                                            <option value="pelanggan">Pelanggan</option>
+                                                        </select>  
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="reason_aktivasi" class="col-sm-4 col-form-label">Reason Aktivasi Pelanggan</label>
+                                                        <div class="col-sm-7">
+                                                        <select class="form-control" id="reason_aktivasi" name="reason_aktivasi" value="">
+                                                            <option value="">-- Pilih --</option>
+                                                            <option value="reason_1">Perbedaan Harga</option>
+                                                            <option value="reason_2">Pelanggan lupa dan bingung dengan channel yang akan diaktivasi</option>
+                                                            <option value="reason_3">Channel tidak ada di moostools</option>
+                                                            <option value="reason_4">Pelanggan hanya ingin mengubah nomor hp saja</option>
+                                                            <option value="reason_5">STB 2 dan STB 3</option>
+                                                            <option value="reason_6">Pelanggan memilih pembayaran prepaid</option>
+                                                            <option value="reason_7">Pelanggan lebih nyaman di aktivasi sendiri</option>
+                                                            <option value="reason_8">Sudah aktivasi moostools tapi gagal maka disarankan manual</option>
+                                                            <option value="reason_9">LP</option>
+                                                            <option value="reason_10">Disney Hotstart</option>
+                                                        </select>  
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -735,6 +763,22 @@
                                                             </select>
                                                         </div>
                                                     </div>
+
+                                                    <!-- kalo REASON DECLINE pilihnya PELANGGAN CANCEL BELI PRODUK maka tambahkan field ini -->
+                                                    <div class="form-group row">
+                                                        <label for="reason_cancel" class="col-sm-4 col-form-label">Reason Cancel Beli Produk</label>
+                                                        <div class="col-sm-7">
+                                                        <select class="form-control" id="reason_cancel" name="reason_cancel" value="" required>
+                                                            <option value="">-- Pilih --</option>
+                                                            <option value="cancel_1">Masih pikir-pikir</option>
+                                                            <option value="cancel_2">Harga Mahal</option>
+                                                            <option value="cancel_3">Belum Perlu</option>
+                                                            <option value="cancel_4">Jarang digunakan / ditonton</option>
+                                                            <option value="cancel_5">Tidak mau ada biaya tambahan</option>
+                                                        </select>   
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="form-group row">
                                                         <label for="status_call" class="col-sm-4 col-form-label">Status Call</label>
                                                         <div class="col-sm-7">
