@@ -533,7 +533,7 @@
                                                     <div class="form-group row">
                                                         <label for="v_alamat" class="col-sm-4 col-form-label">Alamat</label>
                                                         <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='v_alamat' placeholder="Alamat" value="">
+                                                            <textarea type="text" class="form-control" name='v_alamat' placeholder="Alamat" value=""></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -649,7 +649,8 @@
                                                         "Baik terima kasih Bapak/Ibu datanya sudah lengkap, perihal perubahan/penambahan pada (no hp/whatsapps/email) sudah kami perbarui dan sebagai bentuk verifikasinya, kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima pesan dari IndiHome?
                                                         <br><br>
                                                         Jika pelanggan infokan sudah masuk
-                                                        Agent menjawab Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI"
+                                                        Agent menjawab Setelah telepon ini berakhir
+                                                        <br><br>"mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI"
                                                         <br><br>
                                                         Baik bapak/ibu verifikasi sudah selesai. <br>
                                                         Perihal informasinya sudah cukup jelas ya Bapak/Ibu? <br>
