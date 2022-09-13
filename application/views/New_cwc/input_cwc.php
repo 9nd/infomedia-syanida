@@ -615,7 +615,7 @@
                                                             <option value="reason_6">Pelanggan memilih pembayaran prepaid</option>
                                                             <option value="reason_7">Pelanggan lebih nyaman di aktivasi sendiri</option>
                                                             <option value="reason_8">Sudah aktivasi moostools tapi gagal maka disarankan manual</option>
-                                                            <option value="reason_9">LP</option>
+                                                            <option value="reason_9">Vidio</option>
                                                             <option value="reason_10">Disney Hotstart</option>
                                                         </select>  
                                                         </div>
@@ -754,13 +754,6 @@
                                                                 <option class="moss" value="119">Channel Sudah Aktif</option>
                                                                 <option class="moss" value="120">Data Beda</option>
                                                                 <option class="moss" value="121">Tidak Mau Ada Biaya Tambahan</option>
-                                                                <option class="moss" value="122">Sdh Di Validasi</option>
-                                                                <option class="moss" value="123">Menggunakan Prepaid</option>
-                                                                <option class="moss" value="124">Masih Pikir - Pikir</option>
-                                                                <option class="moss" value="125">Harga Mahal</option>
-                                                                <option class="moss" value="126">Belum Perlu</option>
-                                                                <option class="moss" value="127">Jarang Digunakan/Tonton</option>
-                                                                <option class="moss" value="128">Sudah Berlangganan/Aktif</option>
                                                             </select>
                                                         </div>
                                                     </div>
