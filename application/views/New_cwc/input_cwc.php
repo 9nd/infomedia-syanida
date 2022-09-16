@@ -302,30 +302,37 @@
                                                 <div class="vertikal" style="display: flex;">
                                                     <div class="col-6 mb-2">
                                                         <h6>SALAM PEMBUKA</h6>
+                                                        <br>
                                                         <label>
                                                             Halo, Selamat Pagi/Siang/Sore/ Malam
+                                                            <br>
                                                             Perkenalkan dengan saya (nama agent) dari Team Profiling Customer Indihome PT. Telkom Indonesia.
                                                             <br><br>
                                                             Maaf mengganggu waktunya sebentar pak/ bu.
                                                             <br>
                                                             Apakah betul saya terhubung di nomor telepon/internet xxxx xxxx xxxx, atas nama (title) (nama tertera di aplikasi)?
+                                                            <br>
                                                             Maaf, dengan bapak/ibu siapa saya berbicara?
                                                             <br><br>
-                                                            Jika tidak terhubung dengan pemilik
+                                                            <strong><u>Jika tidak terhubung dengan pemilik</u>
+                                                            <br>
                                                             Baik, pak/bu, hubungan kekerabatan bapak/ ibu dengan bapak/ ibu (nama tertera di aplikasi), selaku siapanya?
                                                             <br><br>
                                                             Jika terhubung dengan pemilik telepon:
+                                                            <br>
                                                             Yang bertanggung jawab untuk pembayaran tagihan produk telkomnya, dengan bapak/ ibu sendiri?
                                                             <br><br>
                                                             Jika tidak terhubung dengan pemilik telepon:
-                                                            Yang bertanggung jawab untuk pembayaran tagihan produk telkom dinomor xxx xxxxx dengan siapa pak/ bu?
+                                                            <br>
+                                                            Yang bertanggung jawab untuk pembayaran tagihan produk telkom dinomor xxx xxxxx dengan siapa pak/ bu?</strong>
                                                             <br><br>
                                                             Bisa saya berbicara dengan bapak/ ibu (sebutkan nama yang diinformasikan pelanggan)
                                                             <br><br>
                                                             Bagaimana keadaan bapak/ ibu (nama tertera di aplikasi) sehat? (tunggu jawaban pelanggan)
+                                                            <br>
                                                             Semoga sehat selalu ya, pak/ bu.
                                                             <br><br>
-                                                            Begini pak/bu. kami ditugaskan pihak Telkom untuk mengupdate data tujuan kedepannya *mempermudah Bapak/Ibu menerima informasi mengenai Program Loyalti, Produk dan Promo Telkom terbaru serta Percepatan Perbaikan jika berkendala pada Telepon rumah atau Internet nya*
+                                                            Begini pak/bu. kami ditugaskan pihak Telkom untuk mengupdate data tujuan kedepannya <strong>*mempermudah Bapak/Ibu menerima informasi mengenai Program Loyalti, Produk dan Promo Telkom terbaru serta Percepatan Perbaikan jika berkendala pada Telepon rumah atau Internet nya*</strong>
                                                         </label>
 
                                                     </div>
@@ -411,24 +418,31 @@
                                             <div class="vertikal" style="display: flex;">
                                                 <div class="col-6 mb-2">
                                                     <h6>VERIFIKASI HP & EMAIL</h6>
+                                                    <br>
                                                     <label>
-                                                        mohon dibantu sebentar untuk kelengkapan datanya
+                                                        Mohon dibantu sebentar untuk kelengkapan datanya
                                                         <br><br>
                                                         Untuk nomor handphone yang kami hubungi di nomor ini ya pak/ ibu (nama pelanggan) (sebutkan no nya)?
+                                                        <br>
                                                         No handphone bapak/ ibu (nama pelanggan) apakah terhubung dengan whatsApp?
                                                         <br><br>
                                                         Untuk alamat email pak/ bu apakah ada?
-                                                        Apabila sudah tercantum di aplikasi, tanyakan kembali,
                                                         <br><br>
+                                                        <strong>Apabila sudah tercantum di aplikasi, tanyakan kembali,</strong>
+                                                        <br>
                                                         Di sini tertera alamat emailnya xxxxxxxxxx, apakah masih aktif pak/bu? Kami ejakan...
                                                         <br><br>
-                                                        * Apabila ada pergantian PJP/pelanggan meminta menambahkan/mengganti no hp /emainya, agent wajib menanyakan kembali no/email yang aktif
+                                                        <i>* Apabila ada pergantian PJP/pelanggan meminta menambahkan/mengganti no hp /emainya, agent wajib menanyakan kembali no/email yang aktif</i>
                                                         <br><br>
-                                                        Handphone
+                                                        <strong>Handphone</strong>
+                                                        <br>
                                                         Untuk no handphonenya bisa disebutkan ulang pak/bu? (agent mengulang no hp pelanggan yang terbaru)
+                                                        <br>
                                                         No handphone bapak/ ibu (nama pelanggan) apakah terhubung dengan whatsApp? (apabila tidak terhubung, agent wajib menanyakan no hp yang terhubung whatsapp pelanggan)
-                                                        Email
-                                                        Untuk alamat email aktifnya apa ya pak/bu?(agent menyebutkan ulang email lalu spelling)
+                                                        <br><br>
+                                                        <strong>Email</strong>
+                                                        <br>
+                                                        Boleh dibantu, untuk alamat email aktifnya apa ya pak/bu?(agent menyebutkan ulang email lalu spelling)
                                                     </label>
                                                 </div>
                                                 <hr style="border-left: 3px solid rgba(72, 94, 144, 0.16); min-height: 100%; max-height: 100vh; margin: 0; " />
@@ -506,6 +520,7 @@
                                             <div class="vertikal" style="display: flex;">
                                                 <div class="col-6 mb-2">
                                                     <h6>VERIFIKASI</h6>
+                                                    <br>
                                                     <label>
                                                         a. Untuk alamat, apakah ada perubahan pak/ bu (nama pelanggan)? baik pak/ bu, boleh disebutkan di jalan (sebutkan nama jalan besarnya saja) no rumahnya no berapa ya? Rt berapa? Rw berapa?
                                                         <br><br>
@@ -516,10 +531,11 @@
                                                         d. Apakah betul Bapak/ ibu (nama pelanggan) menggunakan produk Telkom mulai tahun xxxx?
                                                         <br><br>
                                                         e. Selain telepon, apakah bapak/ ibu (nama pelanggan) juga menggunakan internet? Boleh dibantu untuk kecepatan internet yang bapak/ ibu gunakan sekarang?
+                                                        <br>
                                                         Bagaimana telepon/internet yang bapak/ ibu (nama tertera di aplikasi) gunakan, lancar? Semoga lancar selalu ya, pak/ bu.
-                                                        *apabila pl mengeluhkan kondisinya, agent wajib menyampaikan permohonan maaf atas ketidaknyamannya dan berikan solusi.
+                                                        <br><i>*apabila pl mengeluhkan kondisinya, agent wajib menyampaikan permohonan maaf atas ketidaknyamannya dan berikan solusi.</i>
                                                         <br><br>
-                                                        Kedepannya Bapak/Ibu Lebih berkenan kami hubungi kembali melalu Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
+                                                        Kedepannya Bapak/Ibu (nama pelanggan) lebih berkenan kami hubungi kembali melalu Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
                                                     </label>
 
                                                 </div>
@@ -619,28 +635,38 @@
                                             <div class="vertikal" style="display: flex;">
                                                 <div class="col-6 mb-2">
                                                     <h6>KODE VERIFIKASI & KONFIRMASI</h6>
+                                                    <br>
                                                     <label>
-                                                        "Baik terima kasih Bapak/Ibu datanya sudah lengkap, perihal perubahan/penambahan pada (no hp/whatsapps/email) sudah kami perbarui dan sebagai bentuk verifikasinya, kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima pesan dari IndiHome?
+                                                        "Baik terima kasih Bapak/Ibu datanya sudah lengkap, <strong>perihal perubahan/penambahan pada (no hp/whatsapps/email)</strong> sudah kami perbarui dan sebagai bentuk verifikasinya, kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima pesan dari IndiHome?
                                                         <br><br>
-                                                        Jika pelanggan infokan sudah masuk
-                                                        Agent menjawab Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI"
+                                                        <strong>Jika pelanggan infokan sudah masuk
+                                                        <br>
+                                                        Agent menjawab;</strong>
+                                                        <br>
+                                                        Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. <strong>Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI"</strong>
                                                         <br><br>
                                                         Baik bapak/ibu verifikasi sudah selesai. <br>
                                                         Perihal informasinya sudah cukup jelas ya Bapak/Ibu? <br>
                                                         Ada lagi yang bisa kami bantu, pak/bu? <br>
                                                         <br><br>
                                                         Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan.
-                                                        Selamat (Pagi/Siang/Sore/Malam) Selamat beraktifitas kembali/Semoga sehat selalu
+                                                        <br>
+                                                        (Selamat (Pagi/Siang/Sore/Malam) <i>*(Selamat beraktifitas kembali/Semoga sehat selalu/Selamat beristirahat, Sukses selalu)</i>
                                                         <br><br>
                                                         <h6>CALL BACK</h6>
+                                                        <br>
                                                         Halo, Selamat Pagi/Siang/Sore/ Malam <br>
                                                         Perkenalkan dengan saya (nama agent) dari Team Profiling Customer Indihome PT. Telkom Indonesia.
                                                         <br><br>
                                                         Dengan ibu (nama pelanggan yang terverifikasi) saya berbicara?
                                                         <br><br>
                                                         Maaf mengganggu waktunya sebentar pak/ bu.
-                                                        terkait verifikasi yang kami lakukan (sebutkan waktu; misal kemarin), apakah bapak/ibu sudah menerima pesan dari indihomenya?
-                                                        pesan dari indihome berupa link, (apabila sudah) Silakan klik link tersebut sebagai sebagai bentuk approval bahwa data yang ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI.
+                                                        <br>
+                                                        terkait verifikasi yang kami lakukan (sebutkan waktu; misal kemarin), apakah bapak/ibu (nama pelanggan) sudah menerima pesan dari indihomenya?
+                                                        <br>
+                                                        Apakah ada kendala yang dirasakan, bapak/ibu (nama pelanggan)
+                                                        <br>
+                                                        pesan yang kami kirimkan dari IndiHome ini isinya berupa link, (apabila sudah) Silakan klik link tersebut sebagai sebagai bentuk approval/persetujuan bahwa data yang ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI.
                                                         <br><br>
                                                         Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan.
                                                     </label>
