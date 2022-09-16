@@ -267,47 +267,136 @@ class Public_Access extends CI_Controller
 		$data['link'] = base_url() . "api/Public_Access/generate_dapros/" . $sumber;
 		$this->load->view('Custom_view/count_down', $data);
 	}
+	public function transaction_on4()
+	{
+		$this->dwh = $this->load->database('dwh', TRUE);
+		$data = array(
+			'id' => $_POST['id'],
+			'account' => $_POST['account'],
+			'channel_name' => $_POST['channel_name'],
+			'cwc_id' => $_POST['cwc_id'],
+			'case_type' => $_POST['case_type'],
+			'date_download' => $_POST['date_download'],
+			'date_in' => $_POST['date_in'],
+			'download_time' => $_POST['download_time'],
+			'fr_date' => $_POST['fr_date'],
+			'upload_date' => $_POST['upload_date'],
+			'upload_time' => $_POST['upload_time'],
+			'pickup_date' => $_POST['pickup_date'],
+			'end_date' => $_POST['end_date'],
+			'submit_date' => $_POST['submit_date'],
+			'handling_time' => $_POST['handling_time'],
+			'waiting_time' => $_POST['waiting_time'],
+			'response_time' => $_POST['response_time'],
+			'cust_id' => $_POST['cust_id'],
+			'cust_name' => $_POST['cust_name'],
+			'cust_email' => $_POST['cust_email'],
+			'cust_hp' => $_POST['cust_hp'],
+			'cust_phone1' => $_POST['cust_phone1'],
+			'cust_fb_acc' => $_POST['cust_fb_acc'],
+			'cust_tw_acc' => $_POST['cust_tw_acc'],
+			'cust_ig_acc' => $_POST['cust_ig_acc'],
+			'category' => $_POST['category'],
+			'sub_category' => $_POST['sub_category'],
+			'regional' => $_POST['regional'],
+			'remark' => $_POST['remark'],
+			'feedback' => $_POST['feedback'],
+			'pic' => $_POST['pic'],
+			'sentiment' => $_POST['sentiment'],
+			'indihome_num' => $_POST['indihome_num'],
+			'segment' => $_POST['segment'],
+			'witel' => $_POST['witel'],
+			'alamat' => $_POST['alamat'],
+			'cust_id_search' => $_POST['cust_id_search'],
+			'cust_id_name' => $_POST['cust_id_name'],
+			'agent_id_handle' => $_POST['agent_id_handle'],
+			'jml_int' => $_POST['jml_int'],
+			'status_fcr' => $_POST['status_fcr']
+
+		);
+		$query = $this->dwh->insert('t_cwc_on4', $data);
+		if($query){
+			echo "success";
+		}else{
+			echo "failed";
+		}
+
+	}
 	public function transaction_moss()
 	{
-		if (substr($this->input->post('no_handphone'), 0, 2) == "08" || substr($this->input->post('no_handphone'), 0, 3) == "+62") {
+		if ((substr($this->input->post('no_handphone'), 0, 2) == "08" || substr($this->input->post('no_handphone'), 0, 3) == "+62")) {
 			$this->infomedia = $this->load->database('infomedia', TRUE);
-			$data = array(
-				'ncli' => $this->input->post('ncli'),
-				'no_pstn' => $this->input->post('no_telp'),
-				'no_speedy' => $this->input->post('no_internet'),
-				'no_handpone' => $this->input->post('no_handphone'),
-				'email' => $this->input->post('email'),
-				'nama_pelanggan' => $this->input->post('nama_pelanggan'),
-				'nama_pastel' => $this->input->post('nama_pelanggan'),
-				'alamat' => $this->input->post('alamat'),
-				'layanan' => $this->input->post('layanan'),
-				'tagihan' => $this->input->post('tagihan'),
-				'kecepatan' => $this->input->post('kecepatan'),
-				'tgl_bayar' => $this->input->post('tgl_bayar'),
-				'waktu_bayar' => $this->input->post('waktu_bayar'),
-				'facebook' => $this->input->post('facebook'),
-				'twitter' => $this->input->post('twitter'),
-				'tgl_insert' => date("Y-m-d H:i:s"),
-				'sumber' => "ProfillingMOS"
-			);
-			$query = $this->infomedia->insert('trans_profiling_validasi_mos', $data);
-			if ($query) {
 
-				$cek_explode = explode("|", $this->input->post('layanan'));
-				if (count($cek_explode) > 1) {
-					$ref_id = str_replace(" ", "", $cek_explode[1]);
-					$data_insert = array(
-						'ncli' => $this->input->post('ncli'),
-						'no_pstn' => $this->input->post('no_telp'),
-						'no_speedy' => $this->input->post('no_internet'),
-						'no_handpone' => $this->input->post('no_handphone'),
-						'ref_id' => $ref_id,
-					);
-					$query_2 = $this->infomedia->insert('trans_lp', $data_insert);
+			$blacklist = array('085249506484', '085651028417', '085162780805');
+
+			if (in_array($this->input->post('no_handphone'), $blacklist)) {
+
+				$this->infomedia = $this->load->database('infomedia', TRUE);
+				$data = array(
+					'ncli' => $this->input->post('ncli'),
+					'no_pstn' => $this->input->post('no_telp'),
+					'no_speedy' => $this->input->post('no_internet'),
+					'no_handpone' => $this->input->post('no_handphone'),
+					'email' => $this->input->post('email'),
+					'nama_pelanggan' => $this->input->post('nama_pelanggan'),
+					'nama_pastel' => $this->input->post('nama_pelanggan'),
+					'alamat' => $this->input->post('alamat'),
+					'layanan' => $this->input->post('layanan'),
+					'tagihan' => $this->input->post('tagihan'),
+					'kecepatan' => $this->input->post('kecepatan'),
+					'tgl_bayar' => $this->input->post('tgl_bayar'),
+					'waktu_bayar' => $this->input->post('waktu_bayar'),
+					'facebook' => $this->input->post('facebook'),
+					'twitter' => $this->input->post('twitter'),
+					'tgl_insert' => date("Y-m-d H:i:s"),
+					'status' => 10,
+					'update_by' => "SYS",
+					'sumber' => "ProfillingMOS"
+				);
+				$query = $this->infomedia->insert('trans_profiling_validasi_mos', $data);
+				if ($query) {
+					echo 1;
+				} else {
+					echo 0;
 				}
-				echo 1;
 			} else {
-				echo 0;
+				$data = array(
+					'ncli' => $this->input->post('ncli'),
+					'no_pstn' => $this->input->post('no_telp'),
+					'no_speedy' => $this->input->post('no_internet'),
+					'no_handpone' => $this->input->post('no_handphone'),
+					'email' => $this->input->post('email'),
+					'nama_pelanggan' => $this->input->post('nama_pelanggan'),
+					'nama_pastel' => $this->input->post('nama_pelanggan'),
+					'alamat' => $this->input->post('alamat'),
+					'layanan' => $this->input->post('layanan'),
+					'tagihan' => $this->input->post('tagihan'),
+					'kecepatan' => $this->input->post('kecepatan'),
+					'tgl_bayar' => $this->input->post('tgl_bayar'),
+					'waktu_bayar' => $this->input->post('waktu_bayar'),
+					'facebook' => $this->input->post('facebook'),
+					'twitter' => $this->input->post('twitter'),
+					'tgl_insert' => date("Y-m-d H:i:s"),
+					'sumber' => "ProfillingMOS"
+				);
+				$query = $this->infomedia->insert('trans_profiling_validasi_mos', $data);
+				if ($query) {
+					$cek_explode = explode("|", $this->input->post('layanan'));
+					if (count($cek_explode) > 1) {
+						$ref_id = str_replace(" ", "", $cek_explode[1]);
+						$data_insert = array(
+							'ncli' => $this->input->post('ncli'),
+							'no_pstn' => $this->input->post('no_telp'),
+							'no_speedy' => $this->input->post('no_internet'),
+							'no_handpone' => $this->input->post('no_handphone'),
+							'ref_id' => $ref_id,
+						);
+						$query_2 = $this->infomedia->insert('trans_lp', $data_insert);
+					}
+					echo 1;
+				} else {
+					echo 0;
+				}
 			}
 		} else {
 			$this->infomedia = $this->load->database('infomedia', TRUE);
@@ -370,7 +459,7 @@ class Public_Access extends CI_Controller
 				'no_speedy' => $this->input->post('no_internet'),
 				'handphone' => $this->input->post('no_handphone'),
 				'email' => $this->input->post('email'),
-				'nama_pelanggan' => $this->input->post('nama_pelanggan'),
+				'nama' => $this->input->post('nama_pelanggan'),
 				'nama_pastel' => $this->input->post('nama_pelanggan'),
 				'alamat' => $this->input->post('alamat'),
 				'kota' => $this->input->post('kota'),
@@ -382,7 +471,7 @@ class Public_Access extends CI_Controller
 			);
 
 
-			$query_transprofiling = $this->infomedia->insert('trans_profiling_verifikasi', $trans_profiling);
+			$query_transprofiling = $this->infomedia->insert('trans_profiling', $trans_profiling);
 
 			$trans_dc = array(
 				'ncli' => $this->input->post('ncli'),
@@ -405,9 +494,7 @@ class Public_Access extends CI_Controller
 				'tempat_lahir' => $this->input->post('tempat_lahir'),
 				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
 				'sumber' => "ProfillingDC",
-				'lup' => date("Y-m-d H:i:s"),
-				'veri_lup' => date("Y-m-d H:i:s"),
-				'veri_upd' => "ProfillingDC"
+				'lup' => date("Y-m-d H:i:s")
 			);
 
 			$query_dc = $this->infomedia->insert('trans_digital_channel', $trans_dc);
@@ -438,14 +525,13 @@ class Public_Access extends CI_Controller
 			);
 			$query = $this->infomedia->insert('trans_profiling_verifikasi', $data);
 
-
 			$trans_profiling = array(
 				'ncli' => $this->input->post('ncli'),
 				'pstn1' => $this->input->post('no_telp'),
 				'no_speedy' => $this->input->post('no_internet'),
 				'handphone' => $this->input->post('no_handphone'),
 				'email' => $this->input->post('email'),
-				'nama_pelanggan' => $this->input->post('nama_pelanggan'),
+				'nama' => $this->input->post('nama_pelanggan'),
 				'nama_pastel' => $this->input->post('nama_pelanggan'),
 				'alamat' => $this->input->post('alamat'),
 				'kota' => $this->input->post('kota'),
@@ -455,7 +541,10 @@ class Public_Access extends CI_Controller
 				'veri_lup' => date("Y-m-d H:i:s"),
 				'veri_upd' => "ProfillingDC"
 			);
-			$query_transprofiling = $this->infomedia->insert('trans_profiling_verifikasi', $trans_profiling);
+
+
+			$query_transprofiling = $this->infomedia->insert('trans_profiling', $trans_profiling);
+
 			$trans_dc = array(
 				'ncli' => $this->input->post('ncli'),
 				'no_telp' => $this->input->post('no_telp'),
@@ -477,9 +566,7 @@ class Public_Access extends CI_Controller
 				'tempat_lahir' => $this->input->post('tempat_lahir'),
 				'tanggal_lahir' => $this->input->post('tanggal_lahir'),
 				'sumber' => "ProfillingDC",
-				'lup' => date("Y-m-d H:i:s"),
-				'veri_lup' => date("Y-m-d H:i:s"),
-				'veri_upd' => "ProfillingDC"
+				'lup' => date("Y-m-d H:i:s")
 			);
 
 			$query_dc = $this->infomedia->insert('trans_digital_channel', $trans_dc);
@@ -490,5 +577,29 @@ class Public_Access extends CI_Controller
 				echo 0;
 			}
 		}
+	}
+	public function cek_status_moss()
+	{
+		$this->infomedia = $this->load->database('infomedia', TRUE);
+		$ncli = $_POST['ncli'];
+		$nointernet = $_POST['nointernet'];
+		$handphone = $_POST['handphone'];
+		$no_tanggal = $_POST['no_tanggal'];
+		$sumber = $_POST['sumber'];
+		$uniq = $ncli . $nointernet . $handphone . $no_tanggal;
+		$get_data = $query = $this->infomedia->query("SELECT
+		a.ncli,
+		a.no_speedy,
+		a.no_handpone,
+		a.layansan,
+		b.nama_reason,
+		a.lup as time_updateagent
+		FROM db_profiling.trans_profiling_validasi_mos a
+		INNER JOIN infomedia_app.status_call b ON a.reason_call = b.id
+		WHERE a.ncli='$ncli' and a.no_speedy='$nointernet' and no_handpone='$handphone' and a.tgl_insert='$no_tanggal' and a.layanan='$sumber'")->row();
+		if ($get_data) {
+			$get_data = "no data";
+		}
+		echo $get_data;
 	}
 }

@@ -274,6 +274,7 @@
                         <div class="w-sm-100 mr-auto">
                             <!-- <button class="openbtn" onclick="openNav()">☰ SCRIPT</button> -->
                             <h4 class="mb-0">Input CWC</h4>
+
                         </div>
                         <div class="btn-sm btn-danger col-2" id="closet">
                             <i class="fa fa-close"></i>Not Contacted
@@ -533,7 +534,8 @@
                                                     <div class="form-group row">
                                                         <label for="v_alamat" class="col-sm-4 col-form-label">Alamat</label>
                                                         <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='v_alamat' placeholder="Alamat" value="">
+                                                            <textarea class="form-control" name='v_alamat' placeholder="Alamat" value=""></textarea>
+                                                            <!-- <input type="text" class="form-control" name='v_alamat' placeholder="Alamat" value=""> -->
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -590,34 +592,6 @@
                                                         <label for="v_tagihan" class="col-sm-4 col-form-label">Bulan & Tahun Pasang</label>
                                                         <div class="col-sm-7">
                                                             <input type="text" class="form-control" name='th_pasang' placeholder="Bulan & Tahun Pasang" value="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="jenis_aktivasi" class="col-sm-4 col-form-label">Jenis Aktivasi</label>
-                                                        <div class="col-sm-7">
-                                                        <select class="form-control" id="jenis_aktivasi" name="jenis_aktivasi" value="">
-                                                            <option value="">-- Pilih --</option>
-                                                            <option value="agent">Agent</option>
-                                                            <option value="pelanggan">Pelanggan</option>
-                                                        </select>  
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="reason_aktivasi" class="col-sm-4 col-form-label">Reason Aktivasi Pelanggan</label>
-                                                        <div class="col-sm-7">
-                                                        <select class="form-control" id="reason_aktivasi" name="reason_aktivasi" value="">
-                                                            <option value="">-- Pilih --</option>
-                                                            <option value="reason_1">Perbedaan Harga</option>
-                                                            <option value="reason_2">Pelanggan lupa dan bingung dengan channel yang akan diaktivasi</option>
-                                                            <option value="reason_3">Channel tidak ada di moostools</option>
-                                                            <option value="reason_4">Pelanggan hanya ingin mengubah nomor hp saja</option>
-                                                            <option value="reason_5">STB 2 dan STB 3</option>
-                                                            <option value="reason_6">Pelanggan memilih pembayaran prepaid</option>
-                                                            <option value="reason_7">Pelanggan lebih nyaman di aktivasi sendiri</option>
-                                                            <option value="reason_8">Sudah aktivasi moostools tapi gagal maka disarankan manual</option>
-                                                            <option value="reason_9">LP</option>
-                                                            <option value="reason_10">Disney Hotstart</option>
-                                                        </select>  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -710,7 +684,7 @@
                                                     <div class="form-group row">
                                                         <label for="kat_call" class="col-sm-4 col-form-label">Kategori Call</label>
                                                         <div class="col-sm-7">
-                                                            <select class="form-control" id="kat_call" name="kat_call" value="">
+                                                            <select class="form-control" id="kat_call" name="kat_call" value="" required>
                                                                 <option value="x">Pilih..</option>
                                                                 <option value="1">Contacted</option>
                                                                 <option value="0">Not Contacted</option>
@@ -720,7 +694,7 @@
                                                     <div class="form-group row">
                                                         <label for="sub_call" class="col-sm-4 col-form-label">Sub Kategori Call</label>
                                                         <div class="col-sm-7">
-                                                            <select class="form-control data-sending" id="sub_call" name="sub_call" value="">
+                                                            <select class="form-control data-sending" id="sub_call" name="sub_call" value="" required>
                                                                 <option value="0">-- Pilih --</option>
                                                                 <option class="opsinc" value="2">RNA</option>
                                                                 <option class="opsinc" value="4">Salah Sambung</option>
@@ -744,7 +718,7 @@
                                                                 <option value="0">-- Pilih --</option>
                                                                 <option class="reg" value="111">Bukan PJ Pembayaran</option>
                                                                 <option class="reg" value="112">PJ menolak verifikasi</option>
-                                                                <option class="moss" value="113">Pelanggan Cancel Beli Produk</option>
+                                                                <!-- <option class="moss" value="113">Pelanggan Cancel Beli Produk</option>
                                                                 <option class="moss" value="114">Dimatikan Pelanggan</option>
                                                                 <option class="moss" value="115">Caring</option>
                                                                 <option class="moss" value="116">Tidak Merasa Menginputkan No Hp</option>
@@ -759,26 +733,10 @@
                                                                 <option class="moss" value="125">Harga Mahal</option>
                                                                 <option class="moss" value="126">Belum Perlu</option>
                                                                 <option class="moss" value="127">Jarang Digunakan/Tonton</option>
-                                                                <option class="moss" value="128">Sudah Berlangganan/Aktif</option>
+                                                                <option class="moss" value="128">Sudah Berlangganan/Aktif</option> -->
                                                             </select>
                                                         </div>
                                                     </div>
-
-                                                    <!-- kalo REASON DECLINE pilihnya PELANGGAN CANCEL BELI PRODUK maka tambahkan field ini -->
-                                                    <div class="form-group row">
-                                                        <label for="reason_cancel" class="col-sm-4 col-form-label">Reason Cancel Beli Produk</label>
-                                                        <div class="col-sm-7">
-                                                        <select class="form-control" id="reason_cancel" name="reason_cancel" value="" required>
-                                                            <option value="">-- Pilih --</option>
-                                                            <option value="cancel_1">Masih pikir-pikir</option>
-                                                            <option value="cancel_2">Harga Mahal</option>
-                                                            <option value="cancel_3">Belum Perlu</option>
-                                                            <option value="cancel_4">Jarang digunakan / ditonton</option>
-                                                            <option value="cancel_5">Tidak mau ada biaya tambahan</option>
-                                                        </select>   
-                                                        </div>
-                                                    </div>
-                                                    
                                                     <div class="form-group row">
                                                         <label for="status_call" class="col-sm-4 col-form-label">Status Call</label>
                                                         <div class="col-sm-7">
@@ -929,7 +887,37 @@
 
 
         $(document).ready(function() {
+            //prevent reason call kosong
 
+            $('form').submit(function() {
+
+                var kat_call = $.trim($('#kat_call').val()); //x
+                var sub_call = $.trim($('#sub_call').val()); //0
+                var status_call = $.trim($('#status_call').val()); //0
+
+                if (kat_call === 'x') {
+                    alert('kategori call tidak boleh kosong');
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#kat_call").offset().top
+                    }, 100);
+                    return false;
+                } else if (sub_call === '0') {
+                    alert('sub call tidak boleh kosong');
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#sub_call").offset().top
+                    }, 100);
+                    return false;
+                } else if (status_call === '0') {
+                    alert('status call tidak boleh kosong');
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#status_call").offset().top
+                    }, 100);
+                    return false;
+                }
+
+            });
+
+            //end prevent
 
             $('.veri_statusopt_v').hide();
             $('.veri_statusopt_dk').hide();
@@ -991,40 +979,6 @@
                 var res = titik.replace("e", "");
                 $(this).val(res);
             });
-
-
-            $('form').submit(function() {
-
-                var kat_call = $.trim($('#kat_call').val()); //x
-                var sub_call = $.trim($('#sub_call').val()); //0
-                var status_call = $.trim($('#status_call').val()); //0
-
-                if (kat_call === 'x') {
-                    alert('keterangan call tidak boleh kosong');
-                    $([document.documentElement, document.body]).animate({
-                        scrollTop: $("#kat_call").offset().top
-                    }, 100);
-                    return false;
-                } else if (sub_call === '0') {
-                    alert('sub call tidak boleh kosong');
-                    $([document.documentElement, document.body]).animate({
-                        scrollTop: $("#sub_call").offset().top
-                    }, 100);
-                    return false;
-                } else if (status_call === '0') {
-                    alert('status call tidak boleh kosong');
-                    $([document.documentElement, document.body]).animate({
-                        scrollTop: $("#status_call").offset().top
-                    }, 100);
-                    return false;
-                } 
-
-            });
-
-
-
-
-
         });
         $('.opsicontacted').hide();
         $('#reason_decline_holder').hide();

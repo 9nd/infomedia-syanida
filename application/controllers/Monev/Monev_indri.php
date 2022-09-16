@@ -12,7 +12,7 @@
  * @author Dhiya
  */
 
-class Monev extends CI_Controller
+class Monev_indri extends CI_Controller
 {
 
   public function __construct()
@@ -23,7 +23,7 @@ class Monev extends CI_Controller
     $this->load->model('Custom_model/Cache_monev_realtime_model', 'cache_modev_realtime');
     $this->load->model('Custom_model/Trans_profiling_verifikasi_infomedia_model', 'trans_profiling_verifikasi');
     $this->load->model('Custom_model/Trans_profiling_validasi_mos_model', 'trans_profiling_validasi_mos');
-    $this->load->model('Custom_model/Trans_profiling_daily_model', 'trans_profiling_daily');
+    $this->load->model('Custom_model/Trans_profiling_dailyv2_model', 'trans_profiling_daily');
     $this->load->model('Custom_model/Sys_user_table_model', 'Sys_user_table_model');
     $this->load->model('Custom_model/Sys_user_log_in_out_table_model', 'Sys_log');
     $this->load->model('sys/Sys_user_log_model', 'log_login');
@@ -73,7 +73,7 @@ class Monev extends CI_Controller
     $data['start'] = $start_filter;
     $data['end'] = $end_filter;
     $data['status'] = $this->status_call->get_results();
-    $filter_agent = array("(sys_user.opt_level=8 OR sys_user.opt_level=9)" => null, "(sys_user.kategori = 'REG' OR sys_user.kategori = 'TL')" => null);
+    $filter_agent = array("(sys_user.opt_level=8 OR sys_user.opt_level=9)" => null, "(sys_user.kategori = 'REG' OR sys_user.kategori = 'TL') AND sys_user.tl != '-' " => null);
     if ($userdata->opt_level == 8) {
       $agentid[0] = $userdata->agentid;
     }
@@ -149,6 +149,7 @@ WHERE
   AND methode = '1' 
   AND (sys_user.opt_level=8 OR sys_user.opt_level=9)
   AND (sys_user.kategori = 'REG' OR sys_user.kategori = 'TL')
+AND sys_user.tl != '-'
 	
   $where_agent_multi
   GROUP BY agentid
@@ -203,8 +204,7 @@ WHERE
   AND methode = '0' 
   AND (sys_user.opt_level=8 OR sys_user.opt_level=9)
   AND (sys_user.kategori = 'REG' OR sys_user.kategori = 'TL')
-  AND sys_user.tl != '-'
-	
+	AND sys_user.tl != '-'
   $where_agent_multi
   GROUP BY agentid
   ORDER BY waktu_in ASC
@@ -225,9 +225,10 @@ WHERE
     foreach ($data['summary'] as $field => $valna) {
 
       $get_loc = $this->t_absensi->live_query("
-    select $field,count(*) as numna FROM cache_locationFFF
-    JOIN t_absensi ON t_absensi.latitude = cache_location.latitude
-    GROUP BY $field
+    select $field,count(*) as numna FROM cache_location
+LEFT JOIN t_absensi ON t_absensi.latitude = cache_location.latitude 
+	WHERE DATE(t_absensi.waktu_in)='$start_filter'
+ GROUP BY $field
     ")->num_rows();
       $data['summary'][$field] = $get_loc;
     }
@@ -340,7 +341,7 @@ WHERE
       $data['aval_num'] = 0;
     }
     $now = date('Y-m-d');
-    $data['asterisk'] = $this->recording_daily->live_query("SELECT src,count(*) as numna FROM recording_daily GROUP BY src")->result();
+    $data['asterisk']=$this->recording_daily->live_query("SELECT src,count(*) as numna FROM recording_daily GROUP BY src")->result();
     $data['cdr'] = array();
     if (count($data['asterisk']) > 0) {
       foreach ($data['asterisk'] as $ast) {
@@ -616,7 +617,6 @@ WHERE
   {
     $return = array();
     $n = 0;
-    $list_of_hp = "";
     if (count($data_verified) > 0) {
       $n1 = 0;
       foreach ($data_verified as $veri) {
@@ -682,7 +682,7 @@ WHERE
         for ($i = 1; $i <= 16; $i++) {
           $filter = array(
             "veri_upd" => $ag->agentid,
-            "veri_call" => $i,
+            "sub_call" => $i,
             "DATE(lup)" => date('Y-m-d')
           );
 

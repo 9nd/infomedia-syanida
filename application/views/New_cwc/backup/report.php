@@ -30,7 +30,7 @@
     ?>
 
     <meta charset="UTF-8">
-    <title>Sy-Anida : History Call</title>
+    <title>Digital Channel - Multi Contact</title>
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -98,11 +98,8 @@
                 <li>
                     <a href="<?php echo base_url() . "New_cwc/New_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
-                </li>
                 <li class="active">
-                    <a href="<?php echo base_url() . "New_cwc/New_cwc/history_call" ?>"><i class="icon-chart mr-1"></i> History Call</a>
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
                 </li>
 
 
@@ -121,7 +118,7 @@
                 <div class="col-12  align-self-center">
                     <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
                         <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">History Call</h4>
+                            <h4 class="mb-0">Report CWC</h4>
                         </div>
                     </div>
                 </div>
@@ -143,13 +140,13 @@
                                     <input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
                                 </div>
                             </div>
+                            
+                            <select multiple  data-allow-clear="1" name='agentid[]' id="agentid"></select>
 
-
-                            <select multiple data-allow-clear="1" name='agentid[]' id="agentid" style='display:none'></select>
                             <div class='col-md-4 col-xl-4'>
                                 <div class='form-group'>
                                     <label class='form-label'>Agent </label>
-                                    <select multiple data-allow-clear="1" name='agentid[]' id="agentid">
+                                    <select  multiple  data-allow-clear="1" name='agentid[]' id="agentid">
 
                                         <?php
                                         if ($user_categori != 8) {
@@ -193,7 +190,7 @@
 
 
 
-
+            
             <div id="list_area">
 
             </div>
@@ -217,8 +214,8 @@
 
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
+    $('.js-example-basic-multiple').select2();
+});
     </script>
 
     <!-- START: Template JS-->
@@ -293,7 +290,7 @@
             var end = $("#end").val();
             var agentid = $("#agentid").val();
             $.ajax({
-                url: "<?php echo base_url() . "New_cwc/New_cwc/history_call_list" ?>",
+                url: "<?php echo base_url() . "New_cwc/New_cwc/report_list" ?>",
                 data: {
                     start: start,
                     end: end,

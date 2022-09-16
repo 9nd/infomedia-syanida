@@ -42,7 +42,6 @@
                                 <th>sub_call</th>
                                 <th>status_call</th>
                                 <th>veri_upd</th>
-                                <th>nama_agent</th>
                                 <th>veri_lup</th>
                                 <th>lup</th>
                                 <th>keterangan</th>
@@ -108,9 +107,6 @@
                                         );
                                         echo $status_call_ar[$datana->status_call]; ?></td>
                                         <td><?php echo $datana->veri_upd; ?></td>
-                                        <?php $nama_agent = $this->db->query("SELECT nama FROM sys_user WHERE agentid='$datana->veri_upd'")->row()->nama;
-                                         ?>
-                                        <td><?php echo $nama_agent; ?></td>
                                         <td><?php echo $datana->veri_lup; ?></td>
                                         <td><?php echo $datana->lup; ?></td>
                                         <td><?php echo $datana->keterangan; ?></td>

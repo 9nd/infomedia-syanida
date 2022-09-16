@@ -76,15 +76,128 @@ class Dashboard_v2 extends CI_Controller
       $now = $_GET['start'];
 
       if ($now != date('Y-m-d')) {
-        $tabel = "trans_profiling";
+        // $tabel = "trans_profiling";
+        // $absen = $this->trans_profiling_daily->live_query(
+        //   "SELECT t_absensi.agentid FROM t_absensi LEFT JOIN sys_user a ON a.agentid = t_absensi.agentid WHERE a.kategori='REG' AND DATE(t_absensi.waktu_in) = '$now' AND t_absensi.stts='in' GROUP BY t_absensi.agentid"
+        // )->result();
+        // $data['cache_monev_realtime']['aval_num'] = count($absen);
+        // $data['cache_monev_realtime']['lunch'] = 0;
+        // $data['cache_monev_realtime']['idle_num'] = 0;
+        // $data['cache_monev_realtime']['toilet'] = 0;
+        // $data['cache_monev_realtime']['pray'] = 0;
+
+        $tabel = "trans_profiling_last_month";
         $absen = $this->trans_profiling_daily->live_query(
-          "SELECT t_absensi.agentid FROM t_absensi LEFT JOIN sys_user a ON a.agentid = t_absensi.agentid WHERE a.kategori='REG' AND DATE(t_absensi.waktu_in) = '$now' AND t_absensi.stts='in' GROUP BY t_absensi.agentid"
+          "SELECT trans_profiling_last_month.veri_upd FROM trans_profiling_last_month LEFT JOIN sys_user a ON a.agentid = trans_profiling_last_month.veri_upd WHERE a.kategori='REG' AND DATE(trans_profiling_last_month.lup) = '$now' GROUP BY trans_profiling_last_month.veri_upd"
         )->result();
         $data['cache_monev_realtime']['aval_num'] = count($absen);
         $data['cache_monev_realtime']['lunch'] = 0;
         $data['cache_monev_realtime']['idle_num'] = 0;
         $data['cache_monev_realtime']['toilet'] = 0;
         $data['cache_monev_realtime']['pray'] = 0;
+
+      }
+    } else {
+      $now = date('Y-m-d');
+      $tabel = "trans_profiling_daily";
+    }
+    $where_jadwal = array("tanggal" => $now);
+    $data['jadwal_leader_on_duty'] = date('Y-m-d');
+    $data['nama_leader_on_duty'] = "";
+    $data['picture_leader_on_duty'] = "default.png";
+    $data['jadwal'] = $this->leader_on_duty->get_row($where_jadwal, array("agentid"));
+    if ($data['jadwal']) {
+      $where_agent = array("agentid" => $data['jadwal']->agentid);
+      $data['agent'] = $this->sys_user->get_row($where_agent, array("nama,picture"));
+      $data['nama_leader_on_duty'] = $data['agent']->nama;
+      $data['picture_leader_on_duty'] = $data['agent']->picture;
+    }
+
+
+
+
+    $query_trans_profiling = $this->$tabel->live_query(
+      "SELECT veri_call,veri_upd,handphone,email,HOUR(lup) as hour_lup FROM $tabel WHERE DATE(lup) = '" . $now . "' AND veri_call=13 "
+    );
+    $total = array();
+    for ($i = 8; $i <= 20; $i++) {
+      $total['verified'][$i] = 0;
+    }
+    foreach ($query_trans_profiling->result_array() as $th) {
+      for ($i = 8; $i <= 20; $i++) {
+        if ($th['hour_lup'] == $i) {
+          $total['verified'][$i] = $total['verified'][$i] + 1;
+        }
+      }
+    }
+    $data['grafik_verified'] = $total;
+
+    $query_trans_profiling = $this->$tabel->live_query(
+      "SELECT veri_call,veri_upd,handphone,email,HOUR(lup) as hour_lup FROM $tabel WHERE DATE(lup) = '" . $now . "' AND (veri_call=1 OR veri_call= 13 OR veri_call=  3 OR veri_call=  12) "
+    );
+    $total = array();
+    for ($i = 8; $i <= 20; $i++) {
+      $total['contacted'][$i] = 0;
+    }
+    foreach ($query_trans_profiling->result_array() as $th) {
+      for ($i = 8; $i <= 20; $i++) {
+        if ($th['hour_lup'] == $i) {
+          $total['contacted'][$i] = $total['contacted'][$i] + 1;
+        }
+      }
+    }
+    $data['contacted'] = $total;
+    $query_trans_profiling = $this->$tabel->live_query(
+      "SELECT veri_call,veri_upd,handphone,email,HOUR(lup) as hour_lup FROM $tabel WHERE DATE(lup) = '" . $now . "' "
+    );
+    $total = array();
+    for ($i = 8; $i <= 20; $i++) {
+      $total['all_call'][$i] = 0;
+    }
+    foreach ($query_trans_profiling->result_array() as $th) {
+      for ($i = 8; $i <= 20; $i++) {
+        if ($th['hour_lup'] == $i) {
+          $total['all_call'][$i] = $total['all_call'][$i] + 1;
+        }
+      }
+    }
+    $data['grafik_all_call'] = $total;
+    for ($i = 8; $i <= 20; $i++) {
+      $total['rate_contacted'][$i] = intval(($data['contacted']['contacted'][$i] / $data['grafik_all_call']['all_call'][$i]) * 100);
+    }
+    $data['rate_contacted'] = $total;
+
+    $data['last_update'] = $this->trans_profiling_daily->get_row(array(), array("*"), array("lup" => "DESC"));
+
+
+    $data['now'] = $now;
+    $this->load->view('front-end/landing-page/dashboard_v2/wallboard_reg_v3', $data);
+  }
+
+  public function wallboard_reguler_indri()
+  {
+    $this->load->model('Custom_model/Sys_user_table_model', 'sys_user');
+    $this->load->model('Custom_model/Leader_on_duty_table_model', 'leader_on_duty');
+    $now = date('Y-m-d');
+    $tabel = "v2_trans_profiling_daily";
+    // $now = '2020-07-20';
+    $data['cache_monev_realtime'] = $this->cache_modev_realtime->get_row_array(array("id" => 1));
+    if (isset($_GET['start'])) {
+      $now = $_GET['start'];
+
+      if ($now != date('Y-m-d')) {
+       
+
+        $tabel = "trans_profiling_last_month";
+        $absen = $this->trans_profiling_daily->live_query(
+          "SELECT trans_profiling_last_month.veri_upd FROM trans_profiling_last_month LEFT JOIN sys_user a ON a.agentid = trans_profiling_last_month.veri_upd WHERE a.kategori='REG' AND DATE(trans_profiling_last_month.lup) = '$now' GROUP BY trans_profiling_last_month.veri_upd"
+        )->result();
+        $data['cache_monev_realtime']['aval_num'] = count($absen);
+        $data['cache_monev_realtime']['lunch'] = 0;
+        $data['cache_monev_realtime']['idle_num'] = 0;
+        $data['cache_monev_realtime']['toilet'] = 0;
+        $data['cache_monev_realtime']['pray'] = 0;
+
       }
     } else {
       $now = date('Y-m-d');
@@ -844,6 +957,12 @@ GROUP BY
     } else {
       $data['bulan'] = date("m") - 2;
     }
+    if (isset($_GET['tahun'])) {
+      $data['tahun'] = $_GET['tahun'];
+    } else {
+      $data['tahun'] = date("Y");
+    }
+
 
     $where_jadwal = array("tanggal" => $now);
     $data['jadwal_leader_on_duty'] = date('Y-m-d');
@@ -891,10 +1010,12 @@ GROUP BY
     $data['tahun'] = date("Y");
     if (isset($_GET['bulan'])) {
       $data['bulan'] = $_GET['bulan'];
+$data['bulan'] =$_GET['bulan']+1;
     } else {
       $data['bulan'] = date("m") - 2;
     }
-    if (isset($_GET['tahun'])) {
+
+if (isset($_GET['tahun'])) {
       $data['tahun'] = $_GET['tahun'];
     } else {
       $data['tahun'] = date("Y");
@@ -966,6 +1087,7 @@ GROUP BY
   date(lup),produk_mos
   ORDER BY lup DESC
 ");
+
     $log_veri_all = $this->trans_profiling->live_query("
 SELECT
    produk_mos,
@@ -988,15 +1110,15 @@ GROUP BY
       foreach ($data['log_product_moss'] as $rev_moss) {
         $pro = $this->product_moss->get_row(array("kode_chanel" => $rev_moss->produk_mos));
         if ($pro) {
-          // if ($rev_moss->lupna >= $start && $rev_moss->lupna <= $end) {
+          //if ($rev_moss->lupna >= $start && $rev_moss->lupna <= $end) {
             $data['jumlah_aktivasi'] = $data['jumlah_aktivasi'] + $rev_moss->num;
-          // }
+          //}
           $data['revenue']= ($rev_moss->num * $pro->harga) + $data['revenue'];
           // echo $rev_moss->lupna . "-" . ($rev_moss->num * $pro->harga) . "<br>";
         }
       }
     }
-echo $data['jumlah_aktivasi'];
+
     // $data['jumlah_aktivasi'] = count($data['revenue']);
     // $data['revenue'] = array_reverse($data['revenue']);
 

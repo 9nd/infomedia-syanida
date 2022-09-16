@@ -92,22 +92,20 @@
 
             <!-- START: Menu-->
             <ul id="side-menu" class="sidebar-menu">
-                <li class="dropdown"><a href="#"><i class="icon-home mr-1"></i> Dashboard</a>
-                    <ul>
-                        <li>
-                            <a href="<?php echo base_url(); ?>"><i class="icon-home mr-1"></i> Home</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url() . "New_cwc/New_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
-                        </li>
-                        <li class="active">
-                            <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url() . "New_cwc/New_cwc/history_call" ?>"><i class="icon-chart mr-1"></i> History Call</a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="<?php echo base_url(); ?>"><i class="icon-home mr-1"></i> Home</a>
                 </li>
+                <li>
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
+                </li>
+                <li class="active">
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url() . "New_cwc/New_cwc/history_call" ?>"><i class="icon-chart mr-1"></i> History Call</a>
+                </li>
+
+
             </ul>
 
         </div>
@@ -146,6 +144,8 @@
                                 </div>
                             </div>
 
+
+                            <select  multiple  data-allow-clear="1" name='agentid[]' id="agentid" style='display:none'></select>
                             <div class='col-md-4 col-xl-4'>
                                 <div class='form-group'>
                                     <label class='form-label'>Agent </label>
