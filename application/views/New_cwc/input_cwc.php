@@ -309,7 +309,7 @@
                                                             Perkenalkan dengan saya (nama agent) dari Team Profiling Customer Indihome PT. Telkom Indonesia.
                                                             <br><br>
                                                             Maaf mengganggu waktunya sebentar pak/ bu.
-                                                            <br>
+                                                            <br><br>
                                                             Apakah betul saya terhubung di nomor telepon/internet xxxx xxxx xxxx, atas nama (title) (nama tertera di aplikasi)?
                                                             <br>
                                                             Maaf, dengan bapak/ibu siapa saya berbicara?
@@ -536,6 +536,10 @@
                                                         <br><i>*apabila pl mengeluhkan kondisinya, agent wajib menyampaikan permohonan maaf atas ketidaknyamannya dan berikan solusi.</i>
                                                         <br><br>
                                                         Kedepannya Bapak/Ibu (nama pelanggan) lebih berkenan kami hubungi kembali melalu Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
+                                                        <br><br>
+                                                        Untuk mempermudah mendapat informasi terkait produk/promo, maaf bapak/ibu (nama pelanggan), apakah bapak/ibu aktif menggunakan media ssosial seperti facebook, instagram, dan twitter? 
+                                                        <br><br>
+                                                        Boleh disebutkan nama akun bapak/ibu? ((agent menyebutkan ulang nama akun lalu spelling)
                                                     </label>
 
                                                 </div>
@@ -643,7 +647,7 @@
                                                         <br>
                                                         Agent menjawab;</strong>
                                                         <br>
-                                                        Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. <strong>Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI"</strong>
+                                                        Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. <strong>Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI</strong>
                                                         <br><br>
                                                         Baik bapak/ibu verifikasi sudah selesai. <br>
                                                         Perihal informasinya sudah cukup jelas ya Bapak/Ibu? <br>
@@ -661,11 +665,11 @@
                                                         Dengan ibu (nama pelanggan yang terverifikasi) saya berbicara?
                                                         <br><br>
                                                         Maaf mengganggu waktunya sebentar pak/ bu.
-                                                        <br>
+                                                        <br><br>
                                                         terkait verifikasi yang kami lakukan (sebutkan waktu; misal kemarin), apakah bapak/ibu (nama pelanggan) sudah menerima pesan dari indihomenya?
-                                                        <br>
+                                                        <br><br>
                                                         Apakah ada kendala yang dirasakan, bapak/ibu (nama pelanggan)
-                                                        <br>
+                                                        <br><br>
                                                         pesan yang kami kirimkan dari IndiHome ini isinya berupa link, (apabila sudah) Silakan klik link tersebut sebagai sebagai bentuk approval/persetujuan bahwa data yang ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI.
                                                         <br><br>
                                                         Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan.
