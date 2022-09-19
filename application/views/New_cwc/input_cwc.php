@@ -537,7 +537,7 @@
                                                         <br><br>
                                                         Kedepannya Bapak/Ibu (nama pelanggan) lebih berkenan kami hubungi kembali melalu Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
                                                         <br><br>
-                                                        Untuk mempermudah mendapat informasi terkait produk/promo, maaf bapak/ibu (nama pelanggan), apakah bapak/ibu aktif menggunakan media ssosial seperti facebook, instagram, dan twitter? 
+                                                        Untuk mempermudah mendapat informasi terkait produk/promo, maaf bapak/ibu (nama pelanggan), apakah bapak/ibu aktif menggunakan media sosial seperti facebook, instagram, dan twitter? 
                                                         <br><br>
                                                         Boleh disebutkan nama akun bapak/ibu? ((agent menyebutkan ulang nama akun lalu spelling)
                                                     </label>
@@ -641,7 +641,7 @@
                                                     <h6>KODE VERIFIKASI & KONFIRMASI</h6>
                                                     <br>
                                                     <label>
-                                                        "Baik terima kasih Bapak/Ibu datanya sudah lengkap, <strong>perihal perubahan/penambahan pada (no hp/whatsapps/email)</strong> sudah kami perbarui dan sebagai bentuk verifikasinya, kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima pesan dari IndiHome?
+                                                        Baik terima kasih Bapak/Ibu datanya sudah lengkap, <strong>perihal perubahan/penambahan pada (no hp/whatsapps/email)</strong> sudah kami perbarui dan sebagai bentuk verifikasinya, kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima pesan dari IndiHome?
                                                         <br><br>
                                                         <strong>Jika pelanggan infokan sudah masuk
                                                         <br>
