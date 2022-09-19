@@ -252,12 +252,4 @@ class Analisa extends CI_Controller
     $view = 'Analisa/analisa_data_cabut';
     // $this->template->load($view, $data);
   }
-  public function upload_data_aktif(){
-    $data=array();
-    $view = 'Analisa/analisa_data_aktif';
-    $this->template->load($view, $data);
-  } 
-  public function proses_data_aktif(){
-    
-  }
 }

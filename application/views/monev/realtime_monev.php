@@ -361,7 +361,7 @@
                                                         $dateax2 = new DateTime(date('Y-m-d H:i:s'));
 
                                                         $diffax2 = $dateax2->getTimestamp() - $dateax->getTimestamp();
-                                                        echo '<span class="status-icon bg-warning"></span> ' . $dtl . " : " . date('i:s', $diffax2);
+                                                        echo '<span class="status-icon bg-warning"></span> ' . $dtl." : ".date('i:s',$diffax2);
                                                         $aux = true;
                                                     }
                                                     // if(count($aux_all_status[$ag->agentid]) > 0){
@@ -487,8 +487,8 @@
             success: function(response) {
                 $.each(response.oncall, function(key, val) {
                     $("#available_" + key).text(val);
-                    $("#dot_" + key).attr("class", 'status-icon  bg-success');
-
+                    $("#dot_" + key).attr("class",'status-icon  bg-success');
+                   
                 });
                 $("#avaliable").text(response.aval_num);
                 $("#oncall").text(response.oncall_num);
@@ -505,9 +505,6 @@
 
     $(document).ready(function() {
         get_inbox();
-        setInterval(function() {
-            window.location.reload();
-        }, 30000);
 
 
 

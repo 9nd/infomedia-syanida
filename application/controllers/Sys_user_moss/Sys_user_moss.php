@@ -16,7 +16,7 @@ class Sys_user_moss extends CI_Controller {
 
 	public function index(){
 		$data = array(
-			'title_page_big'		=> 'DAFTAR',
+			'title_page_big'		=> 'Agent MOSS Period Setup',
 			'title'					=> $this->title,
 			'link_refresh_table'	=> site_url().'Sys_user_moss/Sys_user_moss/refresh_table/'.$this->_token,
 			'link_create'			=> site_url().'Sys_user_moss/Sys_user_moss/create',

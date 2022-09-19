@@ -49,7 +49,12 @@ class T_absensi_model extends CI_Model {
 		$q =  json_decode($this->datatables->generate(),true);
 		return $q;
 	}
-	
+
+   function live_query($query)
+	{
+		$query = $this->db->query($query);
+		return $query;
+	}
 
    public function get_all(){
 		$afield = array(

@@ -1,0 +1,119 @@
+ <div class='box-body table-responsive' id='box-table'>
+            <small>
+            <table class='timecard display responsive nowrap' id="report_table_reg" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama QA</th>
+                                <th>Nama Agent</th>
+                                <th style="background-color: red; color: white;">No PSTN</th>
+                                <th style="background-color: red; color: white;">Dial To</th>
+                                <th style="background-color: red; color: white;">No Handphone</th>
+                                <th style="background-color: red; color: white;">Email</th>
+                                <th style="background-color: red; color: white;">Alamat Lengkap</th>
+                                <th style="background-color: red; color: white;">Opsi Chanel</th>
+                                <th style="background-color: yellow;">Nama Pelanggan</th>
+                                <th style="background-color: yellow;">Alamat</th>
+                                <th style="background-color: yellow;">Kecepatan</th>
+                                <th style="background-color: yellow;">Tagihan</th>
+                                <th style="background-color: yellow;">Tahun Pasang</th>
+                                <th style="background-color: yellow;">Tempat Pembayaran</th>
+                                <th>Kode Verifikasi</th>
+                                <th>Keterangan</th>
+                                <th>Reason QA</th>
+                                <th>Status QA</th>
+                                <th>AHT >3 Menit</th>
+                                <th>Durasi</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $n = 1;
+                            foreach ($data_tapping  as $datana) {
+
+                                $start = $_GET['start'];
+                                $end = $_GET['end'];
+                                // $jmldataagree = $controller->db->query("SELECT * FROM qc WHERE agentid = '$datana->agentid' AND (DATE(lup) BETWEEN '$start' AND '$end')")->num_rows();
+                                // $jmldatavalid = $controller->db->query("SELECT * FROM qc WHERE agentid = '$datana->agentid' AND status_approve = 1 AND (DATE(lup) BETWEEN '$start' AND '$end')")->num_rows();
+                                // $jmldatainvalid = $controller->db->query("SELECT * FROM qc WHERE agentid = '$datana->agentid' AND status_approve = 0 AND (DATE(lup) BETWEEN '$start' AND '$end')")->num_rows();
+                                // if ($jmldataagree > 0)
+                                {
+                            ?>
+                            <tr>
+                                <td><?php echo $n; ?></td>
+                                <td><?php
+                                            $idqc = $datana->id_qc;
+                                            $queryqc = $controller->db->query("SELECT nmuser FROM sys_user WHERE id = '$idqc'")->row();
+                                            echo $queryqc->nmuser;
+                                            ?></td>
+                                <td><?php echo $datana->nama_agent; ?></td>
+                                <td><?php echo $datana->pstn1; ?></td>
+                                <td><?php
+                                            $agent = $datana->agentid;
+                                            $ncli = $datana->ncli;
+                                            $pstn1 = $datana->pstn1;
+                                            $query =  $controller->db->query("SELECT veri_keterangan FROM trans_profiling_last_month WHERE veri_upd = '$agent' AND ncli = '$ncli' AND pstn1 = '$pstn1' ")->row();
+                                            echo $query->veri_keterangan;
+                                            ?></td>
+                                <td><?php echo $datana->handphone; ?></td>
+                                <td><?php echo $datana->email; ?></td>
+                                <td><?php echo $datana->alamat; ?></td>
+                                <td><?php 
+                                        $opsi = $datana->opsi_call; 
+                                        if($opsi == 1){
+                                            echo "Telepon Rumah";
+                                        }elseif($opsi == 2){
+                                            echo "Handphone";
+                                        }elseif($opsi == 3){
+                                            echo "Email";
+                                        }elseif($opsi == 4){
+                                            echo "Chat";
+                                        }else{
+                                            echo "0";
+                                        }
+                                        
+                                        ?></td>
+                                <td><?php echo $datana->validate_1; ?></td>
+                                <td><?php echo $datana->validate_2; ?></td>
+                                <td><?php echo $datana->kec_speedy; ?></td>
+                                <td><?php echo $datana->validate_4; ?></td>
+                                <td><?php echo $datana->validate_5; ?></td>
+                                <td><?php echo $datana->validate_6; ?></td>
+                                <td><?php echo $datana->veri_system_qc; ?></td>
+                                <td><?php echo $datana->keterangan_qc; ?></td>
+                                <td><?php 
+                                        $reasonqa = $datana->reason_qa;
+                                        $queryreasonqa = $controller->db->query("SELECT * FROM t_reason_qa WHERE id = '$reasonqa'")->row();
+                                            echo $queryreasonqa->reason_qa;
+                                        ?></td>
+                                <td>
+                                    <?php
+                                            $statusapp = $datana->status_approve;
+                                            if ($statusapp == 0) {
+                                                echo "Not Approved";
+                                            } elseif ($statusapp == 1) {
+                                                echo "Approved";
+                                            } else {
+                                                echo "-";
+                                            }
+                                            ?>
+                                </td>
+                                <td><?php echo $datana->aht_qc; ?></td>
+                                <td><?php echo $datana->durasi_qc; ?></td>
+                                <td><?php echo $datana->note_qc; ?></td>
+
+                            </tr>
+
+                            <?php
+                                    $n++;
+                                }
+                            }
+                            ?>
+
+
+
+                        </tbody>
+                    </table>
+            </small>
+        </div>

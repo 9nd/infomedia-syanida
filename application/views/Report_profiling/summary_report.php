@@ -211,11 +211,11 @@
                                     <?php
                                     if ($status_call['num'] > 0) {
                                         foreach ($status_call['results'] as $row) {
-                                            $selected = "";
-                                            if ($row->id_reason == 13) {
-                                                $selected = "selected";
+                                            $selected="";
+                                            if($row->id_reason == 13){
+                                                $selected="selected";
                                             }
-                                            echo "<option value='" . $row->id_reason . "' " . $selected . ">" . $row->nama_reason . "</option>";
+                                            echo "<option value='" . $row->id_reason . "' ".$selected.">" . $row->nama_reason . "</option>";
                                         }
                                     }
                                     ?>
@@ -317,7 +317,6 @@
     <script type="text/javascript">
         ////////////////////////////////// status Stats Chart /////////////////////////////
         var primarycolor = getComputedStyle(document.body).getPropertyValue('--primarycolor');
-
         function get_status() {
             var filter_condition = $("#condition").val();
             var veri_call = $("#veri_call").val();

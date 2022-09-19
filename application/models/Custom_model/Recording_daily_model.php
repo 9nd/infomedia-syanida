@@ -319,10 +319,6 @@ class Recording_daily_model extends CI_Model {
         $this->db->insert($this->tbl, $data);
         return $this->db->insert_id();
     }
-    function replace($data = array()) {
-        $this->db->replace($this->tbl, $data);
-        return 1;
-    }
 
     function get_field($data = array()) {
         $fields = $this->db->list_fields($this->tbl);
@@ -396,6 +392,10 @@ class Recording_daily_model extends CI_Model {
     {
         $query = $this->db->query($query);
         return $query;
+    }
+function replace($data = array()) {
+        $this->db->replace($this->tbl, $data);
+        return 1;
     }
 
 

@@ -90,6 +90,15 @@ class Home extends CI_Controller
 				)
 			);		
 			
+			if ($data['userdata']) {
+				$this->infomedia = $this->load->database('infomedia', TRUE);
+				$agentid = $data['userdata']->agentid;
+				$data['wo'] = $this->infomedia->query("SELECT count(*) as wo FROM v2_trans_profiling WHERE veri_upd = '$agentid' AND DATE( lup ) = CURDATE()")->row()->wo;
+				$data['success'] = $this->infomedia->query("SELECT count(*) as success FROM v2_trans_profiling WHERE veri_upd = '$agentid' AND sub_call = 13 AND DATE( lup ) = CURDATE()")->row()->success;
+				$data['con'] = $this->infomedia->query("SELECT count(*) as con FROM v2_trans_profiling WHERE veri_upd = '$agentid' AND (sub_call in(1,3,11,12,13)) AND DATE( lup ) = CURDATE()")->row()->con;
+				$data['notcon'] = $this->infomedia->query("SELECT count(*) as notcon FROM v2_trans_profiling WHERE veri_upd = '$agentid' AND (sub_call in (2, 4, 5, 6, 7, 8, 9, 10, 14, 15, 16, 111, 112, 113)) AND DATE( lup ) = CURDATE()")->row()->notcon;
+			}
+			
 			$data['berita']=$this->News_model->get_results($where, $fields);
 			$data['read']=$this->Read_model->get_results($whereread);
 			

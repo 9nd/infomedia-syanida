@@ -11,7 +11,7 @@ class T_absensi_config {
 	   /* title */
 	    $this->general		= new General_title();
 		$this->t_absensi_id	= 'ID';
-		$this->t_absensi_nama	= 'NAMA';
+		$this->t_absensi_nama	= 'NAME';
 		$this->t_absensi_nik	= 'NIK';
 		$this->t_absensi_stts	= 'STATUS';
 		$this->t_absensi_waktu_in	= 'DATE';
@@ -28,7 +28,7 @@ class T_absensi_config {
 		$this->nikagent_picture	= 'NIKAGENT_PICTURE';
 		$this->nikagent_nama	= 'NIKAGENT_NAMA';
 		$this->nikagent_agentid	= 'NIKAGENT_AGENTID';
-		$this->nikagent_kategori	= 'KATEGORI';
+		$this->nikagent_kategori	= 'CATEGORY';
 		$this->nikagent_tl	= 'TL';
 		$this->nikagent_nik_absensi	= 'NIK_ABSENSI';
 		$this->statusagent_id	= 'STATUSAGENT_ID';

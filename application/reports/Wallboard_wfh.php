@@ -89,13 +89,13 @@ class Wallboard_wfh extends \koolreport\KoolReport
             ->query("Select agentid from sys_user_moss where periode_start>='" . date('Y-m-d') . "' AND periode_end<='" . date('Y-m-d') . "' ")
             ->pipe($this->dataStore("agent_moss_avaliable"));
         $this->src('infomedia_app')
-            ->query("Select sys_user.agentid,t_absensi.methode from t_absensi JOIN sys_user ON sys_user.nik_absensi=t_absensi.nik where DATE(t_absensi.waktu_in)='" . date('Y-m-d') . "' AND t_absensi.stts='in' AND tl!='-'")
+            ->query("Select sys_user.agentid from t_absensi JOIN sys_user ON sys_user.nik_absensi=t_absensi.nik where DATE(t_absensi.waktu_in)='" . date('Y-m-d') . "' AND t_absensi.stts='in' AND tl!='-'")
             ->pipe($this->dataStore("activity_login"));
         $this->src('infomedia_app')
-            ->query("Select sys_user.agentid,t_absensi.methode from t_absensi JOIN sys_user ON sys_user.nik_absensi=t_absensi.nik where DATE(t_absensi.waktu_in)='" . date('Y-m-d') . "' AND TIME(t_absensi.waktu_in) >= '09:00:00' AND t_absensi.stts='out' AND tl!='-'")
+            ->query("Select sys_user.agentid from t_absensi JOIN sys_user ON sys_user.nik_absensi=t_absensi.nik where DATE(t_absensi.waktu_in)='" . date('Y-m-d') . "' AND t_absensi.stts='out' AND tl!='-'")
             ->pipe($this->dataStore("activity_logout"));
         $this->src('infomedia_app')
-            ->query("Select sys_user_log_in_out.agentid,sys_user.nama,TIMESTAMPDIFF(SECOND,sys_user_log_in_out.login_time,CURRENT_TIMESTAMP) AS aux from sys_user_log_in_out JOIN sys_user ON sys_user.id = sys_user_log_in_out.id_user where DATE(sys_user_log_in_out.login_time)='" . date('Y-m-d') . "' AND sys_user_log_in_out.ket != '' AND ISNULL(sys_user_log_in_out.logout_time) GROUP BY sys_user_log_in_out.agentid ORDER BY sys_user_log_in_out.id DESC ")
+            ->query("Select agentid from sys_user_log_in_out where DATE(login_time)='" . date('Y-m-d') . "' AND ket != '' AND ISNULL(logout_time) GROUP BY agentid ORDER BY id DESC ")
             ->pipe($this->dataStore("activity_aux"));
         // $this->src('profiling')
         //     ->query("SELECT count(*) as num_wo FROM dbprofile_validate_forcall_3p WHERE (update_by IS NOT NULL AND update_by != 'BARU' AND update_by != 'baru' AND update_by != '' ) AND ISNULL(lup)")

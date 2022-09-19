@@ -23,8 +23,8 @@ class Mizu extends CI_Controller
     $this->load->model('Custom_model/Sys_user_table_model', 'Sys_user_table_model');
     $this->load->model('Custom_model/T_handle_time_model', 'T_handle_time_model');
     $this->load->model('Custom_model/Custom_model', 'Custom_model');
-    // $this->infomedia = $this->load->database('infomedia', TRUE);
-    $this->infomedia = $this->load->database('default', TRUE);
+    $this->infomedia = $this->load->database('infomedia', TRUE);
+    // $this->infomedia = $this->load->database('default', TRUE);
   }
   public function index()
   {

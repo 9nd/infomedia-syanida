@@ -1,4 +1,4 @@
-<div class="card " id="element_form">
+<div class="card ">
     <div class="card-status bg-green"></div>
     <div class="card-header">
         <h3 class="card-title">Form Call Work Code</h3>
@@ -685,7 +685,6 @@
 
 <script src="<?php echo base_url() ?>assets/js/mailcheck.js"></script>
 <script>
-    
     $("#closet").click(function() {
         $('[name=kategori_call]').val(0);
         $('[name=veri_status]').val(2);

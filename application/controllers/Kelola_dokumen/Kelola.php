@@ -18,7 +18,7 @@ class Kelola extends CI_Controller
 		// $obj  = json_decode($json);
 		$data = array(
 			'title' => 'KELOLA DATA',
-			'isi' => 'kelola_dokumen/v_kelola',
+			'isi' => 'Kelola_dokumen/v_kelola',
 			// 'list_data' => $obj
 		);
 
@@ -32,7 +32,7 @@ class Kelola extends CI_Controller
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
 		if ($this->form_validation->run() == TRUE) {
-			$config['upload_path']          = './file/';
+			$config['upload_path']          = './images/upload_files/file/';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg|docx|pdf|xlsx';
 			$config['max_size']             = 50000;
 			$this->load->library('upload', $config);
@@ -40,13 +40,14 @@ class Kelola extends CI_Controller
 			if (!$this->upload->do_upload('dokumen')) {
 				$data = array(
 					'title' => 'TAMBAH DATA',
-					'isi' => 'kelola_dokumen/v_tambah',
+					'isi' => 'Kelola_dokumen/v_tambah',
 				);
+				// echo "alert('test')";
 				$this->template->load('Kelola_dokumen/v_tambah', $data, FALSE);
 			} else {
 				$upload_data = array('uploads' => $this->upload->data());
 				$config['image_library'] = 'gd2';
-				$config['source_image'] = './file/' . $upload_data['uploads']['file_name'];
+				$config['source_image'] = './images/upload_files/file/' . $upload_data['uploads']['file_name'];
 				$this->load->library('image_lib', $config);
 				$data = array(
 					'dokumen' => $upload_data['uploads']['file_name'],
@@ -55,14 +56,16 @@ class Kelola extends CI_Controller
 				);
 				$this->M_kelola_dokumen->insert_data($data);
 				$this->session->set_flashdata('flash', 'Ditambahkan');
-				redirect('kelola_dokumen/kelola');
+				redirect('Kelola_dokumen/kelola');
+				// echo "alert('tes1')";
 			}
 		}
 		$data = array(
 			'title' => 'TAMBAH DATA',
-			'isi' => 'kelola_dokumen/v_tambah',
+			'isi' => 'Kelola_dokumen/v_tambah',
 		);
 		$this->template->load('Kelola_dokumen/v_tambah', $data, FALSE);
+		// echo "alert('tests2')";
 	}
 
 	public function edit($id)
@@ -71,7 +74,7 @@ class Kelola extends CI_Controller
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
 		if ($this->form_validation->run() == TRUE) {
-			$config['upload_path']          = './file/';
+			$config['upload_path']          = './images/upload_files/file/';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg|docx|pdf|xlsx';
 			$config['max_size']             = 50000;
 			$this->load->library('upload', $config);
@@ -86,7 +89,7 @@ class Kelola extends CI_Controller
 			} else {
 				$upload_data = array('uploads' => $this->upload->data());
 				$config['image_library'] = 'gd2';
-				$config['source_image'] = './file/' . $upload_data['uploads']['file_name'];
+				$config['source_image'] = './images/upload_files/file/' . $upload_data['uploads']['file_name'];
 				$this->load->library('image_lib', $config);
 				$data = array(
 					'id' => $id,
@@ -112,13 +115,13 @@ class Kelola extends CI_Controller
 
 		$this->M_kelola_dokumen->delete_data($id);
 		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('kelola_dokumen/kelola');
+		redirect('Kelola_dokumen/Kelola');
 	}
 
 	public function download()
 	{
 		$dokumen = $_GET['dokumen'];
-		$pth    =   file_get_contents(base_url() . "file/" . $dokumen);
+		$pth    =   file_get_contents(base_url() . "./images/upload_files/file/" . $dokumen);
 		force_download($dokumen, $pth);
 	}
 }

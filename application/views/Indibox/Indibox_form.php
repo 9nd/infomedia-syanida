@@ -62,6 +62,8 @@
 				</option>
 				<option value="IndiBox">IndiBox</option>
 				<option value="Belanja.Com">Belanja.Com</option>
+				<option value="IndiBox by landing page">IndiBox by landing page</option>
+
 
 			</select>
 		</div>

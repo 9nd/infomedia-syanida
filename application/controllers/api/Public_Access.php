@@ -591,15 +591,68 @@ class Public_Access extends CI_Controller
 		a.ncli,
 		a.no_speedy,
 		a.no_handpone,
-		a.layansan,
+		a.layanan,
+		a.reason_call as kode_reason,
 		b.nama_reason,
 		a.lup as time_updateagent
 		FROM db_profiling.trans_profiling_validasi_mos a
 		INNER JOIN infomedia_app.status_call b ON a.reason_call = b.id
-		WHERE a.ncli='$ncli' and a.no_speedy='$nointernet' and no_handpone='$handphone' and a.tgl_insert='$no_tanggal' and a.layanan='$sumber'")->row();
-		if ($get_data) {
+		WHERE 
+		a.ncli='$ncli' and a.no_speedy='$nointernet' and no_handpone='$handphone' and a.tgl_insert='$no_tanggal' and a.layanan='$sumber'")->row();
+		if (!$get_data) {
 			$get_data = "no data";
 		}
-		echo $get_data;
+		echo json_encode($get_data);
+		
+	}
+	public function cari_kontak()
+	{
+		$this->infomedia = $this->load->database('infomedia', TRUE);
+		
+		$nointernet = $_POST['nointernet'];
+		
+		$get_data = $this->infomedia->query("SELECT no_handpone, email, nama_pelanggan, no_pstn
+		FROM db_profiling.trans_profiling_verifikasi
+		WHERE 
+		no_speedy='$nointernet' limit 5")->result();
+		
+		echo json_encode($get_data);
+		
+	}
+
+	public function cari_kontak_moss_bynd()
+	{
+		$this->infomedia = $this->load->database('infomedia', TRUE);
+		
+		$nointernet = $_POST['nointernet'];
+		
+		$get_data = $this->infomedia->query("SELECT no_handpone, email, nama_pelanggan, no_pstn
+		FROM db_profiling.trans_profiling_validasi_mos
+		WHERE 
+		no_speedy='$nointernet' limit 5")->result();
+		
+		if (!$get_data) {
+			$get_data = "no data";
+		}
+		echo json_encode($get_data);
+		
+	}
+
+	public function cari_kontak_indipass()
+	{
+		$this->infomedia = $this->load->database('dwh', TRUE);
+		
+		$nointernet = $_POST['nointernet'];
+		
+		$get_data = $this->infomedia->query("SELECT msisdn, email, ncli, nd
+		FROM transaction_log
+		WHERE 
+		nd='$nointernet' limit 5")->result();
+		
+		if (!$get_data) {
+			$get_data = "no data";
+		}
+		echo json_encode($get_data);
+		
 	}
 }

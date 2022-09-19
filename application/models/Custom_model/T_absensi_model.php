@@ -328,10 +328,11 @@ class T_absensi_model extends CI_Model {
         $result = $query->result();
         return $result[0]->num;
     }
-
-    function live_query($query)
+function live_query($query)
     {
         $query = $this->db->query($query);
         return $query;
     }
+
+
 };

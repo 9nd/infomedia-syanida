@@ -27,7 +27,7 @@ class Sys_user_moss_config {
 		$this->agentid_tl	= 'TL';
 		$this->agentid_nik_absensi	= 'NIK_ABSENSI';
 		$this->shift_id	= 'SHIFT_ID';
-		$this->shift_keterangan	= 'KETERANGAN';
+		$this->shift_keterangan	= 'SHIFT';
 
 		
 		

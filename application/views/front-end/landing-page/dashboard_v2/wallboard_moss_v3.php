@@ -167,6 +167,18 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                     VERIFIED
                                                 </div>
                                             </div>
+                                            <div class="d-flex mt-3">
+                                                <div class="border-0 outline-badge-info  w-50 p-2 rounded text-center">
+                                                    <span class="h6 mb-0" id="hp_email_rate">- %</span><br>
+                                                    <span class="h6 mb-0" id="hp_email">-</span>
+                                                    <br>HP+EMAIL
+                                                </div>
+                                                <div class="border-0 outline-badge-warning w-50 p-2 rounded ml-2 text-center">
+                                                    <span class="h6 mb-0" id="hp_only_rate">- %</span><br>
+                                                    <span class="h6 mb-0" id="hp_only">-</span>
+                                                    <br>HP ONLY
+                                                </div>
+                                            </div>
                                             <div class="d-flex  mt-4">
                                                 <div class="media-body align-self-center ">
                                                     <span class="mb-0 h6 font-w-600">CONVERTION RATE</span><br>
@@ -323,20 +335,47 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                         <div class="col-4  mt-3">
                             <div class="card bg-primary text-white h-10">
                                 <div class="card-body text-center p-1 d-flex">
-                                    <div class="align-self-top text-center w-100">
-                                        <h6 class="card-title mt-2">AGENT ONLINE</h6>
-                                        <span class="h4"><?php echo $cache_monev_realtime['aval_num']; ?></span>
-                                    </div>
+                                    <table width="100%">
+                                        <tr>
+                                            <td rowspan="2">
+                                                <div class="align-self-top text-center w-100">
+                                                    <h6 class="card-title mt-2">AGENT ONLINE</h6>
+                                                    <span class="h4">1</span>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <div class="align-self-top text-center w-100">
+                                                    <h8>WFH : 1</h8>
+
+
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="align-self-top text-center w-100">
+                                                    <h8>WFO : 0
+
+                                                    </h8>
+
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="d-flex mt-3">
                                     <div class="border-0 outline-badge-danger w-50 p-1 rounded text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['aux_num']; ?></span><br>
+                                        <span class="mb-0">0</span><br>
                                         Lunch
                                     </div>
                                     <div class="border-0 outline-badge-danger w-50 p-1 rounded ml-2 text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['idle_num']; ?></span><br>
+                                        <span class="mb-0">0</span><br>
                                         Idle
                                     </div>
                                 </div>
@@ -344,11 +383,11 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                             <div class="col-12">
                                 <div class="d-flex mt-3">
                                     <div class="border-0 outline-badge-danger w-50 p-1 rounded text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['toilet']; ?></span><br>
+                                        <span class="mb-0"0</span><br>
                                         Toilet
                                     </div>
                                     <div class="border-0 outline-badge-danger w-50 p-1 rounded ml-2 text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['pray']; ?></span><br>
+                                        <span class="mb-0">0</span><br>
                                         Pray
                                     </div>
                                 </div>
@@ -476,13 +515,12 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                 success: function(response) {
 
                     $.each(response.agent, function(key, val) {
-                        // $("#agent_" + key + "_foto").text(val.nama);
                         $("#agent_" + key + "_nama").text(val.nama);
                         $("#agent_" + key + "_num").text("SLG " + val.num);
-                        $("#agent_" + key + "_foto").attr("style", "background-image:'<?php echo base_url() . "YbsService/get_foto_agent/" ?>" + val.picture + "'");
+ 			$("#agent_" + key + "_foto").attr("style", "background-image:'<?php echo base_url() . "YbsService/get_foto_agent/" ?>" + val.picture + "'");
                         $("#agent_" + key + "_foto").attr("src", "<?php echo base_url() . "YbsService/get_foto_agent/" ?>" + val.picture);
 
-                        // document.getElementById("agent_" + key + "_foto").style.backgroundImage = "url('<?php echo base_url() . "YbsService/get_foto_agent/" ?>" + val.picture + "')";
+                        ///document.getElementById("agent_" + key + "_foto").style.backgroundImage = "url('<?php echo base_url() . "YbsService/get_foto_agent/" ?>" + val.picture + "')";
                     });
 
                 },
@@ -516,6 +554,10 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                     $("#verified_mos").text(response.status_13);
                     $("#notconnected_mos").text(response.uncontacted);
                     $("#convention_rate").text(response.convention_rate + "%");
+                    $("#hp_email").text(response.hp_email);
+                    $("#hp_email_rate").text(response.hp_email_rate);
+                    $("#hp_only").text(response.hp_only);
+                    $("#hp_only_rate").text(response.hp_only_rate);
                     $("#1_mos").text(response.status_1);
                     $("#2_mos").text(response.status_2);
                     $("#3_mos").text(response.status_3);

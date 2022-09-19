@@ -172,7 +172,7 @@ extends CI_Controller
                 $opsi['opsi_2'] = count($this->filter_by_value($data_agent, 'opsi_call', '2')) + $opsi['opsi_2'];
                 $opsi['opsi_3'] = count($this->filter_by_value($data_agent, 'opsi_call', '3')) + $opsi['opsi_3'];
                 $opsi['opsi_4'] = count($this->filter_by_value($data_agent, 'opsi_call', '4')) + $opsi['opsi_4'];
-                $opsi['opsi_5'] = count($this->filter_by_value($data_agent, 'opsi_call', '5')) + $opsi['opsi_5'];
+				 $opsi['opsi_5'] = count($this->filter_by_value($data_agent, 'opsi_call', '5')) + $opsi['opsi_5'];
                 $rating_ag[$ag->agentid] = count($verified);
                 $best_agent[$ag->agentid]['val'] = count($verified);
                 $best_agent[$ag->agentid]['numna'] = count($verified) . " Verified";
@@ -301,7 +301,7 @@ extends CI_Controller
         $opsi['opsi_2'] = number_format((($opsi['opsi_2'] / $opsi['total']) * 100), 2) . "%";
         $opsi['opsi_3'] = number_format((($opsi['opsi_3'] / $opsi['total']) * 100), 2) . "%";
         $opsi['opsi_4'] = number_format((($opsi['opsi_4'] / $opsi['total']) * 100), 2) . "%";
-        $opsi['opsi_5'] = number_format((($opsi['opsi_5'] / $opsi['total']) * 100), 2) . "%";
+		$opsi['opsi_5'] = number_format((($opsi['opsi_5'] / $opsi['total']) * 100), 2) . "%";
         $total['opsi'] = $opsi;
 
         arsort($rating_ag);
@@ -966,6 +966,12 @@ extends CI_Controller
                 $sub_total_uncontacted = $status_16 + $status_15 + $status_8 + $status_9 + $status_4 + $status_7 + $status_10 + $status_14 + $status_2;
                 $total['contacted'] = $total['contacted'] + $sub_total_contacted;
                 $total['uncontacted'] = $total['uncontacted'] + $sub_total_uncontacted;
+                //tambahan
+                $hp_email = $this->filter_by_hp_email_moss($verified, array("no_handpone", "email"), array("08", "@"));
+                $hp_only = $this->filter_by_hp_only_moss($verified, array("no_handpone", "email"), array("08", "@"));
+                $total['hp_email'] = $total['hp_email'] + count($hp_email);
+                $total['hp_only'] = $total['hp_only'] + count($hp_only);
+                //endtambahan
                 $total[1] = $status_1 + $total[1];
                 $total[2] = $status_2 + $total[2];
                 $total[3] = $status_3 + $total[3];
@@ -1024,6 +1030,15 @@ extends CI_Controller
             'not_15' => "Cabut",
             'not_2' => "RNA"
         );
+
+
+        //emailonly hp email
+        $total['hp_email'] = number_format($total['hp_email']);
+        $total['hp_only'] = number_format($total['hp_only']);
+        $total['hp_email_rate'] = number_format((($total['hp_email'] / $total['13']) * 100), 2)." %";
+        $total['hp_only_rate'] = number_format((($total['hp_only'] / $total['13']) * 100), 2)." %";
+
+
         $rating_not = array_slice($value_not, 0, 3);
         $rt = 0;
         $rate3 = 0;
@@ -1358,14 +1373,14 @@ pstn1 LIKE '0986%' OR pstn1 LIKE '17%'))");
         if ($_GET['start']) {
             $query_trans_profiling_verifikasi = $this->trans_profiling_verifikasi->live_query(
                 "SELECT  update_by,no_handpone,email,reason_call,TIMESTAMPDIFF(SECOND, tgl_insert, lup) as slg,TIMESTAMPDIFF(SECOND, tgl_insert, click_time) as slfc  FROM trans_profiling_validasi_mos 
-                 WHERE DATE_FORMAT(tgl_insert ,'%Y-%m-%d') >= '$start' AND DATE_FORMAT(tgl_insert ,'%Y-%m-%d') <= '$end'
+                 WHERE SUMBER <> 'TVV'  AND DATE_FORMAT(tgl_insert ,'%Y-%m-%d') >= '$start' AND DATE_FORMAT(tgl_insert ,'%Y-%m-%d') <= '$end'
                 "
             );
         } else {
             $start = date('Y-m-d');
             $query_trans_profiling_verifikasi = $this->trans_profiling_verifikasi->live_query(
                 "SELECT  update_by,no_handpone,email,reason_call,TIMESTAMPDIFF(SECOND, tgl_insert, lup) as slg,TIMESTAMPDIFF(SECOND, tgl_insert, click_time) as slfc  FROM trans_profiling_validasi_mos 
-                 WHERE DATE_FORMAT(tgl_insert ,'%Y-%m-%d') = '$start' 
+                 WHERE SUMBER <> 'TVV' AND DATE_FORMAT(tgl_insert ,'%Y-%m-%d') = '$start' 
                 "
             );
         }
@@ -1792,6 +1807,38 @@ pstn1 LIKE '0986%' OR pstn1 LIKE '17%'))");
         }
         return $newarray;
     }
+    function filter_by_hp_email_moss($array, $index, $value)
+    {
+        if (is_array($array) && count($array) > 0) {
+            foreach (array_keys($array) as $key) {
+                if (is_array($index) && count($index) > 0) {
+                    $email = 0;
+                    $handphone = 0;
+                    foreach ($index as $idx => $idv) {
+                        $temp[$key] = $array[$key][$idv];
+
+                        if ($idv == "email") {
+                            if (stripos($temp[$key], $value[$idx]) !== false) {
+                                // if (stripos($temp[$key], $value[$idx]) !== true) {
+                                $email = 1;
+                            }
+                        }
+                        if ($idv == "no_handpone") {
+                            if (stripos($temp[$key], $value[$idx]) !== false) {
+                                // if (stripos($temp[$key], $value[$idx]) !== true) {
+
+                                $handphone = 1;
+                            }
+                        }
+                        if ($email == 1 && $handphone == 1) {
+                            $newarray[$key] = $array[$key];
+                        }
+                    }
+                }
+            }
+        }
+        return $newarray;
+    }
     function filter_by_hp_only($array, $index, $value)
     {
         if (is_array($array) && count($array) > 0) {
@@ -1809,6 +1856,38 @@ pstn1 LIKE '0986%' OR pstn1 LIKE '17%'))");
                             }
                         }
                         if ($idv == "handphone") {
+                            if (stripos($temp[$key], $value[$idx]) !== false) {
+                                // if (stripos($temp[$key], $value[$idx]) !== true) {
+
+                                $handphone = 1;
+                            }
+                        }
+                        if ($email == 1 && $handphone == 1) {
+                            $newarray[$key] = $array[$key];
+                        }
+                    }
+                }
+            }
+        }
+        return $newarray;
+    }
+    function filter_by_hp_only_moss($array, $index, $value)
+    {
+        if (is_array($array) && count($array) > 0) {
+            foreach (array_keys($array) as $key) {
+                if (is_array($index) && count($index) > 0) {
+                    $email = 0;
+                    $handphone = 0;
+                    foreach ($index as $idx => $idv) {
+                        $temp[$key] = $array[$key][$idv];
+
+                        if ($idv == "email") {
+                            if ($temp[$key] == '') {
+                                // if (stripos($temp[$key], $value[$idx]) !== true) {
+                                $email = 1;
+                            }
+                        }
+                        if ($idv == "no_handpone") {
                             if (stripos($temp[$key], $value[$idx]) !== false) {
                                 // if (stripos($temp[$key], $value[$idx]) !== true) {
 

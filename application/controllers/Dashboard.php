@@ -23,13 +23,6 @@ class Dashboard extends CI_Controller
     $this->load->model('Custom_model/Sys_user_table_model', 'Sys_user_table_model');
     $this->load->model('sys/Sys_user_log_model', 'log_login');
   }
-  function get_sshcode(){
-    echo sha1('INFOMEDIA#sms_telkom#12312321341#Telkom147#NUSANTARA');
-  }
-  function get_hascode2(){
-    $hash=sha1('INFOMEDIA#123123213#NUSANTARA');
-    echo $hash;
-  }
 
   // public function index()
   // {

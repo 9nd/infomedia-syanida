@@ -1,51 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- START: Head-->
 
 <head>
-    <meta http-equiv="refresh" content="300">
-    <meta charset="UTF-8">
-    <title>Profiling - WALLBOARD</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <!-- START: Template CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/flags-icon/css/flag-icon.min.css">
-    <!-- END Template CSS-->
+    <title>Profiling - WALLBOARD</title>
+    <script src="<?php echo base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
+    <script>
+        var data_token = "<?php echo  $this->_token ?>";
+        var sec_val = "<?php echo $this->security->get_csrf_token_name() . "=" . $this->security->get_csrf_hash() ?>&";
+        var xax = "<?php echo $fparent ?>"
+    </script>
 
-    <!-- START: Page CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.css">
-    <!-- END: Page CSS-->
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/ybs.css" />
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/fonts/fw/css/font-awesome.min.css">
 
-    <!-- START: Page CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/morris/morris.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/weather-icons/css/pe-icon-set-weather.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/starrr/starrr.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-jvectormap/jquery-jvectormap-2.0.3.css">
-    <!-- END: Page CSS-->
-    <!-- jQuery Knob Chart -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/tabler/bower_components/Ionicons/css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/dashboard.css" />
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/toastr-master/toastr.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/ybs-slider/ybs-slider.css">
+
+    <script src="<?php echo base_url() ?>assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/vendors/jquery.sparkline.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/dashboard.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/core.js"></script>
+    <script src="<?php echo base_url() ?>assets/toastr-master/toastr.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/plugins/EnlighterJS/Build/EnlighterJS.min.css" />
+    <script type="text/javascript" src="<?php echo base_url() ?>assets/plugins/EnlighterJS/Resources/MooTools-Core-1.6.0.js"></script>
+
+
+    <script type="text/javascript" src="<?php echo base_url() ?>assets/plugins/EnlighterJS/Build/EnlighterJS.min.js"></script>
+    <meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-language="javascript" data-indent="2" data-selector-block="pre" data-selector-inline="code" />
 
     <script src="<?php echo base_url() ?>assets/js/highcharts.js"></script>
-
-    <script src="<?php echo base_url() ?>assets/js/bundle.js"></script>
+    <script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
+    <!-- jQuery Knob Chart -->
     <script src="<?php echo base_url(); ?>assets/js/plugins/jquery-knob/jquery.knob.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url() ?>assets/js/style-highcharts.js"></script>
-    <!-- START: Custom CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/css/main.css">
-    <!-- END: Custom CSS-->
-</head>
-<!-- END Head-->
 
-<!-- START: Body-->
+</head>
 <?php
-$thn = array("januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+$thn = array("jan", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 $data_lm = array(100, 80, 70, 80, 100, 80, 70, 80, 100, 80, 70, 80);
 $data_lk = array(90, 100, 80, 60, 100, 80, 70, 80, 100, 80, 70, 80);
 $data_ld = array(110, 78, 67, 90, 100, 80, 70, 80, 100, 80, 70, 80);
@@ -56,410 +60,286 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 <script type="text/javascript">
     var chart;
     var slg_chart;
-    var slfc_chart;
-</script>
+    $(document).ready(function() {
 
-<body id="main-container" class="default dark horizontal-menu">
-
-    <!-- START: Pre Loader-->
-    <div class="se-pre-con">
-        <div class="loader"></div>
-    </div>
-    <!-- END: Pre Loader-->
-
-    <!-- START: Header-->
-    <div id="header-fix" class="header fixed-top">
-        <div class="site-width">
-            <nav class="navbar navbar-expand-lg  p-0">
-                <div class="navbar-header  h-100 h4 mb-0 align-self-center logo-bar text-left">
-                    <a href="index.html" class="horizontal-logo text-left">
-                        <span class="h6 font-weight-bold align-self-center mb-0 ml-auto"><?php echo  date("h:i A", strtotime($last_update->lup)); ?></span>
-                    </a>
-                </div>
-                <div class="navbar-header h4 mb-0 text-center h-100 collapse-menu-bar">
-                    <a href="#" class="sidebarCollapse" id="collapse"><i class="icon-menu"></i></a>
-                </div>
-                <form class="float-left d-none d-lg-block search-form">
-                    <div class="form-group mb-0 position-relative">
-                        Sy-ANIDA WALLBOARD PROFILING
-                    </div>
-                </form>
-                <div class="navbar-right ml-auto h-100">
-
-                    <div class="media">
-                        <img src="<?php echo base_url(); ?>assets/new_theme/dist/images/logo2.png" alt="" class="d-flex img-fluid mt-1" width="150">
-                    </div>
-
-                </div>
-
-            </nav>
-        </div>
-    </div>
-    <!-- END: Header-->
-
-
-
-    <!-- START: Main Content-->
-    <main>
-        <div class="container-fluid site-width">
-
-            <form method="GET" action="#">
-                MONTH
-                <select name="bulan" id="bulan">
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chard_data_ajax',
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: [
                     <?php
-                    $lb = 0;
-                    for ($lb = 0; $lb <= 11; $lb++) {
-                        $n_lb = sprintf("%02d", $lb);
-                        $selected = "";
-                        if ($n_lb == $bulan) {
-                            $selected = "selected";
-                        }
-                        echo "<option value='" . $n_lb . "' " . $selected . ">" . $thn[$lb] . "</option>";
+
+                    foreach ($lap as $ta) {
+                        echo "'" . $ta . "',";
                     }
                     ?>
-                </select>
-                <button type="submit" id="filter"><i class="fa fa-search"></i></button><br>
-            </form>
-            <!-- START: Card Data-->
-            <div class="row">
+                ]
+            },
+            labels: {
+                items: [{
+                    html: '',
+                    style: {
+                        left: '40px',
+                        top: '8px',
+                        color: 'black'
+                    }
+                }]
+            },
+            series: []
+        });
 
-                <div class="col-12 col-lg-3  mt-3">
-                    <div class="card overflow-hidden">
-                        <div class="card-content">
-                            <div class="card-body p-0">
-                                <div class="row">
-                                    <div class="col-12 col-lg-12 d-block d-md-flex d-lg-block">
-                                        <div class="card rounded-0 col-12 col-md-4 col-lg-12" style='background-color:red;'>
-                                            <div class="card-body">
-                                                <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
-                                                    <i class="fas fa-address-card   card-liner-icon mt-2 text-white"></i>
-                                                    <div class='card-liner-content'>
-                                                        <h2 class="card-liner-title text-white" id="waiting">-</h2>
-                                                        <h6 class="card-liner-subtitle text-white">DATA WAITING
-                                                        </h6>
-                                                    </div>
+
+    });
+</script>
+
+<body style="background-color:#00acee;color:white;">
+    <table width="100%">
+        <tr>
+            <td width="33%">
+                <img src="<?php echo base_url('api/Public_Access/get_logo_login') ?>" class="fontlogo" alt="" width="200px">
+            </td>
+            <td width="34%" style="text-align:center;">
+                <h1>PROFILING WALLBOARD MOSS</h1>
+            </td>
+            <td width="33%" style="text-align:right;">
+                <img src="<?php echo base_url('api/Public_Access/get_logo_login') ?>" class="fontlogo" alt="" width="200px">
+            </td>
+        </tr>
+    </table>
+    <table width="100%" style="text-align:center;">
+        <tr>
+            <td width="20%" rowspan="2">
+                <div class="col-xl-12">
+                    <div class="panel panel-lte">
+                        <div class="panel-heading lte-heading-danger" style="background-color: #cd201f !important;">CALL ORDER</div>
+                        <div class="panel-body" id="mos_area">
+                            <div class='row' id="content-body" style="text-align:center;">
+                                <div class="col-lg-12 col-xs-12">
+                                    <div class="small-box bg-green" style="border-radius: 10px;">
+                                        <div class="inner">
+                                            <h3 id="verified_mos">-</h3>
+                                            <p>VERIFIED</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xs-12">
+                                    <div class="small-box bg-blue" style="border-radius: 10px;">
+                                        <div class="inner">
+                                            <h3 id="connected_mos">-</h3>
+                                            <p>CONTACTED</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-xs-12">
+                                    <div class="small-box bg-red" style="border-radius: 10px;">
+                                        <div class="inner">
+                                            <h3 id="notconnected_mos">-</h3>
+                                            <p>NOT CONTACTED</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td width="20%" rowspan="2" valign="top">
+                <div class="panel panel-lte" style="width:97%">
+                    <div class="panel-heading lte-heading-danger" style="background-color: #cd201f !important;">SLG MOSS</div>
+                    <div class="panel-body">
+                        <div id="slg_chart" style="min-width: 310px; width: 100%; height: 100%; margin: 0 auto"></div>
+                        <div class="small-box bg-green" style="border-radius: 10px;;margin-top:64px;">
+                            <div class="inner">
+                                <h3 id="convention_rate">-</h3>
+                                <p>CONVENTION RATE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </td>
+
+            <td width="20%" valign="top" style="text-align:center;">
+                <!-- <h2>PROFILING DASHBOARD</h2> -->
+                <img src="<?php echo base_url('assets/images/logo_profiling.png') ?>" class="fontlogo" alt="" width="50%">
+                <br><b><span style="font-size:100px;margin-top:-5px;"  id="agent_online">-</span><br><span style="font-size:29px;">AGENT ONLINE</span></b>
+               
+                <div class="small-box bg-red" style="border-radius: 10px;">
+                    <div class="inner">
+                        <h3 id="waiting">-</h3>
+                        <p>DATA WAITING</p>
+                    </div>
+                </div>
+            </td>
+            <td width="40%" rowspan="2">
+                <div class="col-xl-12">
+                    <div class="panel panel-lte" style="padding-bottom:26px;">
+                        <div class="panel-heading lte-heading-danger" style="background-color: #cd201f !important;">BEST PERFORMANCE DAILY</div>
+                        <div class="panel-body">
+                            <div class='row' id="content-body">
+                                <div class="col-lg-12">
+                                    <div class="card" id="daily_1_area" style="border-radius: 10px;">
+                                        <div class="card-body" style="padding: 0.5rem;">
+                                            <div class="media">
+                                                <span class="avatar avatar-xxl mr-5" id="agent_1_foto" style="background-image: url(http://localhost/infomedia_app/demo/faces/female/21-.jpg)"></span>
+                                                <div class="media-body">
+                                                    <h4 class="m-0" id="agent_1_nama" style="color:black;">-</h4>
+                                                    <p class="text-muted mb-0" id="agent_1_num">-</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card rounded-0 col-12 col-md-4 col-lg-12" style='background-color:green;'>
-                                            <div class="card-body">
-                                                <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
-                                                    <i class="fab fa-teamspeak  card-liner-icon mt-2 text-white"></i>
-                                                    <div class='card-liner-content'>
-                                                        <h2 class="card-liner-title text-white" id="callorder_moss">-</h2>
-                                                        <h6 class="card-liner-subtitle text-white">DATA CONSUME</h6>
-                                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card" id="daily_2_area" style="border-radius: 10px;">
+                                        <div class="card-body" style="padding: 0.5rem;">
+                                            <div class="media">
+                                                <span class="avatar avatar-xxl mr-5" id="agent_2_foto" style="background-image: url(http://localhost/infomedia_app/demo/faces/female/20-.jpg)"></span>
+                                                <div class="media-body">
+                                                    <h4 class="m-0" id="agent_2_nama" style="color:black;">-</h4>
+                                                    <p class="text-muted mb-0" id="agent_2_num">-</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-12 col-lg-3  mt-3">
-                    <div class="card overflow-hidden">
-                        <div class="card-content">
-                            <div class="card-body p-0">
-                                <div class="row">
-
-
-                                    <div class="col-12 col-md-12  col-lg-12">
-                                        <div class="p-2">
-
-                                            <div class="d-flex mt-0">
-                                                <div class="border-0 outline-badge-success w-100 p-3 rounded text-center">
-                                                    <span class="h1 mb-0" id='verified_mos'>-</span><br>
-                                                    VERIFIED
+                                <div class="col-lg-6">
+                                    <div class="card" id="daily_3_area" style="border-radius: 10px;">
+                                        <div class="card-body" style="padding: 0.5rem;">
+                                            <div class="media">
+                                                <span class="avatar avatar-xxl mr-5" id="agent_3_foto" style="background-image: url(http://localhost/infomedia_app/demo/faces/male/21-.jpg)"></span>
+                                                <div class="media-body">
+                                                    <h4 class="m-0" id="agent_3_nama" style="color:black;">-</h4>
+                                                    <p class="text-muted mb-0" id="agent_3_num">-</p>
                                                 </div>
                                             </div>
-                                            <div class="d-flex  mt-4">
-                                                <div class="media-body align-self-center ">
-                                                    <span class="mb-0 h6 font-w-600">CONVERTION RATE</span><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card" id="daily_4_area" style="border-radius: 10px;">
+                                        <div class="card-body" style="padding: 0.5rem;">
+                                            <div class="media">
+                                                <span class="avatar avatar-xxl mr-5" id="agent_4_foto" style="background-image: url(http://localhost/infomedia_app/demo/faces/male/18-.jpg)"></span>
+                                                <div class="media-body">
+                                                    <h4 class="m-0" id="agent_4_nama" style="color:black;">-</h4>
+                                                    <p class="text-muted mb-0" id="agent_4_num">-</p>
                                                 </div>
-                                                <div class="ml-auto border-0 outline-badge-success circle-50"><span class="h5 mb-0" id='convention_rate'>-</span></div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="card" id="daily_5_area" style="border-radius: 10px;">
+                                        <div class="card-body" style="padding: 0.5rem;">
+                                            <div class="media">
+                                                <span class="avatar avatar-xxl mr-5" id="agent_5_foto" style="background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
+                                                <div class="media-body">
+                                                    <h4 class="m-0" id="agent_5_nama" style="color:black;">-</h4>
+                                                    <p class="text-muted mb-0" id="agent_5_num">-</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-12 col-md-8  col-lg-6  mt-3">
-                    <div class="card overflow-hidden">
-                        <div class="card-content">
-                            <div class="card-body p-0">
-                                <table class="table font-w-600 mb-0">
-                                    <tbody>
-                                        <tr class="zoom">
-                                            <td colspan='6'>Verified Per-Channel</td>
-                                        </tr>
-                                        <tr class="zoom">
-                                            <td>Landing Page</td>
-                                            <td id="layanan_landingpage" class="text-primary">-</td>
-                                            <td>Blanja.com</td>
-                                            <td id="layanan_blanjacom" class="text-primary">-</td>
-                                            <td>MOSS</td>
-                                            <td id="layanan_moss" class="text-primary">-</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='row'>
-
-
-                        <div class="col-12 col-sm-6 mt-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
-                                        <i class="icon-wallet icons card-liner-icon mt-2"></i>
-                                        <div class='card-liner-content'>
-                                            <h2 class="card-liner-title"><?php echo number_format($arpu[date('Y-m-d')]); ?></h2>
-                                            <h6 class="card-liner-subtitle">ARPU</h6>
-                                        </div>
-                                    </div>
-                                    <span class="bg-<?php echo $style_kenaikan_arpu; ?> card-liner-absolute-icon text-white card-liner-small-tip"><?php echo $persen_kenaikan_arpu; ?>%</span>
-
-                                    <div id="apex_primary_chart"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 mt-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
-                                        <h2><?php echo $jumlah_aktivasi; ?></h2>
-                                        <div class='card-liner-content'>
-                                            <h2 class="card-liner-title"><?php echo number_format($revenue[date('Y-m-d')]); ?></h2>
-                                            <h6 class="card-liner-subtitle">Revenue Aktivasi</h6>
-                                        </div>
-                                    </div>
-                                    <span class="bg-<?php echo $style_kenaikan_revenue; ?> card-liner-absolute-icon text-white card-liner-small-tip"><?php echo $persen_kenaikan_revenue; ?>%</span>
-                                    <div id="apex_today_visitors"></div>
+            </td>
+        </tr>
+    </table>
+    <table width="100%" style="text-align:center;">
+        <tr>
+            <td width="50%" valign="top">
+                <div class="col-xl-12">
+                    <div class="panel panel-lte">
+                        <div class="panel-heading lte-heading-danger" style="background-color: #cd201f !important;">DATA VERIFIED & WAITING MOSS PROFILING</div>
+                        <div class="panel-body">
+                            <div class='row' id="content-body">
+                                <div class="col-xl-12">
+                                    <div id="chard_data_ajax" style="min-width: 400px; height: 270px; margin: 0 auto"></div>
+                                    <div id="grafik_area"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-3">
-                    <div class="card overflow-hidden  mt-3">
-                        <div class="card-content">
-                            <div class="card-body p-0">
-                                <ul class="list-group list-unstyled">
-                                    <li class="p-2 border-bottom zoom">
-                                        <div class="media d-flex w-100">
-                                            <div class="media-body align-self-center pl-2">
-                                                <h6 class="mb-0 ">CONTACTED</h6>
-                                                <p class="mb-0 font-w-500 tx-s-12">Verified</p>
-                                                <p class="mb-0 font-w-500 tx-s-12">Decline</p>
-                                                <p class="mb-0 font-w-500 tx-s-12">Follow Up</p>
-                                            </div>
-                                            <div class="ml-auto my-auto font-weight-bold text-right text-success">
-                                                <p class="mb-0 font-w-500 tx-s-12" id="connected_mos">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="contacted_verified">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="contacted_decline">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="contacted_followup">-</p>
-                                            </div>
+            </td>
+            <td width="50%" valign="top">
 
-                                        </div>
-                                    </li>
-                                    <li class="p-2 border-bottom zoom">
-                                        <div class="media d-flex w-100">
-                                            <div class="media-body align-self-center pl-2">
-                                                <h6 class="mb-0 ">NOT CONTACTED</h6>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted_1_text">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted_2_text">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted_3_text">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12">Others</p>
-                                            </div>
-                                            <div class="ml-auto my-auto font-weight-bold text-right text-danger">
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted_1">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted_2">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted_3">-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="notcontacted_4">-</p>
-                                            </div>
-                                        </div>
-                                    </li>
+                <div class="col-xl-12">
+                    <div class="panel panel-lte">
+                        <div class="panel-heading lte-heading-danger" style="background-color: #cd201f !important;">BEST PERFORMANCE LAST MONTH</div>
+                        <div class="panel-body">
+                            <div class='row' id="content-body">
+                                <div class="col-xl-12">
+                                    <div class="row row-cards">
+                                        <!--image 1-->
+                                        <div class="col-sm-4 col-lg-4" id="best_agent_area">
 
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="card border-bottom-0  mt-3">
-                            <div class="card-content border-bottom border-primary border-w-5">
-                                <div class="card-body p-2">
-                                    <div class="d-flex">
-                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/" . $picture_leader_on_duty ?>" alt="author" class="rounded-circle  ml-auto" width="65px" height="65px">
-                                        <div class="media-body align-self-center pl-3">
-                                            <span class="mb-0 font-w-600"><?php echo $nama_leader_on_duty ?></span><br>
-                                            <p class="mb-0 font-w-500 tx-s-12">DESK CONTROL</p>
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <span class="avatar" id="best_agent_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
+
+                                                    <h4 class="m-0" id="best_agent_nama" style="color:black;">-</h4>
+                                                    <p class="text-muted mb-0">BEST AGENT</p>
+                                                    <p class="text-muted mb-0" id="best_agent_num" style="color:black;">-</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="card border-bottom-0  mt-3">
-                            <div class="card-content border-bottom border-primary border-w-5">
-                                <div class="card-body p-2">
-                                    <div class="d-flex">
-                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/default.png" ?>" id="agent_1_foto" alt="author" class="rounded-circle  ml-auto" width="65px" height="65px">
-                                        <div class="media-body align-self-center pl-3">
-                                            <span class="mb-0 font-w-600" id="agent_1_nama"><?php echo $nama_leader_on_duty ?></span><br>
-                                            <p class="mb-0 font-w-500 tx-s-12">BEST SLG</p>
+                                        <!-- end image 1-->
+
+                                        <!--image 2-->
+                                        <div class="col-sm-4 col-lg-4">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <span class="avatar" id="best_tl_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
+
+                                                    <h4 class="m-0" id="best_tl_nama" style="color:black;">-</h4>
+                                                    <p class="text-muted mb-0">BEST TEAMLEADER</p>
+                                                    <p class="text-muted mb-0" id="best_tl_num" style="color:black;">-</p>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <!-- end image 2-->
+
+                                        <!--image 3-->
+                                        <div class="col-sm-4 col-lg-4">
+
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <span class="avatar" style="width: 200px;height: 200px;background-image: url('<?php echo base_url() . "YbsService/get_foto_agent/" . $picture_leader_on_duty ?>')"></span>
+
+                                                    <h4 class="m-0" style="color:black;"><?php echo $nama_leader_on_duty ?></h4>
+                                                    <p class="text-muted mb-0">LEADER ON DUTY</p>
+                                                    <p class="text-muted mb-0"><?php echo $jadwal_leader_on_duty ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end image 3-->
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-9">
-                    <div class="row">
-                        <div class="col-4  mt-3">
-                            <div class="card bg-primary text-white h-10">
-                                <div class="card-body text-center p-1 d-flex">
-                                    <div class="align-self-top text-center w-100">
-                                        <h6 class="card-title mt-2">AGENT ONLINE</h6>
-                                        <span class="h4"><?php echo $cache_monev_realtime['aval_num']; ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="d-flex mt-3">
-                                    <div class="border-0 outline-badge-danger w-50 p-1 rounded text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['aux_num']; ?></span><br>
-                                        Lunch
-                                    </div>
-                                    <div class="border-0 outline-badge-danger w-50 p-1 rounded ml-2 text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['idle_num']; ?></span><br>
-                                        Idle
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="d-flex mt-3">
-                                    <div class="border-0 outline-badge-danger w-50 p-1 rounded text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['toilet']; ?></span><br>
-                                        Toilet
-                                    </div>
-                                    <div class="border-0 outline-badge-danger w-50 p-1 rounded ml-2 text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['pray']; ?></span><br>
-                                        Pray
-                                    </div>
-                                </div>
-                            </div>
 
+            </td>
+        </tr>
 
-                        </div>
-                        <div class="col-4">
-                            <div style="color:#ffffff;font-size:25px;text-align:center;position:absolute;margin-left:120px;">SLG</div>
+    </table>
 
-                            <div id="slg_chart" style="min-width: 250px; width: 100%;margin-top:10px;color:#a0bc2e;"></div>
-                            <div style="color:#ff8e35;font-size:40px;text-align:center;margin-top:-50px;position:absolute;margin-left:120px;" id='slg'></div>
-                        </div>
-                        <div class="col-4">
-                            <div style="color:#ffffff;font-size:25px;text-align:center;position:absolute;margin-left:120px;">SLFC</div>
-
-                            <div id="slfc_chart" style="min-width: 250px; width: 100%;margin-top:10px;color:#a0bc2e;"></div>
-                            <div style="color:#ff8e35;font-size:40px;text-align:center;margin-top:-50px;position:absolute;margin-left:120px;" id='slfc'></div>
-
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-8  col-lg-12">
-                        <canvas id="chartjs-account-chart" height="70px"></canvas>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        </div>
-
-
-        </div>
-
-
-
-
-
-        </div>
-        <!-- END: Card DATA-->
-        </div>
-    </main>
-    <!-- END: Content-->
-    <!-- START: Footer-->
-    <footer class="site-footer">
-        2020 © Sy-ANIDA
-    </footer>
-    <!-- END: Footer-->
-
-
-
-    <!-- START: Back to top-->
-    <a href="#" class="scrollup text-center">
-        <i class="icon-arrow-up"></i>
-    </a>
-    <!-- END: Back to top-->
-
-
-    <!-- START: Template JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/moment/moment.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- END: Template JS-->
-
-    <!-- START: APP JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/app.js"></script>
-    <!-- END: APP JS-->
-
-    <!-- START: Page Vendor JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/raphael/raphael.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/morris/morris.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/starrr/starrr.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.canvaswrapper.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.colorhelpers.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.flot.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.flot.saturated.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.flot.browser.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.flot.drawSeries.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.flot.uiConstants.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.flot.legend.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-flot/jquery.flot.pie.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-jvectormap/jquery-jvectormap-world-mill.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-jvectormap/jquery-jvectormap-de-merc.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-jvectormap/jquery-jvectormap-us-aea.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/apexcharts/apexcharts.min.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- START: Page JS-->
-    <!-- <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/home.script.js"></script> -->
-    <!-- END: Page JS-->
-
-    <!---- CUSTOM JS ---->
     <input type="hidden" id="agent_online_reg" value="0">
     <input type="hidden" id="agent_online_moss" value="0">
     <input type="hidden" id="daily_status" value="0">
@@ -467,18 +347,13 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
     <input type="hidden" id="reguler_status" value="0">
     <input type="hidden" id="grafik_status" value="0">
     <input type="hidden" id="best_agent_status" value="0">
+    <script id="src_ybs" src="<?php echo base_url() ?>assets/ybs.js"></script>
+    <script src="<?php echo base_url() ?>assets/ybs-slider/ybs-slider.js"></script>
+    <script src="<?php echo base_url() ?>assets/plugins/input-mask/js/jquery.mask.min.js"></script>
     <script type="text/javascript">
-        var bodycolor = getComputedStyle(document.body).getPropertyValue('--bodycolor');
-        var primarycolor = getComputedStyle(document.body).getPropertyValue('--primarycolor');
-        var bordercolor = getComputedStyle(document.body).getPropertyValue('--bordercolor');
-
         function get_performance() {
-            var bulan = $("#bulan").val();
             $.ajax({
-                url: "<?php echo base_url() . "api/Dashboard_v2/get_daily_performance_moss" ?>",
-                data: {
-                    bulan: bulan
-                },
+                url: "<?php echo base_url() . "api/Dashboard/get_daily_performance_moss" ?>",
                 methode: "get",
                 async: true,
                 dataType: 'JSON',
@@ -491,35 +366,25 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                     });
 
                 },
-                error: function() {
-                    alert('There was an error processing your information!');
-                }
             });
         }
 
-
         function get_profiling_mos() {
-            var bulan = $("#bulan").val();
+
             $.ajax({
-                url: "<?php echo base_url() . "api/Dashboard_v2/get_profiling_mos" ?>",
-                data: {
-                    start: start,
-                    end: end
-                },
+                url: "<?php echo base_url() . "api/Dashboard/get_profiling_mos" ?>",
                 methode: "get",
                 dataType: 'JSON',
                 success: function(response) {
+                    $("#slg").text(response.slg);
 
                     agent_online = parseInt($("#agent_online_reg").val()) + parseInt(response.agent_online);
                     $("#agent_online").text(agent_online);
                     $("#agent_online_moss").val(response.agent_online);
                     $("#connected_mos").text(response.contacted);
-                    $("#callorder_moss").text(response.callorder);
-                    $("#connected_rate").text(response.contacted_rate + "%");
-                    $("#notconnected_rate").text(response.uncontacted_rate + "%");
                     $("#verified_mos").text(response.status_13);
                     $("#notconnected_mos").text(response.uncontacted);
-                    $("#convention_rate").text(response.convention_rate + "%");
+                    $("#convention_rate").text(response.convention_rate+"%");
                     $("#1_mos").text(response.status_1);
                     $("#2_mos").text(response.status_2);
                     $("#3_mos").text(response.status_3);
@@ -536,61 +401,6 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                     $("#14_mos").text(response.status_14);
                     $("#15_mos").text(response.status_15);
                     $("#16_mos").text(response.status_16);
-                    $("#contacted_verified").text(response.status_13);
-                    $("#contacted_followup").text(response.status_12);
-                    $("#contacted_decline").text(response.status_11);
-                    $("#notcontacted").text(response.uncontacted);
-                    $("#notcontacted_1").text(response.not.urut_0.valna);
-                    $("#notcontacted_2").text(response.not.urut_1.valna);
-                    $("#notcontacted_3").text(response.not.urut_2.valna);
-                    $("#notcontacted_4").text(response.not.other);
-                    $("#notcontacted_1_text").text(response.not.urut_0.textna);
-                    $("#notcontacted_2_text").text(response.not.urut_1.textna);
-                    $("#notcontacted_3_text").text(response.not.urut_2.textna);
-                    $("#layanan_landingpage").text(response.layanan_moss.landingpage);
-                    $("#layanan_blanjacom").text(response.layanan_moss.blanjacom);
-                    $("#layanan_moss").text(response.layanan_moss.moss);
-                    <?php
-                    // if ($layanan_moss['num'] > 0) {
-                    //     foreach ($layanan_moss['results'] as $lm) {
-
-                    //         echo "$('#layanan_" . $lm->name . "').text(response.layanan_moss.layanan_" . $lm->id . ");";
-                    //     }
-                    // }
-                    ?>
-
-                },
-                error: function() {
-                    alert('There was an error processing your information!');
-                }
-            });
-        }
-
-
-        /*
-         * Custom Label formatter
-         * ----------------------
-         */
-        function labelFormatter(label, series) {
-            return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
-                label +
-                '<br>' +
-                Math.round(series.percent) + '%</div>'
-        }
-
-        function get_slg_mos() {
-            var bulan = $("#bulan").val();
-            $.ajax({
-                url: "<?php echo base_url() . "api/Dashboard_v2/get_slg_mos" ?>",
-                data: {
-                    bulan: bulan
-                },
-                methode: "get",
-                dataType: 'JSON',
-                success: function(response) {
-                    $("#slg").text(response.slg);
-                    $("#slfc").text(response.slfc);
-
 
                     // Element inside which you want to see the chart
                     $("#slg_chart").html("");
@@ -600,18 +410,20 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
                     var slg_num = response.slg;
                     var slg_label = response.slg;
-                    var slg_length = "lightgray";
                     switch (true) {
-                        case (parseInt(slg_num) > 9):
-                            var bar_color = "#ce2f4f";
-                            var slg_length = "#ce2f4f";
-                            var slg_num = 9.9;
+                        case (parseInt(slg_num) > 10):
+                            var slg_num = 10;
+                            var slg_label = '>10';
+                            var bar_color = "red";
+                            break;
+                        case (parseInt(slg_num) >= 7):
+                            var bar_color = "red";
                             break;
                         case (parseInt(slg_num) > 4):
-                            var bar_color = "#ce2f4f";
+                            var bar_color = "yellow";
                             break;
                         default:
-                            var bar_color = "#a0bc2e";
+                            var bar_color = "green";
                             break;
 
                     }
@@ -619,61 +431,66 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                         hasNeedle: true,
                         needleColor: bar_color,
                         needleUpdateSpeed: 1000,
-                        arcColors: [bar_color, slg_length],
-                        arcDelimiters: [slg_num * 10],
+                        arcColors: [bar_color, 'lightgray'],
+                        arcDelimiters: [response.slg * 10],
                         rangeLabel: ['0', '10'],
-                        centralLabel: "",
+                        centralLabel: response.slg,
                     };
                     GaugeChart
                         .gaugeChart(element, 300, gaugeOptions)
-                        .updateNeedle(slg_num * 10);
-
-                    // Element inside which you want to see the chart
-                    $("#slfc_chart").html("");
-                    let element2 = document.querySelector('#slfc_chart');
-
-                    // // Properties of the gauge
-
-                    var slfc_num = response.slfc;
-                    var slfc_label = response.slfc;
-                    var slfc_length = "lightgray";
-                    switch (true) {
-                        case (parseInt(slfc_num) > 9):
-                            var slfc_num = 9.9;
-                            var bar_color = "#ce2f4f";
-                            var slfc_length = "#ce2f4f";
-                            break;
-                        case (parseInt(slfc_num) > 4):
-                            var bar_color = "#ce2f4f";
-                            break;
-                        default:
-                            var bar_color = "#a0bc2e";
-                            break;
-
-                    }
-                    let gaugeOptions2 = {
-                        hasNeedle: true,
-                        needleColor: bar_color,
-                        needleUpdateSpeed: 1000,
-                        arcColors: [bar_color, slfc_length],
-                        arcDelimiters: [slfc_num * 10],
-                        rangeLabel: ['0', '10'],
-                        centralLabel: "",
-                    };
-                    GaugeChart
-                        .gaugeChart(element2, 300, gaugeOptions2)
-                        .updateNeedle(slfc_num * 10);
-                },
-                error: function() {
-                    alert('There was an error processing your information!');
+                        .updateNeedle(response.slg * 10);
                 }
+            });
+        }
+
+
+        function get_grafik() {
+
+            $.ajax({
+                url: "<?php echo base_url() . "api/Dashboard/get_grafik_moss" ?>",
+                methode: "get",
+                dataType: 'JSON',
+                success: function(response) {
+                    $.each(response.data, function(key, val) {
+                        chart.addSeries({
+                            name: key,
+                            data: val
+                        });
+                    });
+                }
+            });
+        }
+
+
+
+        function get_best_agent() {
+
+            $.ajax({
+                url: "<?php echo base_url() . "api/Dashboard/get_best_agent_moss" ?>",
+                methode: "get",
+                async: true,
+                dataType: 'JSON',
+                success: function(response) {
+
+                    $.each(response.agent, function(key, val) {
+                        $("#best_agent_nama").text(val.nama);
+                        $("#best_agent_num").text("RATA-RATA SLG " + val.num);
+                        document.getElementById("best_agent_foto").style.backgroundImage = "url('<?php echo base_url() . "YbsService/get_foto_agent/" ?>" + val.picture + "')";
+                    });
+                    $.each(response.tl, function(key, val) {
+                        $("#best_tl_nama").text(val.nama);
+                        $("#best_tl_num").text("RATA-RATA SLG " + val.num);
+                        document.getElementById("best_tl_foto").style.backgroundImage = "url('<?php echo base_url() . "YbsService/get_foto_agent/" ?>" + val.picture + "')";
+                    });
+
+                },
             });
         }
 
         function get_waiting() {
 
             $.ajax({
-                url: "<?php echo base_url() . "api/Dashboard_v2/get_waiting" ?>",
+                url: "<?php echo base_url() . "api/Dashboard/get_waiting" ?>",
                 methode: "get",
                 dataType: 'JSON',
                 success: function(response) {
@@ -683,6 +500,11 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
             });
         }
         setInterval(function() {
+            get_profiling_mos();
+            get_performance();
+
+        }, 300000);
+        setInterval(function() {
             get_waiting();
         }, 5000);
 
@@ -690,385 +512,18 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
         $(document).ready(function() {
 
-            get_performance();
-            // get_profiling_reguler();
-            // get_best_agent();
-            get_slg_mos();
             get_profiling_mos();
-            // get_grafik();
+            get_performance();
+            get_grafik();
+            get_best_agent();
             get_waiting();
-            get_slg_mos();
-            var chartjs_multiaxis_bar = document.getElementById("chartjs-account-chart");
-            if (chartjs_multiaxis_bar) {
-                var barmultiaxisChartData = {
-                    labels: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'],
-                    datasets: [
-
-                        {
-                            label: 'Waiting',
-                            type: 'line',
-                            // backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-                            borderColor: primarycolor,
-                            fill: false,
-                            borderWidth: 2,
-                            data: [
-                                <?php
-                                foreach ($grafik['Waiting'] as $bulanna => $valna) {
-                                    echo intval($valna) . ',';
-                                }
-
-                                ?>
-                            ]
-                        }, {
-                            label: 'Verified',
-                            type: 'line',
-                            // backgroundColor: 'green',
-                            borderColor: 'green',
-                            fill: false,
-                            borderWidth: 2,
-                            data: [
-                                <?php
-                                foreach ($grafik['Verified'] as $bulanna => $valna) {
-                                    echo intval($valna) . ',';
-                                }
-                                ?>
-                            ]
-                        },
-                    ]
-
-                };
-                ctx = document.getElementById('chartjs-account-chart').getContext('2d');
-                window.myBar = new Chart(ctx, {
-                    type: 'bar',
-                    data: barmultiaxisChartData,
-                    options: {
-                        responsive: true,
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: ' '
-                        }
-                    }
-                });
-            }
-
-
-            if ($("#apex_primary_chart").length > 0) {
-                options = {
-                    chart: {
-                        type: 'line',
-                        height: 80,
-                        sparkline: {
-                            enabled: true
-                        },
-                        dropShadow: {
-                            enabled: true,
-                            top: 1,
-                            left: 1,
-                            blur: 2,
-                            color: '#000',
-                            opacity: 0.7,
-                        }
-                    },
-                    series: [{
-                        name: "ARPU",
-                        data: [
-                            <?php
-                            if (count($arpu) > 0) {
-                                foreach ($arpu as $k => $v) {
-                                    echo intval($v) . ",";
-                                }
-                            }
-                            ?>
-                        ]
-                    }],
-                    dataLabels: {
-                        enabled: false
-                    },
-                    stroke: {
-                        curve: 'smooth',
-                        width: 2,
-                    },
-                    markers: {
-                        size: 0
-                    },
-                    grid: {
-                        padding: {
-                            top: 0,
-                            bottom: 0,
-                            left: 0
-                        }
-                    },
-                    colors: ['#1e3d73'],
-                    tooltip: {
-                        x: {
-                            show: false
-                        },
-                        y: {
-                            title: {
-                                formatter: function formatter(val) {
-                                    return '';
-                                }
-                            }
-                        }
-                    },
-                    responsive: [{
-                            breakpoint: 1351,
-                            options: {
-                                chart: {
-                                    height: 95,
-                                },
-                                grid: {
-                                    padding: {
-                                        top: 35,
-                                        bottom: 0,
-                                        left: 0
-                                    }
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 1200,
-                            options: {
-                                chart: {
-                                    height: 80,
-                                },
-                                grid: {
-                                    padding: {
-                                        top: 35,
-                                        bottom: 0,
-                                        left: 40
-                                    }
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 576,
-                            options: {
-                                chart: {
-                                    height: 95,
-                                },
-                                grid: {
-                                    padding: {
-                                        top: 45,
-                                        bottom: 0,
-                                        left: 0
-                                    }
-                                },
-
-                            },
-                        }
-
-                    ]
-                }
-
-
-                var chart = new ApexCharts(
-                    document.querySelector("#apex_primary_chart"),
-                    options
-                );
-                chart.render();
-            }
-
-
-            if ($("#apex_main_chart").length > 0) {
-                options = {
-                    theme: {
-                        mode: theme
-                    },
-                    chart: {
-                        height: 380,
-                        type: 'area',
-                        stacked: false,
-                        toolbar: {
-                            show: false
-                        }
-                    },
-                    dataLabels: {
-                        enabled: false
-                    },
-                    stroke: {
-                        width: [1, 1, 1],
-                        curve: 'smooth'
-                    },
-                    plotOptions: {
-                        bar: {
-                            columnWidth: '50%'
-                        }
-                    },
-                    colors: ['#1e3d73', '#17a2b8'],
-                    series: [{
-                        name: 'Orders',
-                        type: 'area',
-                        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
-                    }, {
-                        name: 'Sale',
-                        type: 'area',
-                        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
-                    }],
-                    fill: {
-                        opacity: [0.85, 0.25, 1],
-                        gradient: {
-                            inverseColors: false,
-                            shade: 'light',
-                            type: "vertical",
-                            opacityFrom: 0.85,
-                            opacityTo: 0.55,
-                            stops: [0, 100, 100, 100]
-                        }
-                    },
-                    labels: ['01/01/2003', '02/01/2003', '03/01/2003', '04/01/2003', '05/01/2003', '06/01/2003', '07/01/2003', '08/01/2003', '09/01/2003', '10/01/2003', '11/01/2003'],
-                    markers: {
-                        size: 0
-                    },
-                    xaxis: {
-                        type: 'datetime'
-                    },
-                    yaxis: {
-                        min: 0
-                    },
-                    tooltip: {
-                        shared: true,
-                        intersect: false,
-                        y: {
-                            formatter: function(y) {
-                                if (typeof y !== "undefined") {
-                                    return y.toFixed(0) + " views";
-                                }
-                                return y;
-                            }
-                        }
-                    },
-                    legend: {
-                        show: false,
-                        labels: {
-                            useSeriesColors: true
-                        }
-                    }
-                }
-
-                var chart = new ApexCharts(
-                    document.querySelector("#apex_main_chart"),
-                    options
-                );
-                chart.render();
-            }
-            if ($("#apex_today_visitors").length > 0) {
-                options = {
-                    chart: {
-                        type: 'line',
-                        height: 80,
-                        sparkline: {
-                            enabled: true
-                        },
-                        dropShadow: {
-                            enabled: true,
-                            top: 1,
-                            left: 1,
-                            blur: 2,
-                            color: '#28a745',
-                            opacity: 0.7,
-                        }
-                    },
-                    series: [{
-                        data: [
-                            <?php
-                            if (count($revenue) > 0) {
-                                foreach ($revenue as $k => $v) {
-                                    echo intval($v) . ",";
-                                }
-                            }
-                            ?>
-                        ]
-                    }],
-                    stroke: {
-                        curve: 'smooth',
-                        width: 2,
-                    },
-                    markers: {
-                        size: 0
-                    },
-                    grid: {
-                        padding: {
-                            top: 0,
-                            bottom: 0,
-                            left: 0
-                        }
-                    },
-                    colors: ['#28a745'],
-                    tooltip: {
-                        x: {
-                            show: false
-                        },
-                        y: {
-                            title: {
-                                formatter: function formatter(val) {
-                                    return '';
-                                }
-                            }
-                        }
-                    },
-                    responsive: [{
-                            breakpoint: 1351,
-                            options: {
-                                chart: {
-                                    height: 95,
-                                },
-                                grid: {
-                                    padding: {
-                                        top: 35,
-                                        bottom: 0,
-                                        left: 0
-                                    }
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 1200,
-                            options: {
-                                chart: {
-                                    height: 80,
-                                },
-                                grid: {
-                                    padding: {
-                                        top: 35,
-                                        bottom: 0,
-                                        left: 40
-                                    }
-                                },
-                            },
-                        },
-                        {
-                            breakpoint: 576,
-                            options: {
-                                chart: {
-                                    height: 95,
-                                },
-                                grid: {
-                                    padding: {
-                                        top: 45,
-                                        bottom: 0,
-                                        left: 0
-                                    }
-                                },
-                            },
-                        }
-
-                    ]
-                }
-
-
-                var chart = new ApexCharts(
-                    document.querySelector("#apex_today_visitors"),
-                    options
-                );
-                chart.render();
-            }
+            // get_best_agent();
+            // get_profiling_reguler();
+            // get_profiling_mos();
+            // get_grafik();
+            /* jQueryKnob */
         });
     </script>
 </body>
-<!-- END: Body-->
 
 </html>

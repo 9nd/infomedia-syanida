@@ -249,7 +249,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                 <p class="mb-0 font-w-500 tx-s-12">Handphone</p>
                                                 <p class="mb-0 font-w-500 tx-s-12">Email</p>
                                                 <p class="mb-0 font-w-500 tx-s-12">WhatsApp</p>
-                                                <p class="mb-0 font-w-500 tx-s-12">SMS</p>
+<p class="mb-0 font-w-500 tx-s-12">SMS</p>
                                             </div>
                                             <div class="ml-auto my-auto font-weight-bold text-right text-danger">
                                                 <p class="mb-0 font-w-500 tx-s-12">&nbsp;</p>
@@ -257,7 +257,8 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                 <p class="mb-0 font-w-500 tx-s-12" id='opsi_2'>-</p>
                                                 <p class="mb-0 font-w-500 tx-s-12" id='opsi_3'>-</p>
                                                 <p class="mb-0 font-w-500 tx-s-12" id='opsi_4'>-</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id='opsi_5'>-</p>
+<p class="mb-0 font-w-500 tx-s-12" id='opsi_5'>-</p>
+
                                             </div>
                                         </div>
                                     </li>
@@ -430,42 +431,69 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                         <div class="col-6">
                             <div class="card bg-primary text-white h-10">
                                 <div class="card-body text-center p-1 d-flex">
-                                    <div class="align-self-top text-center w-100">
-                                        <h6 class="card-title mt-2">AGENT ONLINE</h6>
-                                        <span class="h4">
+                                    <table width="100%">
+                                        <tr>
+                                            <td rowspan="2">
+                                                <div class="align-self-top text-center w-100">
+                                                    <h6 class="card-title mt-2">AGENT ONLINE</h6>
+                                                    <span class="h4">
+                                                        <?php
+                                                    //    if ($cache_monev_realtime['aval_num'] < 0) {
+                                                    //         echo 0;
+                                                    //     } else {
+                                                    //         echo $cache_monev_realtime['aval_num'];
+                                                    //     }
+                                                        ?>
+                                                        60
+                                                   </span>
 
-                                            <?php
-                                            if ($cache_monev_realtime['aval_num'] < 0) {
-                                                echo 0;
-                                            } else {
-                                                echo $cache_monev_realtime['aval_num'];
-                                            }
-                                            ?></span>
+                                                </div>
 
-                                    </div>
+                                            </td>
+                                            <td>
+                                                <div class="align-self-top text-center w-100">
+                                                    <!-- <h8>WFH : <?php echo $cache_monev_realtime['aval_num']-$cache_monev_realtime['wfo_num']; ?></h8> -->
+                                                    <h8>WFH : 33</h8>
+
+
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="align-self-top text-center w-100">
+                                                    <!-- <h8>WFO : <?php echo $cache_monev_realtime['wfo_num']; ?> -->
+                                                    <h8>WFO : 29
+
+                                                    </h8>
+
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
                                 </div>
+
                             </div>
-                            <!-- <div class="col-12">
-                                <div class="d-flex mt-3">
-                                    <div class="border-0 outline-badge-danger w-50 p-1 rounded text-center"><span
-                                            class=" mb-0">40</span><br>
-                                        WFH
-                                    </div>
-                                    <div class="border-0 outline-badge-danger w-50 p-1 rounded ml-2 text-center">
-                                        <span class="mb-0">60</span><br>
-                                        WFO
-                                    </div>
-                                </div>
-                            </div> -->
-
                             <div class="col-12">
                                 <div class="d-flex mt-3">
                                     <div class="border-0 outline-badge-danger w-50 p-1 rounded text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['lunch']; ?></span><br>
+                                        <span class="mb-0">
+                                            <?php 
+                                            // echo $cache_monev_realtime['lunch']; 
+                                            echo "0"; 
+                                            ?></span><br>
+
                                         Lunch
                                     </div>
                                     <div class="border-0 outline-badge-danger w-50 p-1 rounded ml-2 text-center">
-                                        <span class="mb-0"><?php echo $cache_monev_realtime['idle_num']; ?></span><br>
+                                        <span class="mb-0">
+<?php
+//  echo $cache_monev_realtime['idle_num'];
+echo "0"; 
+?></span><br>
                                         Idle
                                     </div>
                                 </div>
@@ -640,7 +668,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                     $("#opsi_2").text(response.opsi.opsi_2);
                     $("#opsi_3").text(response.opsi.opsi_3);
                     $("#opsi_4").text(response.opsi.opsi_4);
-                    $("#opsi_5").text(response.opsi.opsi_5);
+$("#opsi_5").text(response.opsi.opsi_5);
 
                     $("#13_reguler").text(response.status_13);
                     $("#14_reguler").text(response.status_14);

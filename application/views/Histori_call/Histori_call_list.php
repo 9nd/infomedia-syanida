@@ -27,9 +27,9 @@
 						<div class='col-md-6 col-xl-6'>
 							<div class='form-group'>
 								<label class='form-label'>Agent </label>
-								<select name='agentid' id="agentid" class="form-control custom-select">
+								<select name='agentid' id="agentid" class="form-control custom-select" >
 									<?php
-
+									
 									if ($list_agent['num'] > 0) {
 										foreach ($list_agent['results'] as $d_agent) {
 											$selected = "";
@@ -108,7 +108,7 @@
 						<td><?php echo $nomor; ?></td>
 						<td>
 							<!-- <a href="<?php echo base_url() . "Histori_call/Histori_call/detail/" . $datana['idx'] ?>" class="btn btn-default text-red btn-sm " title="detail"><i class="fa fa-info"></i></a> -->
-							<a href="<?php echo base_url() . 'Outbound/Outbound/edit?phone=' . $datana['pstn1'] . '&ncli=' . $datana['ncli'] . '&handphone=' . $datana['handphone'] . '&userid=' . $datana['veri_upd'] ?>" target='_blank' class="btn btn-default text-red btn-sm " title="update"><i class="fa fa-info"></i></a>
+							<a href="<?php echo base_url().'Outbound/Outbound/edit?phone=' . $datana['pstn1'] . '&ncli=' . $datana['ncli']. '&userid=' . $datana['veri_upd'] ?>" target='_blank' class="btn btn-default text-red btn-sm " title="update"><i class="fa fa-info"></i></a>
 							<!-- <a href="
 							<?php //echo $link_delete . "/" . $datana['idx'] 
 							?>

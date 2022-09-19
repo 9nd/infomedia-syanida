@@ -21,13 +21,13 @@
 					<div class='col-md-6 col-xl-6'>
 						<div class='form-group'>
 							<label class='form-label'>Mulai Dari</label>
-							<input type='date' min="" max="<?php echo date('Y-m-d'); ?>" class='form-control data-sending focus-color' id='id_reason' name='start' value='<?php if (isset($_GET['start'])) echo $_GET['start'] ?>'>
+							<input type='date'  class='form-control data-sending focus-color' id='id_reason' name='start' value='<?php if (isset($_GET['start'])) echo $_GET['start'] ?>'>
 						</div>
 					</div>
 					<div class='col-md-6 col-xl-6'>
 						<div class='form-group'>
 							<label class='form-label'>Sampai </label>
-							<input type='date' min="<?php echo date("Y-m-d", strtotime("-" . (date('d') + 15) . " days")); ?>" max="<?php echo date('Y-m-d'); ?>" class='form-control data-sending focus-color' id='id_reason' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
+							<input type='date'  class='form-control data-sending focus-color' id='id_reason' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
 						</div>
 					</div>
 

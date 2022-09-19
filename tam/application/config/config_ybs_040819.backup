@@ -1,0 +1,45 @@
+<?php
+/*##############################################*/
+/*	  WARNING !! JANGAN MENGEDIT FILE INI		*/
+/*	( CONFIG INI DI UBAH MELALUI MENU SYSTEM )	*/
+/*##############################################*/
+
+$config['author']='Dhiya As Sayyaf';
+$config['version']='1.0.8';
+$config['email']='bridgin.system@gmail.com';
+$config['domain']='';
+$config['powored_by']='YBS SYSTEM | 2019';
+
+$config['login_title_bar']='YBS Application | Log in';
+$config['login_title_box']='Login to your account';
+/*file in images/logo*/
+$config['login_logo']='login.svg';
+$config['login_logo_size']='9';//range 1-9
+$config['login_label_user']='User Name';
+$config['login_label_password']='Password';
+$config['login_label_button']='Sign in';
+
+$config['template_title_bar']='YBS Pages | 2019';
+
+/*file in images/logo*/
+$config['template_logo']='logo.svg';
+
+
+$config['template_logo_size']='6';//range 1-9
+$config['template_copyright']='2018 Tabler';
+$config['template_copyright_domain']='https://tabler.io';
+$config['template_design_theme']='codecalm.net';
+$config['template_design_theme_domain']='https://codecalm.net';
+$config['template_footer_left']='Copyright © 2018 <a href=".">Tabler</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.';
+$config['template_footer_right']='<a href="https://github.com/tabler/tabler" class="btn btn-outline-primary btn-sm">Original Source code</a>';
+
+/* DEVELOPER SETTING */
+$config['develop_by']='';
+$config['develop_version']='';
+$config['develop_domain']='';
+$config['develop_contact']='';
+$config['develop_email']='';
+
+
+
+?>

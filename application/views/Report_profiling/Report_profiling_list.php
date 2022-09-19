@@ -130,8 +130,8 @@ if (isset($_GET['start']) && isset($_GET['end'])) {
 									<th><?php echo number_format($total['contacted'] + $total['uncontacted']) ?></th>
 									<th><?php echo number_format($total['contacted']) ?></th>
 									<th><?php echo number_format($total[13]) ?></th>
-									<th><?php echo number_format($total[13] / ($total['reg']['duty'] + $total['moss']['duty'])) ?></th>
-									<th><?php echo number_format($total['reg']['duty'] + $total['moss']['duty']) ?></th>
+									<th><?php echo number_format($total[13] / ($total['reg']['duty']+$total['moss']['duty'])) ?></th>
+									<th><?php echo number_format($total['reg']['duty']+$total['moss']['duty']) ?></th>
 								</tr>
 							</tbody>
 						</table>
@@ -200,53 +200,53 @@ if (isset($_GET['start']) && isset($_GET['end'])) {
 		</div>
 	</div>
 	<?php
-	if ($level != 8) {
+	if($level != 8){
 
-
+	
 	?>
-		<div class='col-md-6 col-xl-6'>
-			<div class="card">
-				<div class="card-status bg-orange"></div>
-				<div class="card-header">
-					<div class="card-options">
-						<a href="#" class="card-options-collapse " data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-						<a href="#" class="card-options-fullscreen " data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
-					</div>
+	<div class='col-md-6 col-xl-6'>
+		<div class="card">
+			<div class="card-status bg-orange"></div>
+			<div class="card-header">
+				<div class="card-options">
+					<a href="#" class="card-options-collapse " data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+					<a href="#" class="card-options-fullscreen " data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
 				</div>
-				<div class="card-body">
-					<div class='box-body table-responsive' id='box-table' style="text-align:center;">
-						<small>
-							<table width="100%">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Reg 1</th>
-										<th>Reg 2</th>
-										<th>Reg 3</th>
-										<th>Reg 4</th>
-										<th>Reg 5</th>
-										<th>Reg 6</th>
-										<th>Reg 7</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th>Verified</th>
-										<th><?php echo number_format($regional[1]) ?></th>
-										<th><?php echo number_format($regional[2]) ?></th>
-										<th><?php echo number_format($regional[3]) ?></th>
-										<th><?php echo number_format($regional[4]) ?></th>
-										<th><?php echo number_format($regional[5]) ?></th>
-										<th><?php echo number_format($regional[6]) ?></th>
-										<th><?php echo number_format($regional[7]) ?></th>
-									</tr>
-								</tbody>
-							</table>
-						</small>
-					</div>
+			</div>
+			<div class="card-body">
+				<div class='box-body table-responsive' id='box-table' style="text-align:center;">
+					<small>
+						<table width="100%">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Reg 1</th>
+									<th>Reg 2</th>
+									<th>Reg 3</th>
+									<th>Reg 4</th>
+									<th>Reg 5</th>
+									<th>Reg 6</th>
+									<th>Reg 7</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th>Verified</th>
+									<th><?php echo number_format($regional[1]) ?></th>
+									<th><?php echo number_format($regional[2]) ?></th>
+									<th><?php echo number_format($regional[3]) ?></th>
+									<th><?php echo number_format($regional[4]) ?></th>
+									<th><?php echo number_format($regional[5]) ?></th>
+									<th><?php echo number_format($regional[6]) ?></th>
+									<th><?php echo number_format($regional[7]) ?></th>
+								</tr>
+							</tbody>
+						</table>
+					</small>
 				</div>
 			</div>
 		</div>
+	</div>
 	<?php
 	}
 	?>
@@ -322,8 +322,8 @@ if (isset($_GET['start']) && isset($_GET['end'])) {
 												<td><?php echo $ag[4]; ?></td>
 												<td><?php echo $ag[7]; ?></td>
 												<td><?php echo $ag[10]; ?></td>
-
-												<td><?php echo ($ag[14] + $ag[8] + $ag[9]); ?></td>
+												
+												<td><?php echo ($ag[14]+$ag[8]+$ag[9]); ?></td>
 												<td><?php echo $ag[15]; ?></td>
 												<td><?php echo $ag[16]; ?></td>
 												<td><?php echo $ag['total']; ?></td>
@@ -353,8 +353,8 @@ if (isset($_GET['start']) && isset($_GET['end'])) {
 									<th style="background-color:red;color:white;"><?php echo number_format($total[4]); ?></th>
 									<th style="background-color:red;color:white;"><?php echo number_format($total[7]); ?></th>
 									<th style="background-color:red;color:white;"><?php echo number_format($total[10]); ?></th>
-
-									<th style="background-color:red;color:white;"><?php echo number_format($total[14] + $total[8] + $total[9]); ?></th>
+									
+									<th style="background-color:red;color:white;"><?php echo number_format($total[14]+$total[8]+$total[9]); ?></th>
 									<th style="background-color:red;color:white;"><?php echo number_format($total[15]); ?></th>
 									<th style="background-color:red;color:white;"><?php echo number_format($total[16]); ?></th>
 									<th style="background-color:blue;color:white;"><?php echo number_format($total['total']); ?></th>

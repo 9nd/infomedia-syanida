@@ -15,7 +15,7 @@ class Telegram extends CI_Controller
     function get_update()
     {
         // echo "halu";
-        $botToken = "1412649509:AAFRJ4Dbe1KvNBR56qa0Y9nzZsxXuHRWdMU";
+        $botToken = "1676733678:AAH7rEX3xix1orXF88XEl-KO1ynskKT_v-Q";
 
         $website = "https://api.telegram.org/bot" . $botToken;
 
@@ -300,9 +300,19 @@ ORDER BY
             }
             $pesan = "WARNING !!! CEK DATA MOSS, NO SPEEDY : ".$listnointernet. "telah lebih dari 3 MENIT";
             foreach($chatidsys as $listsend){
-                $this->send($pesan, $listsend->agentid,  $listsend->opt_level, $listsend->$chatid);
+                $this->send($pesan, $listsend->agentid,  $listsend->opt_level, $listsend->chatid);
             }
+            $hasil = "ada antrian";
            
+        }else{
+            $chatidsys = $this->db->query("SELECT * FROM sys_user WHERE opt_level=9")->result();
+            
+            $pesan = "INFORMATION, DATA MOSS AMAN (TIDAK ADA LEBIH DARI 3 MENIT)";
+            foreach($chatidsys as $listsend){
+                $this->send($pesan, $listsend->agentid,  $listsend->opt_level, $listsend->chatid);
+            }
+            $hasil = "gak ada antrian";
         }
+        echo  $hasil;
     }
 }

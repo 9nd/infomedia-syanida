@@ -13,8 +13,7 @@ var auxKey = 'key';
 var reasonTranslation;
 var pbxCampaignId = null;
 var loginTime = null;
-var base_url = window.location.origin + "/infomedia_syanida";
-// var base_url = window.location.origin + "/dashboard/app";
+var base_url = window.location.origin + "/dashboard/app";
 var aux_flag = false;
 $.ajaxSetup({
     headers: {
@@ -177,7 +176,7 @@ webphone_api.onCdr(function (caller, called, connecttime, duration, direction, p
 window.callbackStart = function (data) {
     if (data != null) {
         console.log(data['server']);
-        webphone_api.setparameter('serveraddress', data['server']);
+ 	webphone_api.setparameter('serveraddress', data['server']);
         webphone_api.setparameter('username', data['username']);
         webphone_api.setparameter('password', data['password']);
         extensionId = data['id'];

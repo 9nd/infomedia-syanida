@@ -9,7 +9,10 @@
                 <label class='form-label'>SUMBER</label>
                 <select id="sumber" name="sumber" class="form-control">
                     <option value="semua" <?php echo ($filter['sumber'] == "semua") ? "selected" : ""; ?>>Semua Sumber</option>
+                    <option value="MK" <?php echo ($filter['sumber'] == "MK") ? "selected" : ""; ?>>MK</option>
                     <option value="VALIDATE" <?php echo ($filter['sumber'] == "VALIDATE") ? "selected" : ""; ?>>VALIDATE</option>
+ <option value="ProfillingMyCX" <?php echo ($filter['sumber'] == "ProfillingMyCX") ? "selected" : ""; ?>>ProfillingMyCX</option>
+
                     <option value="ProfilingMyCX" <?php echo ($filter['sumber'] == "ProfilingMyCX") ? "selected" : ""; ?>>ProfilingMyCX</option>
                     <option value="VERIFIED_LAMA" <?php echo ($filter['sumber'] == "VERIFIED_LAMA") ? "selected" : ""; ?>>VERIFIED_LAMA</option>
                     <option value="TREG1" <?php echo ($filter['sumber'] == "TREG1") ? "selected" : ""; ?>>TREG1</option>
@@ -18,8 +21,11 @@
                     <option value="TREG4" <?php echo ($filter['sumber'] == "TREG4") ? "selected" : ""; ?>>TREG4</option>
                     <option value="TREG5" <?php echo ($filter['sumber'] == "TREG5") ? "selected" : ""; ?>>TREG5</option>
                     <option value="TREG6" <?php echo ($filter['sumber'] == "TREG6") ? "selected" : ""; ?>>TREG6</option>
-                    <option value="TREG7" <?php echo ($filter['sumber'] == "TREG7") ? "selected" : ""; ?>>TREG7</option>
+                    <option value="TREG7" <?php echo ($filter['sumber'] == "TREG7") ? "selected" : ""; ?>>TREG7</option>                    
+		    <option value="HVC" <?php echo ($filter['sumber'] == "HVC") ? "selected" : ""; ?>>HVC</option>
                     <option value="INVALID PCM" <?php echo ($filter['sumber'] == "INVALID PCM") ? "selected" : ""; ?>>INVALID PCM</option>
+<option value="VERLA_2020" <?php echo ($filter['sumber'] == "VERLA_2020") ? "selected" : ""; ?>>VERLA_2020</option>
+
 
                 </select>
             </div>
@@ -86,8 +92,9 @@
                 <label class='form-label'>FILTER HANDPHONE</label>
                 <select id="no_handpone" name="no_handpone" class="form-control">
                     <option value="semua" <?php echo ($filter['no_handpone'] == "semua") ? "selected" : ""; ?>>Tidak Difilter</option>
-                    <option value="LIKE" <?php echo ($filter['no_handpone'] == "LIKE") ? "selected" : ""; ?>>Filter</option>
-                    <option value="NOT LIKE" <?php echo ($filter['no_handpone'] == "NOT LIKE") ? "selected" : ""; ?>>Filter</option>
+                    <option value="LIKE" <?php echo ($filter['no_handpone'] == "LIKE") ? "selected" : ""; ?>>Filter LIKE</option>
+                    <option value="NOT LIKE" <?php echo ($filter['no_handpone'] == "NOT LIKE") ? "selected" : ""; ?>>Filter NOT LIKE</option>
+                    <option value="IS NULL" <?php echo ($filter['no_handpone'] == "IS NULL") ? "selected" : ""; ?>>Filter IS NULL</option>
                 </select>
             </div>
         </div>

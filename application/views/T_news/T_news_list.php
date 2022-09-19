@@ -4,10 +4,10 @@
 <?php echo card_open('Daftar','bg-teal',true)?>
 <div class='row'>
 	<div class='col-md-6 col-lg-4'>
-	<?php echo button_card($title->general->button_create,$title->general->button_create_desc,'text-green','btn-success','fe fe-list','bg-green','btn-create',$link_create)?>
+	<?php echo button_card('Create',$title->general->button_create_desc,'text-green','btn-success','fe fe-list','bg-green','btn-create',$link_create)?>
 	</div>
 	<div class='col-md-6 col-lg-4'>
-	<?php echo button_card($title->general->button_delete,$title->general->button_delete_desc,'text-red','btn-danger','fe fe-trash','bg-red','btn-delete')?>
+	<?php echo button_card('Delete',$title->general->button_delete_desc,'text-red','btn-danger','fe fe-trash','bg-red','btn-delete')?>
 	</div>
 </div>
 

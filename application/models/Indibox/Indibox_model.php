@@ -216,7 +216,7 @@ class Indibox_model extends CI_Model
 			'trans_profiling_validasi_mos.tempat_bayar as tempat_bayar',
 
 		);
-		$this->infomedia->select("*");
+		$this->infomedia->select($afield);
 		$this->infomedia->where('trans_profiling_validasi_mos.idx', $idx);
 		$this->infomedia->order_by('trans_profiling_validasi_mos.idx', 'ASC');
 		return $this->infomedia->get('trans_profiling_validasi_mos')->row();

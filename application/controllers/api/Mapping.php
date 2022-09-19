@@ -128,8 +128,8 @@ class Mapping extends CI_Controller
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => '{
-                "username": "profiling_indihome_premium",
-                "password": "ra3rar44r"
+                "username": "profiling_indihome_reguler",
+                "password": "wBbqP4aNNf"
                 }',
             CURLOPT_HTTPHEADER => array(
                 "cache-control: no-cache",
@@ -208,9 +208,9 @@ class Mapping extends CI_Controller
             $cek = $this->Api_monitoring->live_query("select * FROM api_monitoring WHERE engine = 'API_SMS_TURBO' ORDER BY id DESC LIMIT 1")->row();
             if ($cek->status == 0) {
                 if (intval($cek->time) > 10) {
-                    $this->send_notif_engine("API_SMS_TURBO", "DOWN", $durasi_sms);
+                    $this->send_notif_engine("API_SMS_TURBO", "UP", $durasi_sms, "UPDATE STATUS ENGINE");
                 }
-                $this->send_notif_engine("API_SMS_TURBO", "UP", $durasi_sms, "UPDATE STATUS ENGINE");
+                
             }
             $data_input = array(
                 "lastupdate" => DATE('Y-m-d H:i:s'),
@@ -246,7 +246,7 @@ Execution Time : " . $execution_time . "
         $botToken = "1676733678:AAH7rEX3xix1orXF88XEl-KO1ynskKT_v-Q";
         $website = "https://api.telegram.org/bot" . $botToken;
 
-        $user_getnotif = $this->Api_monitoring->live_query("select * FROM sys_user WHERE chat_id_telegram IS NOT NULL AND (opt_level = 1 OR opt_level = 7)")->result();
+        $user_getnotif = $this->Api_monitoring->live_query("select * FROM sys_user WHERE chat_id_telegram IS NOT NULL AND (opt_level = 1 OR opt_level = 7 OR opt_level = 15)")->result();
         if (count($user_getnotif) > 0) {
             foreach ($user_getnotif as $ur) {
                 $id_telegram = $ur->chat_id_telegram;

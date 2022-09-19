@@ -48,9 +48,9 @@ if ($berhasil > 0) {
                     <option value="myih">myih</option>
                     <option value="HVC">HVC</option>
                     <option value="TREG7">TREG7</option>
-                    <option value="TREG6">TREG6</option>
-                    <option value="TREG5">TREG5</option>
-                    <option value="TREG2">TREG2</option>
+ <option value="TREG6">TREG6</option>
+ <option value="TREG5">TREG5</option>
+<option value="TREG2">TREG2</option>
                     <option value="NCX">NCX</option>
                 </select>
             </div>

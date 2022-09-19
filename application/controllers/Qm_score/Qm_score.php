@@ -236,6 +236,7 @@ class Qm_score extends CI_Controller
 		$val['tanggal'] = date('Y-m-d H:i:s');
 		$qm_score_parameter = $this->qm_score_parameter->get_results(array(), array("*"), array(), array("urutan" => "ASC"));
 		if ($qm_score_parameter['num'] > 0) {
+			$bobot_hasil = "";
 			foreach ($qm_score_parameter['results'] as $param) {
 				$data_insert = array(
 					'id_qm_score' => $param->id,
@@ -250,6 +251,26 @@ class Qm_score extends CI_Controller
 					'idx' => $val['idx'],
 				);
 				$success = $this->qm_score->add($data_insert);
+				$paramss = $val['qm_score_param_' . $param->id];
+				$bobot_hasil .= $param->id . "|" . $paramss . "
+				";
+			}
+			// var_dump($bobot_hasil);
+			$this->load->library('telegram');
+
+			$agentid = $val['agentid'];
+			$pesan = "<b>QM Score</b> 
+	idPenilaian | Approve? : 
+" . $bobot_hasil . " 
+agentid : " . $val['agentid'] . "
+Tgl Kejadian : " . $val['lup'] . "
+tanggal tapping : " . $val['tanggal'] . "
+dial to : " . $val['dial_to'];
+			$query = $this->db->query("SELECT agentid, opt_level, chat_id_telegram, tl FROM sys_user WHERE agentid='$agentid'")->row();
+			$querytl = $this->db->query("SELECT agentid, opt_level, chat_id_telegram FROM sys_user WHERE agentid='$query->tl'")->row();
+			if ($query->chat_id_telegram != "" || $query->chat_id_telegram != NULL) {
+				// $this->telegram->send_manual($pesan, $query->agentid, $query->opt_level, $query->chat_id_telegram);
+				// $this->telegram->send_manual($pesan, $querytl->agentid, $querytl->opt_level, $querytl->chat_id_telegram);
 			}
 		}
 
@@ -328,7 +349,6 @@ WHERE
 GROUP BY
 	idqm
 			")->result();
-			
 		}
 		$this->load->view('Qm_score/list_area_report', $data);
 	}

@@ -339,6 +339,8 @@ class New_cwc extends CI_Controller
       $data['on4'] = $this->on4($type, $value);
       $data['salper'] = $this->salper($type, $value);
       $data['reguler'] = $this->reguler($type, $value);
+      $data['indipass'] = $this->indipass($type, $value);
+      $data['moss'] = $this->cari_moss($type, $value);
     }
 
 
@@ -424,6 +426,58 @@ class New_cwc extends CI_Controller
       ),
     ));
 
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+
+    $data = json_encode($response);
+    return $response;
+  }
+  public function indipass($type, $value)
+  {
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'http://10.194.51.88/dashboard/app/api/Public_Access/cari_kontak_indipass',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => array('nointernet' => $value),
+      CURLOPT_HTTPHEADER => array(
+        'Cookie: power_system=bdep8f1umpuk6ocs8lpk0btblkd5pajo'
+      ),
+    ));
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+
+    $data = json_encode($response);
+    return $response;
+  }
+  public function cari_moss($type, $value)
+  {
+    $curl = curl_init();
+
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'http://10.194.51.88/dashboard/app/api/Public_Access/cari_kontak_moss_bynd',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => array('nointernet' => $value),
+      CURLOPT_HTTPHEADER => array(
+        'Cookie: power_system=n7kvoavr6as5vb3kr2kr9qoo1mn7c3kk'
+      ),
+    ));
     $response = curl_exec($curl);
 
     curl_close($curl);

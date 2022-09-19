@@ -25,9 +25,15 @@ if (isset($_GET['success'])) {
             <div class='form-group'>
                 <label class='form-label'>SUMBER</label>
                 <select id="sumber" name="sumber" class="form-control">
+<?php 
+if(isset($sumbernya)){
+echo "<option value='$sumbernya' selected>$sumbernya</option>";
+}
+?>
                     <option value="semua">Semua Sumber</option>
+                    <option value="MK">MK</option>
                     <option value="VALIDATE">VALIDATE</option>
-                    <option value="ProfilingMyCX">ProfilingMyCX</option>
+                    <option value="ProfillingMyCX">ProfillingMyCX</option>
                     <option value="VERIFIED_LAMA">VERIFIED_LAMA</option>
                     <option value="TREG1">TREG1</option>
                     <option value="TREG2">TREG2</option>
@@ -36,7 +42,10 @@ if (isset($_GET['success'])) {
                     <option value="TREG5">TREG5</option>
                     <option value="TREG6">TREG6</option>
                     <option value="TREG7">TREG7</option>
+                    <option value="HVC">HVC</option>
                     <option value="INVALID PCM">INVALID PCM</option>
+<option value="VERLA_2020">VERLA_2020</option>
+
                     
                 </select>
             </div>
@@ -101,6 +110,7 @@ if (isset($_GET['success'])) {
                     <option value="semua">Tidak Difilter</option>
                     <option value="LIKE">Filter LIKE</option>
                     <option value="NOT LIKE">Filter NOT LIKE</option>
+                    <option value="IS NULL">IS NULL</option>
                 </select>
             </div>
         </div>

@@ -243,7 +243,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                         <div class="col-sm-4 col-lg-4" id="best_agent_area">
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="best_agent_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="best_agent_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br>
                                     <span id="best_agent_nama">-</span>
                                     <br>
@@ -257,7 +257,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                         <div class="col-sm-4 col-lg-4">
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="best_tl_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="best_tl_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br>
                                     <span id="best_tl_nama">-</span>
                                     <br>
@@ -297,7 +297,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="agent_1_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="agent_1_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br><span id="agent_1_nama">-</span>
                                     <br><span id="agent_1_num">-</span>
                                 </div>
@@ -309,7 +309,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="agent_2_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="agent_2_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br><span id="agent_2_nama">-</span>
                                     <br><span id="agent_2_num">-</span>
                                 </div>
@@ -321,7 +321,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="agent_3_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="agent_3_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br><span id="agent_3_nama">-</span><br>
                                     <span id="agent_3_num">-</span>
                                 </div>
@@ -333,7 +333,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="agent_4_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="agent_4_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br><span id="agent_4_nama">-</span><br>
                                     <span id="agent_4_num">-</span>
                                 </div>
@@ -345,7 +345,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="agent_5_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="agent_5_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br><span id="agent_5_nama">-</span><br>
                                     <span id="agent_5_num">-</span>
                                 </div>
@@ -357,7 +357,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
 
                             <div class="media">
                                 <div class="media-body">
-                                    <span class="avatar" id="agent_6_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                    <span class="avatar" id="agent_6_foto" style="width: 100px;height: 100px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
                                     <br><span id="agent_6_nama">-</span><br>
                                     <span id="agent_6_num">-</span>
                                 </div>

@@ -96,60 +96,118 @@ $reguler_peformance = array();
 $data_agent = array();
 $agent_on_duty = 0;
 $agent_idle_detail = array();
-$agent_offline = array();
-$agent_login = array();
-$agent_aux = array();
-if ($activity_login->count() > 0) {
-    foreach ($activity_login->toArray() as $ad) {
-        $agent_login[$ad['agentid']][$ad['methode']] = $ad['methode'];
+$agent_offline=array();
+$agent_aux=array();
+if($activity_logout->count() > 0){
+    foreach($activity_logout->toArray() as $ad){
+        $agent_offline[]=$ad['agentid'];
     }
 }
-if ($activity_logout->count() > 0) {
-    foreach ($activity_logout->toArray() as $ad) {
-        $agent_offline[$ad['agentid']][$ad['methode']] = $ad['methode'];
+if($activity_aux->count() > 0){
+    foreach($activity_aux->toArray() as $ad){
+        $agent_aux[]=$ad['agentid'];
     }
 }
+$agent_break=array_merge($agent_offline,$agent_aux);
 
-$agent_wfo = array();
-$agent_wfh = array();
+$idle_agent=$idle_agent->whereNotIn('veri_upd',$agent_break);
+// if (count($agent_reguler) > 0) {
+//     foreach ($agent_reguler as $ag) {
 
-if (count($agent_login) > 0) {
-    foreach ($agent_login as $ag => $methode) {
-        if (in_array(0, $methode)) {
-            $agent_wfo[] = $ag;
-        } else {
-            $agent_wfh[] = $ag;
-        }
-    }
-}
-
-$agent_out_wfo = array();
-$agent_out_wfh = array();
-
-if (count($activity_logout) > 0) {
-    foreach ($activity_logout as $ag => $methode) {
-        if (in_array(0, $methode)) {
-            $agent_out_wfo[] = $ag;
-        } else {
-            $agent_out_wfh[] = $ag;
-        }
-    }
-}
-$on_duty = count($agent_wfo) + count($agent_wfh);
+//         $data_agent = $bucket_data_reguler->where('veri_upd', $ag['agentid']);
 
 
+//         $status[$ag['agentid']]['verified'] = $data_agent->filter('veri_call', "=", '13')->toArray();
+//         for ($i = 1; $i < 16; $i++) {
+//             $status[$ag['agentid']][$i] = count($data_agent->filter('veri_call', "=", $i)->toArray());
+//             $total[$i] = $total[$i] + $status[$ag['agentid']][$i];
+//         }
+//         if ($data_agent->count() > 0) {
+//             if ($agent_moss_avaliable->where('agentid', $ag['agentid'])->count() == 0) {
+//                 $agent_on_duty++;
+//             }
+//         }
+//         // if($idle_agent->where('veri_upd', $ag['agentid'])->sum('idle') > 0){
+//         if ($idle_agent->where('veri_upd', $ag['agentid'])->count() > 0) {
+//             $agent_idle_detail[$ag['agentid']] = $idle_agent->where('veri_upd', $ag['agentid'])->sum('idle');
+//         }
+//         $reguler_peformance[$ag['agentid']] = count($status[$ag['agentid']]['verified']);
+//         $sub_total_contacted = $status[$ag['agentid']][1] + $status[$ag['agentid']][13] + $status[$ag['agentid']][3] + $status[$ag['agentid']][12];
+//         $sub_total_uncontacted =  $status[$ag['agentid']][4]  +  $status[$ag['agentid']][7] +  $status[$ag['agentid']][11] +  $status[$ag['agentid']][10] +  $status[$ag['agentid']][14] +  $status[$ag['agentid']][2];
+//         $detail_agent[$ag['agentid']]['nama'] = $ag['nama'];
+//         $detail_agent[$ag['agentid']]['ordercall'] = $sub_total_contacted + $sub_total_uncontacted;
+//         $total['contacted'] = $total['contacted'] + $sub_total_contacted;
+//         $total['uncontacted'] = $total['uncontacted'] + $sub_total_uncontacted;
+//         $hp_email = filter_by_hp_email($status[$ag['agentid']]['verified'], array("handphone", "email"), array("08", "@"));
+//         $hp_only = filter_by_hp_only($status[$ag['agentid']]['verified'], array("handphone", "email"), array("08", "@"));
+//     }
+// }
+// $total_oc = ($total['contacted'] + $total['uncontacted']) + $wo;
+// $verified = ($total[13]);
+// $oc = ($total['contacted'] + $total['uncontacted']);
+// $percent_oc = (($total['contacted'] + $total['uncontacted']) / $total_oc) * 100;
+// $rating_agent_reguler = array();
+// if (count($reguler_peformance) > 0) {
+//     arsort($reguler_peformance);
+//     $rating_agent_reguler = array_slice($reguler_peformance, 0, 5);
+//     $n = 1;
 
-if ($activity_aux->count() > 0) {
-    foreach ($activity_aux->toArray() as $ad) {
-        $agent_aux[] = $ad['agentid'];
-    }
-}
-$agent_out = array_merge($agent_out_wfo, $agent_out_wfh);
-$agent_break = array_merge($agent_out, $agent_aux);
+//     foreach ($rating_agent_reguler as $k => $v) {
+//         // echo $k."<br>";
+//         $category_amount_reg[] = array(
+//             "category" => $detail_agent[$k]['nama'],
+//             "verified" => $v,
+//             "callorder" => $detail_agent[$k]['ordercall']
+//         );
+//     }
+// }
 
-$idle_agent = $idle_agent->whereNotIn('veri_upd', $agent_break);
+/*----------------------END REGULER AREA------------------*/
 
-$aval = $on_duty - (count($agent_out) + $idle_agent->count());
+/*---------------------- MOSS AREA------------------*/
+// $total_moss = array();
+// $total_moss['sum'] = 0;
+// $total_moss['slfc'] = 0;
+// $total_moss['count'] = 0;
+// $moss_peformance = array();
+
+
+// if (count($agent_moss) > 0) {
+//     foreach ($agent_moss as $ag) {
+//         $data_agent = $bucket_data_moss->where('update_by', $ag['agentid']);
+//         if ($data_agent->count() > 0) {
+//             // $data_agent = $this->filter_by_value($query_trans_profiling->result_array(), 'veri_upd', $ag->agentid);
+//             // $data_mos = $this->filter_by_value($query_trans_profiling_verifikasi->result_array(), 'update_by', $ag->agentid);
+//             $total_moss['sum'] = $total_moss['sum'] + $data_agent->sum('slg');
+//             $total_moss['slfc'] = $total_moss['slfc'] + $data_agent->sum('slfc');
+//             $total_moss['count'] = $total_moss['count'] + $data_agent->count();
+//             $moss_peformance[$ag['agentid']] = ($data_agent->sum('slg') / $data_agent->count()) / 60;
+//             $detail_agent[$ag['agentid']]['nama'] = $ag['nama'];
+//             $detail_agent[$ag['agentid']]['ordercall'] = $data_agent->count();
+//             $no++;
+//             if ($agent_moss_avaliable->where('agentid', $ag['agentid'])->count() > 0) {
+//                 $agent_on_duty++;
+//             }
+//         }
+//     }
+// }
+// $total_moss['slg'] = ($total_moss['sum'] / $total_moss['count']) / 60;
+// $total_moss['slfc'] = ($total_moss['slfc'] / $total_moss['count']) / 60;
+// $rating_agent_moss = array();
+// if (count($moss_peformance) > 0) {
+//     asort($moss_peformance);
+//     $rating_agent_moss = array_slice($moss_peformance, 0, 5);
+//     $n = 1;
+
+//     foreach ($rating_agent_moss as $k => $v) {
+//         // echo $k."<br>";
+//         $category_amount_moss[] = array(
+//             "category" => $detail_agent[$k]['nama'],
+//             "slg" => $v,
+//             "callorder" => $detail_agent[$k]['ordercall']
+//         );
+//     }
+// }
 /*----------------------END MOSS AREA------------------*/
 
 ?>
@@ -167,10 +225,12 @@ $aval = $on_duty - (count($agent_out) + $idle_agent->count());
     <tr>
         <td width="33%">
             <img src="<?php echo base_url('api/Public_Access/get_logo_login') ?>" class="fontlogo" alt="" width="200px">
+
+
         </td>
         <td width="34%" style="text-align:center;">
 
-            <h1>PROFILING AGENT MONITORING</h1>
+        <h1>PROFILING AGENT MONITORING</h1>
         </td>
         <td width="33%" style="text-align:right;">
             <span id="tick2">
@@ -214,23 +274,19 @@ $aval = $on_duty - (count($agent_out) + $idle_agent->count());
         <td width="30%" valign="top">
             <table width="100%" style="color:#a3a8ac;font-size:25px;text-align:center;">
                 <tr>
-                    <td rowspan='2'><i class="fa fa-cog"></i> ON DUTY<br><span style="color:#fff;font-size:200px;text-align:center;"><?php echo $on_duty; ?></span></td>
-                    <td><i class="fa fa-cog"></i> AVAILABLE<br><span style="color:#a0bc2e;font-size:75px;text-align:center;"><?php echo $aval; ?></span></td>
+                    <td rowspan='2'><i class="fa fa-cog"></i> ON DUTY<br><span style="color:#fff;font-size:200px;text-align:center;"><?php echo $activity_login->count(); ?></span></td>
+                    <td><i class="fa fa-cog"></i> AVAILABLE<br><span style="color:#a0bc2e;font-size:75px;text-align:center;"><?php echo ($activity_login->count() - ($activity_aux->count() + $activity_logout->count())); ?></span></td>
                     <td><i class="fa fa-cog"></i> AUX/BREAK <br><span style="color:#ff8e35;font-size:75px;text-align:center;"><?php echo $activity_aux->count(); ?></span></td>
                 </tr>
                 <tr>
-                    <td><i class="fa fa-cog"></i> OFFLINE<br><span style="color:#fff;font-size:75px;text-align:center;"><?php echo count($agent_out); ?></span></td>
+                    <td><i class="fa fa-cog"></i> OFFLINE<br><span style="color:#fff;font-size:75px;text-align:center;"><?php echo $activity_logout->count(); ?></span></td>
                     <td><i class="fa fa-cog"></i> IDLE<br><span style="color:#ce2f4f;font-size:75px;text-align:center;"><?php echo $idle_agent->count(); ?></span></td>
                 </tr>
-                <!-- <tr>
-                    <td><i class="fa fa-cog"></i> WFH<br><span style="color:#fff;font-size:75px;text-align:center;"><?php echo count($agent_wfh) ?></span></td>
-                    <td><i class="fa fa-cog"></i> WFO<br><span style="color:#fff;font-size:75px;text-align:center;"><?php echo count($agent_wfo) ?></span></td>
-                </tr> -->
                 <tr>
                     <td colspan='3'>
                         <div class="col-md-12 col-xl-12" id="panel-form-moss">
                             <div class="card">
-                                <div class="card-status bg-danger"></div>
+                                <div class="card-status bg-orange"></div>
                                 <!-- <div class="card-header">
                                     <div class="card-options">
                                         <a href="#" class="card-options-collapse " data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
@@ -240,84 +296,37 @@ $aval = $on_duty - (count($agent_out) + $idle_agent->count());
                                 <div class="card-body">
                                     <div class='box-body table-responsive' id='box-table'>
                                         <small>
-                                            <?php
-                                            if ($idle_agent->count() > 0) {
-                                            ?>
-                                                <table class='timecard' style="width: 100%;color:#000;">
-                                                    <thead>
-                                                        <tr>
-                                                            <th nowrap><b></b></th>
-                                                            <th nowrap><b></b></th>
-                                                            <th nowrap><b></b></th>
-                                                            <th style="background-color:red;color:white;"><b>Idle Time</b></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-
+                                            <table class='timecard' style="width: 100%;color:#000;">
+                                                <thead>
+                                                    <tr>
+                                                        <th nowrap><b></b></th>
+                                                        <th nowrap><b></b></th>
+                                                        <th style="background-color:red;color:white;"><b>Idle Time</b></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    if ($idle_agent->count() > 0) {
                                                         foreach ($idle_agent->toArray() as $detail_agent_idle) {
-                                                            $style = "background-color:blue;color:white;";
-                                                            if (in_array($detail_agent_idle['agentid'], $agent_wfh)) {
-                                                                $style = "background-color:green;color:white;";
+                                                            if ($activity_aux->where('agentid', $detail_agent_idle['veri_upd'])->count() == 0) {
+                                                                if ($activity_logout->where('agentid', $detail_agent_idle['veri_upd'])->count() == 0) {
+
+                                                    ?>
+
+                                                                    <tr>
+                                                                        <td style="text-align:left;"><?php echo $detail_agent_idle['nama']; ?></td>
+                                                                        <td style="text-align:left;"></td>
+                                                                        <td><?php echo number_format($detail_agent_idle['idle'] / 60); ?> Menit</td>
+                                                                    </tr>
+                                                    <?php
+                                                                }
                                                             }
-
-                                                        ?>
-
-                                                            <tr>
-                                                                <td style="<?php echo $style; ?>padding:5px;"></td>
-                                                                <td style="text-align:left;"><?php echo $detail_agent_idle['nama']; ?></td>
-                                                                <td style="text-align:left;"></td>
-                                                                <td><?php echo number_format($detail_agent_idle['idle'] / 60); ?> Menit</td>
-                                                            </tr>
-                                                        <?php
                                                         }
+                                                    }
 
-
-                                                        ?>
-                                                    </tbody>
-                                                </table>
-                                            <?php
-                                            }
-                                            ?>
-                                            <?php
-                                            if ($activity_aux->count() > 0) {
-                                            ?>
-                                                <table class='timecard' style="width: 100%;color:#000;">
-                                                    <thead>
-                                                        <tr>
-                                                            <th nowrap><b></b></th>
-                                                            <th nowrap><b></b></th>
-                                                            <th nowrap><b></b></th>
-                                                            <th style="background-color:yellow;color:white;"><b>AUX</b></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-
-                                                        foreach ($activity_aux->toArray() as $detail_agent_idle) {
-                                                            $style = "background-color:blue;color:white;";
-                                                            if (in_array($detail_agent_idle['agentid'], $agent_wfh)) {
-                                                                $style = "background-color:green;color:white;";
-                                                            }
-                                                        ?>
-
-                                                            <tr>
-                                                                <td style="<?php echo $style; ?>padding:5px;"></td>
-                                                                <td style="text-align:left;"><?php echo $detail_agent_idle['nama']; ?></td>
-                                                                <td style="text-align:left;"></td>
-                                                                <td><?php echo number_format($detail_agent_idle['aux'] / 60); ?> Menit</td>
-                                                            </tr>
-                                                        <?php
-
-                                                        }
-
-
-                                                        ?>
-                                                    </tbody>
-                                                </table>
-                                            <?php
-                                            }
-                                            ?>
+                                                    ?>
+                                                </tbody>
+                                            </table>
                                     </div>
                                 </div>
                             </div>
@@ -330,54 +339,172 @@ $aval = $on_duty - (count($agent_out) + $idle_agent->count());
             <span style="color:#a3a8ac;font-size:25px;text-align:center;"><i class="fa fa-cog"></i> PERFORMANCE DAILY</span>
             <br>
             <br>
-            <table width="100%">
-                <thead>
-                    <tr>
-                        <th rowspan="4"><?php echo date('d'); ?></th>
-                        <th>Order Call</th>
-                        <th>Contacted</th>
-                        <th>Verified</th>
-                        <th>PPA</th>
-                        <th>AUX TIME</th>
-                        <th>Agent On Duty</th>
-                        <th>Productivity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th></th>
-                        <th>24.000</th>
-                        <th>7.000</th>
-                        <th>6.000</th>
-                        <th>110</th>
-                        <th>60</th>
-                        <th>61</th>
-                        <th>WFH</th>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <th>24.000</th>
-                        <th>7.000</th>
-                        <th>6.000</th>
-                        <th>110</th>
-                        <th>60</th>
-                        <th>61</th>
-                        <th>WFO</th>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>24.000</th>
-                        <th>7.000</th>
-                        <th>6.000</th>
-                        <th>110</th>
-                        <th>60</th>
-                        <th>61</th>
-                        <th>ALL</th>
-                    </tr>
-                </tfoot>
-            </table>
+            <div class="col-md-12 col-xl-12" id="panel-form-moss">
+                <div class="card">
+                    <div class="card-status bg-orange"></div>
+                    <div class="card-header">
+                        <h3 class="card-title" style="color:#a3a8ac;text-align:center;">Reguler Performance
+
+                        </h3>
+                        <!-- <div class="card-options">
+                            <a href="#" class="card-options-collapse " data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                            <a href="#" class="card-options-fullscreen " data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                        </div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class='box-body table-responsive' id='box-table'>
+                            <small>
+                                <table class='timecard' id="report_table_reg" style="width: 100%;color:#000;">
+                                    <thead>
+                                        <tr>
+                                            <th><b>No</b></th>
+                                            <th nowrap><b>Nama Agent</b></th>
+                                            <th nowrap><b>User ID</b></th>
+                                            <th style="background-color:green;color:white;"><b>Verified</b></th>
+                                            <th style="background-color:green;color:white;"><b>BP</b></th>
+                                            <th style="background-color:green;color:white;"><b>TBP</b></th>
+                                            <th style="background-color:green;color:white;"><b>FLUP</b></th>
+                                            <th style="background-color:blue;color:white;"><b>HPE</b></th>
+                                            <th style="background-color:blue;color:white;"><b>HPO</b></th>
+                                            <th style="background-color:red;color:white;"><b>RNA</b></th>
+                                            <th style="background-color:red;color:white;"><b>SS</b></th>
+                                            <th style="background-color:red;color:white;"><b>Isolir</b></th>
+                                            <th style="background-color:red;color:white;"><b>Decline</b></th>
+                                            <th style="background-color:red;color:white;"><b>Reject</b></th>
+                                            <th style="background-color:red;color:white;"><b>LR</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        if (count($agent_reguler) > 0) {
+                                            foreach ($agent_reguler as $ag) {
+
+                                                $data_agent = $bucket_data_reguler->where('veri_upd', $ag['agentid']);
+
+
+                                                $status[$ag['agentid']]['verified'] = $data_agent->filter('veri_call', "=", '13')->toArray();
+                                                for ($i = 1; $i < 16; $i++) {
+                                                    $status[$ag['agentid']][$i] = count($data_agent->filter('veri_call', "=", $i)->toArray());
+                                                    $total[$i] = $total[$i] + $status[$ag['agentid']][$i];
+                                                }
+                                                $hp_email = filter_by_hp_email($status[$ag['agentid']]['verified'], array("handphone", "email"), array("08", "@"));
+                                                $hp_only = filter_by_hp_only($status[$ag['agentid']]['verified'], array("handphone", "email"), array("08", "@"));
+                                        ?>
+
+                                                <tr>
+                                                    <td><?php echo $no; ?></td>
+                                                    <td style="text-align:left;"><?php echo $ag['nama']; ?></td>
+                                                    <td style="text-align:left;"><?php echo $ag['agentid']; ?></td>
+                                                    <td><?php echo number_format(count($status[$ag['agentid']]['verified'])); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][1]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][3]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][12]); ?></td>
+                                                    <td><?php echo number_format(count($hp_email)); ?></td>
+                                                    <td><?php echo number_format(count($hp_only)); ?></td>
+
+                                                    <td><?php echo number_format($status[$ag['agentid']][2]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][4]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][7]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][11]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][10]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][14]); ?></td>
+
+                                                </tr>
+                                        <?php
+                                                $no++;
+                                            }
+                                        }
+
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xl-12" id="panel-form-moss">
+                <div class="card">
+                    <div class="card-status bg-orange"></div>
+                    <div class="card-header">
+                    <h3 class="card-title" style="color:#a3a8ac;text-align:center;">Moss Performance
+
+</h3>
+                        <!-- <div class="card-options">
+                            <a href="#" class="card-options-collapse " data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                            <a href="#" class="card-options-fullscreen " data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                        </div> -->
+                    </div>
+                    <div class="card-body">
+                        <div class='box-body table-responsive' id='box-table'>
+                            <small>
+                                <table class='timecard' id="report_table_moss" style="width: 100%;color:#000;">
+                                    <thead>
+                                        <tr>
+                                            <th><b>No</b></th>
+                                            <th nowrap><b>Nama Agent</b></th>
+                                            <th nowrap><b>User ID</b></th>
+                                            <th style="background-color:green;color:white;"><b>Verified</b></th>
+                                            <th style="background-color:green;color:white;"><b>BP</b></th>
+                                            <th style="background-color:green;color:white;"><b>TBP</b></th>
+                                            <th style="background-color:green;color:white;"><b>FLUP</b></th>
+                                            <th style="background-color:red;color:white;"><b>RNA</b></th>
+                                            <th style="background-color:red;color:white;"><b>SS</b></th>
+                                            <th style="background-color:red;color:white;"><b>Isolir</b></th>
+                                            <th style="background-color:red;color:white;"><b>Decline</b></th>
+                                            <th style="background-color:red;color:white;"><b>Reject</b></th>
+                                            <th style="background-color:red;color:white;"><b>LR</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $no = 1;
+                                        if (count($agent_moss) > 0) {
+                                            foreach ($agent_moss as $ag) {
+
+                                                $data_agent = $bucket_data_moss->where('update_by', $ag['agentid']);
+
+
+                                                $status[$ag['agentid']]['verified'] = $data_agent->filter('reason_call', "=", '13')->toArray();
+                                                for ($i = 1; $i < 16; $i++) {
+                                                    $status[$ag['agentid']][$i] = count($data_agent->filter('reason_call', "=", $i)->toArray());
+                                                    $total[$i] = $total[$i] + $status[$ag['agentid']][$i];
+                                                }
+                                        ?>
+
+                                                <tr>
+                                                    <td><?php echo $no; ?></td>
+                                                    <td style="text-align:left;"><?php echo $ag['nama']; ?></td>
+                                                    <td style="text-align:left;"><?php echo $ag['agentid']; ?></td>
+                                                    <td><?php echo number_format(count($status[$ag['agentid']]['verified'])); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][1]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][3]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][12]); ?></td>
+
+                                                    <td><?php echo number_format($status[$ag['agentid']][2]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][4]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][7]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][11]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][10]); ?></td>
+                                                    <td><?php echo number_format($status[$ag['agentid']][14]); ?></td>
+
+                                                </tr>
+                                        <?php
+                                                $no++;
+                                            }
+                                        }
+
+                                        ?>
+                                    </tbody>
+                                </table>
+
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </td>
     </tr>
 </table>

@@ -206,7 +206,7 @@ class Tvv extends CI_Controller
 			echo $o->result();
 			return;
 		}
-
+		
 		if (!$o->not_empty($val['no_handpone'], '#no_handpone')) {
 			echo $o->result();
 			return;
@@ -215,7 +215,7 @@ class Tvv extends CI_Controller
 		// if ($val['id_forcall'] > 0) {
 		// 	$this->On_call_indibox_model->delete(array("idx" => $val['id_forcall']));
 		// 	$status_call = $this->Status_call_model->get_by_id($val['reason_call']);
-
+			
 		// 	$data_update_forcall = array(
 		// 		"ncli" => $val['ncli'],
 		// 		"no_indihome" => $val['no_speedy'],
@@ -297,7 +297,7 @@ class Tvv extends CI_Controller
 				'veri_call'	=>  $val['reason_call'],
 				'veri_status'	=>  $val['status'],
 				'profiling_by'	=>  '100',
-				'veri_keterangan'	=>  $val['keterangan'] . "/TVV",
+				'veri_keterangan'	=>  $val['keterangan']."/TVV",
 				'handphone_lain'	=>  $val['handphone_lainnya'],
 				'click_session'	=>  $random_num,
 				'veri_upd'	=>  $val['update_by'],
@@ -332,7 +332,7 @@ class Tvv extends CI_Controller
 					'waktu_psb'	=>  $val['waktu_psb'],
 					'veri_call'	=>  $val['reason_call'],
 					'veri_status'	=>  $val['status'],
-					'veri_keterangan'	=>  $val['keterangan'] . "/TVV",
+					'veri_keterangan'	=>  $val['keterangan']."/TVV",
 					'handphone_lain'	=>  $val['handphone_lainnya'],
 					'idx'	=>  $insert_id,
 					'sumber'	=>  $val['sumber'],
@@ -400,7 +400,7 @@ class Tvv extends CI_Controller
 				'link_back'				=> $this->agent->referrer(),
 				'data'					=> $row,
 			);
-
+			
 			$this->template->load('Tvv/Tvv_form', $data);
 		} else {
 			// redirect($this->agent->referrer());
@@ -444,7 +444,7 @@ class Tvv extends CI_Controller
 		// 	return;
 		// }
 
-		unset($val['id_forcall']);
+			unset($val['id_forcall']);
 		$success = $this->tmodel->update($val['idx'], $val);
 		echo $o->auto_result($success);
 	}

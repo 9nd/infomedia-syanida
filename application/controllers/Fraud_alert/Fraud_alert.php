@@ -21,11 +21,12 @@ class Fraud_alert extends CI_Controller
 		$this->load->model('Custom_model/Status_call_model', 'status_call');
 		$this->load->model('Custom_model/Trans_profiling_daily_model', 'trans_profiling_daily');
 		$this->load->model('Custom_model/Trans_profiling_monthly_model', 'trans_profiling_monthly');
-		$this->load->model('Custom_model/Trans_profiling_last_month_infomedia_model', 'trans_profiling_last_month');
+		// $this->load->model('Custom_model/Trans_profiling_last_month_infomedia_model', 'trans_profiling_last_month');
 		$this->load->model('Custom_model/T_produk_moss_model', 'product_moss');
 		$this->load->model('Custom_model/Cdr_model', 'cdr');
 		$this->load->model('Custom_model/Cdr_daily_model', 'cdr_daily');
 		$this->load->model('Custom_model/Recording_daily_model', 'recording_daily');
+		$this->load->model('Custom_model/On_handling_fraud_model', 'On_handling_fraud_model');
 		$this->log_key = 'Fraud_alert';
 		$this->title = new Fraud_alert_config();
 	}
@@ -51,10 +52,29 @@ class Fraud_alert extends CI_Controller
 		$this->template->load('Fraud_alert/list', $data);
 	}
 
+	public function get_list_mos()
+	{
+		// $data['count'] = $this->tmodel->live_query("SELECT count(distinct ncli)jumlah FROM trans_profiling_validasi_mos WHERE `status` IN ('0','3',null) AND update_by is null and ncli IS NOT NULL")->row();
+		$on_call = $this->On_handling_fraud_model->get_results();
+		if ($on_call['num'] > 0) {
+			foreach ($on_call['results'] as $oc) {
+				$data['oncall'][] = array(
+					'idx' => $oc->idx,
+					'agentid' => $oc->agentid
+				);
+			}
+		}
+		$response['data'] = $data;
+		echo json_encode($response);
+	}
+
 	public function audit()
 	{
 
 
+		$idlogin = $this->session->userdata('idlogin');
+		$logindata = $this->log_login->get_by_id($idlogin);
+		$userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
 		$hp = $_GET['hp'];
 		$data['resultm'] = $this->trans_profiling_verifikasi->live_query("
         select no_speedy,ncli,update_by, nama_pelanggan,no_handpone, alamat, nama_pastel, relasi, email, lup, no_speedy, no_pstn FROM trans_profiling_verifikasi WHERE no_handpone = '$hp'
@@ -62,11 +82,18 @@ class Fraud_alert extends CI_Controller
 		$data['hp'] = $hp;
 		$data['count_multiinet'] = $this->trans_profiling_verifikasi->live_query("
         select count(distinct no_speedy) as hitung FROM trans_profiling_verifikasi WHERE no_handpone = '$hp'
-         ORDER BY no_speedy")->row()->hitung;
+		 ORDER BY no_speedy")->row()->hitung;
+		$oncall_data = array(
+			'idx' => $hp,
+			'agentid' => $userdata->agentid,
+			'click_time' => date('Y-m-d H:i:s')
+		);
+		$this->On_handling_fraud_model->add($oncall_data);
 		$this->template->load('Fraud_alert/audit_form', $data);
 	}
 	public function Insert()
 	{
+		$this->On_handling_fraud_model->delete(array("idx" => $_POST['handphone']));
 		$idlogin = $this->session->userdata('idlogin');
 		$logindata = $this->log_login->get_by_id($idlogin);
 		$datauser = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user))->agentid;
@@ -83,11 +110,12 @@ class Fraud_alert extends CI_Controller
 		} else {
 			$this->db->insert('t_fraud_alert_check', $data);
 			echo "<script>
-				alert('Data " .$_POST['handphone']." | ". $_POST['approval'] . " Berhasil disimpan');
+				alert('Data " . $_POST['handphone'] . " | " . $_POST['approval'] . " Berhasil disimpan');
 				window.close();
 				</script>";
 		}
 	}
+
 
 	public function get_data_list()
 	{

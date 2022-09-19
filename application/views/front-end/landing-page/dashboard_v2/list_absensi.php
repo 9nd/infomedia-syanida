@@ -19,7 +19,7 @@
     <div class="card">
         <div class="card-status bg-orange"></div>
         <div class="card-header">
-            <h3 class="card-title">Data Absensi Hari Ini
+            <h3 class="card-title">Today Attendance Recapitulation
 
             </h3>
             <div class="card-options">

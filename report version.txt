@@ -1,0 +1,277 @@
+YBS v.1.0.10
+fitur baru :
+- Element  : Panel Style Admin LTE 3
+- Element  : Button App Style Admin LTE 3
+- Element  : Grafik Chart JS
+- System   : Log Login Activity	
+
+
+
+
+Bug 1.0.9 :
+==============================================================================================================================================================
+
+==============================================================================================================================================================
+
+
+
+
+
+
+
+YBS v.1.0.9	September 2019
+fitur baru :
+- System : Login Style
+- System : Menu Access Front End
+- System : Menu Page Maintenance
+- System : Menu Dokumentasi
+
+
+Bug 1.0.8 :
+==============================================================================================================================================================
+
+==============================================================================================================================================================
+
+
+
+
+YBS v.1.0.8. Agustus 2019		
+fitur baru :
+- Panel Bootstrap
+- Widget Counter Admin Lte
+- Combobox Link support multi fieldshow 
+- Upload User Form Template excel 
+
+
+Bug 1.0.7 :
+=========================================================================================================
+#0001  (SOLVED)  Sample Image Tidak terload
+=========================================================================================================
+Sample Image masih menggunakan link manual
+penyelesaian : 
+update form sample image
+=========================================================================================================
+=========================================================================================================
+#0002  (SOLVED)  Error Load Image Default
+=========================================================================================================
+Saat terjadi penghapusan user,file image default juga ikut terhapus.
+penyelesaian : 
+update form user
+=========================================================================================================
+=========================================================================================================
+#0003  (SOLVED)  Error Delete Form list data saat TOKEN CSRF di aktifkan
+=========================================================================================================
+Terjadi Double Request saat delete dilakukan ,sehingga request terjadi berurutan
+dengan menggunakan token yang sama.
+penyelesaian : 
+update js
+=========================================================================================================
+
+
+
+
+
+
+
+
+YBS v.1.0.7. 		
+fitur baru :
+- Menu Keamanan 	:  - Disable/Enable Error Report, 
+			   - Disable/Enable CSFR PROTECTION
+
+- CRUD Generator  	:  Option Generate server side 
+- Form List Data	:  Filter Column for ServerSide 
+- General		:  Update sistem login
+
+Bug 1.0.6 :
+=========================================================================================================
+#0001  (SOLVED)  Dropzone get_access_file not found
+=========================================================================================================
+file Service_Storage.php tidak lagi berada pada folder "Contoller/sistem"
+penyelesaian : 
+update model YbsServiceStorage
+=========================================================================================================
+
+=========================================================================================================
+#0002  (SOLVED)  List Data User Tidak dapat Tampil
+=========================================================================================================
+penyelesaian : 
+update Form list data user
+=========================================================================================================
+
+=========================================================================================================
+#0003  (SOLVED)  Error Form List data saat meload data besar
+=========================================================================================================
+terjadi akibat query client side meload semua data pada table,yang seharusnya tidak di lakukan.standar
+dari client side memang meload seluruh data pada table..
+maka untuk penggunaan data besar harus menggunakan methode server side.
+penyelesaian : 
+update CRUD Generator untuk Options generate Server-Side.
+=========================================================================================================
+
+
+
+
+
+YBS v.1.0.6. 		
+fitur baru :
+- ..
+
+Bug 1.0.5 :
+=========================================================================================================
+#0001  (SOLVED)  Footer Template tidak tetap pada posisi
+=========================================================================================================
+footer berpindah tempat saat content body tidak berisi.
+penyelesaian : 
+update template
+=========================================================================================================
+
+
+
+YBS v.1.0.5. 		
+fitur baru :
+- ..
+
+Bug 1.0.4 :
+=========================================================================================================
+#0001  (SOLVED)  Case Sensitive Linux
+=========================================================================================================
+Beberapa file tidak dapat di load akibat tidak perbedaan penulisan huruf besar
+dan kecil pada penamaan file,,perbedaan ini tidak menjadi masalah di OS windows,
+namun bermasalah pada OS linux.
+penyelesaian : 
+update seluruh file name.
+update code CURD Generator
+=========================================================================================================
+
+
+
+
+YBS v.1.0.4. 		
+fitur baru :
+- Dropzone
+- Update input Form Login
+
+
+
+Bug 1.0.3 :
+=========================================================================================================
+#0001  (SOLVED)  Undefined property : Registrasi_form::$token
+=========================================================================================================
+Missing char "_" pada line 211 link_getfile
+=========================================================================================================
+
+
+
+
+YBS v.1.0.3. 		2019.03.12
+fitur baru :
+- linkToselectize_mto
+- Update Sample Select Link Database 
+
+
+Bug 1.0.2 :
+=========================================================================================================
+#0002  (SOLVED)  Double Request linkToselectize_Big
+=========================================================================================================
+linkToselectize_Big menggunakan ajax request,yang menerapkan system async hal ini menyebabkan linkToselectize_Big   
+dijalankan langsung secara berurutan tanpa menunggu harus menunggu proses pertama selesai..,
+hal ini tentunya akan membuat event onChange dari setiap combobox Aktif, dan melakukan request bukan pada saat yang telah di
+tentukan.sehingga terjadi double request.
+kemudian
+saat clearOptions Selectize event change secara otomatis terpanggil kembali..,sehingga terjadi lagi double request.
+
+penyelesaian : 
+- update linkToselectize_Big ,memberikan penanda pada event onChange agar tidak di jalankan jika proses pertama belum selesai.
+- menyetel clear(true) agar tidak menjalankan event onChange saat dilakukan pembersihan data.
+=========================================================================================================
+
+=========================================================================================================
+#0001  (SOLVED)  Error preg_match(): JIT compilation failed: no more memory  on OS MAC PHP 7.3
+=========================================================================================================
+penyebab belum tidak di ketahui..
+
+penyelesaian : 
+gunakan versi 7.1 
+or coba 
+https://github.com/composer/composer/issues/7836
+https://stackoverflow.com/questions/53690624/errors-installing-composer-on-macos-jit-compilation-failed/53703630#53703630
+=========================================================================================================
+
+
+
+
+
+YBS v.1.0.2
+
+fitur baru :
+- linkToselectize_Big
+- Sample Select Link Database 
+
+
+bug 1.0.1 :
+========================================================================================
+#0003 (SOLVED)  Menu tidak tampil pada daftar menu saat URL Link di hapus 
+========================================================================================
+terjadi akibat Menu_Model function get_parent_menu, db->join tidak menggunakan parameter
+'left'..sehingga secara default yg terbentuk adalah inner join.
+
+penyelesaian : penambahan parameter left pada function join Menu_model
+
+========================================================================================
+#0002 (SOLVED) Not Responding Copy Table To Clipboard
+========================================================================================
+terjadi akibat Data Table terlalu besar 
+menyebabkan penggunaan memory cpu yang besar.
+Sangat tidak di sarankan melakukan copy data yang besar.
+
+penyelesaian :
+- remove fitur Copy to Clipboard, karena sdh ada button download to Excel
+
+
+========================================================================================
+#0001 (SOLVED) Table List Lambat Loading saat meload data besar
+========================================================================================
+01.03.2019
+terjadi akibat penggunaan fungsi render icheck,dan draw dari data tables sendiri
+yang tidak menggunakan sistem pagination.datatables harus merender semua row
+yang muncul pada view,tanpa batasan(pagination) menyebabkan loading yang berlebihan.
+
+penyelesaian :
+-menambahkan fungsi pagination pada form list dan template list CRUD Generator.
+ dengan menambahkan huruf 'l' pada
+ dom	: 'Bfrtip'  
+	menjadi
+ dom	: 'Blfrtip'  
+
+dan mengubah
+ 
+ lengthMenu: 	[[-1], ["All"]],
+	menjadi
+ lengthMenu: 	[[10,50,100], [10,50,100]],	
+
+
+========================================================================================
+
+
+
+
+
+
+YBS v.1.0.1
+Bug 1.0.0:
+========================================================================================
+#0001 (SOLVED)  Error Message  function Count() in php 7.2  	
+========================================================================================
+28.02.2019 
+terjadi akibat perbedaan versi php,
+dimana php 7.1 mengizinkan semua jenis type parameter
+sementara php 7.2 hanya mengizinkan type parameter array dan object.
+
+penyelesaian : 
+-update seluruh system yang menggunakan function count()  
+
+
+
+
+

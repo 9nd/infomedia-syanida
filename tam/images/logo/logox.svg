@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="232px"
+   height="68px"
+   viewBox="0 0 232 68"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="tabler2.svg">
+  <metadata
+     id="metadata22">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>tabler</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     id="namedview20"
+     showgrid="false"
+     inkscape:zoom="1.512931"
+     inkscape:cx="116"
+     inkscape:cy="7.5612528"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+  <title
+     id="title4">tabler</title>
+  <desc
+     id="desc6">Created with Sketch.</desc>
+  <defs
+     id="defs8" />
+  <rect
+     style="opacity:1;fill:#ff0000"
+     id="rect3351"
+     width="99.145294"
+     height="66.757835"
+     x="1.339031"
+     y="0.58119667"
+     ry="14.862864"
+     rx="14.862864" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:62.15934753px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="8.0702095"
+     y="47.034679"
+     id="text3353"
+     sodipodi:linespacing="125%"
+     transform="scale(0.80887858,1.2362795)"><tspan
+       sodipodi:role="line"
+       id="tspan3355"
+       x="8.0702095"
+       y="47.034679"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Snap ITC';-inkscape-font-specification:'Snap ITC';fill:#ffffff">Y</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:53.52231979px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="44.923862"
+     y="51.464214"
+     id="text3357"
+     sodipodi:linespacing="125%"
+     transform="scale(0.86017725,1.1625511)"><tspan
+       sodipodi:role="line"
+       id="tspan3359"
+       x="44.923862"
+       y="51.464214"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Showcard Gothic';-inkscape-font-specification:'Showcard Gothic';fill:#ffffff">ap</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:34.12946701px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="122.47338"
+     y="27.415583"
+     id="text3357-1"
+     sodipodi:linespacing="125%"
+     transform="scale(0.86321585,1.1584588)"><tspan
+       sodipodi:role="line"
+       id="tspan3359-1"
+       x="122.47338"
+       y="27.415583"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;font-family:'Segoe Script';-inkscape-font-specification:'Segoe Script Bold';fill:#333333">bridging</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:24.92431068px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     x="97.06543"
+     y="67.980766"
+     id="text3357-1-3"
+     sodipodi:linespacing="125%"
+     transform="scale(1.1820226,0.84600752)"><tspan
+       sodipodi:role="line"
+       id="tspan3359-1-8"
+       x="97.06543"
+       y="67.980766"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;font-family:'Segoe Script';-inkscape-font-specification:'Segoe Script Bold';fill:#333333">System__</tspan></text>
+</svg>

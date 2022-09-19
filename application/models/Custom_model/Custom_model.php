@@ -19,7 +19,7 @@ class Custom_model extends CI_Model
         $query = $this->db->query($query);
         return $query;
     }
-    function add($table, $data = array())
+function add($table,$data = array())
     {
         $this->db->insert($table, $data);
         return $this->db->insert_id();

@@ -241,7 +241,7 @@ $lap = array("Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt
 
                                             <div class="media">
                                                 <div class="media-body">
-                                                    <span class="avatar" id="best_agent_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                                    <span class="avatar" id="best_agent_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
 
                                                     <h4 class="m-0" id="best_agent_nama" style="color:black;">-</h4>
                                                     <p class="text-muted mb-0">BEST AGENT</p>
@@ -255,7 +255,7 @@ $lap = array("Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt
                                         <div class="col-sm-4 col-lg-4">
                                             <div class="media">
                                                 <div class="media-body">
-                                                    <span class="avatar" id="best_tl_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_syanida/demo/faces/male/17-.jpg)"></span>
+                                                    <span class="avatar" id="best_tl_foto" style="width: 200px;height: 200px;background-image: url(http://localhost/infomedia_app/demo/faces/male/17-.jpg)"></span>
 
                                                     <h4 class="m-0" id="best_tl_nama" style="color:black;">-</h4>
                                                     <p class="text-muted mb-0">BEST TEAMLEADER</p>

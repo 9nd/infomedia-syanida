@@ -1,9 +1,9 @@
 <?php echo _css('datatables,icheck') ?>
 
 <div class="container">
-  <h1>Tabel Data Masalah Log WFH</h1>
+  <h1>Proglem Log WFH</h1>
   <hr>
-  <a href="<?php echo base_url() ?>Problemwfh/Problemwfh/tambah" class="btn btn-success">Tambah Log</a>
+  <a href="<?php echo base_url() ?>Problemwfh/Problemwfh/tambah" class="btn btn-success">Create Log</a>
  
 </div>
 
@@ -16,12 +16,12 @@
     <table class="display responsive nowrap" id="tabel_problem" style="width: 100%;">
       <tr>
         <th>No</th>
-        <th>Nama Agent</th>
-        <th>Kendala</th>
-        <th>Solusi</th>
-        <th>Gambar</th>
-        <th>Waktu Kejadian</th>
-        <th>Opsi</th>
+        <th>Agent Name</th>
+        <th>Issue</th>
+        <th>Solution</th>
+        <th>Picture</th>
+        <th>Date</th>
+        <th>Action</th>
       </tr>
       <?php
       $i = 1;

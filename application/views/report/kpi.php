@@ -768,7 +768,7 @@
                 xaxis: {
                     categories: [
                         <?php
-                        foreach ($log_call as $key => $value) {
+                        foreach ($log_veri as $key => $value) {
                             echo "'" . $key . "',";
                         }
 

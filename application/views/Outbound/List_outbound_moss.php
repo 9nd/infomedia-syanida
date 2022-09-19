@@ -123,7 +123,6 @@ $blacklist = array('081387009582');
         <script>
             $(document).ready(function() {
                 $('#example').DataTable();
-                
 
                 function refresh_div() {
                     var text_title = $("#title_app").text();
@@ -134,7 +133,7 @@ $blacklist = array('081387009582');
                         success: function(response) {
 
                             $.each(response.data, function(key, val) {
-                                alert(val);
+                                // alert(key);
                                 if (key == 'waiting') {
                                     $("#lblatas").html("MOSS : " + val);
                                     if (parseInt(val) > 0) {

@@ -3,7 +3,7 @@
 <div class="card-body">
     <div class='box-body table-responsive' id='box-table'>
         <small>
-            <table class='display responsive nowraps' id="example" style="width: 100%;">
+            <table class='display responsive nowrap' id="example" style="width: 100%;">
                 <thead>
                     <tr>
                         <th style="font-size: 12px"><b>No</b></th>
@@ -71,7 +71,7 @@
                                     Nama Pastel : <?php echo $datana['nama_pastel']; ?><br>
                                     NO HP : <?php echo $datana['no_handpone']; ?><br>
                                     Email : <?php echo $datana['email']; ?><br>
-                                    Alamat : <?php echo $datana['alamat']; ?><br>
+                                    Alamat : <?php echo $datana['alamat']; ?><br>                                   
                                     Kecepatan : <?php echo $datana['kecepatan']; ?><br>
                                     Tagihan : <?php echo $datana['tagihan']; ?><br>
                                     Tahun Pemasangan : <?php echo $datana['tahun_pemasangan']; ?><br>

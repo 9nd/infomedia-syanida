@@ -199,7 +199,7 @@ if ($_GET['tgl']) {
 		function refresh_div() {
 			var text_title = $("#title_app").text();
 			$.ajax({
-				url: '<?php echo base_url() ?>Outbound/Outbound/get_list_mos_tvv',
+				url: '<?php echo base_url() ?>Outbound/Outbound/get_list_mos',
 				type: 'POST',
 				dataType: 'JSON',
 				success: function(response) {

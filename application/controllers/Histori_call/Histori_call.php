@@ -17,7 +17,7 @@ class Histori_call extends CI_Controller
 		$this->load->model('Custom_model/Sys_user_table_model', 'sys_user');
 		$this->load->model('sys/Sys_user_log_model', 'log_login');
 		$this->load->model('Custom_model/Trans_profiling_last_month_infomedia_model', 'trans_profiling_last_month');
-
+    
 		$this->log_key = 'log_Indibox';
 		$this->title = new Histori_call_config();
 	}
@@ -59,7 +59,7 @@ class Histori_call extends CI_Controller
 		$data['list_agent'] = $this->sys_user->get_results($filter_agent);
 		if ($agent_id) {
 			$data['list'] = $this->tmodel->live_query('
-		SELECT * FROM trans_profiling WHERE DATE(lup)="' . $tgl . '" AND veri_upd="' . $agent_id . '"
+		SELECT * FROM trans_profiling WHERE lup >= DATE_SUB(now(), INTERVAL 6 MONTH) AND DATE(lup)="' . $tgl . '" AND veri_upd="' . $agent_id . '"
 		AND (veri_call=2 OR veri_call=1 OR veri_call=3 OR veri_call=11) 
 		')->result_array();
 		}

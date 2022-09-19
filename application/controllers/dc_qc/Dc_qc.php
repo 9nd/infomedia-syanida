@@ -27,8 +27,592 @@ class Dc_qc extends CI_Controller
 			$data["date"] = "";
 			$data["sumber"] = "";
 		}
+		$data['count_status'] = $this->hitung_status($data["date"], $data["sumber"]);
+		$this->load->view('dc_qc/dc_qc', $data);
+	}
 
-		$this->load->view('Dc_qc/Dc_qc', $data);
+
+	function hitung_status($date, $sumber)
+	{
+		if ($date == "") {
+			$data['status']['hp']['notlike'] = 0;
+			$data['status']['hp']['notnumber'] = 0;
+			$data['status']['hp']['contains'] = 0;
+			$data['status']['hp']['others'] = 0;
+			$data['status']['email']['kosong'] = 0;
+			$data['status']['email']['invalid'] = 0;
+			$data['status']['email']['ilegal'] = 0;
+			$data['status']['email']['tdkada'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			} else if ($sumber == "digital") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			} else if ($sumber == "dbprofile") {
+				$f_hp1 = 'NO_HP';
+				$f_hp2 = 'NO_HP_1';
+				$f_email1 = 'EMAIL';
+				$f_email2 = 'EMAIL_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+			} else {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+			$data['status']['hp']['notlike'] = $this->db->query("SELECT COUNT(*) as jml FROM $table WHERE if($f_hp2 IS NULL or $f_hp2 = '', (SUBSTR($f_hp1,1,2) NOT LIKE '08%'), (SUBSTR($f_hp1,1,2) NOT LIKE '08%' OR 	SUBSTR($f_hp1,1,2) NOT LIKE '08%')) AND DATE($f_date)='$date' $qrytmbhn")->row()->jml;
+			$data['status']['hp']['notnumber'] = $this->db->query("SELECT COUNT(*) as jml FROM $table WHERE if($f_hp2 IS NULL, $f_hp1 NOT REGEXP '^[0-9]+$', ($f_hp1 NOT REGEXP '^[0-9]+$' OR $f_hp2 NOT REGEXP '^[0-9]+$')) AND DATE($f_date)='$date' $qrytmbhn")->row()->jml;
+			$data['status']['hp']['contains'] = $this->db->query("SELECT COUNT(*) as jml FROM $table WHERE if($f_hp2 IS NULL or $f_hp2 = '', (SUBSTR($f_hp1,1,2) NOT LIKE '08%'), (SUBSTR($f_hp1,1,2) NOT LIKE '08%' OR 	SUBSTR($f_hp1,1,2) NOT LIKE '08%')) AND DATE($f_date)='$date' $qrytmbhn")->row()->jml;
+
+
+			$data['status']['hp']['others'] = 0;
+			$data['status']['email']['kosong'] = $this->db->query("SELECT COUNT(*) as jml FROM $table WHERE ($f_email1 LIKE '%kosong%' OR $f_email2 LIKE '%kosong%') AND DATE($f_date)='$date' $qrytmbhn")->row()->jml;
+			$data['status']['email']['invalid'] = $this->db->query("SELECT COUNT(*) as jml FROM $table WHERE if($f_email2 IS NULL OR $f_email2='', $f_email1 NOT LIKE '%_@_%._%', $f_email1 NOT LIKE '%_@_%._%' OR $f_email2 NOT LIKE '%_@_%._%') AND DATE($f_date)='$date' $qrytmbhn")->row()->jml;
+			$data['status']['email']['ilegal'] = 0;
+			$data['status']['email']['tdkada'] = $this->db->query("SELECT COUNT(*) as jml FROM $table WHERE ($f_email1 LIKE '%tdkada%' OR $f_email2 LIKE '%tdkada%') AND DATE($f_date)='$date' $qrytmbhn")->row()->jml;
+		}
+		return $data;
+	}
+
+	function kosong_e()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "digital") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "dbprofile") {
+				$f_email1 = 'EMAIL';
+				$f_email2 = 'EMAIL_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+				//field
+				$ncli = 'NCLI';
+				$noinet = 'NO_SPEEDY';
+				$pstn = 'NO_PSTN';
+				$nama_pelanggan = 'NAMA_PELANGGAN';
+				$hp1 = 'NO_HP';
+				$email1 = 'EMAIL';
+				$hp2 = 'NO_HP1';
+				$email2 = 'EMAIL_1';
+				$tanggal_verif = 'TGL_VERIFIKASI';
+				$idx = 'CONCAT(NCLI, "_", NO_SPEEDY, "_", NO_PSTN)';
+			} else {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+			$data['tabledata'] = $this->db->query("SELECT $idx as idx, $ncli as ncli, $noinet as no_speedy, $pstn as pstn1, $nama_pelanggan as nama, $hp1 as handphone, $email1 as email, $hp2 as handphone_lain, $email2 as email2, $tanggal_verif as lup FROM $table WHERE ($f_email1 LIKE '%kosong%' OR $f_email2 LIKE '%kosong%') AND DATE($f_date)='$date' $qrytmbhn")->result();
+		}
+		$this->load->view('dc_qc/e_kosong', $data);
+	}
+	function invalid_e()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "digital") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "dbrpofile") {
+				$f_email1 = 'EMAIL';
+				$f_email2 = 'EMAIL_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+				//field
+				$ncli = 'NCLI';
+				$noinet = 'NO_SPEEDY';
+				$pstn = 'NO_PSTN';
+				$nama_pelanggan = 'NAMA_PELANGGAN';
+				$hp1 = 'NO_HP';
+				$email1 = 'EMAIL';
+				$hp2 = 'NO_HP1';
+				$email2 = 'EMAIL_1';
+				$tanggal_verif = 'TGL_VERIFIKASI';
+				$idx = 'CONCAT(NCLI, "_", NO_SPEEDY, "_", NO_PSTN)';
+			} else {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+			$data['tabledata'] = $this->db->query("SELECT $idx as idx, $ncli as ncli, $noinet as no_speedy, $pstn as pstn1, $nama_pelanggan as nama, $hp1 as handphone, $email1 as email, $hp2 as handphone_lain, $email2 as email2, $tanggal_verif as lup FROM $table WHERE if($f_email2 IS NULL OR $f_email2='', $f_email1 NOT LIKE '%_@_%._%', $f_email1 NOT LIKE '%_@_%._%' OR $f_email2 NOT LIKE '%_@_%._%') AND DATE($f_date)='$date' $qrytmbhn")->result();
+		}
+		$this->load->view('dc_qc/e_invalid', $data);
+	}
+	function tdkada_e()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "digital") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "dbprofile") {
+				$f_email1 = 'EMAIL';
+				$f_email2 = 'EMAIL_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+				//field
+				$ncli = 'NCLI';
+				$noinet = 'NO_SPEEDY';
+				$pstn = 'NO_PSTN';
+				$nama_pelanggan = 'NAMA_PELANGGAN';
+				$hp1 = 'NO_HP';
+				$email1 = 'EMAIL';
+				$hp2 = 'NO_HP1';
+				$email2 = 'EMAIL_1';
+				$tanggal_verif = 'TGL_VERIFIKASI';
+				$idx = 'CONCAT(NCLI, "_", NO_SPEEDY, "_", NO_PSTN)';
+			} else {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+			$data['tabledata'] = $this->db->query("SELECT $idx as idx, $ncli as ncli, $noinet as no_speedy, $pstn as pstn1, $nama_pelanggan as nama, $hp1 as handphone, $email1 as email, $hp2 as handphone_lain, $email2 as email2, $tanggal_verif as lup FROM $table WHERE ($f_email1 LIKE '%tdkada%' OR $f_email2 LIKE '%tdkada%') AND DATE($f_date)='$date' $qrytmbhn")->result();
+		}
+		$this->load->view('dc_qc/e_tdkada', $data);
+	}
+	function illegal_e()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			} else if ($sumber == "digital") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			} else if ($sumber == "dbprofile") {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			} else {
+				$f_email1 = 'email';
+				$f_email2 = 'email_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+			$data['tabledata'] = 0;
+		}
+		$this->load->view('dc_qc/e_illegal', $data);
+	}
+
+	public function notlike()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "digital") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "dbprofile") {
+				$f_hp1 = 'NO_HP';
+				$f_hp2 = 'NO_HP_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+				//field
+				$ncli = 'NCLI';
+				$noinet = 'NO_SPEEDY';
+				$pstn = 'NO_PSTN';
+				$nama_pelanggan = 'NAMA_PELANGGAN';
+				$hp1 = 'NO_HP';
+				$email1 = 'EMAIL';
+				$hp2 = 'NO_HP1';
+				$email2 = 'EMAIL_1';
+				$tanggal_verif = 'TGL_VERIFIKASI';
+				$idx = 'CONCAT(NCLI, "_", NO_SPEEDY, "_", NO_PSTN)';
+			} else {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+			$data['tabledata'] = $this->db->query("SELECT $idx as idx, $ncli as ncli, $noinet as no_speedy, $pstn as pstn1, $nama_pelanggan as nama, $hp1 as handphone, $email1 as email, $hp2 as handphone_lain, $email2 as email2, $tanggal_verif as lup FROM $table WHERE if($f_hp2 IS NULL or $f_hp2 = '', (SUBSTR($f_hp1,1,2) NOT LIKE '08%'), (SUBSTR($f_hp1,1,2) NOT LIKE '08%' OR 	SUBSTR($f_hp1,1,2) NOT LIKE '08%')) AND DATE($f_date)='$date' $qrytmbhn")->result();
+		}
+		$this->load->view('dc_qc/notlike', $data);
+	}
+	public function notnumber()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "digital") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "dbprofile") {
+				$f_hp1 = 'NO_HP';
+				$f_hp2 = 'NO_HP_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+				//field
+				$ncli = 'NCLI';
+				$noinet = 'NO_SPEEDY';
+				$pstn = 'NO_PSTN';
+				$nama_pelanggan = 'NAMA_PELANGGAN';
+				$hp1 = 'NO_HP';
+				$email1 = 'EMAIL';
+				$hp2 = 'NO_HP1';
+				$email2 = 'EMAIL_1';
+				$tanggal_verif = 'TGL_VERIFIKASI';
+				$idx = 'CONCAT(NCLI, "_", NO_SPEEDY, "_", NO_PSTN)';
+			} else {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+			$data['tabledata'] = $this->db->query("SELECT $idx as idx, $ncli as ncli, $noinet as no_speedy, $pstn as pstn1, $nama_pelanggan as nama, $hp1 as handphone, $email1 as email, $hp2 as handphone_lain, $email2 as email2, $tanggal_verif as lup  FROM $table WHERE if($f_hp2 IS NULL, $f_hp1 NOT REGEXP '^[0-9]+$', ($f_hp1 NOT REGEXP '^[0-9]+$' OR $f_hp2 NOT REGEXP '^[0-9]+$')) AND DATE($f_date)='$date' $qrytmbhn")->result();
+		}
+		$this->load->view('dc_qc/notnumber', $data);
+	}
+	public function contains()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "digital") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "dbprofile") {
+				$f_hp1 = 'NO_HP';
+				$f_hp2 = 'NO_HP_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+				//field
+				$ncli = 'NCLI';
+				$noinet = 'NO_SPEEDY';
+				$pstn = 'NO_PSTN';
+				$nama_pelanggan = 'NAMA_PELANGGAN';
+				$hp1 = 'NO_HP';
+				$email1 = 'EMAIL';
+				$hp2 = 'NO_HP1';
+				$email2 = 'EMAIL_1';
+				$tanggal_verif = 'TGL_VERIFIKASI';
+				$idx = 'CONCAT(NCLI, "_", NO_SPEEDY, "_", NO_PSTN)';
+			} else {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+
+			$data['tabledata'] = $this->db->query("SELECT $idx as idx, $ncli as ncli, $noinet as no_speedy, $pstn as pstn1, $nama_pelanggan as nama, $hp1 as handphone, $email1 as email, $hp2 as handphone_lain, $email2 as email2, $tanggal_verif as lup  FROM $table WHERE if($f_hp2 IS NULL or $f_hp2 = '', (SUBSTR($f_hp1,1,2) NOT LIKE '08%'), (SUBSTR($f_hp1,1,2) NOT LIKE '08%' OR 	SUBSTR($f_hp1,1,2) NOT LIKE '08%')) AND DATE($f_date)='$date' $qrytmbhn")->result();
+		}
+		$this->load->view('dc_qc/contains', $data);
+	}
+	public function others()
+	{
+		$sumber = $_GET['sumber'];
+		$date = $_GET['date'];
+		if ($date == "") {
+			$data['tabledata'] = 0;
+		} else {
+			if ($sumber == "obc") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "digital") {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+				//field
+				$ncli = 'ncli';
+				$noinet = 'no_speedy';
+				$pstn = 'pstn1';
+				$nama_pelanggan = 'nama';
+				$hp1 = 'handphone';
+				$email1 = 'email';
+				$hp2 = 'handphone_lain';
+				$email2 = 'email_lain';
+				$tanggal_verif = 'lup';
+				$idx = 'idx';
+			} else if ($sumber == "dbprofile") {
+				$f_hp1 = 'NO_HP';
+				$f_hp2 = 'NO_HP_1';
+				$table = 'dbprofile_verified_temp';
+				$f_date = 'TGL_VERIFIKASI';
+				$qrytmbhn = ' ';
+				//field
+				$ncli = 'NCLI';
+				$noinet = 'NO_SPEEDY';
+				$pstn = 'NO_PSTN';
+				$nama_pelanggan = 'NAMA_PELANGGAN';
+				$hp1 = 'NO_HP';
+				$email1 = 'EMAIL';
+				$hp2 = 'NO_HP1';
+				$email2 = 'EMAIL_1';
+				$tanggal_verif = 'TGL_VERIFIKASI';
+				$idx = 'CONCAT(NCLI, "_", NO_SPEEDY, "_", NO_PSTN)';
+			} else {
+				$f_hp1 = 'handphone';
+				$f_hp2 = 'handphone_lain';
+				$table = 'trans_profiling_monthly';
+				$f_date = 'lup';
+				$qrytmbhn = 'AND veri_call=13';
+			}
+
+			$data['tabledata'] = $this->db->query("SELECT $idx as idx, $ncli as ncli, $noinet as no_speedy, $pstn as pstn1, $nama_pelanggan as nama, $hp1 as handphone, $email1 as email, $hp2 as handphone_lain, $email2 as email2, $tanggal_verif as lup  FROM $table WHERE if($f_hp2 IS NULL or $f_hp2 = '', (SUBSTR($f_hp1,1,2) NOT LIKE '08%'), (SUBSTR($f_hp1,1,2) NOT LIKE '08%' OR 	SUBSTR($f_hp1,1,2) NOT LIKE '08%')) AND DATE($f_date)='$date' $qrytmbhn")->result();
+			// $data['tabledata'] = 0;
+		}
+		$this->load->view('dc_qc/others', $data);
 	}
 
 	public function get_data_list()
@@ -40,7 +624,7 @@ class Dc_qc extends CI_Controller
 		if (isset($_GET['date']) && isset($_GET['sumber'])) {
 			$data["tabledata"] = $this->filter_dc($data['sumber'], $_GET['date']);
 		}
-		$this->load->view('Dc_qc/' . $data['tabledata']['view'], $data);
+		$this->load->view('dc_qc/' . $data['tabledata']['view'], $data);
 	}
 
 
@@ -56,12 +640,18 @@ class Dc_qc extends CI_Controller
 			$f_hp_2 = "handphone_lain";
 			$f_email1 = "email";
 			$f_email2 = "email_lain";
+		} else if ($sumber == "all_channel") {
+			$f_hp_1 = "handphone";
+			$f_hp_2 = "handphone_lain";
+			$f_email1 = "email";
+			$f_email2 = "email_lain";
 		} else {
 			$f_hp_1 = "undifined";
 			$f_hp_2 = "undifined";
 			$f_email1 = "undifined";
 			$f_email2 = "undifined";
 		}
+
 		foreach ($listdata->result() as $kdatanya => $vdatanya) {
 			if (substr($vdatanya->{$f_hp_1}, 0, 2) == '08' || substr($vdatanya->{$f_hp_2}, 0, 2) == '08') {
 				$status_hp = '-';
@@ -116,9 +706,9 @@ class Dc_qc extends CI_Controller
 				FROM
 					trans_profiling_monthly 
 				WHERE
-					idx = '48538438' 
-					AND ncli = '38537128' 
-					AND no_speedy = '111810814622'");
+					idx = '$idx' 
+					AND ncli = '$ncli' 
+					AND no_speedy = '$no_speedy'");
 
 				if (!$insertadata) {
 					$messages =  "Gagal Tambah Data Data";
@@ -150,6 +740,64 @@ class Dc_qc extends CI_Controller
 				}
 			}
 		}
+		echo $messages;
+	}
+	public function email_submit_bulk_invalid()
+	{
+		$reason = $_GET['reason'];
+		$cek_box = $_GET['cek_box'];
+		$sumber = $_GET['sumber'];
+		$idlogin = $this->session->userdata('idlogin');
+		$logindata = $this->log_login->get_by_id($idlogin);
+		$userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+
+		$no = 1;
+		foreach ($cek_box as $idx) {
+			$checkdata = $this->db->query("SELECT * FROM trans_profiling_monthly WHERE idx='$idx'")->result();
+			if (count($checkdata) == 1) {
+
+				$insertadata = $this->db->query("INSERT INTO re_validate SELECT
+				*, '$userdata->agentid' as qc_revalidate, CURRENT_TIMESTAMP as date_qc, '$reason' as reason_qc
+				FROM
+					trans_profiling_monthly 
+				WHERE
+					idx = '$idx' 
+					");
+
+				if (!$insertadata) {
+					$messages =  "Gagal Tambah Data Data";
+				} else {
+					$ncli = $checkdata[0]->ncli;
+					$no_pstn = $checkdata[0]->pstn1;
+					$no_speedy = $checkdata[0]->no_speedy;
+					$no_handpone = $checkdata[0]->handphone;
+					$email = $checkdata[0]->email;
+					$nama_pelanggan = $checkdata[0]->nama;
+					$nama_pastel = $checkdata[0]->nama;
+					$alamat = $checkdata[0]->alamat;
+					$layanan = "QC Digital Channel";
+					$tagihan = $checkdata[0]->billing;
+					$kecepatan = $checkdata[0]->kec_speedy;
+					$tgl_bayar = "";
+					$waktu_bayar = "";
+					$facebook = $checkdata[0]->facebook;
+					$twitter = $checkdata[0]->twitter;
+					$tgl_insert = date("Y/m/d");
+					$sumber = $sumber;
+					$api = $this->transaction_moss($ncli, $no_pstn, $no_speedy, $no_handpone, $email, $nama_pelanggan, $nama_pastel, $alamat, $layanan, $tagihan, $kecepatan, $tgl_bayar, $waktu_bayar, $facebook, $twitter, $tgl_insert, $sumber);
+
+					if ($api != "1") {
+						$messages = "Failed push to API";
+					} else {
+						$no++;
+						$messages = "Berhasil Re-Validate Sebanyak " . $no . " Data \n Input by: " . $userdata->agentid . "\n reason : " . $reason;
+					}
+				}
+			}
+		}
+		// foreach ($cek_box as $datana) {
+		// 	$cekboxdata = $datana . ',' . $cekboxdata;
+		// }
 		echo $messages;
 	}
 	public function test()

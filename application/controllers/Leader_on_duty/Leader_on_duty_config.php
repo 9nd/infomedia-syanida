@@ -12,7 +12,7 @@ class Leader_on_duty_config {
 	    $this->general		= new General_title();
 		$this->leader_on_duty_id	= 'ID';
 		$this->leader_on_duty_agentid	= 'AGENTID';
-		$this->leader_on_duty_tanggal	= 'TANGGAL';
+		$this->leader_on_duty_tanggal	= 'DATE';
 		$this->leader_on_duty_gelombang	= 'GELOMBANG';
 
 		

@@ -34,6 +34,8 @@ class Distribution extends CI_Controller
 			'link_close'				=> site_url() . 'Distribution/Distribution',
 			'link_back'				=> site_url() . 'Distribution/Distribution',
 		);
+		$data['sumbernya'] = $_POST['sumber'];
+
 
 		$this->template->load('Distribution/Distribution_filter_form', $data);
 	}
@@ -53,6 +55,7 @@ class Distribution extends CI_Controller
 		);
 		$filter_agent = array("opt_level" => 8, "kategori" => "REG", "tl !=" => "-");
 		$data['list_agent_d'] = $this->sys_user->get_results($filter_agent);
+		$data['sumbernya'] = $post['sumber'];
 		if ($post) {
 			$filter = array();
 			$filter["(ISNULL(update_by) OR update_by = 'baru' OR update_by = 'BARU' OR update_by = '' )"] = null;

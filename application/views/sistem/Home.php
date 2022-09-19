@@ -41,7 +41,9 @@
             <td width="15%"></td>
             <td colspan="2" width="70%">
                 <div class="card-body">
+
                     <div class="row">
+
                         <?php
                         if ($input_absen) {
                         ?>
@@ -227,6 +229,78 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        if ($userdata->opt_level == 8) {
+                        ?>
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-status bg-green"></div>
+                                    <div class="card-header">
+                                        <h3 class="card-title">Summary Today Performance</h3>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+
+
+                                            <div class="col-sm-3">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="stamp stamp-md bg-blue mr-3">
+                                                        <i class="fe fe-bar-chart"></i>
+                                                    </span>
+                                                    <div class="text-left">
+                                                        <p class="m-0 text-red">Order Call</p>
+                                                        <small class="text-muted"><?php echo $wo;?></small>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="stamp stamp-md bg-green mr-3">
+                                                        <i class="fe fe-bar-chart"></i>
+                                                    </span>
+                                                    <div class="text-left">
+                                                        <p class="m-0 text-green">Verified</p>
+                                                        <small class="text-muted"><?php echo $success;?></small>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="stamp stamp-md bg-green mr-3">
+                                                        <i class="fe fe-bar-chart"></i>
+                                                    </span>
+                                                    <div class="text-left">
+                                                        <p class="m-0 text-green">Contacted</p>
+                                                        <small class="text-muted"><?php echo $con;?></small>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-3">
+
+                                                <div class="d-flex align-items-center">
+                                                    <span class="stamp stamp-md bg-red mr-3">
+                                                        <i class="fe fe-bar-chart"></i>
+                                                    </span>
+                                                    <div class="text-left">
+                                                        <p class="m-0 text-green">Not Contacted</p>
+                                                        <small class="text-muted"><?php echo $notcon;?></small>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                        ?>
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-status bg-green"></div>
@@ -391,7 +465,7 @@
                                         <?php
                                         }
                                         ?>
-                                        <div class="col-sm-6">
+<div class="col-sm-6">
                                             <a href="http://10.60.165.60/index.php?idx=0" target="_blank" class="card p-3 btn btn-primary btn-card">
                                                 <div class="d-flex align-items-center">
                                                     <span class="stamp stamp-md bg-blue mr-3">
@@ -482,7 +556,6 @@
                                                 </div>
                                             </a>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -557,6 +630,7 @@
                             </div>
 
                         </div>
+                       
                         <?php
                         if ($userdata->opt_level = '800' && $userdata->kategori == 'REG') {
                         ?>

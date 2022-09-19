@@ -16,10 +16,10 @@ class T_news_config
 		$this->t_news_id_sender	= 'Sender';
 		$this->t_news_optlevel_receiver	= 'Receiver';
 		$this->t_news_title	= 'TITLE';
-		$this->t_news_kategori_news	= 'KATEGORI_NEWS';
-		$this->t_news_isi_berita	= 'ISI_BERITA';
-		$this->t_news_tanggal_publish	= 'TANGGAL_PUBLISH';
-		$this->t_news_status_publish	= 'STATUS_PUBLISH';
+		$this->t_news_kategori_news	= 'News Category';
+		$this->t_news_isi_berita	= 'Content';
+		$this->t_news_tanggal_publish	= 'Date Publish';
+		$this->t_news_status_publish	= 'Publish Status';
 		/*$this->nmuser_id	= 'NMUSER_ID';
 		$this->nmuser_nmuser	= 'NMUSER';
 		$this->nmuser_passuser	= 'PASSUSER';

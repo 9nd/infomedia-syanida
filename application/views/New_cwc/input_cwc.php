@@ -315,16 +315,16 @@
                                                             Maaf, dengan bapak/ibu siapa saya berbicara?
                                                             <br><br>
                                                             <strong><u>Jika tidak terhubung dengan pemilik</u>
-                                                            <br>
-                                                            Baik, pak/bu, hubungan kekerabatan bapak/ ibu dengan bapak/ ibu (nama tertera di aplikasi), selaku siapanya?
-                                                            <br><br>
-                                                            Jika terhubung dengan pemilik telepon:
-                                                            <br>
-                                                            Yang bertanggung jawab untuk pembayaran tagihan produk telkomnya, dengan bapak/ ibu sendiri?
-                                                            <br><br>
-                                                            Jika tidak terhubung dengan pemilik telepon:
-                                                            <br>
-                                                            Yang bertanggung jawab untuk pembayaran tagihan produk telkom dinomor xxx xxxxx dengan siapa pak/ bu?</strong>
+                                                                <br>
+                                                                Baik, pak/bu, hubungan kekerabatan bapak/ ibu dengan bapak/ ibu (nama tertera di aplikasi), selaku siapanya?
+                                                                <br><br>
+                                                                Jika terhubung dengan pemilik telepon:
+                                                                <br>
+                                                                Yang bertanggung jawab untuk pembayaran tagihan produk telkomnya, dengan bapak/ ibu sendiri?
+                                                                <br><br>
+                                                                Jika tidak terhubung dengan pemilik telepon:
+                                                                <br>
+                                                                Yang bertanggung jawab untuk pembayaran tagihan produk telkom dinomor xxx xxxxx dengan siapa pak/ bu?</strong>
                                                             <br><br>
                                                             Bisa saya berbicara dengan bapak/ ibu (sebutkan nama yang diinformasikan pelanggan)
                                                             <br><br>
@@ -537,7 +537,7 @@
                                                         <br><br>
                                                         Kedepannya Bapak/Ibu (nama pelanggan) lebih berkenan kami hubungi kembali melalu Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
                                                         <br><br>
-                                                        Untuk mempermudah mendapat informasi terkait produk/promo, maaf bapak/ibu (nama pelanggan), apakah bapak/ibu aktif menggunakan media sosial seperti facebook, instagram, dan twitter? 
+                                                        Untuk mempermudah mendapat informasi terkait produk/promo, maaf bapak/ibu (nama pelanggan), apakah bapak/ibu aktif menggunakan media sosial seperti facebook, instagram, dan twitter?
                                                         <br><br>
                                                         Boleh disebutkan nama akun bapak/ibu? ((agent menyebutkan ulang nama akun lalu spelling)
                                                     </label>
@@ -644,8 +644,8 @@
                                                         Baik terima kasih Bapak/Ibu datanya sudah lengkap, <strong>perihal perubahan/penambahan pada (no hp/whatsapps/email)</strong> sudah kami perbarui dan sebagai bentuk verifikasinya, kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima pesan dari IndiHome?
                                                         <br><br>
                                                         <strong>Jika pelanggan infokan sudah masuk
-                                                        <br>
-                                                        Agent menjawab;</strong>
+                                                            <br>
+                                                            Agent menjawab;</strong>
                                                         <br>
                                                         Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. <strong>Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI</strong>
                                                         <br><br>
@@ -924,6 +924,7 @@
                 var kat_call = $.trim($('#kat_call').val()); //x
                 var sub_call = $.trim($('#sub_call').val()); //0
                 var status_call = $.trim($('#status_call').val()); //0
+                var reason_decline = $.trim($('#reason_decline').val()); //0
 
                 if (kat_call === 'x') {
                     alert('kategori call tidak boleh kosong');
@@ -941,6 +942,12 @@
                     alert('status call tidak boleh kosong');
                     $([document.documentElement, document.body]).animate({
                         scrollTop: $("#status_call").offset().top
+                    }, 100);
+                    return false;
+                } else if (sub_call === '11' && reason_decline == 0) {
+                    alert('Reason Decline tidak boleh kosong');
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#reason_decline").offset().top
                     }, 100);
                     return false;
                 }

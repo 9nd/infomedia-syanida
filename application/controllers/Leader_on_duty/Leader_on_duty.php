@@ -16,7 +16,7 @@ class Leader_on_duty extends CI_Controller {
 
 	public function index(){
 		$data = array(
-			'title_page_big'		=> 'DAFTAR',
+			'title_page_big'		=> 'Leader on Duty',
 			'title'					=> $this->title,
 			'link_refresh_table'	=> site_url().'Leader_on_duty/Leader_on_duty/refresh_table/'.$this->_token,
 			'link_create'			=> site_url().'Leader_on_duty/Leader_on_duty/create',
@@ -57,7 +57,7 @@ class Leader_on_duty extends CI_Controller {
 
 	public function create(){
 		$data = array(
-			'title_page_big'		=> 'Buat Baru',
+			'title_page_big'		=> 'Create',
 			'title'					=> $this->title,
 			'link_save'				=> site_url().'Leader_on_duty/Leader_on_duty/create_action',
 			'link_back'				=> $this->agent->referrer(),			
@@ -186,7 +186,7 @@ class Leader_on_duty extends CI_Controller {
 		
 		if($row){
 			$data = array(
-				'title_page_big'		=> 'Buat Baru',
+				'title_page_big'		=> 'Edit',
 				'title'					=> $this->title,
 				'link_save'				=> site_url().'Leader_on_duty/Leader_on_duty/update_action',
 				'link_back'				=> $this->agent->referrer(),

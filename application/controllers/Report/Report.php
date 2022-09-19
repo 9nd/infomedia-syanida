@@ -43,6 +43,7 @@ class Report extends CI_Controller
   //   $date4 = strtotime("-7 day", $date3);
   public function report()
   {
+ini_set('memory_limit', '8192M');
     $idlogin = $this->session->userdata('idlogin');
     $logindata = $this->log_login->get_by_id($idlogin);
     $data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
@@ -81,18 +82,18 @@ class Report extends CI_Controller
     $veri_call = $post['veri_call'];
     // }
     $view = 'Report_profiling/get_status';
-    $data['status'] = $this->report_status($filter_condition, $data['datena'], $data['template'], $veri_call);
+    $data['status'] = $this->report_status($filter_condition, $data['datena'], $data['template'],$veri_call);
     $data['veri_call'] = $veri_call;
-    $data['titlena'] = $this->status_call->get_row(array("id_reason" => $veri_call))->nama_reason;
+    $data['titlena']=$this->status_call->get_row(array("id_reason"=>$veri_call))->nama_reason;
     $this->load->view($view, $data);
   }
-  public function report_status($filter_condition, $date, $template = "weekly", $veri_call = 13)
+  public function report_status($filter_condition, $date, $template = "weekly",$veri_call=13)
   {
-    $tabel = "trans_profiling_last_month";
+    $tabel="trans_profiling_last_month";
     if (isset($filter_condition) && $filter_condition == 2) {
       $filter_condition = " AND sys_user.tl != '-' ";
-    } else {
-      $filter_condition = "";
+    }else{
+      $filter_condition ="";
     }
     $date_now = strtotime($date);
     $bulan = date('m', $date_now);
@@ -121,14 +122,16 @@ class Report extends CI_Controller
     // echo $w1."-".$w4;
     if ($template == 'daily') {
       $last_week = $w1;
+      
     }
     $where = "DATE(trans_profiling_last_month.lup) >= '$last_week'
     AND DATE(trans_profiling_last_month.lup) <= '$new_week' ";
     $group_by = "DATE(trans_profiling_last_month.lup)";
     if ($template == "monthly") {
-      $tabel = "data_fact";
+      $tabel="data_fact";
       $where = "YEAR($tabel.lup) = '$tahun' ";
       $group_by = "MONTH($tabel.lup)";
+      
     }
     $data['data_performance'] = $this->trans_profiling_daily->live_query(
       "SELECT
@@ -147,7 +150,7 @@ class Report extends CI_Controller
         ORDER BY $tabel.lup ASC
       "
     )->result();
-
+    
     $data['status_performance'] = array();
 
     if (count($data['data_performance']) > 0) {
@@ -186,6 +189,7 @@ class Report extends CI_Controller
   }
   public function report_agent()
   {
+ini_set('memory_limit', '8192M');
     $idlogin = $this->session->userdata('idlogin');
     $logindata = $this->log_login->get_by_id($idlogin);
     $data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));

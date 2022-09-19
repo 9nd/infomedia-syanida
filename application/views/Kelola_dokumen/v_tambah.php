@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-sm-6">
-                <?php echo form_open_multipart('kelola_dokumen/kelola/tambah'); ?>
+                <?php echo form_open_multipart('Kelola_dokumen/Kelola/tambah'); ?>
                 <div class="custom-file">
                     <label>Dokumen</label>
                     <input type="file" name="dokumen" class="form-control" id="dokumen" required>

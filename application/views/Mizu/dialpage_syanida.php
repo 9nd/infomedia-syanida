@@ -61,7 +61,7 @@
 
     <!-- START: Custom CSS-->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/css/main.css">
-
+    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
     <!-- <script src="<?php echo base_url(); ?>assets/js/plugins/jquery-knob/jquery.knob.min.js" type="text/javascript"></script> -->
     <!-- END: Page CSS-->
 
@@ -475,7 +475,7 @@
 
                                 // delayedCallNumber = '61081221609591';
                             }
-
+                            
                         } else {
                             console.log('DATA KOSONG');
                             $("#box_kosong").show();

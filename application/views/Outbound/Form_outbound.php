@@ -406,6 +406,8 @@
                                             <select id="aktivasi_pelangganr" name="aktivasi_pelangganr" class="form-control">
                                                 <option value="0">Pilih</option>
                                                 <option value="Perbedaan Harga">Perbedaan Harga</option>
+                                                <option value="LP">LP</option>
+                                                <option value="Disney Hotstar">Disney Hotstar</option>
                                                 <option value="Pelanggan lupa dan bingung dengan channel yg akan diaktivasi">Pelanggan lupa dan bingung dengan channel yg akan diaktivasi</option>
                                                 <option value="channel tidak ada di mosstools">channel tidak ada di mosstools</option>
                                                 <option value="Pelanngan hanya ingin mengubah nomor hp saja">Pelanngan hanya ingin mengubah nomor hp saja</option>
@@ -614,11 +616,9 @@
                                             <option class="moss" value="117">Didiamkan Pelanggan</option>
                                             <option class="moss" value="118">Cuma Coba-Coba</option>
                                             <option class="moss" value="119">Channel Sudah Aktif</option>
-                                            <option class="moss" value="120">Data Beda</option>
                                             <option class="moss" value="121">Tidak Mau Ada Biaya Tambahan</option>
                                             <option class="moss" value="122">Sdh Di Validasi</option>
-                                            <!-- <option class="moss" value="123">Menggunakan Prepaid</option>
-                                            <option class="moss" value="124">Masih Pikir - Pikir</option>
+                                            <!-- <option class="moss" value="124">Masih Pikir - Pikir</option>
                                             <option class="moss" value="125">Harga Mahal</option>
                                             <option class="moss" value="126">Belum Perlu</option>
                                             <option class="moss" value="127">Jarang Digunakan/Tonton</option>
@@ -626,6 +626,18 @@
                                         <?php
                                         }
                                         ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr  class="resoncancelbeli">
+                                <td>Reason Cancel Beli</td>
+                                <td colspan="2"><select name="rcancelbeli" id="rcancelbeli" class="form-control">
+                                        <option value='0'>-- Pilih --</option>
+                                        <option>Masih Pikir - pikir</option>
+                                        <option>Harga Mahal</option>
+                                        <option>Belum Perlu</option>
+                                        <option>Jarang Digunakan atau ditonton</option>
+                                        <option>Tidak mau ada biaya tambahan</option>
                                     </select>
                                 </td>
                             </tr>
@@ -869,6 +881,7 @@
     $(document).ready(function() {
         $("#banking").hide();
         $(".rdeclinewrap").hide();
+        $(".resoncancelbeli").hide();
         $("#lblValidHandphone").hide();
         $("#lblEmail").hide();
         $("#lblHandphone").hide();
@@ -1499,6 +1512,18 @@
             $('.veri_statusopt_v').hide();
             $('.veri_statusopt_dk').hide();
             $('.veri_statusopt_nv').show();
+        }
+        //     $('.opsicontacted').hide(); // hide div if value is not "custom"
+        //     $('.opsinc').show(); // hide div if value is not "custom"
+    });
+
+    var Privileges = jQuery('#reason_decline');
+    var select = this.value;
+    Privileges.change(function() {
+        if ($(this).val() == '113') {
+            $('.resoncancelbeli').show();
+        }else{
+            $('.resoncancelbeli').hide();
         }
         //     $('.opsicontacted').hide(); // hide div if value is not "custom"
         //     $('.opsinc').show(); // hide div if value is not "custom"

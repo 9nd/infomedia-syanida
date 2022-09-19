@@ -123,11 +123,11 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                 MONTH
                 <select name="bulan" id="bulan">
                     <?php
-                    $lb = 1;
-                    for ($lb = 1; $lb <= 12; $lb++) {
+                    $lb = 0;
+                    for ($lb = 0; $lb <= 11; $lb++) {
                         $n_lb = sprintf("%02d", $lb);
                         $selected = "";
-                        if ($n_lb == $bulan) {
+                        if ($n_lb == $_GET['bulan']) {
                             $selected = "selected";
                         }
                         echo "<option value='" . $n_lb . "' " . $selected . ">" . $thn[$lb] . "</option>";
@@ -264,7 +264,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                     <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
                                         <i class="icon-wallet icons card-liner-icon mt-2"></i>
                                         <div class='card-liner-content'>
-                                            <h2 class="card-liner-title"><?php echo number_format($arpu); ?></h2>
+                                            <h2 class="card-liner-title"><?php echo number_format($controller->arpu); ?></h2>
                                             <h6 class="card-liner-subtitle">ARPU</h6>
                                         </div>
                                     </div>
@@ -279,7 +279,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                     <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
                                         <h2><?php echo $jumlah_aktivasi; ?></h2>
                                         <div class='card-liner-content'>
-                                            <h2 class="card-liner-title"><?php echo number_format($revenue); ?></h2>
+                                            <h2 class="card-liner-title"><?php echo number_format($controller->revenue); ?></h2>
                                             <h6 class="card-liner-subtitle">Revenue Aktivasi</h6>
                                         </div>
                                     </div>
@@ -447,7 +447,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
     <!-- END: Content-->
     <!-- START: Footer-->
     <footer class="site-footer">
-        2020 Â© Sy-ANIDA
+        2020 © Sy-ANIDA
     </footer>
     <!-- END: Footer-->
 

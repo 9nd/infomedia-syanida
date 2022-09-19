@@ -8,8 +8,8 @@ class Generate_report_cache extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        // $this->load->model('Custom_model/Dapros_infomedia_model', 'distribution');
-        $this->load->model('Custom_model/Dapros_model', 'distribution');
+        $this->load->model('Custom_model/Dapros_infomedia_model', 'distribution');
+        // $this->load->model('Custom_model/Dapros_model', 'distribution');
         $this->load->model('Custom_model/Status_call_model', 'status_call');
         $this->load->model('Custom_model/Sys_user_table_model', 'sys_user');
         $this->load->model('Custom_model/Trans_profiling_infomedia_model', 'trans_profiling');
@@ -21,18 +21,76 @@ class Generate_report_cache extends CI_Controller
         $this->load->model('Custom_model/Indibox_forcall_3p_model', 'indibox_forcall_3p');
     }
 
-    public function automation_distribution()
-    {
-        $hp = $this->distribution->edit(array("update_by" => "DC", "no_handpone LIKE '08%' " => NULL), array("update_by" => "DC_WA"));
-        $email = $this->distribution->edit(array("update_by" => "DC", "no_handpone NOT LIKE '08%' " => NULL, "email LIKE '%@%' " => NULL), array("update_by" => "DC_EMAIL"));
-        $wa_fail = $this->distribution->edit(array("update_by" => "DC_WA_FAIL", "no_handpone LIKE '08%' " => NULL), array("update_by" => "DC_SMS"));
-        $email_fail = $this->distribution->edit(array("update_by" => "DC_SMS_FAIL", "email LIKE '%@%' " => NULL), array("update_by" => "DC_EMAIL"));
-        $obc = $this->distribution->edit(array("update_by" => "DC_SMS_FAIL", "email NOT LIKE '%@%' " => NULL), array("update_by = NULL" => NULL));
-        $obc = $this->distribution->edit(array("update_by" => "DC_EMAIL_FAIL", "email LIKE '%@%' " => NULL), array("update_by = NULL" => NULL));
-        $obc = $this->distribution->edit(array("update_by" => "DC"), array("update_by" => ""));
-        $data['link'] = base_url() . "api/Generate_report_cache/automation_distribution";
-        $this->load->view('Custom_view/count_down', $data);
-    }
+    // public function generate_report($date)
+    // {
+    //     $data = array();
+    //     if ($date) {
+    //         $date_1 = $date . ' 00:00:00';
+    //         $date_2 = $date . ' 23:59:59';
+    //     } else {
+    //         $date_1 = date('Y-m-d') . ' 00:00:00';
+    //         $date_2 = date('Y-m-d') . ' 23:59:59';
+    //     }
+
+    //     $query_trans_profiling = $this->trans_profiling->live_query(
+    //         "SELECT veri_call,handphone,email,DATE(lup) as date_lup FROM trans_profiling WHERE lup BETWEEN '" . $date_1 . "' AND '" . $date_2 . "' ORDER BY lup ASC
+    //             "
+    //     );
+    //     $data_input = array();
+    //     $last_date = false;
+    //     $n = 0;
+    //     foreach ($query_trans_profiling->result_array() as $dl) {
+    //         if ($last_date) {
+    //             if ($dl['date_lup'] != $last_date) {
+    //                 $data_insert = $data_input[$last_date];
+    //                 if ($this->report_cache->get_count(array('date' => $last_date)) == 0) {
+    //                     $this->report_cache->add($data_insert);
+    //                 } else {
+    //                     $this->report_cache->edit(array('date' => $last_date), $data_insert);
+    //                 }
+    //             }
+    //         }
+    //         $last_date = $dl['date_lup'];
+    //         $data_input[$dl['date_lup']]['date'] = $last_date;
+    //         $data_input[$dl['date_lup']]['total_order_call'] = $data_input[$dl['date_lup']]['total_order_call'] + 1;
+    //         for ($status = 1; $status <= 16; $status++) {
+    //             if ($dl['veri_call'] == $status) {
+    //                 $data_input[$dl['date_lup']]['status_' . $status] = $data_input[$dl['date_lup']]['status_' . $status] + 1;
+    //                 if ($dl['veri_call'] == 13) {
+    //                     $check = $this->check_hp_email($dl['handphone'], $dl['email']);
+
+    //                     if ($check == 1) {
+    //                         $data_input[$dl['date_lup']]['hp_email'] = $data_input[$dl['date_lup']]['hp_email'] + 1;
+    //                     } else {
+    //                         if ($check == 2) {
+    //                             $data_input[$dl['date_lup']]['hp_only'] = $data_input[$dl['date_lup']]['hp_only'] + 1;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         $n++;
+    //     }
+    //     if ($last_date == date('Y-m-d')) {
+    //         $data_insert = $data_input[$last_date];
+    //         $data_insert['last_update'] = date('Y-m-d H:i:s');
+    //         if ($this->report_cache->get_count(array('date' => $last_date)) == 0) {
+    //             $this->report_cache->add($data_insert);
+    //         } else {
+    //             $this->report_cache->edit(array('date' => $last_date), $data_insert);
+    //         }
+    //     }else{
+    //         $data_insert = $data_input[$last_date];
+    //         $data_insert['last_update'] = date('Y-m-d H:i:s');
+    //         if ($this->report_cache->get_count(array('date' => $last_date)) == 0) {
+    //             $this->report_cache->add($data_insert);
+    //         } else {
+    //             $this->report_cache->edit(array('date' => $last_date), $data_insert);
+    //         }
+    //     }
+    //     $this->load->view('Custom_view/generate_report', $data);
+    // }
+
     public function generate_report_v2($date = false, $limit = 100, $offset = 0, $jumlah_data = false)
     {
         $data = array();
@@ -74,155 +132,118 @@ class Generate_report_cache extends CI_Controller
         }
 
 
-        $cek_num = $this->trans_profiling->live_query("select count(*) as numna FROM trans_profiling_daily WHERE DATE(lup) = '$date' ")->row();
-        if ($cek_num->numna == 0) {
+        $cek_num = $this->trans_profiling_daily->get_count(array("DATE(lup)" => $date));
+        $limit_query = $limit + 1;
+        if ($cek_num == 0) {
             if ($date == date('Y-m-d')) {
-                $this->trans_profiling->live_query("TRUNCATE TABLE  trans_profiling_daily");
+                $this->trans_profiling_daily->delete(array("DATE(lup) !=" => $date));
             }
+            $this->trans_profiling_monthly->delete(array("DATE_FORMAT(lup, '%Y-%m') <" => $ym));
+            $this->trans_profiling_last_month->delete(array("DATE_FORMAT(lup, '%Y-%m') <" => $last_month));
+            $query = $this->trans_profiling->live_query(
+                "SELECT
+                    *
+                FROM
+                    trans_profiling 
+                WHERE
+                lup BETWEEN '$date_1' AND '$date_2' ORDER BY lup ASC LIMIT $limit_query offset $offset 
+                "
+            );
+        } else {
+            // $last_idx=$this->trans_profiling_daily->get_row(array(),array("idx"),array("idx"=>"DESC"));
+            $query = $this->trans_profiling->live_query(
+                "SELECT
+                    *
+                FROM
+                    trans_profiling 
+                WHERE
+                lup BETWEEN '$date_1' AND '$date_2' ORDER BY lup ASC LIMIT $limit_query offset $offset
+                "
+            );
         }
-        $query = "REPLACE INTO trans_profiling_daily (
-            id,
-            idx,
-            ncli,
-            nama,
-            pstn1,
-            no_speedy,
-            kepemilikan,
-            facebook,
-            verfi_fb,
-            twitter,
-            verfi_twitter,
-            relasi,
-            email,
-            verfi_email,
-            lup_email,
-            email_lain,
-            handphone,
-            verfi_handphone,
-            lup_handphone,
-            nama_pastel,
-            alamat,
-            kota,
-            waktu_psb,
-            kec_speedy,
-            billing,
-            payment,
-            tgl_lahir,
-            STATUS,
-            profiling_by,
-            click_sms,
-            click_email,
-            ip_address,
-            date_created,
-            hub_pemilik,
-            veri_distribusi,
-            veri_count,
-            veri_status,
-            veri_call,
-            veri_keterangan,
-            veri_upd,
-            veri_lup,
-            lup,
-            click_session,
-            division,
-            witel,
-            kandatel,
-            regional,
-            veri_system,
-            nik,
-            no_kk,
-            nama_ibu_kandung,
-            path,
-            instagram,
-            handphone_lain,
-            opsi_call,
-            jk,
-            email3,
-            email4,
-            email5,
-            hp3,
-            hp4,
-            hp5,
-            sumber 
-        ) SELECT
-        id,
-        idx,
-        ncli,
-        nama,
-        pstn1,
-        no_speedy,
-        kepemilikan,
-        facebook,
-        verfi_fb,
-        twitter,
-        verfi_twitter,
-        relasi,
-        email,
-        verfi_email,
-        lup_email,
-        email_lain,
-        handphone,
-        verfi_handphone,
-        lup_handphone,
-        nama_pastel,
-        alamat,
-        kota,
-        waktu_psb,
-        kec_speedy,
-        billing,
-        payment,
-        tgl_lahir,
-        STATUS,
-        profiling_by,
-        click_sms,
-        click_email,
-        ip_address,
-        date_created,
-        hub_pemilik,
-        veri_distribusi,
-        veri_count,
-        veri_status,
-        veri_call,
-        veri_keterangan,
-        veri_upd,
-        veri_lup,
-        lup,
-        click_session,
-        division,
-        witel,
-        kandatel,
-        regional,
-        veri_system,
-        nik,
-        no_kk,
-        nama_ibu_kandung,
-        path,
-        instagram,
-        handphone_lain,
-        opsi_call,
-        jk,
-        email3,
-        email4,
-        email5,
-        hp3,
-        hp4,
-        hp5,
-        sumber 
-        
-        FROM
-            trans_profiling_detail 
-        WHERE
-            lup BETWEEN '$date_1' 
-            AND '$date_2'";
 
 
 
-
+        foreach ($query->result_array() as $val) {
+            $check = $this->trans_profiling_daily->get_count(array("idx" => $val['idx']));
+            $check_mothly = $this->trans_profiling_monthly->get_count(array("idx" => $val['idx']));
+            $check_last_month = $this->trans_profiling_last_month->get_count(array("idx" => $val['idx']));
+            if ($check > 0) {
+                $this->trans_profiling_daily->delete(array("idx" => $val['idx']));
+                if ($date == date('Y-m-d')) {
+                    $this->trans_profiling_daily->add($val);
+                }
+            } else {
+                if ($date == date('Y-m-d')) {
+                    $this->trans_profiling_daily->add($val);
+                }
+            }
+            if ($check_mothly > 0) {
+                $this->trans_profiling_monthly->delete(array("idx" => $val['idx']));
+                $this->trans_profiling_monthly->add($val);
+            } else {
+                $this->trans_profiling_monthly->add($val);
+            }
+            if ($check_last_month > 0) {
+                $this->trans_profiling_last_month->delete(array("idx" => $val['idx']));
+                $this->trans_profiling_last_month->add($val);
+            } else {
+                $this->trans_profiling_last_month->add($val);
+            }
+            // $data_post=$val;
+            // $ch = curl_init('https://sy-anida.com/api/Trans_profiling/users');
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_POSTFIELDS, $data_post);
+            // $response = curl_exec($ch);
+            // curl_close($ch);
+        }
         // echo $jumlah_data;
-        $query_num = $this->trans_profiling->live_query($query);
+        $offset = $offset + $limit;
+        if ($offset > $jumlah_data) {
+            if ($date != date('Y-m-d')) {
 
-        $data['link'] = base_url() . "api/Generate_report_cache/generate_report_v2";
-        $this->load->view('Custom_view/count_down', $data);
+                $next_day = date('Y-m-d', strtotime($date . "+1 days"));
+                $offset = 0;
+                $query_num_next = $this->trans_profiling->live_query(
+                    "SELECT
+                        count(idx) as jumlah_data
+                    FROM
+                        trans_profiling 
+                    WHERE
+                    lup BETWEEN '$next_day 00:00:00' AND '$next_day 23:59:59' 
+                    "
+                );
+                $data_query_num = $query_num_next->row_array();
+                $jumlah_data = $data_query_num['jumlah_data'];
+                $data['link'] = base_url() . "api/Generate_report_cache/generate_report_v2/" . $next_day . "/" . $limit . "/" . $offset . "/" . $jumlah_data;
+                $this->load->view('Custom_view/count_down', $data);
+            } else {
+                $query_num_next = $this->trans_profiling->live_query(
+                    "SELECT
+                        count(idx) as jumlah_data
+                    FROM
+                        trans_profiling 
+                    WHERE
+                    lup BETWEEN '$date_1' AND '$date_2' 
+                    "
+                );
+                $data_query_num = $query_num_next->row_array();
+                $jumlah_data = $data_query_num['jumlah_data'];
+
+                $data['link'] = base_url() . "api/Generate_report_cache/generate_report_v2/" . $date . "/" . $limit . "/" . $offset_lama . "/" . $jumlah_data;
+                if (date('H') == "21") {
+                    $this->load->model('Custom_model/Cdr_model', 'cdr');
+                    $check_cdr = $this->cdr->get_count(array("DATE(calldate)" => $date));
+                    if ($check_cdr == 0) {
+                        $data['link'] = base_url() . "api/Generate_report_cache/save_crd_daily/" . $date . "/" . $limit . "/" . $offset . "/" . $jumlah_data;
+                    }
+                }
+                $this->load->view('Custom_view/count_down', $data);
+            }
+        } else {
+            $data['link'] = base_url() . "api/Generate_report_cache/generate_report_v2/" . $date . "/" . $limit . "/" . $offset . "/" . $jumlah_data;
+            $this->load->view('Custom_view/count_down', $data);
+        }
 
 
         /*****************START ABSENSI*******/
@@ -370,52 +391,52 @@ class Generate_report_cache extends CI_Controller
 
         /*****END ABSENSI */
     }
-    // public function save_crd_daily($date = false, $limit = 100, $offset = 0, $jumlah_data = false)
-    // {
-    //     $date = date('Y-m-d');
-    //     $this->load->model('Custom_model/Cdr_model', 'cdr');
-    //     $this->load->model('Custom_model/Cdr_daily_model', 'cdr_daily');
-    //     $url = "10.194.22.170/API/profilling_ahtcall.php";
-    //     //  Initiate curl
-    //     $ch = curl_init();
-    //     // Will return the response, if false it print the response
-    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    //     // Set the url
-    //     curl_setopt($ch, CURLOPT_URL, $url);
-    //     // Execute
-    //     $result = curl_exec($ch);
-    //     // Closing
-    //     curl_close($ch);
+    public function save_crd_daily($date = false, $limit = 100, $offset = 0, $jumlah_data = false)
+    {
+        $date = date('Y-m-d');
+        $this->load->model('Custom_model/Cdr_model', 'cdr');
+        $this->load->model('Custom_model/Cdr_daily_model', 'cdr_daily');
+        $url = "10.194.22.170/API/profilling_ahtcall.php";
+        //  Initiate curl
+        $ch = curl_init();
+        // Will return the response, if false it print the response
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Set the url
+        curl_setopt($ch, CURLOPT_URL, $url);
+        // Execute
+        $result = curl_exec($ch);
+        // Closing
+        curl_close($ch);
 
-    //     $this->cdr_daily->truncate();
-    //     // Will dump a beauty json :3
-    //     $n = 0;
-    //     if ($result) {
-    //         $data = json_decode($result, true);
-    //         if (count($data['Data Asterisk Profilling']) > 0) {
-    //             foreach ($data['Data Asterisk Profilling'] as $data_insert) {
-    //                 // if ($data_insert['disposition'] == 'ANSWERED') {
-    //                 if (substr($data_insert['dst'], 0, 2) == '61') {
-    //                     $check = $this->cdr->get_count(array("uniqueid" => $data_insert['uniqueid']));
-    //                     if ($check == 0) {
-    //                         $this->cdr->add($data_insert);
-    //                     }
-    //                     $check_daily = $this->cdr_daily->get_count(array("uniqueid" => $data_insert['uniqueid']));
-    //                     if ($check_daily == 0) {
-    //                         $this->cdr_daily->add($data_insert);
-    //                     }
-    //                 }
-    //                 // }
+        $this->cdr_daily->truncate();
+        // Will dump a beauty json :3
+        $n = 0;
+        if ($result) {
+            $data = json_decode($result, true);
+            if (count($data['Data Asterisk Profilling']) > 0) {
+                foreach ($data['Data Asterisk Profilling'] as $data_insert) {
+                    // if ($data_insert['disposition'] == 'ANSWERED') {
+                    if (substr($data_insert['dst'], 0, 2) == '61') {
+                        $check = $this->cdr->get_count(array("uniqueid" => $data_insert['uniqueid']));
+                        if ($check == 0) {
+                            $this->cdr->add($data_insert);
+                        }
+                        $check_daily = $this->cdr_daily->get_count(array("uniqueid" => $data_insert['uniqueid']));
+                        if ($check_daily == 0) {
+                            $this->cdr_daily->add($data_insert);
+                        }
+                    }
+                    // }
 
-    //                 $n++;
-    //             }
-    //         }
-    //     }
-    //     $data['link'] = base_url() . "api/Generate_report_cache/save_crd_daily";
+                    $n++;
+                }
+            }
+        }
+        $data['link'] = base_url() . "api/Generate_report_cache/save_crd_daily";
 
 
-    //     $this->load->view('Custom_view/count_down', $data);
-    // }
+        $this->load->view('Custom_view/count_down', $data);
+    }
     public function save_to_recording()
     {
         $date = date('Y-m-d');
@@ -434,7 +455,6 @@ class Generate_report_cache extends CI_Controller
         // Closing
         curl_close($ch);
         // if ($date == date('Y-m-d')) {
-            
         $cek_num = $this->recording_daily->live_query("select count(*) as numna FROM recording_daily WHERE DATE(calldate) = '$date' ")->row();
         if ($cek_num->numna == 0) {
             if ($date == date('Y-m-d')) {
@@ -467,10 +487,58 @@ class Generate_report_cache extends CI_Controller
         uniqueid,
         recordingfile FROM recording_daily";
         $this->recording_daily->live_query($query);
-        // $data['link'] = base_url() . "api/Generate_report_cache/save_to_recording";
-        // $this->load->view('Custom_view/count_down', $data);
+        $data['link'] = base_url() . "api/Generate_report_cache/save_to_recording";
+        $this->load->view('Custom_view/count_down', $data);
     }
-    
+    public function save_to_cdr($limit = 100, $offset = 0, $jumlah_data = false)
+    {
+        $date = date('Y-m-d');
+        $this->load->model('Custom_model/Cdr_model', 'cdr');
+        $this->load->model('Custom_model/Cdr_daily_model', 'cdr_daily');
+        $this->load->model('Custom_model/Recording_daily_model', 'recording_daily');
+        $result = $this->recording_daily->get_results_array(array("status_update" => 0), array("*"), array("limit" => $limit, "offset" => $offset), array("id" => "ASC"));
+        $n = 0;
+        $offset = $offset + $limit;
+        if ($jumlah_data == false) {
+            $jumlah_data = $this->recording_daily->get_count(array("status_update" => 0));
+            $this->cdr_daily->delete(array("DATE(calldate) !=" => $date));
+        }
+
+        if ($offset <= $jumlah_data) {
+
+
+            if ($result['num'] > 0) {
+
+                foreach ($result['results'] as $data_insert) {
+                    // if ($data_insert['disposition'] == 'ANSWERED') {
+                    if (substr($data_insert['dst'], 0, 2) == '61') {
+                        unset($data_insert['status_update']);
+                        unset($data_insert['id']);
+                        $check = $this->cdr->get_count(array("uniqueid" => $data_insert['uniqueid']));
+                        if ($check == 0) {
+                            $this->cdr->add($data_insert);
+                        }
+                        $check_daily = $this->cdr_daily->get_count(array("uniqueid" => $data_insert['uniqueid']));
+                        if ($check_daily == 0) {
+                            $this->cdr_daily->add($data_insert);
+                        }
+                        $this->recording_daily->edit(array("uniqueid" => $data_insert['uniqueid']), array("status_update" => 1));
+                    }
+                    // }
+
+                    $jumlah_data++;
+                }
+            }
+            $data['link'] = base_url() . "api/Generate_report_cache/save_to_cdr/" . $limit . "/" . $offset . "/" . $jumlah_data;
+        } else {
+            $data['link'] = base_url() . "api/Generate_report_cache/save_to_recording";
+        }
+
+        $this->load->view('Custom_view/count_down', $data);
+    }
+    function go_public_api()
+    {
+    }
     function check_time()
     {
         $diff = NOW() - strtotime('2020-04-17 11:40:35');
@@ -802,7 +870,7 @@ class Generate_report_cache extends CI_Controller
     }
     public function grab_indibox()
     {
-        require_once('./assets/googlesheets/vendor/autoload.php');
+        // require_once('./assets/googlesheets/vendor/autoload.php');
         //Reading data from spreadsheet.
 
         $sheet = array(
@@ -889,12 +957,10 @@ class Generate_report_cache extends CI_Controller
         );
         $alpha = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 
-
-
         $client = new \Google_Client();
 
         $client->setApplicationName('Google Sheets and PHP');
-
+        
         $client->setScopes(array(\Google_Service_Sheets::SPREADSHEETS));
 
         $client->setAccessType('offline');
@@ -930,19 +996,19 @@ class Generate_report_cache extends CI_Controller
                                 $data_insert["sheet"] = $vsheet;
                             }
                             $data_insert["row"] = $n;
-
+                           
                             $cek_num = $this->indibox_forcall_3p->get_count(array("sheet" => $vsheet, "row" => $n));
                             if ($cek_num > 0) {
-                                $data_insert['last_update'] = date('Y-m-d H:i:s');
-                                if ($data_insert['status_call'] == "") {
-                                    $data_insert['status_call'] = 0;
+                                $data_insert['last_update']=date('Y-m-d H:i:s');
+                                if($data_insert['status_call'] == ""){
+                                    $data_insert['status_call']=0;
                                 }
                                 $this->indibox_forcall_3p->edit(array("sheet" => $vsheet, "row" => $n), $data_insert);
                             } else {
-                                if ($data_insert['status_call'] == "") {
-                                    $data_insert['status_call'] = 0;
+                                if($data_insert['status_call'] == ""){
+                                    $data_insert['status_call']=0;
                                 }
-                                $data_insert['add_date'] = date('Y-m-d H:i:s');
+                                $data_insert['add_date']=date('Y-m-d H:i:s');
                                 $this->indibox_forcall_3p->add($data_insert);
                             }
 
@@ -956,22 +1022,5 @@ class Generate_report_cache extends CI_Controller
             }
         }
         echo $insert_num;
-    }
-    public function grab_indibox_php5()
-    {
-        require_once('./assets/googlesheets_php5/src/Google/autoload.php');
-        //Reading data from spreadsheet.
-
-        $client = new Google_Client();
-        $client->setApplicationName("Client_Library_Examples");
-        $client->setDeveloperKey("YOUR_APP_KEY");
-
-        $service = new Google_Service_Books($client);
-        // $optParams = array('filter' => 'free-ebooks');
-        // $results = $service->volumes->listVolumes('Henry David Thoreau', $optParams);
-        var_dump($result);
-        // foreach ($results as $item) {
-        //     echo $item['volumeInfo']['title'], "<br /> \n";
-        // }
     }
 };

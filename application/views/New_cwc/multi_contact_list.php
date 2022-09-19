@@ -9,6 +9,8 @@
             $on4 = json_decode($on4);
             $salper = json_decode($salper);
             $reguler = json_decode($reguler);
+            $indipass = json_decode($indipass);
+            $moss = json_decode($moss);
             $on4transpose = array();
             $salpertranspose = array();
             foreach ($on4 as $dataon4) {
@@ -36,10 +38,10 @@
                             'nama' => $vdatasalper->nama_pelanggan,
                             'kontak' => $vdatasalper->dial_to,
                             'kontakemail' => $vdatasalper->email,
-                            'pstn' => 'not provided',
-                            'twitter' => 'not provided',
-                            'ig' => 'not provided',
-                            'facebook' => 'not provided'
+                            'pstn' => '#',
+                            'twitter' => '#',
+                            'ig' => '#',
+                            'facebook' => '#'
                         )
                     );
                 }
@@ -58,6 +60,36 @@
                         'twitter' => 'not provided',
                         'ig' => 'not provided',
                         'facebook' => 'not provided'
+                    )
+                );
+            }
+            foreach ($indipass as $dataindipass) {
+                array_push(
+                    $on4transpose,
+                    array(
+                        'sumber' => 'Indipass',
+                        'nama' => '#',
+                        'kontak' => $dataindipass->msisdn,
+                        'kontakemail' => $dataindipass->email,
+                        'pstn' => '#',
+                        'twitter' => '#',
+                        'ig' => '#',
+                        'facebook' => '#'
+                    )
+                );
+            }
+            foreach ($moss as $datamoss) {
+                array_push(
+                    $on4transpose,
+                    array(
+                        'sumber' => 'Profiling MOSS',
+                        'nama' => $datamoss->nama_pelanggan,
+                        'kontak' => $datamoss->no_handpone,
+                        'kontakemail' => $datamoss->email,
+                        'pstn' => $datamoss->no_pstn,
+                        'twitter' => '#',
+                        'ig' => '#',
+                        'facebook' => '#'
                     )
                 );
             }

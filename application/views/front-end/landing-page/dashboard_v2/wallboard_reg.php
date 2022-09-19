@@ -92,6 +92,21 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
     <main>
         <div class="container-fluid site-width" style="max-width:100% !important;">
             <form method="GET" action="#">
+                TAHUN
+                <select name="tahun" id="tahun">
+                    <?php
+                    $lb = 0;
+                    $tahun = $_GET["tahun"];
+                    for ($lb = 2020; $lb <= 2030; $lb++) {
+                        // $n_lb = sprintf("%02y", $lb);
+                        $selected = "";
+                        if ($lb == $tahun) {
+                            $selected = "selected";
+                        }
+                        echo "<option value='" . $lb . "' " . $selected . ">" . $lb . "</option>";
+                    }
+                    ?>
+                </select>
                 MONTH
                 <select name="bulan" id="bulan">
                     <?php
@@ -123,7 +138,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                 <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
                                                     <i class="fas fa-address-card   card-liner-icon mt-2 text-white"></i>
                                                     <div class='card-liner-content'>
-                                                        <h2 class="card-liner-title text-white" id="dapros"><?php echo number_format($wo); ?></h2>
+                                                        <h2 class="card-liner-title text-white" id="dapros"><?php echo number_format($datana->data_waitlist); ?></h2>
                                                         <h6 class="card-liner-subtitle text-white">DATA WAITLIST
                                                         </h6>
                                                     </div>
@@ -135,7 +150,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                 <div class='d-flex px-0 px-lg-2 py-3 align-self-center'>
                                                     <i class="fas fa-address-card   card-liner-icon mt-2 text-white"></i>
                                                     <div class='card-liner-content'>
-                                                        <h2 class="card-liner-title text-white" id="wo"><?php echo number_format($datana->co); ?></h2>
+                                                        <h2 class="card-liner-title text-white" id="wo"><?php echo number_format($datana->data_distribution); ?></h2>
                                                         <h6 class="card-liner-subtitle text-white">DATA DISTRIBUTION
                                                         </h6>
                                                     </div>
@@ -147,7 +162,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                 <div class='d-flex px-0 px-lg-2 py-2 align-self-center'>
                                                     <i class="fab fa-teamspeak  card-liner-icon mt-2 text-white"></i>
                                                     <div class='card-liner-content'>
-                                                        <h2 class="card-liner-title text-white" id="callorder_reguler"><?php echo number_format($datana->co); ?></h2>
+                                                        <h2 class="card-liner-title text-white" id="callorder_reguler"><?php echo number_format($datana->data_consume); ?></h2>
                                                         <h6 class="card-liner-subtitle text-white">DATA CONSUME</h6>
                                                     </div>
                                                 </div>
@@ -182,12 +197,12 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                             </div>
                                             <div class="d-flex mt-3">
                                                 <div class="border-0 outline-badge-info  w-50 p-3 rounded text-center">
-                                                    <span class="h6 mb-0" id="hp_email_rate"><?php echo number_format(($datana->hp_email / ($datana->verified)) * 100, 2); ?></span><br>
+                                                    <span class="h6 mb-0" id="hp_email_rate"><?php echo number_format(($datana->hp_email / ($datana->verified)) * 100); ?> %</span><br>
                                                     <span class="h6 mb-0" id='hp_email'><?php echo number_format($datana->hp_email); ?></span>
                                                     <br>HP+EMAIL
                                                 </div>
                                                 <div class="border-0 outline-badge-warning w-50 p-3 rounded ml-2 text-center">
-                                                    <span class="h6 mb-0" id="hp_only_rate"><?php echo number_format(($datana->hp_only / ($datana->verified)) * 100); ?></span><br>
+                                                    <span class="h6 mb-0" id="hp_only_rate"><?php echo number_format(($datana->hp_only / ($datana->verified)) * 100); ?> %</span><br>
                                                     <span class="h6 mb-0" id='hp_only'><?php echo number_format($datana->hp_only); ?></span>
                                                     <br>HP ONLY
                                                 </div>
@@ -247,8 +262,8 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                             </div>
                                             <div class="ml-auto my-auto font-weight-bold text-right text-danger">
                                                 <p class="mb-0 font-w-500 tx-s-12">&nbsp;</p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="jk_l"><?php echo $datana->gender_l; ?></p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id="jk_p"><?php echo $datana->gender_p; ?></p>
+                                                <p class="mb-0 font-w-500 tx-s-12" id="jk_l"><?php echo $datana->gender_l; ?> %</p>
+                                                <p class="mb-0 font-w-500 tx-s-12" id="jk_p"><?php echo $datana->gender_p; ?> %</p>
                                             </div>
                                         </div>
                                     </li>
@@ -260,7 +275,8 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                 <p class="mb-0 font-w-500 tx-s-12">Handphone</p>
                                                 <p class="mb-0 font-w-500 tx-s-12">Email</p>
                                                 <p class="mb-0 font-w-500 tx-s-12">WhatsApp</p>
-                                                <p class="mb-0 font-w-500 tx-s-12">SMS</p>
+<p class="mb-0 font-w-500 tx-s-12">SMS</p>
+
                                             </div>
                                             <div class="ml-auto my-auto font-weight-bold text-right text-danger">
                                                 <p class="mb-0 font-w-500 tx-s-12">&nbsp;</p>
@@ -268,7 +284,7 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                                 <p class="mb-0 font-w-500 tx-s-12" id='opsi_2'><?php echo number_format($datana->opsi_call_2); ?></p>
                                                 <p class="mb-0 font-w-500 tx-s-12" id='opsi_3'><?php echo number_format($datana->opsi_call_3); ?></p>
                                                 <p class="mb-0 font-w-500 tx-s-12" id='opsi_4'><?php echo number_format($datana->opsi_call_4); ?></p>
-                                                <p class="mb-0 font-w-500 tx-s-12" id='opsi_5'><?php echo number_format($datana->opsi_call_5); ?></p>
+<p class="mb-0 font-w-500 tx-s-12" id='opsi_5'><?php echo number_format($datana->opsi_call_5); ?></p>
                                             </div>
                                         </div>
                                     </li>
@@ -409,15 +425,15 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                                             <table width="100%">
                                                 <tr>
                                                     <td style="text-align:center;" width="33%">
-                                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/".$agent_data_1->picture ?>" alt="Agent" id="best_agent_foto_1" class="rounded-circle " width="65px" height="65px">
+                                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/" . $agent_data_1->picture ?>" alt="Agent" id="best_agent_foto_1" class="rounded-circle " width="65px" height="65px">
 
                                                     </td>
                                                     <td style="text-align:center;" width="33%">
-                                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/".$agent_data_2->picture ?>" alt="Agent" id="best_agent_foto_2" class="rounded-circle" width="65px" height="65px">
+                                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/" . $agent_data_2->picture ?>" alt="Agent" id="best_agent_foto_2" class="rounded-circle" width="65px" height="65px">
 
                                                     </td>
                                                     <td style="text-align:center;" width="33%">
-                                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/".$agent_data_3->picture ?>" alt="Agent" id="best_agent_foto_3" class="rounded-circle " width="65px" height="65px">
+                                                        <img src="<?php echo base_url() . "YbsService/get_foto_agent/" . $agent_data_3->picture ?>" alt="Agent" id="best_agent_foto_3" class="rounded-circle " width="65px" height="65px">
 
                                                     </td>
                                                 </tr>
@@ -617,19 +633,19 @@ $lap = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '
                             data: [
                                 <?php
 
-                                echo intval(($datana->jam_8_c/$datana->jam_8_oc)*100) . ",";
-                                echo intval(($datana->jam_9_c/$datana->jam_9_oc)*100) . ",";
-                                echo intval(($datana->jam_10_c/$datana->jam_10_oc)*100) . ",";
-                                echo intval(($datana->jam_11_c/$datana->jam_11_oc)*100) . ",";
-                                echo intval(($datana->jam_12_c/$datana->jam_12_oc)*100) . ",";
-                                echo intval(($datana->jam_13_c/$datana->jam_13_oc)*100) . ",";
-                                echo intval(($datana->jam_14_c/$datana->jam_14_oc)*100) . ",";
-                                echo intval(($datana->jam_15_c/$datana->jam_15_oc)*100) . ",";
-                                echo intval(($datana->jam_16_c/$datana->jam_16_oc)*100) . ",";
-                                echo intval(($datana->jam_17_c/$datana->jam_17_oc)*100) . ",";
-                                echo intval(($datana->jam_18_c/$datana->jam_18_oc)*100) . ",";
-                                echo intval(($datana->jam_19_c/$datana->jam_19_oc)*100) . ",";
-                                echo intval(($datana->jam_20_c/$datana->jam_20_oc)*100) . ",";
+                                echo intval(($datana->jam_8_c / $datana->jam_8_oc) * 100) . ",";
+                                echo intval(($datana->jam_9_c / $datana->jam_9_oc) * 100) . ",";
+                                echo intval(($datana->jam_10_c / $datana->jam_10_oc) * 100) . ",";
+                                echo intval(($datana->jam_11_c / $datana->jam_11_oc) * 100) . ",";
+                                echo intval(($datana->jam_12_c / $datana->jam_12_oc) * 100) . ",";
+                                echo intval(($datana->jam_13_c / $datana->jam_13_oc) * 100) . ",";
+                                echo intval(($datana->jam_14_c / $datana->jam_14_oc) * 100) . ",";
+                                echo intval(($datana->jam_15_c / $datana->jam_15_oc) * 100) . ",";
+                                echo intval(($datana->jam_16_c / $datana->jam_16_oc) * 100) . ",";
+                                echo intval(($datana->jam_17_c / $datana->jam_17_oc) * 100) . ",";
+                                echo intval(($datana->jam_18_c / $datana->jam_18_oc) * 100) . ",";
+                                echo intval(($datana->jam_19_c / $datana->jam_19_oc) * 100) . ",";
+                                echo intval(($datana->jam_20_c / $datana->jam_20_oc) * 100) . ",";
 
 
                                 ?>

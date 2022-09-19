@@ -12,6 +12,7 @@ class Absensi extends CI_Controller
     }
 
 
+
     function get_data_listabsensi()
     {
         $data['controller'] = $this;

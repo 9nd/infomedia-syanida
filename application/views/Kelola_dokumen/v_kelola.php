@@ -14,7 +14,7 @@
 
 <div class="card">
     <div class="card-header">
-        <a href="<?= base_url('kelola_dokumen/kelola/tambah') ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
+        <a href="<?= base_url('Kelola_dokumen/Kelola/tambah') ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i> Tambah Data</a>
         <!-- <a href="<?= base_url('') ?>" class="btn btn-danger btn-sm"><i class="fas fa-print"></i> Print</a> -->
 
     </div>
@@ -73,9 +73,9 @@
                         <td><?= $td->nama_dokumen ?></td>
                         <td><?= $td->keterangan ?></td>
                         <td>
-                            <a href="<?= base_url('kelola_dokumen/kelola/edit/' . $td->id) ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                            <a href="<?= base_url('kelola_dokumen/kelola/hapus/' . $td->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i class="fas fa-trash"></i></a>
-                            <a target='_blank' href="<?= base_url('kelola_dokumen/kelola/download/?dokumen=' . $td->dokumen) ?>" class="btn btn-secondary btn-sm"><i class="fas fa-download"></i></a>
+                            <a href="<?= base_url('Kelola_dokumen/Kelola/edit/' . $td->id) ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                            <a href="<?= base_url('Kelola_dokumen/Kelola/hapus/' . $td->id) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i class="fas fa-trash"></i></a>
+                            <a target='_blank' href="<?= base_url('Kelola_dokumen/Kelola/download/?dokumen=' . $td->dokumen) ?>" class="btn btn-secondary btn-sm"><i class="fas fa-download"></i></a>
                         </td>
                     </tr>
                 <?php endforeach ?>

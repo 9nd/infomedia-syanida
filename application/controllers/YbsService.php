@@ -83,7 +83,6 @@ class YbsService extends CI_Controller {
 	}
 	
 	
-	
 	public function get_default_picture_profile($token){
 		
 		if($token==$this->_token){
@@ -114,8 +113,8 @@ class YbsService extends CI_Controller {
 		// }
 			
 	}
-	//fungsi ini hanya di gunakan oleh user configurator
-	public function get_pnp($data){
+
+	public function get_foto_absent_submission($data){
 		//$this->_token.$this->_separator_a.user_picture
 		// $xx  = explode($this->_separator_a,$data);
 		// if(count($xx)<2){
@@ -123,12 +122,12 @@ class YbsService extends CI_Controller {
 		// }
 		
 		// if($xx[0]==$this->_token){
-				$name	= "./images/user_profile/pnp/". $data;
+				$name	= "./images/user_profile/pengajuan_absensi/". $data;
 				// Quick check to verify that the file exists
 				if( !file_exists($name) ) die("File not found");
 					$this->load->helper('download');
 					$f= file_get_contents($name);
-					force_download($this->_token,$f);
+					force_download($this->_token.".jpg",$f);
 		// }
 			
 	}

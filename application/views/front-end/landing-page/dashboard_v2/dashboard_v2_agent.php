@@ -48,14 +48,6 @@
     var cfh_chart;
     var target_chart;
 </script>
-<div class="col-12">
-    
-        <form method="GET" action="#">
-            From <input type="date" name="start" id="start" value="<?php echo $start; ?>"><input type="date" name="end" id="end" value="<?php echo $end; ?>"><button type="submit" id="filter"><i class="fa fa-search"></i></button><br>
-        </form>
-        <br>
-   
-</div>
 <div class="col-4">
     <div class="row">
         <div class="col-6 blink_me_veri">
@@ -146,36 +138,12 @@
             </div>
         </div>
         <div class="col-12 blink_me_veri">
-            <div class="row">
-                <div class="col-6 blink_me_veri">
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <center>
-                                <h3><?php echo number_format($agent[$userdata->agentid]['hpemail']); ?></h3>
-                                <p>HP + EMAIL</p>
-                            </center>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo number_format(($agent[$userdata->agentid]['hpemail'] / $agent[$userdata->agentid][13]) * 100) ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo number_format(($agent[$userdata->agentid]['hpemail'] / $agent[$userdata->agentid][13]) * 100) ?>%">
-                                <?php echo number_format(($agent[$userdata->agentid]['hpemail'] / $agent[$userdata->agentid][13]) * 100) ?>%
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 blink_me_veri">
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                            <center>
-                                <h3><?php echo number_format($hponly); ?></h3>
-                                <p>HP ONLY</p>
-                            </center>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo number_format(($agent[$userdata->agentid]['hponly'] / $agent[$userdata->agentid][13]) * 100) ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo number_format(($agent[$userdata->agentid]['hponly'] / $agent[$userdata->agentid][13]) * 100) ?>%">
-                                <?php echo number_format(($agent[$userdata->agentid]['hponly'] / $agent[$userdata->agentid][13]) * 100) ?>%
-                            </div>
-                        </div>
-                    </div>
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <center>
+                        <h3 id="verified">-</h3>
+                        <p>AHT</p>
+                    </center>
                 </div>
             </div>
         </div>
@@ -678,9 +646,9 @@ if ($userdata->kategori == "REG") {
     var primarycolor = getComputedStyle(document.body).getPropertyValue('--primarycolor');
     var bordercolor = getComputedStyle(document.body).getPropertyValue('--bordercolor');
 
+    
 
-
-
+    
 
     var config_break = {
         type: 'doughnut',

@@ -19,7 +19,7 @@ class T_news extends CI_Controller
 	public function index()
 	{
 		$data = array(
-			'title_page_big'		=> 'DAFTAR',
+			'title_page_big'		=> 'News Management',
 			'title'					=> $this->title,
 			'link_refresh_table'	=> site_url() . 'T_news/T_news/refresh_table/' . $this->_token,
 			'link_create'			=> site_url() . 'T_news/T_news/create',

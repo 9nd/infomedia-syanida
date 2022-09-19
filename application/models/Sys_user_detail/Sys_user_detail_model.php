@@ -1,15 +1,19 @@
 <?php
 
 if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+	exit('No direct script access allowed');
 
-class Sys_user_detail_model extends CI_Model {
-   public $id;	
-   function __construct(){
-        parent::__construct();
-   }	
-	
-	public function json(){
+class Sys_user_detail_model extends CI_Model
+{
+	public $id;
+	function __construct()
+	{
+		parent::__construct();
+		$this->tbl = "sys_user_detail_model";
+	}
+
+	public function json()
+	{
 		$this->datatables->select('
 			sys_user_detail.id as id,
 			sys_user_detail.agentid as agentid,
@@ -34,6 +38,25 @@ class Sys_user_detail_model extends CI_Model {
 			sys_user_detail.no_rekening as no_rekening,
 			sys_user_detail.nama_bank as nama_bank,
 			sys_user_detail.npwp as npwp,
+
+			sys_user_detail.perner as perner,
+			sys_user_detail.nama_lengkap as nama_lengkap,
+			sys_user_detail.alamat_kosan as alamat_kosan,
+			sys_user_detail.nama_sutri as nama_sutri,
+			sys_user_detail.tanggal_menikah as tanggal_menikah,
+			sys_user_detail.tanggal_lhrsutri as tanggal_lhrsutri,
+			sys_user_detail.jml_anak as jml_anak,
+			sys_user_detail.u_anakterakhir as u_anakterakhir,
+			sys_user_detail.emergency_kontak as emergency_kontak,
+			sys_user_detail.nama_emergency as nama_emergency,
+			sys_user_detail.nomor_emergency as nomor_emergency,
+			sys_user_detail.bank_an as bank_an,
+			sys_user_detail.npwp_nama as npwp_nama,
+			sys_user_detail.bpjs_ket as bpjs_ket,
+			sys_user_detail.bpjs_kes as bpjs_kes,
+			sys_user_detail.tanggal_akhir as tanggal_akhir,
+			sys_user_detail.no_pkwt as no_pkwt,
+			
 			sysuser.id as sysuser_id,
 			sysuser.nmuser as nmuser,
 			sysuser.passuser as passuser,
@@ -49,24 +72,25 @@ class Sys_user_detail_model extends CI_Model {
 			statusperkawinan.id as statusperkawinan_id,
 			statusperkawinan.status_perkawinan as statusperkawinan_status_perkawinan,
 		');
-		
-		$this->datatables->from('sys_user_detail');
-	
-		$this->datatables->join('sys_user sysuser','sysuser.id=sys_user_detail.agentid','LEFT'); 
-	
-		$this->datatables->join('jenis_kelamin jeniskelamin','jeniskelamin.id=sys_user_detail.jenis_kelamin','LEFT'); 
-	
-		$this->datatables->join('status_perkawinan statusperkawinan','statusperkawinan.id=sys_user_detail.status_perkawinan','LEFT'); 
 
-		
-		
+		$this->datatables->from('sys_user_detail');
+
+		$this->datatables->join('sys_user sysuser', 'sysuser.id=sys_user_detail.agentid', 'LEFT');
+
+		$this->datatables->join('jenis_kelamin jeniskelamin', 'jeniskelamin.id=sys_user_detail.jenis_kelamin', 'LEFT');
+
+		$this->datatables->join('status_perkawinan statusperkawinan', 'statusperkawinan.id=sys_user_detail.status_perkawinan', 'LEFT');
+
+
+
 		//mengembalikan dalam bentuk array
-		$q =  json_decode($this->datatables->generate(),true);
+		$q =  json_decode($this->datatables->generate(), true);
 		return $q;
 	}
-	
 
-   public function get_all(){
+
+	public function get_all()
+	{
 		$afield = array(
 			'sys_user_detail.id as id',
 			'sys_user_detail.agentid as agentid',
@@ -91,6 +115,24 @@ class Sys_user_detail_model extends CI_Model {
 			'sys_user_detail.no_rekening as no_rekening',
 			'sys_user_detail.nama_bank as nama_bank',
 			'sys_user_detail.npwp as npwp',
+
+			'sys_user_detail.perner as perner',
+			'sys_user_detail.nama_lengkap as nama_lengkap',
+			'sys_user_detail.alamat_kosan as alamat_kosan',
+			'sys_user_detail.nama_sutri as nama_sutri',
+			'sys_user_detail.tanggal_menikah as tanggal_menikah',
+			'sys_user_detail.tanggal_lhrsutri as tanggal_lhrsutri',
+			'sys_user_detail.jml_anak as jml_anak',
+			'sys_user_detail.u_anakterakhir as u_anakterakhir',
+			'sys_user_detail.emergency_kontak as emergency_kontak',
+			'sys_user_detail.nama_emergency as nama_emergency',
+			'sys_user_detail.nomor_emergency as nomor_emergency',
+			'sys_user_detail.bank_an as bank_an',
+			'sys_user_detail.npwp_nama as npwp_nama',
+			'sys_user_detail.bpjs_ket as bpjs_ket',
+			'sys_user_detail.bpjs_kes as bpjs_kes',
+			'sys_user_detail.tanggal_akhir as tanggal_akhir',
+			'sys_user_detail.no_pkwt as no_pkwt',
 			'sysuser.id as sysuser_id',
 			'sysuser.nmuser as nmuser',
 			'sysuser.passuser as passuser',
@@ -105,19 +147,96 @@ class Sys_user_detail_model extends CI_Model {
 			'jeniskelamin.jenis_kelamin as jeniskelamin_jenis_kelamin',
 			'statusperkawinan.id as statusperkawinan_id',
 			'statusperkawinan.status_perkawinan as statusperkawinan_status_perkawinan',
-		
+
 		);
 		$this->db->select($afield);
-		$this->db->join('sys_user sysuser','sysuser.id=sys_user_detail.agentid','LEFT'); 
-		$this->db->join('jenis_kelamin jeniskelamin','jeniskelamin.id=sys_user_detail.jenis_kelamin','LEFT'); 
-		$this->db->join('status_perkawinan statusperkawinan','statusperkawinan.id=sys_user_detail.status_perkawinan','LEFT'); 
+		$this->db->join('sys_user sysuser', 'sysuser.id=sys_user_detail.agentid', 'LEFT');
+		$this->db->join('jenis_kelamin jeniskelamin', 'jeniskelamin.id=sys_user_detail.jenis_kelamin', 'LEFT');
+		$this->db->join('status_perkawinan statusperkawinan', 'statusperkawinan.id=sys_user_detail.status_perkawinan', 'LEFT');
 
 		$this->db->order_by('sys_user_detail.id', 'ASC');
 		return $this->db->get('sys_user_detail')->result_array();
-   }
+	}
 
 
-	public function get_by_id($id){
+	function live_query($query)
+    {
+        $query = $this->db->query($query);
+        return $query;
+    }
+	function get_results($where = array(), $fields = array('*'), $limit = array(), $order_by = array())
+	{
+		$data = array();
+		//select field
+		if (is_array($fields)) {
+			$this->db->select(implode(',', $fields));
+		}
+		if (count($where) > 0) {
+			foreach ($where as $field => $value) {
+				switch ($field) {
+					default:
+						$this->db->where($field, $value);
+						break;
+					case "or_where":
+						foreach ($value as $fi => $val) {
+							$this->db->or_where($fi, $val);
+						}
+						break;
+					case "or_where_null":
+						foreach ($value as $val) {
+							$this->db->where($val, NULL, FALSE);
+						}
+						break;
+					case "or_where_null_multi":
+						foreach ($value as $val_arr) {
+							foreach ($val_arr as $val) {
+								$this->db->where($val, NULL, FALSE);
+							}
+						}
+						break;
+					case "like":
+						foreach ($value as $fi => $val) {
+							$this->db->like($fi, $val, 'both');
+						}
+						break;
+					case "or_like":
+						foreach ($value as $fi => $val) {
+							$this->db->or_like($fi, $val, 'both');
+						}
+						break;
+					case "join":
+						foreach ($value as $fi => $val) {
+							$this->db->join($fi, $val);
+						}
+						break;
+					case "join_left":
+						foreach ($value as $fi => $val) {
+							$this->db->join($fi, $val, "INNER");
+						}
+						break;
+				}
+			}
+		}
+		//order
+		if (count($order_by) > 0) {
+			foreach ($order_by as $field => $typ) {
+				$this->db->order_by($field, $typ);
+			}
+		}
+		//limit
+		if (count($limit) > 0) {
+			$query = $this->db->get($this->tbl, $limit['limit'], $limit['offset']);
+		} else {
+			$query = $this->db->get($this->tbl);
+		}
+		if ($result = $query->result()) {
+			$data['results'] = $result;
+		}
+		$data['num'] = $query->num_rows();
+		return $data;
+	}
+	public function get_by_id($id)
+	{
 		$afield = array(
 			'sys_user_detail.id as id',
 			'sys_user_detail.agentid as agentid',
@@ -142,6 +261,24 @@ class Sys_user_detail_model extends CI_Model {
 			'sys_user_detail.no_rekening as no_rekening',
 			'sys_user_detail.nama_bank as nama_bank',
 			'sys_user_detail.npwp as npwp',
+
+			'sys_user_detail.perner as perner',
+			'sys_user_detail.nama_lengkap as nama_lengkap',
+			'sys_user_detail.alamat_kosan as alamat_kosan',
+			'sys_user_detail.nama_sutri as nama_sutri',
+			'sys_user_detail.tanggal_menikah as tanggal_menikah',
+			'sys_user_detail.tanggal_lhrsutri as tanggal_lhrsutri',
+			'sys_user_detail.jml_anak as jml_anak',
+			'sys_user_detail.u_anakterakhir as u_anakterakhir',
+			'sys_user_detail.emergency_kontak as emergency_kontak',
+			'sys_user_detail.nama_emergency as nama_emergency',
+			'sys_user_detail.nomor_emergency as nomor_emergency',
+			'sys_user_detail.bank_an as bank_an',
+			'sys_user_detail.npwp_nama as npwp_nama',
+			'sys_user_detail.bpjs_ket as bpjs_ket',
+			'sys_user_detail.bpjs_kes as bpjs_kes',
+			'sys_user_detail.tanggal_akhir as tanggal_akhir',
+			'sys_user_detail.no_pkwt as no_pkwt',
 			'sysuser.id as sysuser_id',
 			'sysuser.nmuser as nmuser',
 			'sysuser.passuser as passuser',
@@ -156,17 +293,17 @@ class Sys_user_detail_model extends CI_Model {
 			'jeniskelamin.jenis_kelamin as jeniskelamin_jenis_kelamin',
 			'statusperkawinan.id as statusperkawinan_id',
 			'statusperkawinan.status_perkawinan as statusperkawinan_status_perkawinan',
-		
+
 		);
 		$this->db->select($afield);
-		$this->db->join('sys_user sysuser','sysuser.id=sys_user_detail.agentid','LEFT'); 
-		$this->db->join('jenis_kelamin jeniskelamin','jeniskelamin.id=sys_user_detail.jenis_kelamin','LEFT'); 
-		$this->db->join('status_perkawinan statusperkawinan','statusperkawinan.id=sys_user_detail.status_perkawinan','LEFT'); 
+		$this->db->join('sys_user sysuser', 'sysuser.id=sys_user_detail.agentid', 'LEFT');
+		$this->db->join('jenis_kelamin jeniskelamin', 'jeniskelamin.id=sys_user_detail.jenis_kelamin', 'LEFT');
+		$this->db->join('status_perkawinan statusperkawinan', 'statusperkawinan.id=sys_user_detail.status_perkawinan', 'LEFT');
 
 		$this->db->where('sys_user_detail.id', $id);
 		$this->db->order_by('sys_user_detail.id', 'ASC');
 		return $this->db->get('sys_user_detail')->row();
-   }
+	}
 
 
 	/* Memastikan data yg dibuat tidak kembar/sama,
@@ -174,64 +311,64 @@ class Sys_user_detail_model extends CI_Model {
 	   krn primary key sudah di gunakan untuk column id.
 	   -create : id di kosongkan.
 	   -update : id di isi dengan id data yg di proses.	
-	*/	
-	function if_exist($id,$data){
-		$this->db->where('sys_user_detail.id <>',$id);
+	*/
+	function if_exist($id, $data)
+	{
+		$this->db->where('sys_user_detail.id <>', $id);
 
 		$q = $this->db->get_where('sys_user_detail', $data)->result_array();
-		
-		if(count($q)>0){
+
+		if (count($q) > 0) {
 			return true;
-		}else{
+		} else {
 			return false;
-		}		
-
-	
-
+		}
 	}
 
 
-	function insert($data){
-	
-	    /* transaction rollback */
+	function insert($data)
+	{
+
+		/* transaction rollback */
 		$this->db->trans_start();
-		
-		$this->db->insert('sys_user_detail', $data);		
+
+		$this->db->insert('sys_user_detail', $data);
 		/* id primary yg baru saja di input*/
-		$this->id = $this->db->insert_id(); 
-		
+		$this->id = $this->db->insert_id();
+
 		$this->db->trans_complete();
 		return $this->db->trans_status(); //return true or false
 	}
 
-	function update($id,$data){
+	function update($id, $data)
+	{
 
 		/* transaction rollback */
 		$this->db->trans_start();
 
 		$this->db->where('sys_user_detail.id', $id);
 		$this->db->update('sys_user_detail', $data);
-		
+
 		$this->db->trans_complete();
-		return $this->db->trans_status(); //return true or false	
+		return $this->db->trans_status(); 
+		//return true or false	
 	}
 
-	function delete_multiple($data){
+	function delete_multiple($data)
+	{
 		/* transaction rollback */
 		$this->db->trans_start();
-		
-		if(!empty($data)){
-			$this->db->where_in('sys_user_detail.id',$data);	
-	
+
+		if (!empty($data)) {
+			$this->db->where_in('sys_user_detail.id', $data);
+
 			$this->db->delete('sys_user_detail');
 		}
-		
+
 		$this->db->trans_complete();
 		return $this->db->trans_status(); //return true or false	
-		
+
 	}
-
-
 };
 
 /* END */
