@@ -6,32 +6,68 @@
             <table class='display responsive nowrap' id="example" style="width: 100%;">
                 <thead>
                     <tr>
-                        <?php
-                        foreach ($fmoss as $field) {
-                            echo " <th style='font-size: 12px'><b>" . $field . "</b></th>";
-                        }
-                        ?>
-
-
+                        <th>NO </th>
+                        <th>ncli </th>
+                        <th>no_pstn </th>
+                        <th>no_speedy </th>
+                        <th>nama_pelanggan </th>
+                        <th>no_handpone </th>
+                        <th>email </th>
+                        <th>nama_pastel </th>
+                        <th>alamat </th>
+                        <th>kota </th>
+                        <th>regional </th>
+                        <th>update_by </th>
+                        <th>TGL_KELUAR</th>
+                        <th>Jam_keluar</th>
+                        <th>sumber </th>
+                        <th>TGL_Masuk</th>
+                        <th>Jam_Masuk</th>
+                        <th>SLG</th>
+                        <th>layanan </th>
+                        <th>reason_call </th>
+                        <th>STATUS </th>
+                        <th>keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    // $nomor = 1;
-                    foreach ($moss as $datana) {
+                    $no = 1;
+
 
                     ?>
-                        <tr>
-                            <?php
-                            foreach ($fmoss as $field) {
-                                echo " <td style='font-size: 11px'>".$datana[$field]."</td>";
-                            }
-                            ?>
-                        </tr>
-                    <?php
-                        
-                    }
-                    ?>
+                   
+                        <?php
+                        foreach ($moss as $datana) {
+                            echo "<tr>";
+                            echo "<td style='font-size: 11px'>" . $no . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->ncli . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->no_pstn . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->no_speedy . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->nama_pelanggan . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->no_handpone . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->email . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->nama_pastel . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->alamat . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->kota . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->regional . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->update_by . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->TGL_Keluar . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->Jam_Keluar . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->sumber . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->TGL_Masuk . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->Jam_Masuk . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->SLG . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->layanan . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->reason_call . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->STATUS . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->keterangan . "</td>";
+                            echo "</tr>";
+                            $no++;
+                        }
+                        ?>
+                   
+                  
                 </tbody>
             </table>
 

@@ -20,7 +20,7 @@ class Moss extends CI_Controller
 
 	public function index()
 	{
-		
+
 		$data['start'] = date('Y-m-d');
 		$data['$end'] = date('Y-m-d');
 		if (isset($_GET['start']) && isset($_GET['end'])) {
@@ -28,7 +28,7 @@ class Moss extends CI_Controller
 			$data['$end'] = $_GET['end'];
 		}
 
-		
+
 		$this->template->load('Moss/Moss_list', $data);
 	}
 
@@ -47,16 +47,41 @@ class Moss extends CI_Controller
 			$logindata = $this->log_login->get_by_id($idlogin);
 
 			$userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+			$this->dbtrx = $this->load->database('infomedia');
 
-			$data['fmoss'] = $this->db->list_fields('trans_profiling_validasi_mos');
-			$data['moss'] = $this->tmodel->live_query("SELECT * FROM trans_profiling_validasi_mos WHERE DATE(tgl_insert) BETWEEN '$start' AND '$end' ")->result_array();
+			// $data['fmoss'] = $this->dbtrx->list_fields('indri_trans_profiling_validasi_mos');
+			$data['moss'] = $this->tmodel->live_query("
+			SELECT  
+			idx, 
+			ncli, 
+			no_pstn, 
+			no_speedy, 
+			nama_pelanggan, 
+			no_handpone, 
+			email, 
+			nama_pastel, 
+			alamat, 
+			kota, 
+			regional, 
+			update_by, 
+			DATE(`lup`)AS TGL_Keluar, 
+			TIME(`lup`)AS Jam_Keluar, 
+			sumber, 
+			DATE(`tgl_insert`)AS TGL_Masuk, 
+			TIME(`tgl_insert`)AS Jam_Masuk, 
+			TIMEDIFF(`lup`,`tgl_insert`) AS SLG, 
+			layanan, 
+			reason_call, 
+			STATUS, 
+			keterangan, 
+			(SELECT nama_reason FROM m_reason WHERE idx_reason=reason_call) STATUS 
+			FROM indri_trans_profiling_validasi_mos 
+			WHERE DATE(`tgl_insert`)  BETWEEN '$start' AND '$end' 
+			")->result();
 			$data['Status_call_model'] = $this->Status_call_model;
 		}
 		$this->load->view('Moss/Moss_area', $data);
 	}
-
-
-	
 };
 
 /* END */
