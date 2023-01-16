@@ -315,28 +315,24 @@
                                                             Maaf, dengan bapak/ibu siapa saya berbicara?
                                                             <br><br>
                                                             <strong><u>Jika tidak terhubung dengan pemilik</u>
-                                                            <br>
-                                                            Boleh diinformasikan untuk relasi atau hubungannya dengan Bapak/Ibu (nama pelanggan) sebagai siapa?</strong>
+                                                                <br>
+                                                                Baik, pak/bu, hubungan kekerabatan bapak/ ibu dengan bapak/ ibu (nama tertera di aplikasi), selaku siapanya?
+                                                                <br><br>
+                                                                Jika terhubung dengan pemilik telepon:
+                                                                <br>
+                                                                Yang bertanggung jawab untuk pembayaran tagihan produk telkomnya, dengan bapak/ ibu sendiri?
+                                                                <br><br>
+                                                                Jika tidak terhubung dengan pemilik telepon:
+                                                                <br>
+                                                                Yang bertanggung jawab untuk pembayaran tagihan produk telkom dinomor xxx xxxxx dengan siapa pak/ bu?</strong>
                                                             <br><br>
-                                                            <strong><u>Jika terhubung dengan pemilik telepon:</u></strong>
-                                                            <br>
-                                                            Yang bertanggung jawab untuk pembayaran tagihan produk telkomnya, dengan bapak/ ibu sendiri?
-                                                            <br><br>
-                                                            <strong><u>Jika tidak terhubung dengan pemilik telepon:</u></strong>
-                                                            <br>
-                                                            Yang bertanggung jawab untuk pembayaran tagihan produk telkom dinomor xxx xxxxx dengan siapa pak/ bu?
-                                                            <br><br>
-                                                            Bisa saya berbicara dengan bapak/ ibu (sebutkan nama yang diinformasikan pelanggan)?
+                                                            Bisa saya berbicara dengan bapak/ ibu (sebutkan nama yang diinformasikan pelanggan)
                                                             <br><br>
                                                             Bagaimana keadaan bapak/ ibu (nama tertera di aplikasi) sehat? (tunggu jawaban pelanggan)
                                                             <br>
                                                             Semoga sehat selalu ya, pak/ bu.
                                                             <br><br>
-                                                            <strong><u>Apabila pelanggan sampaikan tidak sehat</u></strong>
-                                                            <br>
-                                                            Agent dapat sampaikan, semoga lekas sembuh ya Ibu/Bapak, mohon maaf sekali, apakah boleh minta waktunya sebentar?
-                                                            <br><br>
-                                                            Begini pak/bu. kami ditugaskan pihak Telkom untuk mengupdate data, tujuan kedepannya <strong>*mempermudah Bapak/Ibu menerima informasi mengenai Program Loyalti, Produk dan Promo Telkom terbaru serta Percepatan Perbaikan jika berkendala pada Telepon rumah atau Internet nya*</strong>
+                                                            Begini pak/bu. kami ditugaskan pihak Telkom untuk mengupdate data tujuan kedepannya <strong>*mempermudah Bapak/Ibu menerima informasi mengenai Program Loyalti, Produk dan Promo Telkom terbaru serta Percepatan Perbaikan jika berkendala pada Telepon rumah atau Internet nya*</strong>
                                                         </label>
 
                                                     </div>
@@ -424,9 +420,9 @@
                                                     <h6>VERIFIKASI HP & EMAIL</h6>
                                                     <br>
                                                     <label>
-                                                        mohon dibantu sebentar untuk kelengkapan datanya
+                                                        Mohon dibantu sebentar untuk kelengkapan datanya
                                                         <br><br>
-                                                        Untuk nomor handphone yang  kami hubungi di nomor ini ya pak/ ibu (nama pelanggan) (sebutkan no nya)?
+                                                        Untuk nomor handphone yang kami hubungi di nomor ini ya pak/ ibu (nama pelanggan) (sebutkan no nya)?
                                                         <br>
                                                         No handphone bapak/ ibu (nama pelanggan) apakah terhubung dengan whatsApp?
                                                         <br><br>
@@ -436,7 +432,7 @@
                                                         <br>
                                                         Di sini tertera alamat emailnya xxxxxxxxxx, apakah masih aktif pak/bu? Kami ejakan...
                                                         <br><br>
-                                                        <i>* Apabila ada pergantian PJP/pelanggan meminta menambahkan/mengganti no hp /emainya, agent wajib menanyakan kembali no hp/email yang aktif</i>
+                                                        <i>* Apabila ada pergantian PJP/pelanggan meminta menambahkan/mengganti no hp /emainya, agent wajib menanyakan kembali no/email yang aktif</i>
                                                         <br><br>
                                                         <strong>Handphone</strong>
                                                         <br>
@@ -447,8 +443,6 @@
                                                         <strong>Email</strong>
                                                         <br>
                                                         Boleh dibantu, untuk alamat email aktifnya apa ya pak/bu?(agent menyebutkan ulang email lalu spelling)
-                                                        <br><br>
-                                                        Apabila ada informasi lebih berkenan/nyaman kami hubungi kembali melalui Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
                                                     </label>
                                                 </div>
                                                 <hr style="border-left: 3px solid rgba(72, 94, 144, 0.16); min-height: 100%; max-height: 100vh; margin: 0; " />
@@ -483,17 +477,22 @@
                                                             <input type="text" class="form-control" name='email_lain' placeholder="Email Lainnya">
                                                         </div>
                                                     </div>
-						   <div class="form-group row">
-                                                        <label for="opsi_call" class="col-sm-4 col-form-label">Opsi Call</label>
+                                                    <div class="form-group row">
+                                                        <label for="fb" class="col-sm-4 col-form-label">Facebook</label>
                                                         <div class="col-sm-7">
-                                                            <select class="form-control" id="opsi_call" name="opsi_call" value="">
-                                                                <option value="">-- Pilih --</option>
-                                                                <option value="telp_rumah">Telepon Rumah</option>
-                                                                <option value="hp">Handphone</option>
-                                                                <option value="email">Email</option>
-                                                                <option value="wa">Whatsapp</option>
-                                                                <option value="sms">SMS</option>
-                                                            </select>
+                                                            <input type="text" class="form-control" name='fb' placeholder="Facebook">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="tw" class="col-sm-4 col-form-label">Twitter</label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" name='tw' placeholder="Twitter">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="ig" class="col-sm-4 col-form-label">Instagram</label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" name='ig' placeholder="Instagram">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -523,34 +522,26 @@
                                                     <h6>VERIFIKASI</h6>
                                                     <br>
                                                     <label>
-                                                        <strong>Pertanyaan dengan kalimat terbuka</strong>
-                                                        <br><br>
                                                         a. Untuk alamat, apakah ada perubahan pak/ bu (nama pelanggan)? baik pak/ bu, boleh disebutkan di jalan (sebutkan nama jalan besarnya saja) no rumahnya no berapa ya? Rt berapa? Rw berapa?
                                                         <br><br>
-                                                         b. Boleh dibantu untuk kecepatan internet yang bapak/ ibu gunakan sekarang berapa mbps? 
-                                                        <br>
-                                                        <i>*Jika Tidak Terjawab silahkan diberikan pertanyaan opsional contoh "30/40 Mbps ?" Jika masih tidak terjawab melanjutkan ke pertanyaan lain.
-                                                        <br>
-                                                        </i>
-                                                        <br>
-                                                        c. Maaf pak/ bu (nama pelanggan) untuk persamaan data, tagihan terakhir yang dibayarkan kisaran berapa ya?
+                                                        b. Maaf pak/ bu (nama pelanggan) untuk persamaan data, apakah betul tagihan terakhir yang dibayarkan berjumlah (cek aplikasi) ?
                                                         <br><br>
-                                                        d. Jika pak/ bu (nama pelanggan), tidak keberatan, bisa disebutkan untuk tempat pembayaran terakhir dilakukan dimana?
+                                                        c. Jika pak/ bu (nama pelanggan), tidak keberatan, bisa disebutkan untuk tempat pembayaran terakhir dilakukan dimana?
                                                         <br><br>
-                                                        <!-- Bagaimana telepon/internet yang bapak/ ibu (nama pelanggan) gunakan, lancar? Semoga lancar selalu ya, pak/ bu.
+                                                        d. Apakah betul Bapak/ ibu (nama pelanggan) menggunakan produk Telkom mulai tahun xxxx?
+                                                        <br><br>
+                                                        e. Selain telepon, apakah bapak/ ibu (nama pelanggan) juga menggunakan internet? Boleh dibantu untuk kecepatan internet yang bapak/ ibu gunakan sekarang?
                                                         <br>
-                                                        <i>*apabila pl mengeluhkan kondisinya, agent wajib menyampaikan permohonan maaf atas ketidaknyamannya dan berikan solusi.</i>
-                                                        <br><br> -->
-                                                        e. Apakah betul Bapak/ ibu (nama pelanggan) menggunakan produk Telkom mulai tahun xxxx?
+                                                        Bagaimana telepon/internet yang bapak/ ibu (nama tertera di aplikasi) gunakan, lancar? Semoga lancar selalu ya, pak/ bu.
+                                                        <br><i>*apabila pl mengeluhkan kondisinya, agent wajib menyampaikan permohonan maaf atas ketidaknyamannya dan berikan solusi.</i>
                                                         <br><br>
-                                                        Untuk mempermudah mendapat informasi terkait produk/promo, maaf bapak/ibu (nama pelanggan), apakah bapak/ibu aktif menggunakan media sosial seperti facebook, instagram, dan twitter? 
+                                                        Kedepannya Bapak/Ibu (nama pelanggan) lebih berkenan kami hubungi kembali melalu Telepon Rumah, Handphone, Email, Pesan Whatsapp, atau SMS?
                                                         <br><br>
-                                                        Boleh diinformasikan nama akun bapak/ibu? <i>(agent menyebutkan ulang nama akun lalu spelling)</i>
+                                                        Untuk mempermudah mendapat informasi terkait produk/promo, maaf bapak/ibu (nama pelanggan), apakah bapak/ibu aktif menggunakan media sosial seperti facebook, instagram, dan twitter?
                                                         <br><br>
-                                                        <strong>Apabila pelanggan sampaikan tidak ada/tidak hapal</strong>
-                                                        <br>
-                                                        Baik, tidak apa-apa pak/bu kami kosongkan ya 
+                                                        Boleh disebutkan nama akun bapak/ibu? ((agent menyebutkan ulang nama akun lalu spelling)
                                                     </label>
+
                                                 </div>
                                                 <hr style="border-left: 3px solid rgba(72, 94, 144, 0.16); min-height: 100%; max-height: 100vh; margin: 0; " />
                                                 <div class="col-6 mb-2">
@@ -623,24 +614,6 @@
                                                             <input type="text" class="form-control" name='th_pasang' placeholder="Bulan & Tahun Pasang" value="">
                                                         </div>
                                                     </div>
-						    <div class="form-group row">
-                                                        <label for="fb" class="col-sm-4 col-form-label">Facebook</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='fb' placeholder="Facebook">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="tw" class="col-sm-4 col-form-label">Twitter</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='tw' placeholder="Twitter">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="ig" class="col-sm-4 col-form-label">Instagram</label>
-                                                        <div class="col-sm-7">
-                                                            <input type="text" class="form-control" name='ig' placeholder="Instagram">
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -668,17 +641,13 @@
                                                     <h6>KODE VERIFIKASI & KONFIRMASI</h6>
                                                     <br>
                                                     <label>
-                                                        Baik terima kasih Bapak/Ibu datanya sudah lengkap, perihal <strong>perubahan/penambahan pada (no hp/whatsapps/email/sosmed) sudah kami perbarui.</strong>
+                                                        Baik terima kasih Bapak/Ibu datanya sudah lengkap, <strong>perihal perubahan/penambahan pada (no hp/whatsapps/email)</strong> sudah kami perbarui dan sebagai bentuk verifikasinya, kami mengirimkan pesan ke (no hp/email terbaru) apakah Ibu/Bapak [nama_pelanggan] sudah menerima pesan dari IndiHome?
                                                         <br><br>
-                                                        Dan sebagai bentuk komitmen dalam rangka perlindungan data pelanggan, kami cek nomor IndiHomenya bapak/ibu (nama pelanggan) belum memiliki kontrak pembaharuan Kebijakan Privasi. Kami bantu kirimkan link persetujuan melalui email dan sms, agar kedepannya mempermudah pelayanan selanjutnya. Silakan klik link tersebut sebagai  bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami <strong>sudah SESUAI dan DATA SUDAH TERVERIFIKASI.</strong>
-                                                        <br><br>
-                                                        <strong>(Selanjutnya agent boleh memilih yang tujuannya persuasif agar pelanggan dapat mengklik link sms dan emailnya)</strong>
+                                                        <strong>Jika pelanggan infokan sudah masuk
+                                                            <br>
+                                                            Agent menjawab;</strong>
                                                         <br>
-                                                        a. Mohon dibantu ya pak/bu diklik link sms dan emailnya agar mempermudah pelayanan selanjutnya.
-                                                        <br>
-                                                        b. Jangan lupa untuk diklik link pada sms dan emailnya ya pak/bu
-                                                        <br><br>
-                                                        <i>*kontrak pembaharuan Kebijakan Privasi; No handphone, email, dan sosial media kedepannya akan dipergunakan untuk kepentingan Telkom untuk memberikan informasi terkait produk, promo, serta percepatan perbaikan.</i>
+                                                        Setelah telepon ini berakhir, mohon dicek bapak/ibu, pada pesan (sms/wa/email) yang kami kirimkan. <strong>Pada pesan yang kami kirimkan terdapat link dari Indihome, Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI</strong>
                                                         <br><br>
                                                         Baik bapak/ibu verifikasi sudah selesai. <br>
                                                         Perihal informasinya sudah cukup jelas ya Bapak/Ibu? <br>
@@ -688,7 +657,7 @@
                                                         <br>
                                                         (Selamat (Pagi/Siang/Sore/Malam) <i>*(Selamat beraktifitas kembali/Semoga sehat selalu/Selamat beristirahat, Sukses selalu)</i>
                                                         <br><br>
-                                                        <h6><strong>CALL BACK</strong></h6>
+                                                        <h6>CALL BACK</h6>
                                                         <br>
                                                         Halo, Selamat Pagi/Siang/Sore/ Malam <br>
                                                         Perkenalkan dengan saya (nama agent) dari Team Profiling Customer Indihome PT. Telkom Indonesia.
@@ -697,17 +666,13 @@
                                                         <br><br>
                                                         Maaf mengganggu waktunya sebentar pak/ bu.
                                                         <br><br>
-                                                        terkait verifikasi yang kami lakukan (sebutkan waktu; hari dan tanggal, misal kemarin 12 september), apakah bapak/ibu (nama pelanggan) sudah menerima pesan dari indihomenya? 
+                                                        terkait verifikasi yang kami lakukan (sebutkan waktu; misal kemarin), apakah bapak/ibu (nama pelanggan) sudah menerima pesan dari indihomenya?
                                                         <br><br>
-                                                        Kami cek di data kami, untuk (sebutkan yang belum diklik link oleh pelanggan) sms dan atau emailnya belum diklik linknya.
-                                                        <br>
-                                                        Ada kesulitan saat proses klik linknya tidak ya pak/bu (nama pelanggan)?
+                                                        Apakah ada kendala yang dirasakan, bapak/ibu (nama pelanggan)
                                                         <br><br>
-                                                        <i>*Apabila pelanggan sampaikan tidak masuk link di handphone/email, agent wajib konfirmasi dan spelling kembali</i>
+                                                        pesan yang kami kirimkan dari IndiHome ini isinya berupa link, (apabila sudah) Silakan klik link tersebut sebagai sebagai bentuk approval/persetujuan bahwa data yang ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI.
                                                         <br><br>
-                                                        pesan yang kami  kirimkan dari indihome ini isinya berupa link, (apabila sudah) Silakan klik link tersebut sebagai bentuk approval/persetujuan bahwa data yang ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI.
-                                                        <br><br>
-                                                        Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan. (Selamat (Pagi/Siang/Sore/Malam) *(Selamat beraktifitas kembali/Semoga sehat selalu/Selamat beristirahat, Sukses selalu)
+                                                        Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan.
                                                     </label>
 
                                                 </div>
@@ -719,18 +684,7 @@
                                                             <select class="form-control" id="v_email" name="v_email">
                                                                 <option value="0">Belum Dicek</option>
                                                                 <option value="13">verified</option>
-                                                                <option value="11">Decline</option>
-                                                                <option value="16">Tidak Ada Email</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row" id='declineemailf'>
-                                                        <label for="rdeclineemail" class="col-sm-4 col-form-label">Reason Decline Email</label>
-                                                        <div class="col-sm-7">
-                                                            <select class="form-control" id="vrdeclineemail" name="vrdeclineemail">
-                                                                <option value="1">Perangkat pelanggan tidak mendukung</option>
-                                                                <option value="2">Jaringan pelanggan tidak mendukung</option>
-                                                                <option value="3">tidak mau klik link</option>
+                                                                <option value="11">decline</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -744,17 +698,19 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row" id='declinesmsf'>
-                                                        <label for="rdeclineemail" class="col-sm-4 col-form-label">Reason Decline SMS</label>
+                                                    <div class="form-group row">
+                                                        <label for="opsi_call" class="col-sm-4 col-form-label">Opsi Call</label>
                                                         <div class="col-sm-7">
-                                                            <select class="form-control" id="vrdeclinesms" name="vrdeclinesms">
-                                                                <option value="1">Perangkat pelanggan tidak mendukung</option>
-                                                                <option value="2">Jaringan pelanggan tidak mendukung</option>
-                                                                <option value="3">tidak mau klik link</option>
+                                                            <select class="form-control" id="opsi_call" name="opsi_call" value="">
+                                                                <option value="">-- Pilih --</option>
+                                                                <option value="telp_rumah">Telepon Rumah</option>
+                                                                <option value="hp">Handphone</option>
+                                                                <option value="email">Email</option>
+                                                                <option value="wa">Whatsapp</option>
+                                                                <option value="sms">SMS</option>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    
                                                     <div class="form-group row">
                                                         <label for="kat_call" class="col-sm-4 col-form-label">Kategori Call</label>
                                                         <div class="col-sm-7">
@@ -793,21 +749,21 @@
                                                                 <option class="reg" value="111">Bukan PJ Pembayaran</option>
                                                                 <option class="reg" value="112">PJ menolak verifikasi</option>
                                                                 <option class="reg" value="1110">Bukan Pemilik</option>
-                                                                    <!-- <option class="moss" value="113">Pelanggan Cancel Beli Produk</option>
-                                                                    <option class="moss" value="114">Dimatikan Pelanggan</option>
-                                                                    <option class="moss" value="115">Caring</option>
-                                                                    <option class="moss" value="116">Tidak Merasa Menginputkan No Hp</option>
-                                                                    <option class="moss" value="117">Didiamkan Pelanggan</option>
-                                                                    <option class="moss" value="118">Cuma Coba-Coba</option>
-                                                                    <option class="moss" value="119">Channel Sudah Aktif</option>
-                                                                    <option class="moss" value="120">Data Beda</option>
-                                                                    <option class="moss" value="121">Tidak Mau Ada Biaya Tambahan</option>
-                                                                    <option class="moss" value="122">Sdh Di Validasi</option>
-                                                                    <option class="moss" value="123">Menggunakan Prepaid</option>
-                                                                    <option class="moss" value="124">Masih Pikir - Pikir</option>
-                                                                    <option class="moss" value="125">Harga Mahal</option>
-                                                                    <option class="moss" value="126">Belum Perlu</option>
-                                                                    <option class="moss" value="127">Jarang Digunakan/Tonton</option>
+                                                                <!-- <option class="moss" value="113">Pelanggan Cancel Beli Produk</option>
+                                                                <option class="moss" value="114">Dimatikan Pelanggan</option>
+                                                                <option class="moss" value="115">Caring</option>
+                                                                <option class="moss" value="116">Tidak Merasa Menginputkan No Hp</option>
+                                                                <option class="moss" value="117">Didiamkan Pelanggan</option>
+                                                                <option class="moss" value="118">Cuma Coba-Coba</option>
+                                                                <option class="moss" value="119">Channel Sudah Aktif</option>
+                                                                <option class="moss" value="120">Data Beda</option>
+                                                                <option class="moss" value="121">Tidak Mau Ada Biaya Tambahan</option>
+                                                                <option class="moss" value="122">Sdh Di Validasi</option>
+                                                                <option class="moss" value="123">Menggunakan Prepaid</option>
+                                                                <option class="moss" value="124">Masih Pikir - Pikir</option>
+                                                                <option class="moss" value="125">Harga Mahal</option>
+                                                                <option class="moss" value="126">Belum Perlu</option>
+                                                                <option class="moss" value="127">Jarang Digunakan/Tonton</option>
                                                                 <option class="moss" value="128">Sudah Berlangganan/Aktif</option> -->
                                                             </select>
                                                         </div>
@@ -1130,33 +1086,6 @@
                 $('.veri_statusopt_nv').show();
                 $('#reason_decline_holder').hide();
             }
-            //     $('.opsicontacted').hide(); // hide div if value is not "custom"
-            //     $('.opsinc').show(); // hide div if value is not "custom"
-        });
-
-
-        $('#declineemailf').hide();
-        $('#declinesmsf').hide();
-        var Privileges = jQuery('#v_email');
-        var select = this.value;
-        Privileges.change(function() {
-            if ($(this).val() == '11') {
-                $('#declineemailf').show();
-            } else {
-                $('#declineemailf').hide();
-            } 
-            //     $('.opsicontacted').hide(); // hide div if value is not "custom"
-            //     $('.opsinc').show(); // hide div if value is not "custom"
-        });
-
-        var Privileges = jQuery('#v_sms');
-        var select = this.value;
-        Privileges.change(function() {
-            if ($(this).val() == '11') {
-                $('#declinesmsf').show();
-            } else {
-                $('#declinesmsf').hide();
-            } 
             //     $('.opsicontacted').hide(); // hide div if value is not "custom"
             //     $('.opsinc').show(); // hide div if value is not "custom"
         });

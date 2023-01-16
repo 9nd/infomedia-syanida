@@ -755,6 +755,12 @@ class Outbound extends CI_Controller
 					'produk_mos'	=>  $_POST['produk_moss'],
 					'jenis_aktivasi'	=>  $_POST['jenis_aktivasi'],
 					'reason_decline'	=>  $_POST['reason_decline'],
+					'checked_nama'	=>  $_POST['checked_nama'],
+					'checked_alamat'	=>  $_POST['checked_alamat'],
+					'checked_kecepatan'	=>  $_POST['checked_kecepatan'],
+					'checked_tagihan'	=>  $_POST['checked_tagihan'],
+					'checked_tempatbayar'	=>  $_POST['checked_tempatbayar'],
+					'checked_tahnpemasangan'	=>  $_POST['checked_tahnpemasangan'],
 					'click_time'	=>  $_POST['click_time']
 				);
 				$this->infomedia->where('idx', $_POST['idx']);
@@ -771,6 +777,7 @@ class Outbound extends CI_Controller
 					'reason_call' =>  $_POST['veri_call'],
 					'ncli'	=>  $_POST['ncli'],
 					'no_pstn'	=>  $_POST['no_pstn'],
+					'no_speedy'	=>  $_POST['no_speedy'],
 					'verfi_handphone'	=>  $_POST['otpphone'],
 					'verfi_email'	=>  $_POST['otpemail'],
 					'update_by'	=> $userdata->agentid,
@@ -827,7 +834,13 @@ class Outbound extends CI_Controller
 					'produk_mos'	=>  $_POST['produk_moss'],
 					'jenis_aktivasi'	=>  $_POST['jenis_aktivasi'],
 					'reason_decline'	=>  $_POST['reason_decline'],
-					'click_time'	=>  $_POST['click_time']
+					'click_time'	=>  $_POST['click_time'],
+					'checked_nama'	=>  $_POST['checked_nama'],
+					'checked_alamat'	=>  $_POST['checked_alamat'],
+					'checked_kecepatan'	=>  $_POST['checked_kecepatan'],
+					'checked_tagihan'	=>  $_POST['checked_tagihan'],
+					'checked_tempatbayar'	=>  $_POST['checked_tempatbayar'],
+					'checked_tahnpemasangan'	=>  $_POST['checked_tahnpemasangan'],
 				);
 				$this->infomedia->where('idx', $_POST['idx']);
 				$this->infomedia->update('trans_profiling_validasi_mos', $data9);
@@ -1008,7 +1021,7 @@ class Outbound extends CI_Controller
 							$data_iswhatsapp = array(
 								'pstn'	=>  $_POST['no_pstn'],
 								'no_internet' =>  $_POST['no_speedy'],
-								'ncli'	=>  $_POST['ncli'],								
+								'ncli'	=>  $_POST['ncli'],
 								'lup'	=>  $lup,
 								'id_trans_verifikasi'	=>  $idtrans,
 								'hanphone_utama'	=>  $_POST['no_handpone'],
@@ -1050,7 +1063,7 @@ class Outbound extends CI_Controller
 							$data_iswhatsapp = array(
 								'pstn'	=>  $_POST['no_pstn'],
 								'no_internet' =>  $_POST['no_speedy'],
-								'ncli'	=>  $_POST['ncli'],								
+								'ncli'	=>  $_POST['ncli'],
 								'lup'	=>  $lup,
 								'id_trans_verifikasi'	=>  $idtrans,
 								'hanphone_utama'	=>  $_POST['no_handpone'],
@@ -1210,20 +1223,20 @@ class Outbound extends CI_Controller
 								);
 								$this->infomedia->insert('trans_profiling_verifikasi', $data1);
 								$idtrans = $this->infomedia->query("SELECT LAST_INSERT_ID() as idx")->row()->idx;
-							//iswhatsapp
-							$data_iswhatsapp = array(
-								'pstn'	=>  $_POST['no_pstn'],
-								'no_internet' =>  $_POST['no_speedy'],
-								'ncli'	=>  $_POST['ncli'],								
-								'lup'	=>  $lup,
-								'id_trans_verifikasi'	=>  $idtrans,
-								'hanphone_utama'	=>  $_POST['no_handpone'],
-								'hanphone_lainnya'	=>  $_POST['handphone_lainnya'],
-								'iswa_hputm'	=>  $_POST['handphone_utama_wa'],
-								'iswa_hplain'	=>  $_POST['handphone_lainnya_wa']
+								//iswhatsapp
+								$data_iswhatsapp = array(
+									'pstn'	=>  $_POST['no_pstn'],
+									'no_internet' =>  $_POST['no_speedy'],
+									'ncli'	=>  $_POST['ncli'],
+									'lup'	=>  $lup,
+									'id_trans_verifikasi'	=>  $idtrans,
+									'hanphone_utama'	=>  $_POST['no_handpone'],
+									'hanphone_lainnya'	=>  $_POST['handphone_lainnya'],
+									'iswa_hputm'	=>  $_POST['handphone_utama_wa'],
+									'iswa_hplain'	=>  $_POST['handphone_lainnya_wa']
 
-							);
-							$this->infomedia->insert('trans_iswhatsapp', $data_iswhatsapp);
+								);
+								$this->infomedia->insert('trans_iswhatsapp', $data_iswhatsapp);
 								$onload = "Data verifikasi, Sukses disimpan";
 							} elseif ($_POST['bysistem'] == 1) {
 								$verfi_handphone = $_POST['code_handphone'];
@@ -1253,20 +1266,20 @@ class Outbound extends CI_Controller
 								);
 								$this->infomedia->insert('trans_profiling_verifikasi', $data1);
 								$idtrans = $this->infomedia->query("SELECT LAST_INSERT_ID() as idx")->row()->idx;
-							//iswhatsapp
-							$data_iswhatsapp = array(
-								'pstn'	=>  $_POST['no_pstn'],
-								'no_internet' =>  $_POST['no_speedy'],
-								'ncli'	=>  $_POST['ncli'],								
-								'lup'	=>  $lup,
-								'id_trans_verifikasi'	=>  $idtrans,
-								'hanphone_utama'	=>  $_POST['no_handpone'],
-								'hanphone_lainnya'	=>  $_POST['handphone_lainnya'],
-								'iswa_hputm'	=>  $_POST['handphone_utama_wa'],
-								'iswa_hplain'	=>  $_POST['handphone_lainnya_wa']
+								//iswhatsapp
+								$data_iswhatsapp = array(
+									'pstn'	=>  $_POST['no_pstn'],
+									'no_internet' =>  $_POST['no_speedy'],
+									'ncli'	=>  $_POST['ncli'],
+									'lup'	=>  $lup,
+									'id_trans_verifikasi'	=>  $idtrans,
+									'hanphone_utama'	=>  $_POST['no_handpone'],
+									'hanphone_lainnya'	=>  $_POST['handphone_lainnya'],
+									'iswa_hputm'	=>  $_POST['handphone_utama_wa'],
+									'iswa_hplain'	=>  $_POST['handphone_lainnya_wa']
 
-							);
-							$this->infomedia->insert('trans_iswhatsapp', $data_iswhatsapp);
+								);
+								$this->infomedia->insert('trans_iswhatsapp', $data_iswhatsapp);
 								$onload = "Data verifikasi by Sistem, Sukses disimpan";
 							} else {
 								$onload = "Kode Email/Handphone Tidak diisi, Verifikasi tidak sukses disimpan";
@@ -1304,6 +1317,78 @@ class Outbound extends CI_Controller
 			}
 		}
 	}
+	public function insert_moss()
+	{
+		$idlogin = $this->session->userdata('idlogin');
+		$logindata = $this->log_login->get_by_id($idlogin);
+		$userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+		$idx = $_POST['idx'];
+
+		$lup = date("Y-m-d H:i:s");
+		$random_num = $this->set_session();
+		$status = 0;
+		if ($_POST['labelvalidated'] == "valid") {
+			$status = 1;
+		}
+		$pc = $_SERVER['REMOTE_ADDR'];
+		$userdata->kategori = "MOS";
+
+
+		//moss		
+		if ($_POST['jenis_aktivasi'] == "0") {
+			$_POST['jenis_aktivasi'] = "pelanggan";
+		}
+		if ($_POST['jenis_aktivasi'] == "pelanggan") {
+			$_POST['produk_moss'] = $_POST['aktivasi_pelangganr'];
+		}
+		$data9 = array(
+			'ncli' =>  $_POST['ncli'],
+			'no_speedy' =>  $_POST['no_speedy'],
+			'nama_pelanggan'	=>  $_POST['nama_pelanggan'],
+			'relasi'	=>  $_POST['relasi'],
+			'no_handpone'	=>  $_POST['no_handpone'],
+			'verfi_handphone' =>  $_POST['otpphone'],
+			'email'	=>  $_POST['email'],
+			'verfi_email' =>  $_POST['otpemail'],
+			'facebook' =>  $_POST['facebook'],
+			'twitter' =>  $_POST['twitter'],
+			'instagram' =>  $_POST['instagram'],
+			'nama_pastel' =>  $_POST['nama_pastel'],
+			'alamat' =>  $_POST['alamat'],
+			'kota'	=>  $_POST['kota'],
+			'update_by'	=> $userdata->agentid,
+			'lup'	=>  $lup,
+			'sumber' =>  $_POST['layanan'],
+			'tgl_insert' =>  $lup,
+			'layanan' =>  $_POST['layanan'],
+			'reason_call' =>  $_POST['veri_call'],
+			'status' =>  $_POST['veri_status'],
+			'keterangan'	=>  $_POST['keterangan'],
+			'kecepatan' =>  $_POST['kec_speedy'],
+			'tagihan' =>  $_POST['billing'],
+			'click_time'	=>  $lup,
+			'tahun_pemasangan' =>  $_POST['waktu_psb'],
+			'tempat_bayar' =>  $_POST['payment'],
+			'produk_mos'	=>  $_POST['produk_moss'],
+			'jenis_aktivasi'	=>  $_POST['jenis_aktivasi'],
+			'hp2' =>  $_POST['handphone_lainnya'],
+			'reason_decline'	=>  $_POST['reason_decline'],
+			'checked_nama'	=>  $_POST['checked_nama'],
+			'checked_alamat'	=>  $_POST['checked_alamat'],
+			'checked_kecepatan'	=>  $_POST['checked_kecepatan'],
+			'checked_tagihan'	=>  $_POST['checked_tagihan'],
+			'checked_tempatbayar'	=>  $_POST['checked_tempatbayar'],
+			'checked_tahnpemasangan'	=>  $_POST['checked_tahnpemasangan'],
+			'checked_wa1'	=>  $_POST['handphone_utama_wa'],
+			'checked_wa2'	=>  $_POST['handphone_lainnya_wa'],
+		);
+		$this->infomedia->insert('indri_trans_profiling_validasi_mos', $data9);
+		$onload = "Data MOSS, Sukses disimpan";
+		echo "<script>
+				alert('" . $onload . "');	
+				</script>";
+		$this->cwc_moss();
+	}
 
 	function get_token_moss()
 	{
@@ -1336,7 +1421,8 @@ class Outbound extends CI_Controller
 	}
 	public function testsoaprest()
 	{
-		$test = $this->set_mos_to_telkom_rest('51589599', '131159124293', 'Ahmad Sadikin MOS', 'Pemilik', '081221609591', 'ahmadsadikin8888@gmail.com', 'Bandung Barat', '', '', 3);
+		$test = $this->set_mos_to_telkom_rest('52491795', '131156107430', 'TEDDY SETIA PERMANA', 'Pemilik', '082127161271', 'teddysetia.p@gmail.com', 'Kabupaten Bandung', '', '', 3);
+		// $test = $this->set_mos_to_telkom_rest('59475350', '172825808888', 'mulyadi', 'Karyawan', '085397377760', 'rahmawatibaruff031@gmail.com', 'MAMUJU', '', '', 3);
 
 		if ($test == "Data Updated") {
 			echo var_dump($test);
@@ -1491,6 +1577,25 @@ class Outbound extends CI_Controller
 				window.close();
 				</script>";
 			}
+		}
+	}
+	public function cwc_moss()
+	{
+		$idlogin = $this->session->userdata('idlogin');
+		$logindata = $this->log_login->get_by_id($idlogin);
+		$userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
+		$data['userdata'] = $userdata;
+		$phone   = $this->input->get('phone');
+		$ncli   = $this->input->get('ncli');
+		$no_handpone   = $this->input->get('no_handpone');
+		$no_speedy   = $this->input->get('no_speedy');
+		$userdata->kategori = "MOS";
+
+
+		if ($userdata->kategori == "MOS") {
+			$data['produk_moss'] = $this->db->query("SELECT * FROM t_produk_moss")->result();
+
+			$this->template->load('Outbound/Form_outbound_moss', $data);
 		}
 	}
 };

@@ -21,6 +21,7 @@ class Home extends CI_Controller
 		$this->load->model('News/News_model', 'News_model');
 		$this->load->model('News/Read_model', 'Read_model');
 		$this->load->model('sys/Sys_user_log_model', 'log_login');
+		
 	}
 
 	public function index()
@@ -34,11 +35,11 @@ class Home extends CI_Controller
 		$logindata = $this->log_login->get_by_id($idlogin);
 		$data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
 
-		$absen = $this->absensi->get_count(array("nik" => $data['userdata']->nik_absensi, "DATE(waktu_in)" => date('Y-m-d')));
+		$absen=$this->absensi->get_count(array("nik"=>$data['userdata']->nik_absensi,"DATE(waktu_in)"=>date('Y-m-d')));
 		// echo $data['userdata']->nik_absensi;
-		$data['input_absen'] = true;
-		if ($absen > 0) {
-			$data['input_absen'] = false;
+		$data['input_absen']=true;
+		if($absen > 0){
+			$data['input_absen']=false;
 		}
 		$dashboard = $this->dashboard->get_form($this->_user_id);
 
@@ -51,18 +52,18 @@ class Home extends CI_Controller
 			$view = 'sistem/Home';
 			$data['title_page_big']	 	= 	'';
 			$idlogin = $this->session->userdata('idlogin');
-			$logindata = $this->log_login->get_by_id($idlogin);
+    		$logindata = $this->log_login->get_by_id($idlogin);
 			$data['userdata'] = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
 			$data['controller'] = $this;
 			$this->load->model('Custom_model/Sys_user_log_in_out_table_model', 'Sys_log');
-			if ($data['userdata']->opt_level == 8) {
+			if($data['userdata']->opt_level == 8){
 				$log_where = array(
-					'id_user' => $logindata->id_user,
-					'agentid' => $data['userdata']->agentid,
+					'id_user'=>$logindata->id_user,
+					'agentid'=> $data['userdata']->agentid,
 				);
-				$log = $this->Sys_log->get_row($log_where, array("id,logout_time"), array("id" => "DESC"));
-				if ($log) {
-					if ($log->logout_time == '') {
+				$log=$this->Sys_log->get_row($log_where,array("id,logout_time"),array("id"=>"DESC"));
+				if($log){
+					if($log->logout_time == ''){
 						redirect('Lockscreen', 'refresh');
 					}
 				}
@@ -73,8 +74,8 @@ class Home extends CI_Controller
 				'status_publish' => 'Publish',
 				'join' => array(
 					'sys_user' => 't_news.id_sender = sys_user.id'
-				)
-
+				)			
+				
 			);
 
 			$fields = array(
@@ -87,8 +88,8 @@ class Home extends CI_Controller
 					't_news' => 't_baca_news.id_news = t_news.id'
 
 				)
-			);
-
+			);		
+			
 			if ($data['userdata']) {
 				$this->infomedia = $this->load->database('infomedia', TRUE);
 				$agentid = $data['userdata']->agentid;
@@ -97,20 +98,13 @@ class Home extends CI_Controller
 				$data['con'] = $this->infomedia->query("SELECT count(*) as con FROM v2_trans_profiling WHERE veri_upd = '$agentid' AND (sub_call in(1,3,11,12,13)) AND DATE( lup ) = CURDATE()")->row()->con;
 				$data['notcon'] = $this->infomedia->query("SELECT count(*) as notcon FROM v2_trans_profiling WHERE veri_upd = '$agentid' AND (sub_call in (2, 4, 5, 6, 7, 8, 9, 10, 14, 15, 16, 111, 112, 113)) AND DATE( lup ) = CURDATE()")->row()->notcon;
 			}
-			if ($data['userdata']->kategori == 'MOS') {
-				$agentid = $data['userdata']->agentid;
-				$data['moss_wo'] = $this->infomedia->query("SELECT count(*) as wo FROM indri_trans_profiling_validasi_mos WHERE update_by = '$agentid' AND DATE( tgl_insert ) = CURDATE()")->row()->wo;
-				$data['moss_success'] = $this->infomedia->query("SELECT count(*) as success FROM indri_trans_profiling_validasi_mos WHERE update_by = '$agentid' AND reason_call = 13 AND DATE( tgl_insert ) = CURDATE()")->row()->success;
-				$data['moss_con'] = $this->infomedia->query("SELECT count(*) as con FROM indri_trans_profiling_validasi_mos WHERE update_by = '$agentid' AND (reason_call in(1,3,11,12,13)) AND DATE( tgl_insert ) = CURDATE()")->row()->con;
-				$data['moss_notcon'] = $this->infomedia->query("SELECT count(*) as notcon FROM indri_trans_profiling_validasi_mos WHERE update_by = '$agentid' AND (reason_call in (2, 4, 5, 6, 7, 8, 9, 10, 14, 15, 16, 111, 112, 113)) AND DATE( tgl_insert ) = CURDATE()")->row()->notcon;
-			}
-
-			$data['berita'] = $this->News_model->get_results($where, $fields);
-			$data['read'] = $this->Read_model->get_results($whereread);
-
+			
+			$data['berita']=$this->News_model->get_results($where, $fields);
+			$data['read']=$this->Read_model->get_results($whereread);
+			
 			$this->template->load($view, $data);
 
-
+			
 
 			//-------------------------------------//
 

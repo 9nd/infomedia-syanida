@@ -1,25 +1,17 @@
-<?php echo _css('datatables,icheck') ?>
-<?php echo _css("chartjs") ?>
-<div class="card">
-    <div class="card-status bg-orange"></div>
-    <div class="card-header">
-        <h3 class="card-title">Report CWC Indri | periode <?php echo $_GET['start'] . " sd " . $_GET['end'] ?>
-
-        </h3>
-        <div class="card-options">
-            <a href="#" class="card-options-collapse " data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-            <a href="#" class="card-options-fullscreen " data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+<?php echo _css("selectize,multiselect,datatables") ?>
+<div class="col-12 mt-3">
+    <div class="card">
+        <div class="card-header  justify-content-between align-items-center">
+            <h4 class="card-title">Result</h4>
         </div>
-    </div>
-    <div class="card-body">
-
-        <div class="card">
-            <div class="panel-heading lte-heading-primary">
-                <h4 class="card-title">Report CWC Indri <?php echo $_GET['start'] . " - " . $_GET['end'] ?></h4>
-            </div>
+        <div class="card-body">
             <div class="box-body table-responsive" id='box-table'>
 
                 <small>
+                    <?php
+                    echo "jumlah agentid";
+                    echo $debug_jumlah;
+                    ?>
                     <table class='timecard display responsive nowrap' id="report_table_reg" style="width: 100%;">
                         <thead>
                             <tr>
@@ -62,7 +54,7 @@
                         <tbody>
                             <?php
                             $n = 1;
-
+                            
                             foreach ($datanya  as $datana) {
 
                                 $start = $_GET['start'];
@@ -101,19 +93,19 @@
                                         <td><?php echo $datana->v_email; ?></td>
                                         <td><?php echo $datana->v_sms; ?></td>
                                         <td><?php echo $datana->opsi_call; ?></td>
-                                        <td><?php
-                                            $nama_reason = $this->db->query("SELECT id_reason, nama_reason FROM status_call WHERE id_reason='$datana->sub_call'")->row()->nama_reason;
-                                            echo $nama_reason; ?></td>
-                                        <td><?php
-                                            $status_call_ar = array(
-                                                "1" => "Verified",
-                                                "2" => "Not Verified",
-                                                "3" => "Ditelpon Kembali",
-                                            );
-                                            echo $status_call_ar[$datana->status_call]; ?></td>
+                                        <td><?php 
+                                        $nama_reason = $this->db->query("SELECT id_reason, nama_reason FROM status_call WHERE id_reason='$datana->sub_call'")->row()->nama_reason;
+                                        echo $nama_reason; ?></td>
+                                        <td><?php 
+                                        $status_call_ar = array(
+                                            "1"=>"Verified",
+                                            "2"=>"Not Verified",
+                                            "3"=>"Ditelpon Kembali",
+                                        );
+                                        echo $status_call_ar[$datana->status_call]; ?></td>
                                         <td><?php echo $datana->veri_upd; ?></td>
                                         <?php $nama_agent = $this->db->query("SELECT nama FROM sys_user WHERE agentid='$datana->veri_upd'")->row()->nama;
-                                        ?>
+                                         ?>
                                         <td><?php echo $nama_agent; ?></td>
                                         <td><?php echo $datana->veri_lup; ?></td>
                                         <td><?php echo $datana->lup; ?></td>
@@ -132,27 +124,19 @@
 
                         </tbody>
                     </table>
+                    <?php
+                  
+                    ?>
                 </small>
             </div>
         </div>
-
-
-
     </div>
 </div>
-</div>
-</div>
-<!--<div class="col-md-6">
-                <div class="panel panel-lte">
-                    <div class="panel-heading lte-heading-success">Bar Chart</div>
-                    <div class="panel-body">
-                        <canvas id="barChart" style="height:230px; min-height:230px"></canvas>
-                    </div>
-                </div>
-            </div>-->
-<?php echo _js('datatables,icheck') ?>
-<?php echo _js("chartjs") ?>
 
+<?php echo _js("ybs,selectize,multiselect,datatables") ?>
+<script type="text/javascript">
+    $('#agentid').selectize({});
+</script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -162,6 +146,5 @@
                 'copy', 'csv', 'excel', 'pdf'
             ]
         });
-
     });
 </script>

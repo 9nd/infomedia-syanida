@@ -1,312 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- START: Head-->
+<!-- load css selectize-->
+<!-- tempatkan code ini pada top page view-->
+<?php echo _css("selectize,multiselect") ?>
 
-<head>
-    <?php
-    if (isset($_GET['start'])) {
-    } else {
-    ?>
-        <!-- <meta http-equiv="refresh" content="300"> -->
-    <?php
-    }
-    function nice_number($n)
-    {
-        // first strip any formatting;
-        $n = (0 + str_replace(",", "", $n));
+<div class='col-md-12 col-xl-12'>
+	<div class="card">
+		<div class="card-status bg-green"></div>
+		<div class="card-header">
+			<h3 class="card-title">New CWC Report
+			</h3>
+			<div class="card-options">
+				<a href="#" class="card-options-collapse " data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+				<a href="#" class="card-options-fullscreen " data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class='box-body' id='box-table'>
 
-        // is this a number?
-        if (!is_numeric($n)) return false;
+				<form id='form-a' methode="GET">
+					<div class="row">
+						<div class='col-md-6 col-xl-6'>
+							<div class='form-group'>
+								<label class='form-label'>Start</label>
+								<input type='date' class='form-control data-sending focus-color' id='start' name='start' value='<?php if (isset($_GET['start'])) echo $_GET['start'] ?>'>
+							</div>
+						</div>
+						<div class='col-md-6 col-xl-6'>
+							<div class='form-group'>
+								<label class='form-label'>End </label>
+								<input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class='col-md-6 col-xl-6'>
+							<div class='form-group'>
+								<label class='form-label'>Agent </label>
+								<select name='agentid[]' id="agentid" class="form-control custom-select" multiple="multiple">
 
-        // now filter it;
-        if ($n > 1000000000000) return round(($n / 1000000000000), 2) . ' T';
-        elseif ($n > 1000000000) return round(($n / 1000000000), 2) . ' B';
-        elseif ($n > 1000000) return round(($n / 1000000), 2) . ' M';
-        elseif ($n > 1000) return $n;
+									<?php
+									if ($user_categori != 8) {
+									?>
+										<option value="0">--Semua Agent--</option>
+									<?php
+									}
+									if ($list_agent_d['num'] > 0) {
+										foreach ($list_agent_d['results'] as $list_agent) {
+											$selected = "";
+											if (isset($_GET['agentid'])) {
 
-        return number_format($n);
-    }
+												if (count($_GET['agentid']) > 1) {
 
-    ?>
+													foreach ($_GET['agentid'] as $k_agentid => $v_agentid) {
+														if ($v_agentid == $list_agent->agentid) {
+															$selected = 'selected';
+														}
+													}
+												} else {
+													$selected = ($list_agent->agentid == $_GET['agentid'][0]) ? 'selected' : '';
+												}
+											}
+											echo "<option value='" . $list_agent->agentid . "' " . $selected . ">" . $list_agent->agentid . " | " . $list_agent->nama . "</option>";
+										}
+									}
+									?>
 
-    <meta charset="UTF-8">
-    <title>Sy-Anida : Report</title>
-    <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/logo.png') ?>">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+								</select>
+							</div>
+						</div>
+						<div class='col-md-6 col-xl-6'>
+							<div class='form-group'>
+								<label class='form-label'>Reason Call </label>
+								<select name='reason_call[]' id="reason_call" class="form-control custom-select">
+									<option value="0" <?php if($reason_call == 2){ echo "selected";};?>>--Semua Reason Call--</option>
+									<option class="opsinc" value="2" <?php if($reason_call == 2){ echo "selected";};?>>RNA</option>
+									<option class="opsinc" value="4" <?php if($reason_call == 4){ echo "selected";};?>>Salah Sambung</option>
+									<option class="opsinc" value="7" <?php if($reason_call == 7){ echo "selected";};?>>Isolir</option>
+									<option class="opsinc" value="8" <?php if($reason_call == 8){ echo "selected";};?>>Mailbox</option>
+									<option class="opsinc" value="9" <?php if($reason_call == 9){ echo "selected";};?>>Telepon Sibuk</option>
+									<option class="opsinc" value="10" <?php if($reason_call == 10){ echo "selected";};?>>Rejected</option>
+									<option class="opsicontacted" value="11" <?php if($reason_call == 11){ echo "selected";};?>>Decline</option>
+									<option class="opsicontacted" value="12" <?php if($reason_call == 12){ echo "selected";};?>>Follow Up</option>
+									<option class="opsicontacted" value="13" <?php if($reason_call == 13){ echo "selected";};?>>Verified</option>
+									<option class="opsinc" value="14" <?php if($reason_call == 14){ echo "selected";};?>>Reject By System</option>
+									<option class="opsinc" value="15" <?php if($reason_call == 15){ echo "selected";};?>>Cabut</option>
+									<option class="opsinc" value="16" <?php if($reason_call == 16){ echo "selected";};?>>Invalid Number</option>
+								</select>
+							</div>
+						</div>
 
-    <!-- START: Template CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/flags-icon/css/flag-icon.min.css">
-    <!-- END Template CSS-->
+						<div class='col-md-12 col-xl-12'>
 
-    <!-- START: Page CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.css">
-    <link href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/lineprogressbar/jquery.lineProgressbar.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/css/buttons.bootstrap4.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2-bootstrap.min.css">
-    <!-- END: Page CSS-->
+							<div class='form-group'>
+								<button id='btn-save' type='submit' class='btn btn-primary'><i class="fe fe-save"></i> Search</button>
 
-    <!-- START: Page CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/vendors/morris/morris.css">
-    <!-- END: Page CSS-->
-    <!-- START: Custom CSS-->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/new_theme/dist/css/main.css">
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
-    <!-- <script src="<?php echo base_url(); ?>assets/js/plugins/jquery-knob/jquery.knob.min.js" type="text/javascript"></script> -->
-    <!-- END: Page CSS-->
-    <script src="<?php echo base_url() ?>assets/js/highcharts.js"></script>
-    <script src="<?php echo base_url() ?>assets/js/bundle.js"></script>
-    <!-- END: Custom CSS-->
-</head>
-<!-- END Head-->
+							</div>
 
-<!-- START: Body-->
+						</div>
+					</div>
+				</form>
 
-<body id="main-container" class="default horizontal-menu">
+			</div>
+		</div>
+	</div>
+</div>
+<?php
 
-    <!-- START: Pre Loader-->
-    <div class="se-pre-con">
-        <div class="loader"></div>
-    </div>
-    <!-- END: Pre Loader-->
-
-    <!-- START: Header-->
-    <div id="header-fix" class="header fixed-top">
-        <div class="site-width">
-            <nav class="navbar navbar-expand-lg  p-0">
-                <img src="<?php echo base_url("api/Public_Access/get_logo_template") ?>" class="header-brand-img h-<?php echo $this->_appinfo['template_logo_size'] ?>" alt="ybs logo">
-
-            </nav>
-        </div>
-    </div>
-    <!-- END: Header-->
-    <!-- START: Main Menu-->
-    <div class="sidebar">
-        <div class="site-width">
-
-            <!-- START: Menu-->
-            <ul id="side-menu" class="sidebar-menu">
-                <li>
-                    <a href="<?php echo base_url(); ?>"><i class="icon-home mr-1"></i> Home</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "New_cwc/New_cwc" ?>"><i class="icon-chart mr-1"></i> Input CWC</a>
-                </li>
-                <li class="active">
-                    <a href="<?php echo base_url() . "New_cwc/New_cwc/report" ?>"><i class="icon-chart mr-1"></i> Report</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url() . "New_cwc/New_cwc/history_call" ?>"><i class="icon-chart mr-1"></i> History Call</a>
-                </li>
-
-
-            </ul>
-
-        </div>
-    </div>
-    <!-- END: Main Menu-->
+if (isset($_GET['start']) && isset($_GET['end'])) {
 
 
-    <!-- START: Main Content-->
-    <main>
-        <div class="container-fluid site-width">
-            <!-- START: Breadcrumbs-->
-            <div class="row">
-                <div class="col-12  align-self-center">
-                    <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
-                        <div class="w-sm-100 mr-auto">
-                            <h4 class="mb-0">Report CWC</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- END: Breadcrumbs-->
-            <form id='form-a' methode="GET">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-row">
-                            <div class='col-md-2 col-xl-2'>
-                                <div class='form-group'>
-                                    <label class='form-label'>Start</label>
-                                    <input type='date' class='form-control data-sending focus-color' id='start' name='start' value='<?php if (isset($_GET['start'])) echo $_GET['start'] ?>'>
-                                </div>
-                            </div>
-                            <div class='col-md-2 col-xl-2'>
-                                <div class='form-group'><label class='form-label'>End </label>
-                                    <input type='date' class='form-control data-sending focus-color' id='end' name='end' value='<?php if (isset($_GET['end'])) echo $_GET['end'] ?>'>
-                                </div>
-                            </div>
+?>
 
 
-                            <select  multiple  data-allow-clear="1" name='agentid[]' id="agentid" style='display:none'></select>
-                            <div class='col-md-4 col-xl-4'>
-                                <div class='form-group'>
-                                    <label class='form-label'>Agent </label>
-                                    <select multiple data-allow-clear="1" name='agentid[]' id="agentid">
+	<div class='col-md-12 col-xl-12' id="list_area">
 
-                                        <?php
-                                        if ($user_categori != 8) {
-                                        ?>
-                                            <option value="0">--Semua Agent--</option>
-                                        <?php
-                                        }
-                                        if ($list_agent_d['num'] > 0) {
-                                            foreach ($list_agent_d['results'] as $list_agent) {
-                                                $selected = "";
-                                                if (isset($_GET['agentid'])) {
+	</div>
+	<script type="text/javascript">
+		function update_base_list_area() {
+			var start = $("#start").val();
+			var end = $("#end").val();
+			var agentid = $("#agentid").val();
+			var reason_call = $("#reason_call").val();
+			$.ajax({
+				url: "<?php echo base_url() . "New_cwc/New_cwc/report_list" ?>",
+				data: {
+					start: start,
+					end: end,
+					agentid: agentid,
+					reason_call: reason_call
+				},
+				methode: "get",
+				success: function(response) {
+					$("#list_area").html(response);
+				}
+			});
+		}
 
-                                                    if (count($_GET['agentid']) > 1) {
+		$(document).ready(function() {
+			update_base_list_area();
+			// update_base_num_hp_email_area();
+			// update_base_num_area();
+		});
+	</script>
+<?php
+}
 
-                                                        foreach ($_GET['agentid'] as $k_agentid => $v_agentid) {
-                                                            if ($v_agentid == $list_agent->agentid) {
-                                                                $selected = 'selected';
-                                                            }
-                                                        }
-                                                    } else {
-                                                        $selected = ($list_agent->agentid == $_GET['agentid'][0]) ? 'selected' : '';
-                                                    }
-                                                }
-                                                echo "<option value='" . $list_agent->agentid . "' " . $selected . ">" . $list_agent->agentid . " | " . $list_agent->nama . "</option>";
-                                            }
-                                        }
-                                        ?>
+?>
 
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-2 mt-4">
-                                <input type='submit' class='btn btn-primary' value='search'></input>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-
-
-
-
-
-            <div id="list_area">
-
-            </div>
-
-
-        </div>
-    </main>
-    <!-- END: Content-->
-    <!-- START: Footer-->
-    <footer class="site-footer">
-        2020 © Sy-ANIDA
-    </footer>
-    <!-- END: Footer-->
-
-
-
-    <!-- START: Back to top-->
-    <a href="#" class="scrollup text-center">
-        <i class="icon-arrow-up"></i>
-    </a>
-
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
-    </script>
-
-    <!-- START: Template JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery/jquery-3.3.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/jquery-ui/jquery-ui.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/moment/moment.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/slimscroll/jquery.slimscroll.min.js"></script>
-    <!-- END: Template JS-->
-
-    <!-- START: APP JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/app.js"></script>
-    <!-- END: APP JS-->
-
-
-
-    <!-- START: Page Vendor JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/lineprogressbar/jquery.lineProgressbar.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/lineprogressbar/jquery.barfiller.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- START: Page JS-->
-    <!-- <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/home.script.js"></script> -->
-    <!-- END: Page JS-->
-
-    <!---- START page datatable--->
-    <!-- START: Page Vendor JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/js/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/jszip/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/pdfmake/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/pdfmake/vfs_fonts.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.colVis.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.flash.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/datatable/buttons/js/buttons.print.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2.full.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/select2/select2.script.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- START: Page Script JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/datatable.script.js"></script>
-    <!-- END: Page Script JS-->
-
-    <!-- START: Page Vendor JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/raphael/raphael.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/morris/morris.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/apexcharts/apexcharts.min.js"></script>
-    <!-- END: Page Vendor JS-->
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/vendors/chartjs/Chart.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/new_theme/dist/js/chartjs-plugin-datalabels.min.js"></script>
-
-    <!---- END page datatable--->
-
-    <!-- END: Back to top-->
-    <?php echo _js("ybs,selectize,multiselect") ?>
-    <script type="text/javascript">
-        $('#agentid').selectize({});
-        // $('#agentid').multiselect();
-        var page_version = "1.0.8"
-        $(document).ready(function() {
-            update_base_list_area();
-            // update_base_num_hp_email_area();
-            // update_base_num_area();
-        });
-
-        function update_base_list_area() {
-            var start = $("#start").val();
-            var end = $("#end").val();
-            var agentid = $("#agentid").val();
-            $.ajax({
-                url: "<?php echo base_url() . "New_cwc/New_cwc/report_list" ?>",
-                data: {
-                    start: start,
-                    end: end,
-                    agentid: agentid
-                },
-                methode: "get",
-                success: function(response) {
-                    $("#list_area").html(response);
-                }
-            });
-        }
-    </script>
-</body>
-<!-- END: Body-->
-
-</html>
+<!-- load library selectize -->
+<!-- tempatkan code ini pada akhir code html sebelum masuk tag script-->
+<?php echo _js("ybs,selectize,multiselect") ?>
+<script type="text/javascript">
+	$('#agentid').selectize({});
+	$('#reason_call').selectize({});
+	// $('#agentid').multiselect();
+	var page_version = "1.0.8"
+</script>

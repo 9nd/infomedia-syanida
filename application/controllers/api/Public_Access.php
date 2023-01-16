@@ -315,12 +315,11 @@ class Public_Access extends CI_Controller
 
 		);
 		$query = $this->dwh->insert('t_cwc_on4', $data);
-		if($query){
+		if ($query) {
 			echo "success";
-		}else{
+		} else {
 			echo "failed";
 		}
-
 	}
 	public function transaction_moss()
 	{
@@ -603,56 +602,246 @@ class Public_Access extends CI_Controller
 			$get_data = "no data";
 		}
 		echo json_encode($get_data);
-		
 	}
 	public function cari_kontak()
 	{
 		$this->infomedia = $this->load->database('infomedia', TRUE);
-		
+
 		$nointernet = $_POST['nointernet'];
-		
+
 		$get_data = $this->infomedia->query("SELECT no_handpone, email, nama_pelanggan, no_pstn
 		FROM db_profiling.trans_profiling_verifikasi
 		WHERE 
 		no_speedy='$nointernet' limit 5")->result();
-		
+
 		echo json_encode($get_data);
-		
 	}
 
 	public function cari_kontak_moss_bynd()
 	{
 		$this->infomedia = $this->load->database('infomedia', TRUE);
-		
+
 		$nointernet = $_POST['nointernet'];
-		
+
 		$get_data = $this->infomedia->query("SELECT no_handpone, email, nama_pelanggan, no_pstn
 		FROM db_profiling.trans_profiling_validasi_mos
 		WHERE 
 		no_speedy='$nointernet' limit 5")->result();
-		
+
 		if (!$get_data) {
 			$get_data = "no data";
 		}
 		echo json_encode($get_data);
-		
 	}
 
 	public function cari_kontak_indipass()
 	{
 		$this->infomedia = $this->load->database('dwh', TRUE);
-		
+
 		$nointernet = $_POST['nointernet'];
-		
+
 		$get_data = $this->infomedia->query("SELECT msisdn, email, ncli, nd
 		FROM transaction_log
 		WHERE 
-		nd='$nointernet' limit 5")->result();
-		
+		nd='$nointernet' and year(date) > 2019 order by id desc limit 5 ")->result();
+
 		if (!$get_data) {
 			$get_data = "no data";
 		}
 		echo json_encode($get_data);
-		
+	}
+	public function indri_cek_kontak()
+	{
+		$this->infomedia = $this->load->database('infomedia', TRUE);
+		$getdata = $this->infomedia->query("SELECT * FROM indri_import WHERE s_pisah=0 limit 50000")->result();
+		$data_kontak = array();
+		$no = 0;
+		foreach ($getdata as $datana) {
+			$pecah = explode('-', $datana->LAST_CALL);
+			$LAST_CALL_STATUS = $pecah[0];
+			$LAST_CALL_REASON = $pecah[1] . $pecah[2];
+
+
+			$pecah_kontak = explode(',', $datana->KONTAK);
+
+
+			foreach ($pecah_kontak as $datakontak) {
+				$explodes = explode('-', $datakontak);
+				$trimexplode0 = trim($explodes[0]);
+				$trimexplode1 = trim($explodes[1]);
+				$trimexplode2 = trim($explodes[2]);
+				
+				$kontaknya = preg_replace('/\s+/', '_', $trimexplode0);
+				$statuskontak = preg_replace('/\s+/', '_', $trimexplode0) . '_STATUS';
+				$datak[$no]['LAST_CALL_STATUS'] = $LAST_CALL_STATUS;
+				$datak[$no]['LAST_CALL_REASON'] = $LAST_CALL_REASON;
+				$datak[$no][$kontaknya] = $trimexplode1;
+				$datak[$no][$statuskontak] = $trimexplode2;
+
+				$dataupdate = array(
+					'LAST_CALL_STATUS' => $LAST_CALL_STATUS,
+					'LAST_CALL_REASON' => $LAST_CALL_REASON,
+					's_pisah' => '1'
+				);
+				if($kontaknya != ''){
+					$dataupdate[$kontaknya] = $trimexplode1;
+					$dataupdate[$statuskontak] = $trimexplode2;
+				}
+
+				$this->infomedia->where('id', $datana->id);
+				$this->infomedia->update('indri_import', $dataupdate);
+			}
+
+
+			$no++;
+		}
+
+		echo "berhasil update sebanyak : " . count($datak);
+	}
+	public function indri_cek_kontak_monthly()
+	{
+		$this->infomedia = $this->load->database('infomedia', TRUE);
+		$getdata = $this->infomedia->query("SELECT * FROM indri_import_monthly WHERE s_pisah=0 limit 50000")->result();
+		$data_kontak = array();
+		$no = 0;
+		foreach ($getdata as $datana) {
+			$pecah = explode('-', $datana->LAST_CALL);
+			$LAST_CALL_STATUS = $pecah[0];
+			$LAST_CALL_REASON = $pecah[1] . $pecah[2];
+
+
+			$pecah_kontak = explode(',', $datana->KONTAK);
+
+
+			foreach ($pecah_kontak as $datakontak) {
+				$explodes = explode('-', $datakontak);
+				$trimexplode0 = trim($explodes[0]);
+				$trimexplode1 = trim($explodes[1]);
+				$trimexplode2 = trim($explodes[2]);
+				
+				$kontaknya = preg_replace('/\s+/', '_', $trimexplode0);
+				$statuskontak = preg_replace('/\s+/', '_', $trimexplode0) . '_STATUS';
+				$datak[$no]['LAST_CALL_STATUS'] = $LAST_CALL_STATUS;
+				$datak[$no]['LAST_CALL_REASON'] = $LAST_CALL_REASON;
+				$datak[$no][$kontaknya] = $trimexplode1;
+				$datak[$no][$statuskontak] = $trimexplode2;
+
+				$dataupdate = array(
+					'LAST_CALL_STATUS' => $LAST_CALL_STATUS,
+					'LAST_CALL_REASON' => $LAST_CALL_REASON,
+					's_pisah' => '1'
+				);
+				if($kontaknya != ''){
+					$dataupdate[$kontaknya] = $trimexplode1;
+					$dataupdate[$statuskontak] = $trimexplode2;
+				}
+
+				$this->infomedia->where('id', $datana->id);
+				$this->infomedia->update('indri_import_monthly', $dataupdate);
+			}
+
+
+			$no++;
+		}
+
+		echo "berhasil update sebanyak : " . count($datak);
+	}
+	
+	public function indri_cek_kontak_rekon()
+	{
+		$this->infomedia = $this->load->database('infomedia', TRUE);
+		$getdata = $this->infomedia->query("SELECT * FROM indri_import_rekon WHERE s_pisah=0 limit 50000")->result();
+		$data_kontak = array();
+		$no = 0;
+		foreach ($getdata as $datana) {
+			$pecah = explode('-', $datana->LAST_CALL);
+			$LAST_CALL_STATUS = $pecah[0];
+			$LAST_CALL_REASON = $pecah[1] . $pecah[2];
+
+
+			$pecah_kontak = explode(',', $datana->KONTAK);
+
+
+			foreach ($pecah_kontak as $datakontak) {
+				$explodes = explode('-', $datakontak);
+				$trimexplode0 = trim($explodes[0]);
+				$trimexplode1 = trim($explodes[1]);
+				$trimexplode2 = trim($explodes[2]);
+				
+				$kontaknya = preg_replace('/\s+/', '_', $trimexplode0);
+				$statuskontak = preg_replace('/\s+/', '_', $trimexplode0) . '_STATUS';
+				$datak[$no]['LAST_CALL_STATUS'] = $LAST_CALL_STATUS;
+				$datak[$no]['LAST_CALL_REASON'] = $LAST_CALL_REASON;
+				$datak[$no][$kontaknya] = $trimexplode1;
+				$datak[$no][$statuskontak] = $trimexplode2;
+
+				$dataupdate = array(
+					'LAST_CALL_STATUS' => $LAST_CALL_STATUS,
+					'LAST_CALL_REASON' => $LAST_CALL_REASON,
+					's_pisah' => '1'
+				);
+				if($kontaknya != ''){
+					$dataupdate[$kontaknya] = $trimexplode1;
+					$dataupdate[$statuskontak] = $trimexplode2;
+				}
+
+				$this->infomedia->where('id', $datana->id);
+				$this->infomedia->update('indri_import_rekon', $dataupdate);
+			}
+
+
+			$no++;
+		}
+
+		echo "berhasil update sebanyak : " . count($datak);
+	}
+	
+	public function indri_import_cutoff()
+	{
+		$this->infomedia = $this->load->database('infomedia', TRUE);
+		$getdata = $this->infomedia->query("SELECT * FROM indri_import_cutoff WHERE s_pisah=0 limit 50000")->result();
+		$data_kontak = array();
+		$no = 0;
+		foreach ($getdata as $datana) {
+			$pecah = explode('-', $datana->LAST_CALL);
+			$LAST_CALL_STATUS = $pecah[0];
+			$LAST_CALL_REASON = $pecah[1] . $pecah[2];
+
+
+			$pecah_kontak = explode(',', $datana->KONTAK);
+
+
+			foreach ($pecah_kontak as $datakontak) {
+				$explodes = explode('-', $datakontak);
+				$trimexplode0 = trim($explodes[0]);
+				$trimexplode1 = trim($explodes[1]);
+				$trimexplode2 = trim($explodes[2]);
+				
+				$kontaknya = preg_replace('/\s+/', '_', $trimexplode0);
+				$statuskontak = preg_replace('/\s+/', '_', $trimexplode0) . '_STATUS';
+				$datak[$no]['LAST_CALL_STATUS'] = $LAST_CALL_STATUS;
+				$datak[$no]['LAST_CALL_REASON'] = $LAST_CALL_REASON;
+				$datak[$no][$kontaknya] = $trimexplode1;
+				$datak[$no][$statuskontak] = $trimexplode2;
+
+				$dataupdate = array(
+					'LAST_CALL_STATUS' => $LAST_CALL_STATUS,
+					'LAST_CALL_REASON' => $LAST_CALL_REASON,
+					's_pisah' => '1'
+				);
+				if($kontaknya != ''){
+					$dataupdate[$kontaknya] = $trimexplode1;
+					$dataupdate[$statuskontak] = $trimexplode2;
+				}
+
+				$this->infomedia->where('id', $datana->id);
+				$this->infomedia->update('indri_import_cutoff', $dataupdate);
+			}
+
+
+			$no++;
+		}
+
+		echo "berhasil update sebanyak : " . count($datak);
 	}
 }

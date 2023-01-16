@@ -53,15 +53,15 @@
                         echo $ucapan->salam_pembuka;
                         ?>
                         </p>
-                        Halo, Selamat Pagi/Siang/Sore.
+                        Halo, Selamat Pagi/Siang/Sore/Malam.
                         <br><br>
-                        Perkenalkan, saya (nama agent) dari team verifikasi Indihome PT Telkom Indonesia,  bermaksud untuk memverifikasi  data terkait penginputan no hp yang Bapak/Ibu lakukan. Mohon maaf, terkait penginputan no hpnya untuk pembelian apa ya Pak/ Bu?
+                        Perkenalkan dengan saya (nama agent) dari Team Profiling Customer Indihome PT. Telkom Indonesia. 
+                        <br><br>
+                        Maaf mengganggu waktunya sebentar pak/ bu.
                         <br><br>
                         Apakah betul saya terhubung di nomor telepon/internet xxxx xxxx xxxx, atas nama (title) (nama tertera di aplikasi)?
                         <br>
                         Maaf, dengan bapak/ibu siapa saya berbicara?
-                        <br><br>
-                        boleh diinformasikan untuk hubungan/ relasinya dengan bapak/ ibu (nama fastel) sebagai siapa?
                         <br><br>
                         <b>Jika tidak terhubung dengan pemilik</b>
                         <br>
@@ -72,8 +72,6 @@
                         baik bapak/ ibu (nama pl) mohon maaf sekali aktivasi nya belum bisa kami lanjutkan,
                         <br>
                         silakan untuk perubahan data bapak/ ibu bisa datang langsung ke plasa telkom terdekat dengan membawa persyaratan administrasi.
-                        <br><br>
-                        <i>Decline (Cancel beli produk) : Mohon Maaf sebelumnya Bapak/Ibu jika boleh tahu alasan pembatalan pembelian channelnya dikerenakan apa?</i>
                         <br><br>
                         <b>Jika terhubung dengan pemilik telepon:
                         <br>
@@ -86,6 +84,8 @@
                         <b><u>Apabila pelanggan sampaikan tidak sehat</u></b>
                         <br>
                         Agent dapat sampaikan, semoga lekas sembuh ya Ibu/Bapak, mohon maaf sekali, apakah boleh minta waktunya sebentar?
+                        <br><br>
+                        Begini pak/bu. kami ditugaskan pihak Telkom untuk pelurusan data, tujuan kedepannya <b>*mempermudah Bapak/Ibu menerima informasi mengenai Program Loyalti, Produk dan Promo Telkom terbaru serta Percepatan Perbaikan jika berkendala pada Telepon rumah atau Internet nya*</b>
                     </div>
                     <div class="col-md border-left">
                         <table width="100%">
@@ -171,24 +171,15 @@
                         <br>
                         No handphone bapak/ ibu (nama pelanggan) apakah terhubung dengan whatsApp?
                         <br><br>
-                        Untuk alamat email pak/ bu apakah ada?
+                        Boleh dibantu, untuk alamat email aktifnya apa ya pak/bu?(agent menyebutkan ulang email lalu spelling)
                         <br><br>
                         <b>Apabila sudah tercantum di aplikasi, tanyakan kembali,</b>
-                        <br>
-                        Di sini tertera alamat emailnya xxxxxxxxxx, apakah masih aktif pak/bu? Kami ejakan...
-                        <br><br>
-                        <i>* Apabila ada pergantian PJP/pelanggan meminta menambahkan/mengganti no hp /emainya, agent wajib menanyakan kembali no hp/email yang aktif</i>
-                        <br><br>
-                        <b>Handphone</b>
                         <br>
                         Untuk no handphonenya bisa disebutkan ulang pak/bu? (agent mengulang no hp pelanggan yang terbaru)
                         <br>
                         No handphone bapak/ ibu (nama pelanggan) apakah terhubung dengan whatsApp? (apabila tidak terhubung, agent wajib menanyakan no hp yang terhubung whatsapp pelanggan)
                         <br><br>
-                        <b>Email</b>
-                        <br>
-                        Boleh dibantu, untuk alamat email aktifnya apa ya pak/bu?(agent menyebutkan ulang email lalu spelling)
-
+                        Di sini tertera alamat emailnya xxxxxxxxxx, apakah masih aktif pak/bu? Kami ejakan...
                     </div>
                     <div class="col-md border-left">
                         <table width="100%">
@@ -307,11 +298,13 @@
                         echo $ucapan->verifikasi;
                         ?>
 
+                        <b>VERIFIKASI HARUS MENGGUNAKAN PERTANYAAN TERBUKA</b>
+                        <br><br>
+                        sebagai informasi tambahan, kami akan menanyakan 5 pertanyaan verifikasi, mohon dibantu ya bapak/ibu (nama pelanggan)
+                        <br><br>
                         A. Untuk alamat rumah saat ini, apakah ada perubahan Bapak/ Ibu (nama pelanggan)? mohon dapat disebutkan?
                         <br>
-                        B. Selain telepon, apakah bapak/ ibu (nama pelanggan) juga menggunakan internet? Boleh dibantu untuk kecepatan internet yang bapak/ ibu gunakan sekarang?
-                        <br>
-                        Kondisi telepon/internetnya lancar pak/bu? semoga lancar selalu
+                        B. Selain telepon, apakah bapak/ ibu (nama pelanggan) juga menggunakan internet? Boleh dibantu untuk kecepatan internet yang bapak/ ibu gunakan sekarang? Kondisi telepon/internetnya lancar pak/bu? semoga lancar selalu
                         <br>
                         C. Maaf pak/ bu (nama pelanggan) untuk persamaan data, bisa diinformasikan tagihan telepon terakhir yang dibayarkan sekitar berapa rupiah pak/bu?
                         <br>
@@ -321,29 +314,12 @@
                         <br><br>
                         untuk kedepannya Bapak/Ibu lebih berkenan/nyaman kami hubungi via apa? (whatsapp, email, telepon)
                         <br><br>
-                        Baik Bapak/Ibu selanjutnya kami konfirmasi untuk channel yang akan diaktifkan XXXXXXXXXX (sebutkan namanya), dimana kedepannya akan ada penambahan ditagihan bulanannya.
+                        Baik Bapak/ Ibu (nama pelanggan), terima kasih untuk kelengkapan datanya.
                         <br><br>
-                        Sebelum channel kami aktifkan, kami kirimkan pesan ke bapak/ibu melalui sms dan email yang didalamnya  terdapat link dari Indihome.
-                        <br>
-                        Silakan klik link tersebut sebagai  bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI, sehingga kami dapat melakukan pengaktifan channel 
+                        Saat ini kami kirimkan pesan ke bapak/ibu melalui sms dan email yang didalamnya  terdapat link dari Indihome.
                         <br><br>
-                        <b>*jika terhubung dengan pelanggan status relasi/ karyawan </b>
-                        <br>
-                        Sebelum channel kami aktifkan, kami kirimkan pesan ke bapak/ibu (nama pelanggan) dan bapak/ibu (nama pastel) melalui sms dan email yang didalamnya  terdapat link dari Indihome.
-                        <br>
-                        Silakan klik link tersebut sebagai  bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI, sehingga kami dapat melakukan pengaktifan channel 
-                        <br><br>
-                        Apakah informasi terkait link-nya sudah cukup jelas bapak/ibu (nama pelanggan)?
-                        <br>
-                        <i>*Apabila pelanggan menjawab sudah mengerti: agent bisa langsung akad
-                        <br>
-                        *kalau belum mengerti: edukasi kembali penyampaian link</i>
-                        <br><br>
-                        apakah disini bapak/ibu (nama pelanggan) bersedia utk berlangganan (paket yang diminta;XXXXX?)
-                        <br><br>
-                        Sebagai bukti legalitas, percakapan ini direkam oleh PT Telkom Indonesia, disini kami konfirmasi ulang pada hari .....tanggal...... , tahun..., bapak/ibu .....selaku penanggung jawab no indihome xxxx telah setuju untuk berlangganan channel ......., dengan biaya berlangganan sebesar Rp......  + ppn 11% diluar pemakaian fasilitas lainnya.
-                        <br><br>
-                        kami sudah melakukan aktivasi channelnya....., mohon STB nya di restart terlebih dahulu Bapak/Ibu
+                        Silakan klik link tersebut sebagai  bentuk approval/persetujuan bahwa data yang bapak/ibu berikan kepada kami sudah SESUAI dan DATA SUDAH TERVERIFIKASI.
+                        
                     </div>
                     <div class="col-md border-left">
                         <div class="panel panel-lte">
@@ -546,10 +522,6 @@
                         Terimakasih atas waktunya Bapak/Ibu (Nama Pelanggan), kami senantiasa menjamin kerahasiaan data pelanggan.
                         <br>
                         (Selamat (Pagi/Siang/Sore/Malam) *(Selamat beraktifitas kembali/Semoga sehat selalu/Selamat beristirahat, Sukses selalu)
-                        <br><br><br>
-                        <b>Aktivasi Manual (Aktivasi By Pelanggan)
-                        <br>
-                        Silahkan 5 menit kedepan bapak/ ibu lakukan pembelian ulang dengan cara mengklik kembali channel yang akan diaktifkan tanpa merubah nomor Hp kembali, selanjutnya klik beli maka akan masuk 6 angka kode aktivasi/OTP ke no Handphone yang saat ini dihubungi dan silahkan input kode OTP ke layar UseeTv nya maka channel akan terbuka dan dapat dinikmati.</b>
                     </div>
                     <div class="col-md border-left">
                         <table width="100%">
@@ -628,7 +600,7 @@
                                             <option class="moss" value="119">Channel Sudah Aktif</option>
                                             <option class="moss" value="121">Tidak Mau Ada Biaya Tambahan</option>
                                             <option class="moss" value="122">Sdh Di Validasi</option>
-                                            <option class="moss" value="1110">Bukan Pemilik</option>
+                                            <option class="moss" value="123">Bukan Pemilik</option>
                                             <!-- <option class="moss" value="124">Masih Pikir - Pikir</option>
                                             <option class="moss" value="125">Harga Mahal</option>
                                             <option class="moss" value="126">Belum Perlu</option>

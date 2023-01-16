@@ -71,8 +71,7 @@ WO : " . $jmlhwo;
 
             $hasil = "ada antrian";
         } else {
-            $pesan = "INFORMATION :
-DATA MOSS AMAN (TIDAK ADA DATA LEBIH DARI 3 MENIT) 
+            $pesan = "INFORMASI DATA MOSS:
 WO : " . $jmlhwo;
 
             $hasil = "gak ada antrian";

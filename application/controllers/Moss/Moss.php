@@ -54,7 +54,8 @@ class Moss extends CI_Controller
 			SELECT  
 			idx, 
 			ncli, 
-			no_pstn, 
+			no_pstn,
+			relasi, 
 			no_speedy, 
 			nama_pelanggan, 
 			no_handpone, 

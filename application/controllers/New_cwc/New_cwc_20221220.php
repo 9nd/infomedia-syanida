@@ -74,13 +74,6 @@ class New_cwc extends CI_Controller
     $userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
     $agentid = $userdata->agentid;
     //
-    if ($_POST['v_email'] == 11) {
-      $_POST['v_email'] = $_POST['v_email'] . "_" . $_POST['vrdeclineemail'];
-    }
-    if ($_POST['v_sms'] == 11) {
-      $_POST['v_sms'] = $_POST['v_sms'] . "_" . $_POST['v_sms'];
-    }
-    //
     if (isset($agentid)) {
       $lup = date("Y-m-d H:i:s");
       $datainsert = array(
@@ -136,13 +129,6 @@ class New_cwc extends CI_Controller
     $logindata = $this->log_login->get_by_id($idlogin);
     $userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
     $agentid = $userdata->agentid;
-    //
-    if ($_POST['v_email'] == 11) {
-      $_POST['v_email'] = $_POST['v_email'] . "_" . $_POST['vrdeclineemail'];
-    }
-    if ($_POST['v_sms'] == 11) {
-      $_POST['v_sms'] = $_POST['v_sms'] . "_" . $_POST['v_sms'];
-    }
     //
     $id = $_POST['id'];
     $datana =  $this->infomedia->query("SELECT * FROM v2_trans_profiling WHERE id='$id'")->row();
@@ -600,7 +586,7 @@ class New_cwc extends CI_Controller
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'http://10.194.176.158/cwctam_v2/api/api_wita.php?function=get_inet_contacted_data_tam&fastel=' . $value,
+      CURLOPT_URL => 'http://10.194.176.158/cwctam_v2/api/api_wita.php?function=get_inet_contacted_data_tam&fastel='.$value,
       // CURLOPT_URL => 'http://10.194.176.158/cwctam_v2/api/api_wita.php?function=get_inet_contacted_data_tam&fastel=11222241112',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
@@ -828,53 +814,41 @@ class New_cwc extends CI_Controller
 
       $userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
 
-      $this->load->model('sys/Sys_user_log_model', 'log_login');
-      $idlogin = $this->session->userdata('idlogin');
-      $logindata = $this->log_login->get_by_id($idlogin);
-      $userdata = $this->Sys_user_table_model->get_row(array("id" => $logindata->id_user));
-      $filter_agent = array("opt_level" => 8, "tl !=" => "-");
-      $data['user_categori'] = '-';
-      if ($userdata->opt_level == 8) {
-        $where_agent_multi = " AND veri_upd='$userdata->agentid'";
-      } else {
-        if (isset($agentid)) {
-          if ($agentid) {
-            if (count($_GET['agentid']) > 1) {
-              $n_agent_pick = count($_GET['agentid']);
-              foreach ($_GET['agentid'] as $k_agentid => $v_agentid) {
-                if ($k_agentid == 0) {
-                  $filter_agent = " AND (agentid = '$v_agentid'";
-                  $where_agent_multi = "AND ( agentid = '$v_agentid'";
+      if (isset($agentid)) {
+        if ($agentid) {
+          if (count($_GET['agentid']) > 1) {
+            $n_agent_pick = count($_GET['agentid']);
+            foreach ($_GET['agentid'] as $k_agentid => $v_agentid) {
+              if ($k_agentid == 0) {
+                $filter_agent = " AND (agentid = '$v_agentid'";
+                $where_agent_multi = "AND ( agentid = '$v_agentid'";
+              } else {
+                if ($k_agentid == ($n_agent_pick - 1)) {
+                  $where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' )";
+                  $filter_agent = $filter_agent . " OR agentid = '$v_agentid' )";
                 } else {
-                  if ($k_agentid == ($n_agent_pick - 1)) {
-                    $where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' )";
-                    $filter_agent = $filter_agent . " OR agentid = '$v_agentid' )";
-                  } else {
-                    $where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' ";
-                    $filter_agent = $filter_agent . " OR agentid = '$agentid' ";
-                  }
+                  $where_agent_multi = $where_agent_multi . " OR agentid = '$v_agentid' ";
+                  $filter_agent = $filter_agent . " OR agentid = '$agentid' ";
                 }
               }
-              $where_agent['or_where_null'] = array($where_agent_multi);
-            } else {
-              if ($agentid[0] != '0') {
-                $where_agent['agentid'] = $agentid[0];
-                $filter_agent = " AND agentid = '$agentid[0]'";
-                $where_agent_multi = "AND ( agentid = '$agentid[0]')";
-              }
+            }
+            $where_agent['or_where_null'] = array($where_agent_multi);
+          } else {
+            if ($agentid[0] != '0') {
+              $where_agent['agentid'] = $agentid[0];
+              $filter_agent = " AND agentid = '$agentid[0]'";
+              $where_agent_multi = "AND ( agentid = '$agentid[0]')";
             }
           }
         }
       }
-
-
       if (!isset($where_agent_multi)) {
         // $where_agent_multi = "agentid = '" . $agentid[0] . "'";
         $where_agent_multi = "";
       }
 
 
-      $data['datanya'] = $this->infomedia->query("SELECT * FROM v2_trans_profiling WHERE  DATE( lup ) BETWEEN '$start_filter' AND '$end_filter'  $where_agent_multi ")->result();
+      $data['datanya'] = $this->infomedia->query("SELECT * FROM v2_trans_profiling WHERE  DATE( lup ) BETWEEN '$start_filter' AND '$end_filter'  $where_agent_multi  AND sub_call<>13")->result();
     }
 
 

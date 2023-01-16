@@ -11,6 +11,8 @@
             $reguler = json_decode($reguler);
             $indipass = json_decode($indipass);
             $moss = json_decode($moss);
+            $wa_collection = json_decode($wa_collection);
+            $wita = json_decode($wita);
             $on4transpose = array();
             $salpertranspose = array();
             foreach ($on4 as $dataon4) {
@@ -36,7 +38,7 @@
                         array(
                             'sumber' => 'SALPER',
                             'nama' => $vdatasalper->nama_pelanggan,
-                            'kontak' => $vdatasalper->dial_to,
+                            'kontak' => $vdatasalper->dial_to.' | '.$vdatasalper->handphone,
                             'kontakemail' => $vdatasalper->email,
                             'pstn' => '#',
                             'twitter' => '#',
@@ -57,9 +59,9 @@
                         'kontak' => $datareg->no_handpone,
                         'kontakemail' => $datareg->email,
                         'pstn' => $datareg->no_pstn,
-                        'twitter' => 'not provided',
-                        'ig' => 'not provided',
-                        'facebook' => 'not provided'
+                        'twitter' => '#',
+                        'ig' => '#',
+                        'facebook' => '#'
                     )
                 );
             }
@@ -93,7 +95,37 @@
                     )
                 );
             }
-        //   var_dump($reguler);
+            foreach ($wa_collection as $datawa_collection) {
+                array_push(
+                    $on4transpose,
+                    array(
+                        'sumber' => 'WA Collection',
+                        'nama' => $datawa_collection->NAMA,
+                        'kontak' => $datawa_collection->GSM,
+                        'kontakemail' => '#',
+                        'pstn' => '#',
+                        'twitter' => '#',
+                        'ig' => '#',
+                        'facebook' => '#'
+                    )
+                );
+            }
+            foreach ($wita->data as $data_wita) {
+                array_push(
+                    $on4transpose,
+                    array(
+                        'sumber' => 'TAM',
+                        'nama' => $data_wita->nama_dm,
+                        'kontak' => $data_wita->tlp,
+                        'kontakemail' => '#',
+                        'pstn' => '#',
+                        'twitter' => '#',
+                        'ig' => '#',
+                        'facebook' => '#'
+                    )
+                );
+            }
+        //   var_dump($wita->data);
 
 
             ?>

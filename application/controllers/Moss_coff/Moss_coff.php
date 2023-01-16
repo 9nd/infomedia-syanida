@@ -106,7 +106,7 @@ class Moss_coff extends CI_Controller
 		COUNT(*) as jml_data,
 			  SEC_TO_TIME(AVG(TIMEDIFF(lup, tgl_insert))) as SLG,
 			   SEC_TO_TIME(AVG(TIMEDIFF(click_time, tgl_insert))) as SLFC
- FROM trans_profiling_validasi_mos
+ FROM indri_trans_profiling_validasi_mos
  WHERE date(tgl_insert)='$start' AND update_by <> 'SYS'
  GROUP BY period
  ORDER BY period ASC;")->result();

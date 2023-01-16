@@ -296,8 +296,8 @@
                                                                                                                                                 echo $datana->no_indri;
                                                                                                                                             } ?>" required>
                                                     <input type="text" class="form-control" name='id' placeholder="id" value="<?php if (isset($datana)) {
-                                                                                                                                    echo $datana->id;
-                                                                                                                                } ?>" hidden>
+                                                                                                                                                echo $datana->id;
+                                                                                                                                            } ?>" hidden>
 
                                                 </div>
                                                 <div class="col-4 mb-3">
@@ -599,16 +599,6 @@
 
 
                                             </div>
-                                            <div class="form-group row" id='declineemailf'>
-                                                <label for="rdeclineemail" class="col-sm-4 col-form-label">Reason Decline Email</label>
-                                                <div class="col-sm-7">
-                                                    <select class="form-control" id="vrdeclineemail" name="vrdeclineemail">
-                                                        <option value="1">Perangkat pelanggan tidak mendukung</option>
-                                                        <option value="2">Jaringan pelanggan tidak mendukung</option>
-                                                        <option value="3">tidak mau klik link</option>
-                                                    </select>
-                                                </div>
-                                            </div>
                                             <div class="col-4 mb-3">
                                                 <label for="v_sms">Verifikasi SMS</label>
                                                 <select class="form-control" id="v_sms" name="v_sms">
@@ -623,16 +613,6 @@
                                                                         } ?>>decline</option>
                                                 </select>
 
-                                            </div>
-                                            <div class="form-group row" id='declinesmsf'>
-                                                <label for="rdeclineemail" class="col-sm-4 col-form-label">Reason Decline SMS</label>
-                                                <div class="col-sm-7">
-                                                    <select class="form-control" id="vrdeclinesms" name="vrdeclinesms">
-                                                        <option value="1">Perangkat pelanggan tidak mendukung</option>
-                                                        <option value="2">Jaringan pelanggan tidak mendukung</option>
-                                                        <option value="3">tidak mau klik link</option>
-                                                    </select>
-                                                </div>
                                             </div>
                                             <div class="col-4 mb-3">
                                                 <label for="opsi_call">Opsi Call</label>
@@ -1008,32 +988,6 @@
                 $('.veri_statusopt_nv').hide();
             }
 
-        });
-
-        $('#declineemailf').hide();
-        $('#declinesmsf').hide();
-        var Privileges = jQuery('#v_email');
-        var select = this.value;
-        Privileges.change(function() {
-            if ($(this).val() == '11') {
-                $('#declineemailf').show();
-            } else {
-                $('#declineemailf').hide();
-            }
-            //     $('.opsicontacted').hide(); // hide div if value is not "custom"
-            //     $('.opsinc').show(); // hide div if value is not "custom"
-        });
-
-        var Privileges = jQuery('#v_sms');
-        var select = this.value;
-        Privileges.change(function() {
-            if ($(this).val() == '11') {
-                $('#declinesmsf').show();
-            } else {
-                $('#declinesmsf').hide();
-            }
-            //     $('.opsicontacted').hide(); // hide div if value is not "custom"
-            //     $('.opsinc').show(); // hide div if value is not "custom"
         });
 
         var Privileges = jQuery('#sub_call');

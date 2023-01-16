@@ -149,7 +149,7 @@
                             <tr>
                                 <td>Handphone Utama</td>
                                 <td>
-                                    <input required type="tel" class="form-control data-sending" id="no_handpone" name="no_handpone" value="<?php if (isset($datanya)) echo trim($datanya->handphone); ?>">
+                                    <input type="tel" class="form-control data-sending" id="no_handpone" name="no_handpone" value="<?php if (isset($datanya)) echo trim($datanya->handphone); ?>">
                                     
 									<input type="checkbox" class="handphone_utama_wa" id="handphone_utama_wa" value=1 name="handphone_utama_wa">WA
 								

@@ -9,6 +9,7 @@
                         <th>NO </th>
                         <th>ncli </th>
                         <th>no_pstn </th>
+                        <th>relasi </th>
                         <th>no_speedy </th>
                         <th>nama_pelanggan </th>
                         <th>no_handpone </th>
@@ -43,6 +44,7 @@
                             echo "<td style='font-size: 11px'>" . $no . "</td>";
                             echo "<td style='font-size: 11px'>" . $datana->ncli . "</td>";
                             echo "<td style='font-size: 11px'>" . $datana->no_pstn . "</td>";
+                            echo "<td style='font-size: 11px'>" . $datana->relasi . "</td>";
                             echo "<td style='font-size: 11px'>" . $datana->no_speedy . "</td>";
                             echo "<td style='font-size: 11px'>" . $datana->nama_pelanggan . "</td>";
                             echo "<td style='font-size: 11px'>" . $datana->no_handpone . "</td>";

@@ -210,7 +210,6 @@ class Mapping extends CI_Controller
                 if (intval($cek->time) > 10) {
                     $this->send_notif_engine("API_SMS_TURBO", "UP", $durasi_sms, "UPDATE STATUS ENGINE");
                 }
-                
             }
             $data_input = array(
                 "lastupdate" => DATE('Y-m-d H:i:s'),
@@ -260,6 +259,105 @@ Execution Time : " . $execution_time . "
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
                 $result = curl_exec($ch);
                 curl_close($ch);
+            }
+        }
+    }
+    function cek_fraud_profiling()
+    {
+        $this->infomedia = $this->load->database('infomedia', TRUE);
+        $this->play = $this->load->database('play', TRUE);
+        $get_data = $this->infomedia->query("SELECT id, NOMOR_LAYANAN, EMAIL,
+        NO_HP,
+        SMS,
+        TLP_RUMAH,
+        TLP_KANTOR,
+        TWITTER,
+        WHATSAPP,
+        EMAIL_MYINDIHOME,
+        EMAIL_NETFLIX,
+        NETFLIX_EMAIL,
+        NO_HP_MYINDIHOME
+        FROM indri_import  where CEK_FRAUD='0' limit 6000 ")->result();
+
+        if (count($get_data)  > 0) {
+            foreach ($get_data as $datanacek) {
+                if ($datanacek->NO_HP == '') {
+                    $datanacek->NO_HP = 'kontakkosong_sistem';
+                }
+                if ($datanacek->WHATSAPP == '') {
+                    $datanacek->WHATSAPP = 'kontakkosong_sistem';
+                }
+                if ($datanacek->NO_HP_MYINDIHOME == '') {
+                    $datanacek->NO_HP_MYINDIHOME = 'kontakkosong_sistem';
+                }
+                if ($datanacek->EMAIL_MYINDIHOME == '') {
+                    $datanacek->EMAIL_MYINDIHOME = 'kontakkosong_sistem';
+                }
+                if ($datanacek->EMAIL_NETFLIX == '') {
+                    $datanacek->EMAIL_NETFLIX = 'kontakkosong_sistem';
+                }
+                if ($datanacek->EMAIL == '') {
+                    $datanacek->EMAIL = 'kontakkosong_sistem';
+                }
+                if ($datanacek->NETFLIX_EMAIL == '') {
+                    $datanacek->NETFLIX_EMAIL = 'kontakkosong_sistem';
+                }
+                $cek_query = $this->play->query("SELECT NO_SPEEDY, NO_PSTN, NCLI, NO_HP, EMAIL FROM DBPROFILE WHERE 
+                NO_HP = '$datanacek->NO_HP' OR 
+                NO_HP = '$datanacek->WHATSAPP' OR 
+                NO_HP = '$datanacek->NO_HP_MYINDIHOME' OR
+                EMAIL = '$datanacek->EMAIL_MYINDIHOME' OR 
+                EMAIL = '$datanacek->EMAIL_NETFLIX' OR 
+                EMAIL = '$datanacek->EMAIL' OR 
+                EMAIL = '$datanacek->NETFLIX_EMAIL' LIMIT 40")->result();
+
+                // if (count($cek_query) > 50) {
+                $jml = 0;
+                foreach ($cek_query as $datacekq_dbprof) {
+                    //insert
+                    $datainsert =  array(
+                        "HP" => $datacekq_dbprof->NO_HP,
+                        "EMAIL" =>  $datacekq_dbprof->EMAIL,
+                        "NOINTERNET" =>  $datacekq_dbprof->NO_SPEEDY,
+                        "NCLI" => $datacekq_dbprof->NCLI,
+                        "PSTN" =>  $datacekq_dbprof->NO_PSTN,
+                        "DATE_INSERT" => DATE("Y-m-d h:i:s"),
+                        "ID_INDRI" => $datanacek->id
+                    );
+                    ///
+                    $jmlchar = strlen($datanacek->NOMOR_LAYANAN);
+                    if ($jmlchar == 12) {
+                        if ((trim($datacekq_dbprof->NO_SPEEDY) != trim($datanacek->NOMOR_LAYANAN) && trim($datanacek->NOMOR_LAYANAN) != '')) {
+                            $jml = $jml + 1;
+                            // echo "data beda <br>".$datacekq_dbprof->NO_SPEEDY." | ".$datanacek->NOMOR_LAYANAN."<br><br>";
+                            $this->infomedia->insert('hasil_cek_fraud_', $datainsert);
+                        }
+                    } else if (1 < $jmlchar && $jmlchar < 12) {
+                        if ((trim($datacekq_dbprof->NO_PSTN) != trim($datanacek->NOMOR_LAYANAN) && trim($datanacek->NO_PSTN) != '')) {
+                            $jml = $jml + 1;
+                            // echo "data beda <br>".$datacekq_dbprof->NO_SPEEDY." | ".$datanacek->NOMOR_LAYANAN."<br><br>";
+                            $this->infomedia->insert('hasil_cek_fraud_', $datainsert);
+                        }
+                    }
+                }
+                // if ($jml > 1) {
+                   
+                //     $this->infomedia->insert('hasil_cek_fraud', $datainsert);
+                // }
+
+
+
+                //update
+
+                $dataupdate = array(
+                    'CEK_FRAUD' => 1,
+                    'DATE_CEK_FRAUD' => DATE("Y-m-d H:i:s"),
+                    'JML_MULTIKONTAK' => $jml
+                );
+
+                $this->infomedia->where('id', $datanacek->id);
+                $this->infomedia->update('indri_import', $dataupdate);
+                // }
             }
         }
     }
